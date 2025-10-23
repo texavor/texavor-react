@@ -46,9 +46,25 @@ const Hero = () => {
     <div className="space-y-6 mt-16 relative">
       <div className="md:w-[70%] md:mx-auto text-center space-y-6">
         <div className="text-[#0A2918] text-[76px] font-bold leading-18">
-          Stop Guessing. Start{" "}
+          <div className="relative inline-block">
+            <div className="absolute -bottom-30 -left-10 w-40 h-20 mr-4">
+              <Image
+                src="/curved-dashed-line-left.svg"
+                alt="curved dashed line"
+                layout="fill"
+              />
+            </div>
+            Stop Guessing. Start{" "}
+          </div>
           <div className="relative inline-block">
             <span className="relative z-10">Ranking</span>
+            <div className="absolute -bottom-20 left-full w-60 h-20 ml-4">
+              <Image
+                src="/curved-dashed-line.svg"
+                alt="curved dashed line"
+                layout="fill"
+              />
+            </div>
             <div className="absolute inset-0 top-4 w-full flex justify-center items-center z-0">
               <Image
                 src="/icons/circle.png"

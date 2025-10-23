@@ -140,7 +140,7 @@ function NavigationList({ title, type, href, subMenu, ...props }: any) {
         <NavigationMenuItem>
           <NavigationMenuLink
             asChild
-            className={`${navigationMenuTriggerStyle()}`}
+            className={`${navigationMenuTriggerStyle()} hover:bg-transparent`}
           >
             <Link href={href}>
               <p className="text-lg text-[#1A1A1A]">{title}</p>
