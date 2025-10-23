@@ -71,7 +71,9 @@ const Navigation = () => {
     <div className="sticky top-0 bg-[#F9F4F0] z-50 py-4">
       <div className="flex items-center justify-between w-full md:max-w-[1200px] mx-auto py-2 px-4">
         {/* Logo */}
-        <p className="text-[#104127] font-bold text-[24px]">EasyWrite</p>
+        <Link href="/">
+          <p className="text-[#104127] font-bold text-[24px]">EasyWrite</p>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-4">
@@ -140,7 +142,7 @@ function NavigationList({ title, type, href, subMenu, ...props }: any) {
         <NavigationMenuItem>
           <NavigationMenuLink
             asChild
-            className={`${navigationMenuTriggerStyle()} hover:bg-transparent`}
+            className={`${navigationMenuTriggerStyle()} hover:bg-transparent focus:bg-transparent`}
           >
             <Link href={href}>
               <p className="text-lg text-[#1A1A1A]">{title}</p>

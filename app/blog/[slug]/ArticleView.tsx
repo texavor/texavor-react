@@ -85,7 +85,7 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
         />
       </div>
 
-      <div className="container mx-auto lg:w-[1200px] md:w-8/12 w-11/12 mt-10 lg:mt-28">
+      <div className="container mx-auto lg:w-[1200px] md:w-8/12 w-11/12 mt-10">
         <div className="flex flex-col lg:flex-row lg:gap-12">
           <div className="lg:w-[72%] xl:w-3/4">
             <div className="relative w-full max-w-4xl aspect-[1000/420] rounded-2xl overflow-hidden">
@@ -150,7 +150,11 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
               />
             </div>
             <div
-              className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all ease-out duration-300 ${showFloatingShare ? "opacity-100 scale-100 bottom-10" : "opacity-0 scale-0 bottom-0"}`}
+              className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all ease-out duration-300 ${
+                showFloatingShare
+                  ? "opacity-100 scale-100 bottom-10"
+                  : "opacity-0 scale-0 bottom-0"
+              }`}
             >
               <ShareButtons
                 title={articleData.title}
@@ -162,10 +166,10 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
 
           <div className="mt-8 lg:mt-0 lg:sticky lg:top-28 self-start h-fit">
             <div className="lg:max-w-[260px]">
-              <div className="bg-zinc-800 p-4 rounded-2xl border border-zinc-700">
+              <div className="bg-[#EEDED3] p-4 rounded-2xl border-none shadow-sm">
                 {" "}
-                <h2 className="font-raleway text-lg font-semibold text-gray-200 mb-4">
-                  Ebook
+                <h2 className="font-raleway text-lg font-semibold text-gray-800 mb-4">
+                  EasyWrite
                 </h2>
                 <a
                   href="https://gum.co/u/5trlznje"
@@ -181,24 +185,26 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                     className="w-full h-auto object-cover mb-4 rounded-2xl"
                   />
                 </a>
-                <h4 className="font-raleway text-base font-medium text-gray-100">
-                  Zero to Hero in Technical Writing: Making Consistent Income
+                <h4 className="font-raleway text-base font-medium text-gray-900">
+                  Built for the New Era of Search
                 </h4>
-                <p className="font-raleway text-sm text-gray-400 mt-2">
-                  Offers step-by-step guidance and effective methods to not only
-                  excel in technical writing but also monetization.
+                <p className="font-raleway text-sm text-gray-600 mt-2">
+                  Generic AI writers and outdated SEO tools are losing the
+                  battle for visibility. We focus on what's next.
                 </p>
                 <div className="flex items-center gap-2 mt-4">
-                  <p className="inline-block border-[1px] px-8 border-purple-600 text-purple-600 font-semibold py-2 px-4 rounded-full text-sm bg-white">
-                    Free
-                  </p>
+                  {false && (
+                    <p className="inline-block border-[1px] px-8 border-purple-600 text-purple-600 font-semibold py-2 px-4 rounded-full text-sm bg-white">
+                      Free
+                    </p>
+                  )}
                   <a
                     href="https://gum.co/u/5trlznje"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className=" inline-block bg-purple-600 text-white font-semibold py-2 px-4 rounded-full hover:bg-purple-700 transition-colors duration-200 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-600"
+                    className="inline-block bg-[#104127] text-white font-semibold py-2 px-4 rounded-full hover:[#104127] transition-colors duration-200 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-600"
                   >
-                    Get Now 🚀
+                    Try Now 🚀
                   </a>
                 </div>
               </div>
@@ -206,8 +212,8 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
           </div>
         </div>
 
-        <div className="mt-10 lg:mt-[80px] border-t-[1px] border-gray-400 pt-4 md:transform bg-zinc-950">
-          <p className="font-raleway text-[24px] font-semibold text-gray-200 mb-4">
+        <div className="mt-10 lg:mt-[80px] border-t-[1px] border-gray-400 pt-4 md:transform">
+          <p className="font-raleway text-[24px] font-semibold text-gray-800 mb-4">
             Related Articles
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6 pt-4">
@@ -219,7 +225,7 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                   href={`/${relatedArticle?.slug}`}
                   passHref
                 >
-                  <div className="bg-gray-800 rounded-2xl overflow-hidden h-full">
+                  <div className="bg-[#EEDED3] rounded-2xl overflow-hidden h-full">
                     <div className="relative overflow-hidden h-[150px] lg:h-[200px]">
                       <Image
                         src={relatedArticle?.image}
@@ -229,7 +235,7 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                     </div>
-                    <p className="font-arcade text-[24px] font-medium px-2 pb-2">
+                    <p className="font-arcade text-[24px] text-black font-medium px-2 pb-2">
                       {relatedArticle?.title}
                     </p>
                   </div>

@@ -197,7 +197,7 @@ export const ArticleContent = memo(function ArticleContent({
   return (
     <article
       ref={articleRef}
-      className="prose lg:prose-lg max-w-none font-raleway"
+      className="prose lg:prose-lg max-w-none"
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );

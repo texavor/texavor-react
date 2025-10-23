@@ -8,39 +8,66 @@ const ArticleCard = ({
   date,
   tag,
   slug,
+  image,
+  type,
 }: {
   title: string;
   description: string;
   date: string;
   tag: string[];
   slug: string;
+  image: string;
+  type: string;
 }) => {
   return (
-    <div className="cursor-pointer mt-10">
-      <Link className="flex justify-between" href={`/blog/${slug}`}>
-        <div className="w-full md:w-9/12">
-          <p className="font-arcade text-2xl hover:text-purple-400">{title}</p>
-          <p className="font-raleway whitespace-nowrap block md:hidden">
-            {format(new Date(date), "dd MMM, yyyy")}
-          </p>
-          <div className="flex flex-wrap">
-            {tag.map((item) => (
-              <span
-                className="font-raleway underline mr-2 decoration-purple-300 decoration-2"
-                key={item}
+    <div className="cursor-pointer w-full p-2 rounded-xl relative group">
+      <div className="absolute inset-0 bg-[#EEDED3] rounded-xl transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 ease-in-out origin-bottom"></div>
+      <div className="relative">
+        <Link className="flex justify-between" href={`/blog/${slug}`}>
+          <div
+            className={`w-full space-y-1 ${type === "flex" && "flex gap-2"}`}
+          >
+            <div className="relative w-full aspect-[1000/420]">
+              <Image
+                src={image}
+                alt={title}
+                fill
+                className="object-cover rounded-xl"
+              />
+            </div>
+            <div>
+              <p className="font-arcade text-xl font-medium hover:text-[#104127]">
+                {title}
+              </p>
+              <p className="font-raleway whitespace-nowrap">
+                {format(new Date(date), "dd MMM, yyyy")}
+              </p>
+              <div className="flex flex-wrap">
+                {tag.map((item) => (
+                  <span
+                    className="font-raleway underline mr-2 decoration-[#104127] decoration-2"
+                    key={item}
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+              <p
+                className="font-raleway text-sm cursor-pointer md:block hidden"
+                style={{
+                  display: "-webkit-box",
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
               >
-                {item}
-              </span>
-            ))}
+                {description}
+              </p>
+            </div>
           </div>
-          <p className="font-raleway text-sm cursor-pointer md:block hidden">
-            {description}
-          </p>
-        </div>
-        <p className="font-raleway whitespace-nowrap hidden md:block">
-          {format(new Date(date), "dd MMM, yyyy")}
-        </p>
-      </Link>
+        </Link>
+      </div>
     </div>
   );
 };

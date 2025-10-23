@@ -2,6 +2,7 @@
 
 import React from "react";
 import { baseURL } from "@/lib/axiosInstace";
+import PageTransition from "@/components/PageTransition";
 
 import ArticleCard from "./ArticleCard";
 
@@ -11,6 +12,7 @@ interface ArticlePreview {
   description: string;
   updatedAt: string;
   tag: string[];
+  image: string;
 }
 
 // Create SSR-safe axios instance
@@ -47,26 +49,67 @@ export default async function ArticleListPage() {
   const articleData = await getArticles();
 
   return (
-    <div className="container mx-auto mt-10 lg:w-[1200px] md:w-8/12 w-11/12">
-      <h1 className="font-raleway text-[32px] font-medium">
-        Stories by SurajOnDev
-      </h1>
-      {articleData.length === 0 ? (
-        <div className="container mx-auto flex justify-center lg:w-[1200px] md:w-8/12 w-11/12">
-          <img src="/article_not_found.png" className="md:size-[500px]" />
-        </div>
-      ) : (
-        articleData.map((item) => (
+    <PageTransition>
+      <div className="w-full md:max-w-[1200px] mx-auto py-2 px-4">
+        <h1 className="font-raleway text-[32px] font-medium">
+          Stories by EasyWrite
+        </h1>
+        <div className="flex my-4">
           <ArticleCard
-            key={item.slug}
-            title={item.title}
-            description={item.description}
-            date={item.updatedAt}
-            tag={item.tag}
-            slug={item.slug}
+            key={articleData?.[0]?.slug}
+            title={articleData?.[0]?.title}
+            description={articleData?.[0]?.description}
+            date={articleData?.[0]?.updatedAt}
+            tag={articleData?.[0]?.tag}
+            slug={articleData?.[0]?.slug}
+            image={articleData?.[0]?.image}
+            type="normal"
           />
-        ))
-      )}
-    </div>
+          <div className="flex flex-col gap-4">
+            <ArticleCard
+              key={articleData?.[1]?.slug}
+              title={articleData?.[1]?.title}
+              description={articleData?.[1]?.description}
+              date={articleData?.[1]?.updatedAt}
+              tag={articleData?.[1]?.tag}
+              slug={articleData?.[1]?.slug}
+              image={articleData?.[1]?.image}
+              type="flex"
+            />
+            <ArticleCard
+              key={articleData?.[2]?.slug}
+              title={articleData?.[2]?.title}
+              description={articleData?.[2]?.description}
+              date={articleData?.[2]?.updatedAt}
+              tag={articleData?.[2]?.tag}
+              slug={articleData?.[2]?.slug}
+              image={articleData?.[2]?.image}
+              type="flex"
+            />
+          </div>
+        </div>
+        <p className="font-raleway text-[24px] font-medium">More Articles...</p>
+        {articleData.length === 0 ? (
+          <div className="container mx-auto flex justify-center lg:w-[1200px] md:w-8/12 w-11/12">
+            <img src="/article_not_found.png" className="md:size-[500px]" />
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-3 grid-cols-1 gap-x-4 gap-y-6 py-4">
+            {articleData?.slice(3)?.map((item) => (
+              <ArticleCard
+                key={item.slug}
+                title={item.title}
+                description={item.description}
+                date={item.updatedAt}
+                tag={item.tag}
+                slug={item.slug}
+                image={item?.image}
+                type="normal"
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </PageTransition>
   );
 }

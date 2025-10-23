@@ -66,7 +66,11 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
                 e.preventDefault();
                 handleClick(heading.id);
               }}
-              className={`transition-colors duration-300 ${activeId === heading.id ? "text-white font-semibold" : "text-gray-400 hover:text-white"}`}
+              className={`transition-colors duration-300 ${
+                activeId === heading.id
+                  ? "text-white font-semibold"
+                  : "text-gray-600 hover:text-black"
+              }`}
             >
               {heading.text}
             </a>
@@ -78,8 +82,8 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
   };
 
   return (
-    <div className="bg-zinc-800 p-6 rounded-2xl border border-zinc-700 mb-8">
-      <h2 className="font-raleway text-xl font-bold text-gray-100 mb-4">
+    <div className="bg-[#EEDED3] p-6 rounded-2xl border-none shadow-md mb-8">
+      <h2 className="font-raleway text-xl font-bold text-gray-900 mb-4">
         Table of Contents
       </h2>
       {renderHeadings(headings)}

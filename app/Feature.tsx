@@ -20,7 +20,7 @@ const featureList = [
 
 const Feature = () => {
   return (
-    <div className="rounded-lg bg-white px-10 py-15 mt-40 shadow-md">
+    <div className="rounded-lg bg-white px-10 pt-10 pb-14 mt-40 shadow-md">
       <div className="text-center">
         <p className="font-semibold text-[#0A2918] text-[52px]">Features</p>
         <p className="font-semibold text-[#0A2918]">Features</p>
