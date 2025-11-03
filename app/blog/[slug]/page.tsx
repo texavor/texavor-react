@@ -15,14 +15,16 @@ interface ArticleData {
   image: string;
   title: string;
   created_at: string;
-  updatedAt: string;
-  markdown: string;
+  updated_at: string;
+  profile_pic: string;
+  content: string;
   description: string;
   relatedArticles: any;
-  tag: Array<String>;
-  author: {
+  tags: Array<String>;
+  easywrite_author: {
     username: string;
     name: string;
+    profile_pic: string;
   };
 }
 
@@ -138,6 +140,6 @@ export default async function ArticlePage({
     );
   }
 
-  const parsedHtml = marked.parse(articleData?.markdown || "") as string;
+  const parsedHtml = marked.parse(articleData?.content || "") as string;
   return <ArticleView articleData={articleData} html={parsedHtml} />;
 }

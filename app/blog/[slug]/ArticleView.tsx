@@ -19,14 +19,16 @@ interface Heading {
 interface ArticleData {
   image: string;
   title: string;
+  profile_pic: string;
   created_at: string;
-  updatedAt: string;
+  updated_at: string;
   description: string;
-  tag: Array<String>;
+  tags: Array<String>;
   relatedArticles: any;
-  author: {
+  easywrite_author: {
     username: string;
     name: string;
+    profile_pic: string;
   };
 }
 
@@ -96,8 +98,8 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
               </div>
               {articleData?.image && (
                 <Image
-                  src={articleData.image}
-                  alt={`Cover image for ${articleData.title}`}
+                  src={articleData?.image}
+                  alt={`Cover image for ${articleData?.title}`}
                   fill
                   className="object-cover z-10"
                   priority
@@ -106,9 +108,11 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
               )}
             </div>
 
-            <h1 className="font-arcade heading1 mt-6">{articleData.title}</h1>
+            <h1 className="font-arcade heading1 mt-6 text-3xl font-medium">
+              {articleData.title}
+            </h1>
             <div className="flex flex-wrap">
-              {articleData?.tag?.map((item, index) => (
+              {articleData?.tags?.map((item, index) => (
                 <span
                   className="font-raleway underline mr-2 decoration-purple-300 decoration-2"
                   key={index}
@@ -121,8 +125,8 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
             <div className="mt-4 flex items-center gap-2">
               <div>
                 <Image
-                  src={`/author/${articleData?.author?.username}.png`}
-                  alt={articleData?.author?.name || "Author"}
+                  src={articleData?.easywrite_author?.profile_pic}
+                  alt={articleData?.easywrite_author?.name || "Author"}
                   width={40}
                   height={40}
                   className="rounded-full object-cover"
@@ -130,11 +134,15 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
               </div>
               <div>
                 <p className="font-raleway text-base">
-                  {articleData.author?.name || articleData.author?.username}
+                  {articleData?.easywrite_author?.name ||
+                    articleData?.easywrite_author?.username}
                 </p>
                 <p className="font-raleway text-sm text-gray-400">
                   Updated on{` `}
-                  {format(new Date(articleData.updatedAt), "dd MMM, yyyy")}
+                  {format(
+                    new Date(articleData.updated_at || new Date()),
+                    "dd MMM, yyyy",
+                  )}
                 </p>
               </div>
             </div>
@@ -178,11 +186,11 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                   className="block rounded-2xl overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-600"
                 >
                   <Image
-                    src="/sponsored/sponsored.png"
-                    alt="Sponsored Product"
+                    src="/article_easywrite.png"
+                    alt="EasyWrite"
                     width={260}
                     height={260}
-                    className="w-full h-auto object-cover mb-4 rounded-2xl"
+                    className="w-full h-auto shadow-sm object-cover mb-4 rounded-2xl"
                   />
                 </a>
                 <h4 className="font-raleway text-base font-medium text-gray-900">
@@ -198,14 +206,13 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                       Free
                     </p>
                   )}
-                  <a
-                    href="https://gum.co/u/5trlznje"
-                    target="_blank"
+                  <Link
+                    href="/"
                     rel="noopener noreferrer"
                     className="inline-block bg-[#104127] text-white font-semibold py-2 px-4 rounded-full hover:[#104127] transition-colors duration-200 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-600"
                   >
-                    Try Now 🚀
-                  </a>
+                    Join Waitlist 🚀
+                  </Link>
                 </div>
               </div>
             </div>

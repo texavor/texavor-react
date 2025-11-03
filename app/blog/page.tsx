@@ -35,8 +35,6 @@ const getArticles = async (): Promise<ArticlePreview[]> => {
 
     if (Array.isArray(response.data)) {
       return response.data;
-    } else if (Array.isArray(response.data.articles)) {
-      return response.data.articles;
     } else {
       return [];
     }
