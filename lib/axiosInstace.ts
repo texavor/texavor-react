@@ -4,9 +4,9 @@ import { toast } from "sonner";
 export const baseURL =
   process.env.NODE_ENV == "development"
     ? "http://localhost:3000"
-    : "https://easywrite.onrender.com";
+    : "https://api.easywrite.dev";
 
-// export const baseURL = "https://easywrite.onrender.com";
+// export const baseURL = "https://api.easywrite.dev";
 
 export const axiosInstance = axios.create({
   baseURL,
