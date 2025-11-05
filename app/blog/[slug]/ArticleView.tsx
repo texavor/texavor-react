@@ -141,7 +141,7 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                   Updated on{` `}
                   {format(
                     new Date(articleData.updated_at || new Date()),
-                    "dd MMM, yyyy",
+                    "dd MMM, yyyy"
                   )}
                 </p>
               </div>
@@ -179,9 +179,8 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                 <h2 className="font-raleway text-lg font-semibold text-gray-800 mb-4">
                   EasyWrite
                 </h2>
-                <a
-                  href="https://gum.co/u/5trlznje"
-                  target="_blank"
+                <Link
+                  href="/"
                   rel="noopener noreferrer"
                   className="block rounded-2xl overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-600"
                 >
@@ -192,7 +191,7 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                     height={260}
                     className="w-full h-auto shadow-sm object-cover mb-4 rounded-2xl"
                   />
-                </a>
+                </Link>
                 <h4 className="font-raleway text-base font-medium text-gray-900">
                   Built for the New Era of Search
                 </h4>
