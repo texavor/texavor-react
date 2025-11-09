@@ -121,11 +121,11 @@ const Hero = () => {
         </div>
 
         <div className="text-center w-full flex justify-center">
-          <p className="text-[#000000] font-medium font-xl w-full md:w-[60%]">
+          <h1 className="text-[#000000] font-medium font-xl w-full md:w-[60%]">
             The AI content strategist for developers. Generate high-impact
             article ideas optimized for Google, AI Chatbots, and E-E-A-T. Built
             for technical content that gets discovered.
-          </p>
+          </h1>
         </div>
       </div>
 

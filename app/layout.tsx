@@ -18,11 +18,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "EasyWrite",
+  title: "EasyWrite - Authority for you blog",
   description:
-    "The AI content strategist for developers. Generate high-impact article ideas optimized for Google, AI Chatbots, and E-E-A-T. Built for technical content that gets discovered.",
+    "AI developer content strategist. Generate high-impact, E-E-A-T-optimized technical article ideas for Google & AI Chatbots. Maximize discovery & authority.",
   verification: {
     google: "WHjrUK7V1Y8n5aQ0gmeOk06LmzeSsadLBul9X_sQgTU",
+  },
+  openGraph: {
+    title: "EasyWrite - Authority for you blog",
+    description:
+      "AI developer content strategist. Generate high-impact, E-E-A-T-optimized technical article ideas for Google & AI Chatbots. Maximize discovery & authority.",
+    images: "/easywriteOpenGraph.png",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "EasyWrite - Authority for you blog",
+    description:
+      "AI developer content strategist. Generate high-impact, E-E-A-T-optimized technical article ideas for Google & AI Chatbots. Maximize discovery & authority.",
+    images: "/easywriteOpenGraph.png",
   },
 };
 
