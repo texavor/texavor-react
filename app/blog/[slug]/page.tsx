@@ -26,6 +26,7 @@ interface ArticleData {
     name: string;
     profile_pic: string;
   };
+  canonical_url: string;
 }
 
 // Create a server-side axios instance
@@ -39,6 +40,16 @@ const getServerAxiosInstance = () => {
   });
 };
 
+function extractDomain(url: string) {
+  try {
+    const u = new URL(url);
+    return u.hostname.replace(/^www\./, "");
+  } catch (e) {
+    // invalid URL
+    return null;
+  }
+}
+
 const marked = new Marked(
   markedHighlight({
     langPrefix: "```",
@@ -46,7 +57,7 @@ const marked = new Marked(
       const language = hljs.getLanguage(lang) ? lang : "plaintext";
       return hljs.highlight(code, { language }).value;
     },
-  }),
+  })
 );
 
 // This function now runs at BUILD TIME for each slug
@@ -54,7 +65,7 @@ async function getArticleData(slug: string): Promise<ArticleData | null> {
   try {
     const axiosInstance = getServerAxiosInstance();
     const response = await axiosInstance.get(
-      `${baseURL}/easywrite_articles/${slug}`,
+      `${baseURL}/easywrite_articles/${slug}`
     );
     return response.data;
   } catch (error) {
@@ -109,6 +120,12 @@ export async function generateMetadata({
       description: articleData?.description || "Read this interesting article",
       images: articleData?.image ? [articleData.image] : [],
     },
+    ...(articleData?.canonical_url &&
+      extractDomain(articleData?.canonical_url) !== "texavor.com" && {
+        alternates: {
+          canonical: articleData.canonical_url,
+        },
+      }),
   };
 }
 

@@ -30,6 +30,7 @@ interface ArticleData {
     name: string;
     profile_pic: string;
   };
+  canonical_url: string;
 }
 
 interface ArticleViewProps {
@@ -43,6 +44,16 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [isTocLoaded, setIsTocLoaded] = useState(false);
   const articleContentRef = useRef<HTMLDivElement>(null);
+
+  function extractDomain(url: string) {
+    try {
+      const u = new URL(url);
+      return u.hostname.replace(/^www\./, "");
+    } catch (e) {
+      // invalid URL
+      return null;
+    }
+  }
 
   const handleScroll = useCallback(() => {
     const scrollTop = window.scrollY;
@@ -149,6 +160,19 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
 
             <hr className="border-gray-300 mt-6 mb-8" />
             {headings.length > 0 && <TableOfContents headings={headings} />}
+            {articleData?.canonical_url &&
+              extractDomain(articleData?.canonical_url) !== "texavor.com" && (
+                <p className="font-raleway italic text-base mb-2">
+                  This article is originally published at{" "}
+                  <Link
+                    href={articleData?.canonical_url}
+                    target="_blank"
+                    className="font-raleway italic text-base text-blue-300"
+                  >
+                    {extractDomain(articleData?.canonical_url)}
+                  </Link>
+                </p>
+              )}
             <div ref={articleContentRef}>
               <ArticleContent
                 html={html}
