@@ -105,7 +105,7 @@ export default async function ArticleListPage() {
             </div>
           )}
         </div>
-        {articleData.length > 2 && (
+        {articleData.length > 3 && (
           <>
             <p className="font-raleway text-[24px] font-medium">
               More Articles...
