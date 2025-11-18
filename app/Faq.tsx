@@ -40,7 +40,7 @@ const Faq = () => {
   return (
     <div className="w-full mt-20">
       <div className="text-left">
-        <h2 className="text-4xl font-bold text-[#104127]">
+        <h2 className="text-4xl font-bold text-[#104127] font-poppins">
           Frequently Answered Questions
         </h2>
       </div>
@@ -52,10 +52,10 @@ const Faq = () => {
               key={i}
               className="border-none"
             >
-              <AccordionTrigger className="text-lg text-left font-medium text-gray-800 hover:no-underline cursor-pointer">
+              <AccordionTrigger className="text-lg font-poppins text-left font-medium text-gray-800 hover:no-underline cursor-pointer">
                 {faq?.question}
               </AccordionTrigger>
-              <AccordionContent className="text-base text-gray-600 w-full md:w-[80vw]">
+              <AccordionContent className="text-base font-inter text-gray-600 w-full md:w-[80vw]">
                 {faq?.answer}
               </AccordionContent>
             </AccordionItem>

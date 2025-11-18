@@ -35,7 +35,7 @@ const Chart = () => {
   const CustomTooltip = ({ viewBox, value }: any) => {
     const { x, y } = viewBox;
     return (
-      <foreignObject x={x - 60} y={y - 35} width="120" height="30">
+      <foreignObject x={x - 60} y={y - 35} width="130" height="30">
         <div
           style={{
             backgroundColor: "black",
@@ -45,6 +45,7 @@ const Chart = () => {
             textAlign: "center",
             fontSize: "10px",
           }}
+          className="font-inter"
         >
           {value}
         </div>
@@ -54,11 +55,11 @@ const Chart = () => {
 
   return (
     <div className="w-full text-center space-y-0 mt-40">
-      <p className="text-[#0A2918] font-bold text-[48px]">
+      <p className="text-[#0A2918] font-bold text-[48px] font-poppins">
         Achieve Authority in Weeks, Not Quarters
       </p>
       <div className="flex justify-center">
-        <p className="w-[60%] text-[#7A7A7A] font-normal">
+        <p className="w-[60%] text-[#7A7A7A] font-normal font-inter">
           Stop the SEO guesswork. Our AI analyzes top-ranking content,
           identifies strategic gaps, and generates a data-driven plan so you can
           focus on what you do best: writing expert content that ranks.
@@ -69,13 +70,13 @@ const Chart = () => {
           <div className="absolute left-4 top-4">
             <div className="flex items-center gap-4">
               <div className="h-1 bg-[#104127] rounded-full w-10" />
-              <p className="text-black font-base font-normal text-base">
+              <p className="text-black font-base font-normal text-base font-inter">
                 With Texavor
               </p>
             </div>
             <div className="flex items-center gap-4">
               <div className="h-1 bg-[#EBEBEB] rounded-full w-10" />
-              <p className="text-black font-base font-normal text-base">
+              <p className="text-black font-base font-normal text-base font-inter">
                 You Build it Alone
               </p>
             </div>

@@ -89,7 +89,7 @@ const Hero = () => {
     <div className="space-y-6 mt-16 relative">
       <div className="md:w-[70%] md:mx-auto text-center space-y-6">
         <div className="text-[#0A2918] text-5xl md:text-[76px] font-bold leading-tight">
-          <div className="relative inline-block">
+          <div className="relative inline-block font-poppins">
             <div className="absolute -bottom-30 -left-10 w-40 h-20 mr-4 hidden md:block">
               <Image
                 src="/curved-dashed-line-left.svg"
@@ -121,7 +121,7 @@ const Hero = () => {
         </div>
 
         <div className="text-center w-full flex justify-center">
-          <h1 className="text-[#000000] font-medium font-xl w-full md:w-[60%]">
+          <h1 className="text-gray-700 font-medium font-xl w-full md:w-[60%] font-inter">
             The AI content strategist for developers. Generate high-impact
             article ideas optimized for Google, AI Chatbots, and E-E-A-T. Built
             for technical content that gets discovered.

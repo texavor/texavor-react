@@ -12,7 +12,7 @@ interface ArticlePreview {
   slug: string;
   title: string;
   description: string;
-  updatedAt: string;
+  created_at: string;
   tag: string[];
   image: string;
 }
@@ -51,7 +51,7 @@ export default async function ArticleListPage() {
   return (
     <PageTransition>
       <div className="w-full md:max-w-[1200px] mx-auto py-2 px-4">
-        <h1 className="font-raleway text-[32px] font-medium">
+        <h1 className="font-raleway text-[32px] font-semibold font-poppins text-[#0A2918]">
           Stories by Texavor
         </h1>
         <div className="md:block hidden">
@@ -70,19 +70,19 @@ export default async function ArticleListPage() {
                 key={articleData?.[0]?.slug}
                 title={articleData?.[0]?.title}
                 description={articleData?.[0]?.description}
-                date={articleData?.[0]?.updatedAt}
+                date={articleData?.[0]?.created_at}
                 tag={articleData?.[0]?.tag}
                 slug={articleData?.[0]?.slug}
                 image={articleData?.[0]?.image}
                 type="normal"
               />
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 justify-between">
                 {articleData?.length > 1 && (
                   <ArticleCard
                     key={articleData?.[1]?.slug}
                     title={articleData?.[1]?.title}
                     description={articleData?.[1]?.description}
-                    date={articleData?.[1]?.updatedAt}
+                    date={articleData?.[1]?.created_at}
                     tag={articleData?.[1]?.tag}
                     slug={articleData?.[1]?.slug}
                     image={articleData?.[1]?.image}
@@ -94,7 +94,7 @@ export default async function ArticleListPage() {
                     key={articleData?.[2]?.slug}
                     title={articleData?.[2]?.title}
                     description={articleData?.[2]?.description}
-                    date={articleData?.[2]?.updatedAt}
+                    date={articleData?.[2]?.created_at}
                     tag={articleData?.[2]?.tag}
                     slug={articleData?.[2]?.slug}
                     image={articleData?.[2]?.image}
@@ -107,7 +107,7 @@ export default async function ArticleListPage() {
         </div>
         {articleData.length > 3 && (
           <>
-            <p className="font-raleway text-[24px] font-medium">
+            <p className="font-raleway text-[24px] font-medium font-poppins">
               More Articles...
             </p>
             <div className="grid md:grid-cols-3 grid-cols-1 gap-x-4 gap-y-6 py-4 md:block hidden">
@@ -116,7 +116,7 @@ export default async function ArticleListPage() {
                   key={item.slug}
                   title={item.title}
                   description={item.description}
-                  date={item.updatedAt}
+                  date={item.created_at}
                   tag={item.tag}
                   slug={item.slug}
                   image={item?.image}
@@ -130,7 +130,7 @@ export default async function ArticleListPage() {
                   key={item.slug}
                   title={item.title}
                   description={item.description}
-                  date={item.updatedAt}
+                  date={item.created_at}
                   tag={item.tag}
                   slug={item.slug}
                   image={item?.image}
@@ -148,7 +148,7 @@ export default async function ArticleListPage() {
                   key={item.slug}
                   title={item.title}
                   description={item.description}
-                  date={item.updatedAt}
+                  date={item.created_at}
                   tag={item.tag}
                   slug={item.slug}
                   image={item?.image}

@@ -5,10 +5,10 @@ const TermsAndConditions = () => {
     <PageTransition>
       <main className="flex min-h-screen flex-col items-center justify-between p-4 md:p-10 w-full md:max-w-[1200px] mx-auto">
         <div className="w-full">
-          <h1 className="text-4xl font-bold text-center mb-8">
+          <h1 className="text-4xl font-bold text-center mb-8 font-poppins text-[#0A2918]">
             Terms and Conditions
           </h1>
-          <div className="space-y-6">
+          <div className="space-y-6 font-inter">
             <section>
               <h2 className="text-2xl font-semibold mb-2">1. Introduction</h2>
               <p>

@@ -43,6 +43,8 @@
     --radius-md: calc(var(--radius) - 2px);
     --radius-lg: var(--radius);
     --radius-xl: calc(var(--radius) + 4px);
+    --font-poppins: var(--font-poppins), ui-sans-serif, system-ui;
+    --font-inter: var(--font-inter), ui-sans-serif, system-ui;
 }
 
 :root {

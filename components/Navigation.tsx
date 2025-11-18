@@ -153,7 +153,9 @@ const Navigation = () => {
               className="absolute top-[13px] left-[29px]"
             />
           </div>
-          <p className="text-[#104127] font-bold text-[24px]">Texavor</p>
+          <p className="text-[#104127] font-bold text-[24px] font-poppins">
+            Texavor
+          </p>
         </Link>
 
         {/* Desktop Navigation */}
@@ -164,7 +166,7 @@ const Navigation = () => {
                 placeholder="Enter Your Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="pl-5 pr-9 shadow-md font-medium w-full focus-visible:ring-0 border-0 placeholder:text-[#AAAAAA] bg-white h-10 rounded-full"
+                className="pl-5 pr-9 shadow-md font-inter font-medium w-full focus-visible:ring-0 border-0 placeholder:text-[#AAAAAA] bg-white h-10 rounded-full"
               />
 
               <Button
@@ -208,7 +210,7 @@ const Navigation = () => {
                 </SheetTitle>
               </SheetHeader>
 
-              <div className="flex flex-col space-y-2">
+              <div className="flex flex-col space-y-2 font-poppins">
                 {navigationLink?.map((link: any, index: number) => (
                   <MobileNavigationItem
                     key={index}
@@ -240,7 +242,7 @@ function NavigationList({ title, type, href, subMenu, ...props }: any) {
             className={`${navigationMenuTriggerStyle()} hover:bg-transparent focus:bg-transparent`}
           >
             <Link href={href}>
-              <p className="text-lg text-[#1A1A1A]">{title}</p>
+              <p className="text-lg text-[#1A1A1A] font-poppins">{title}</p>
             </Link>
           </NavigationMenuLink>
         </NavigationMenuItem>

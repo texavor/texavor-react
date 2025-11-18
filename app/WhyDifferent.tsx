@@ -30,11 +30,11 @@ const WhyDifferent = () => {
 
   return (
     <div className="w-full text-center space-y-0 mt-20 md:mt-30">
-      <p className="text-[#0A2918] font-bold text-4xl md:text-[48px]">
+      <p className="text-[#0A2918] font-bold text-4xl md:text-[48px] font-poppins">
         Built for the New Era of Search
       </p>
       <div className="flex justify-center">
-        <p className="w-full md:w-[60%] text-[#7A7A7A] font-normal">
+        <p className="w-full md:w-[60%] text-[#7A7A7A] font-normal font-inter">
           Generic AI writers and outdated SEO tools are losing the battle for
           visibility. We focus on what's next.
         </p>
@@ -82,7 +82,7 @@ const WhyDifferent = () => {
               transition={{ duration: 0.3 }}
               className="bg-white rounded-xl px-4 py-6 shadow-md h-full flex items-center"
             >
-              <p className="text-base font-medium text-gray-700">
+              <p className="text-base font-medium text-gray-700 font-inter">
                 {whyDifferentList?.[selected]?.description}
               </p>
             </motion.div>

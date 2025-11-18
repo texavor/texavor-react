@@ -22,18 +22,20 @@ const Feature = () => {
   return (
     <div className="rounded-lg bg-white px-10 pt-10 pb-14 mt-40 shadow-md">
       <div className="text-center">
-        <p className="font-semibold text-[#0A2918] text-[52px]">Features</p>
-        <p className="font-semibold text-[#0A2918]">Features</p>
+        <p className="font-semibold font-poppins text-[#0A2918] text-[52px]">
+          Features
+        </p>
+        {/* <p className="font-semibold text-[#0A2918]">Features</p> */}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
         {featureList?.map((feature) => {
           return (
             <div className="rounded-[24px] bg-[#F9F9F9] border border-[#E6E6E6] space-y-2 rounded-lg py-4 px-6 flex flex-col justify-center text-center">
               <div></div>
-              <p className="font-medium text-base text-[#1A1A1A]">
+              <p className="font-medium text-base text-[#1A1A1A] font-poppins">
                 {feature?.title}
               </p>
-              <p className="font-medium text-sm text-[#9A9A9A]">
+              <p className="font-medium text-sm text-[#9A9A9A] font-inter">
                 {feature?.description}
               </p>
             </div>

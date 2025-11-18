@@ -22,7 +22,7 @@ export const InjectedRelatedArticles: React.FC<
   return (
     <div className="border-t-[1px] border-b-[1px] border-gray-600 pb-10 w-full">
       <h3
-        className="font-raleway text-xl font-medium text-gray-800"
+        className="font-poppins text-xl font-medium text-gray-800"
         style={{ margin: "16px 0px" }}
       >
         You might also like...
@@ -49,13 +49,13 @@ export const InjectedRelatedArticles: React.FC<
             </div>
             <div className="md:w-[50%] mt-4 px-2 pb-4 md:p-0">
               <p
-                className="font-arcade text-2xl no-underline font-medium text-gray-900 md:pr-4"
+                className="font-poppins text-2xl no-underline font-medium text-gray-900 md:pr-4"
                 style={{ margin: "0px" }}
               >
                 {article.title}
               </p>
               <p
-                className="font-raleway text-sm no-underline font-medium text-gray-700 pt-2 md:pr-4"
+                className="font-inter text-sm no-underline font-medium text-gray-700 pt-2 md:pr-4"
                 style={{ margin: "0px" }}
               >
                 {/* @ts-ignore */}
