@@ -44,18 +44,18 @@ const Faq = () => {
           Frequently Answered Questions
         </h2>
       </div>
-      <div className="mt-8">
-        <Accordion type="single" collapsible className="w-full">
+      <div className="mt-8 space-y-4">
+        <Accordion type="single" collapsible className="w-full space-y-4">
           {faqs.map((faq, i) => (
             <AccordionItem
               value={`item-${i + 1}`}
               key={i}
-              className="border-none"
+              className="border-none bg-white rounded-xl px-6 py-2 shadow-md hover:shadow-lg transition-all duration-300"
             >
-              <AccordionTrigger className="text-lg font-poppins text-left font-medium text-gray-800 hover:no-underline cursor-pointer">
+              <AccordionTrigger className="text-lg font-poppins text-left font-medium text-gray-800 hover:no-underline cursor-pointer hover:text-[#104127] transition-colors duration-300">
                 {faq?.question}
               </AccordionTrigger>
-              <AccordionContent className="text-base font-inter text-gray-600 w-full md:w-[80vw]">
+              <AccordionContent className="text-base font-inter text-gray-600">
                 {faq?.answer}
               </AccordionContent>
             </AccordionItem>

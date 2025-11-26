@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
-import { Plus, Minus } from "lucide-react";
+import { Plus } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -24,24 +24,18 @@ const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
 >(({ className, children, ...props }, ref) => {
-  const [isExpanded, setIsExpanded] = React.useState(false);
   return (
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
         ref={ref}
         className={cn(
-          "flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180",
-          className,
+          "flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline group",
+          className
         )}
         {...props}
-        onClick={() => setIsExpanded((prev) => !prev)}
       >
         {children}
-        {isExpanded ? (
-          <Minus className="h-6 w-6 shrink-0 rounded-full bg-[#104127] text-white p-1 transition-transform duration-200" />
-        ) : (
-          <Plus className="h-6 w-6 shrink-0 rounded-full bg-[#104127] text-white p-1 transition-transform duration-200" />
-        )}
+        <Plus className="h-6 w-6 shrink-0 rounded-full bg-[#104127] text-white p-1 transition-transform duration-200 group-data-[state=open]:rotate-45" />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   );
