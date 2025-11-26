@@ -166,12 +166,12 @@ const Navigation = () => {
                 placeholder="Enter Your Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="pl-5 pr-9 shadow-md font-inter font-medium w-full focus-visible:ring-0 border-0 placeholder:text-[#AAAAAA] bg-white h-10 rounded-full"
+                className="pl-5 pr-9 shadow-md font-inter font-medium w-full focus-visible:ring-0 border-0 placeholder:text-[#AAAAAA] bg-white h-10 rounded-xl transition-all duration-300 hover:shadow-lg"
               />
 
               <Button
                 onClick={joinWaitlist}
-                className="absolute top-1/2 right-2 -translate-y-1/2 bg-[#104127] hover:bg-[#104127] rounded-full h-6 w-6 p-2"
+                className="absolute top-1/2 right-2 -translate-y-1/2 bg-[#104127] hover:bg-[#0d3620] rounded-xl h-6 w-6 p-2 transition-all duration-300"
               >
                 <ArrowRight className="h-4 w-4" />
               </Button>
