@@ -1,35 +1,27 @@
 import PageTransition from "@/components/PageTransition";
-import Chart from "./Chart";
-import Faq from "./Faq";
-import Feature from "./Feature";
-import Hero from "./Hero";
-import WhyDifferent from "./WhyDifferent";
-import TrustBar from "./TrustBar";
-import ProductPreview from "./ProductPreview";
-import HowItWorks from "./HowItWorks";
-import UseCases from "./UseCases";
-import Testimonials from "./Testimonials";
-import Integrations from "./Integrations";
-import PricingCTA from "./PricingCTA";
-import FinalCTA from "./FinalCTA";
+import LandingNav from "./LandingNav";
+import NewHero from "./NewHero";
+import NewTrustBar from "./NewTrustBar";
+import NewFeatures from "./NewFeatures";
+import NewProductPreview from "./NewProductPreview";
+import NewHowItWorks from "./NewHowItWorks";
+import NewTestimonials from "./NewTestimonials";
+import NewFAQ from "./NewFAQ";
+import NewFinalCTA from "./NewFinalCTA";
 
 export default function Home() {
   return (
     <PageTransition>
-      <main className="flex min-h-screen flex-col items-center justify-between p-24 w-full md:max-w-[1200px] mx-auto py-2 px-4">
-        <Hero />
-        <TrustBar />
-        <Feature />
-        <ProductPreview />
-        <HowItWorks />
-        <WhyDifferent />
-        <UseCases />
-        <Chart />
-        <Testimonials />
-        <Integrations />
-        <PricingCTA />
-        <Faq />
-        <FinalCTA />
+      <LandingNav />
+      <main className="flex min-h-screen flex-col items-center w-full pt-20">
+        <NewHero />
+        <NewTrustBar />
+        <NewFeatures />
+        <NewProductPreview />
+        <NewHowItWorks />
+        <NewTestimonials />
+        <NewFAQ />
+        <NewFinalCTA />
       </main>
     </PageTransition>
   );
