@@ -9,7 +9,7 @@ export default function NewFinalCTA() {
   return (
     <section className="w-full py-20 md:py-32 relative overflow-hidden">
       {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[var(--green-primary)] via-[var(--green-dark)] to-[var(--green-primary)]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/80 to-primary" />
 
       {/* Pattern Overlay */}
       <div className="absolute inset-0 bg-dot-pattern opacity-10" />
@@ -17,7 +17,15 @@ export default function NewFinalCTA() {
       <div className="container mx-auto px-4 max-w-5xl relative z-10">
         <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 md:p-12 lg:p-16 shadow-hero border border-white/20">
           <div className="text-center space-y-8">
-            {/* Badge */}
+            {/* Urgency Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500/20 border border-orange-400/30 rounded-full text-sm font-medium text-orange-200 w-fit mx-auto mb-4 animate-pulse">
+              <svg className="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Limited Time: Free Pro Trial for 14 Days
+            </div>
+
+            {/* Social Proof Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 rounded-full text-sm font-medium text-white w-fit mx-auto">
               <Check className="w-4 h-4" />
               Join 10,000+ Content Creators
@@ -25,11 +33,11 @@ export default function NewFinalCTA() {
 
             {/* Headline */}
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white font-poppins leading-tight tracking-tight">
-              Ready to Transform Your Content Creation?
+              🚀 Ready to Transform Your Content Creation?
             </h2>
 
             <p className="text-lg md:text-xl text-white/90 font-inter max-w-2xl mx-auto">
-              Start writing better content 10x faster. No credit card required.
+              Start writing better content 10x faster. Free Pro trial ends soon. No credit card required.
             </p>
 
             {/* CTAs */}
@@ -37,10 +45,10 @@ export default function NewFinalCTA() {
               <Button
                 asChild
                 size="lg"
-                className="bg-white text-[var(--green-primary)] hover:bg-white/90 px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                className="bg-white text-primary hover:bg-white/90 px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-pulse"
               >
                 <Link href="/blog/new">
-                  Start Writing for Free
+                  🚀 Claim Free Pro Trial (14 Days)
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </Button>
