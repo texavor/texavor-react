@@ -11,9 +11,9 @@ export default function NewFeatures() {
       description:
         "Generate high-quality, SEO-optimized content in seconds with our advanced AI engine. Save hours of writing time.",
       visual: (
-        <div className="w-full h-40 bg-[var(--green-light)] relative overflow-hidden group">
+        <div className="w-full h-40 bg-primary/10 relative overflow-hidden group">
           <div className="absolute inset-0 bg-dot-pattern opacity-20" />
-          <div className="absolute inset-0 flex items-center justify-center text-[var(--green-primary)]/20 font-bold text-4xl group-hover:scale-110 transition-transform duration-500">
+          <div className="absolute inset-0 flex items-center justify-center text-primary/20 font-bold text-4xl group-hover:scale-110 transition-transform duration-500">
             AI
           </div>
         </div>
@@ -25,9 +25,9 @@ export default function NewFeatures() {
       description:
         "Discover trending keywords and topics with built-in research tools. Stay ahead of your competition.",
       visual: (
-        <div className="w-full h-40 bg-[var(--green-light)] relative overflow-hidden group">
+        <div className="w-full h-40 bg-primary/10 relative overflow-hidden group">
           <div className="absolute inset-0 bg-dot-pattern opacity-20" />
-          <div className="absolute inset-0 flex items-center justify-center text-[var(--green-primary)]/20 font-bold text-4xl group-hover:scale-110 transition-transform duration-500">
+          <div className="absolute inset-0 flex items-center justify-center text-primary/20 font-bold text-4xl group-hover:scale-110 transition-transform duration-500">
             SEO
           </div>
         </div>
@@ -39,9 +39,9 @@ export default function NewFeatures() {
       description:
         "Choose from dozens of proven templates for blogs, articles, social media, and more. Start writing instantly.",
       visual: (
-        <div className="w-full h-40 bg-[var(--green-light)] relative overflow-hidden group">
+        <div className="w-full h-40 bg-primary/10 relative overflow-hidden group">
           <div className="absolute inset-0 bg-dot-pattern opacity-20" />
-          <div className="absolute inset-0 flex items-center justify-center text-[var(--green-primary)]/20 font-bold text-4xl group-hover:scale-110 transition-transform duration-500">
+          <div className="absolute inset-0 flex items-center justify-center text-primary/20 font-bold text-4xl group-hover:scale-110 transition-transform duration-500">
             DOCS
           </div>
         </div>
@@ -53,9 +53,9 @@ export default function NewFeatures() {
       description:
         "Built-in SEO tools ensure your content ranks higher. Get real-time suggestions as you write.",
       visual: (
-        <div className="w-full h-40 bg-[var(--green-light)] relative overflow-hidden group">
+        <div className="w-full h-40 bg-primary/10 relative overflow-hidden group">
           <div className="absolute inset-0 bg-dot-pattern opacity-20" />
-          <div className="absolute inset-0 flex items-center justify-center text-[var(--green-primary)]/20 font-bold text-4xl group-hover:scale-110 transition-transform duration-500">
+          <div className="absolute inset-0 flex items-center justify-center text-primary/20 font-bold text-4xl group-hover:scale-110 transition-transform duration-500">
             RANK
           </div>
         </div>
@@ -67,9 +67,9 @@ export default function NewFeatures() {
       description:
         "Work together seamlessly with your team. Share drafts, leave comments, and manage workflows.",
       visual: (
-        <div className="w-full h-40 bg-[var(--green-light)] relative overflow-hidden group">
+        <div className="w-full h-40 bg-primary/10 relative overflow-hidden group">
           <div className="absolute inset-0 bg-dot-pattern opacity-20" />
-          <div className="absolute inset-0 flex items-center justify-center text-[var(--green-primary)]/20 font-bold text-4xl group-hover:scale-110 transition-transform duration-500">
+          <div className="absolute inset-0 flex items-center justify-center text-primary/20 font-bold text-4xl group-hover:scale-110 transition-transform duration-500">
             TEAM
           </div>
         </div>
@@ -81,9 +81,9 @@ export default function NewFeatures() {
       description:
         "Ensure originality with integrated plagiarism detection. Publish with confidence every time.",
       visual: (
-        <div className="w-full h-40 bg-[var(--green-light)] relative overflow-hidden group">
+        <div className="w-full h-40 bg-primary/10 relative overflow-hidden group">
           <div className="absolute inset-0 bg-dot-pattern opacity-20" />
-          <div className="absolute inset-0 flex items-center justify-center text-[var(--green-primary)]/20 font-bold text-4xl group-hover:scale-110 transition-transform duration-500">
+          <div className="absolute inset-0 flex items-center justify-center text-primary/20 font-bold text-4xl group-hover:scale-110 transition-transform duration-500">
             SAFE
           </div>
         </div>

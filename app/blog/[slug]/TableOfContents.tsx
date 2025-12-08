@@ -40,7 +40,7 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
   const handleClick = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const headerOffset = window.innerWidth < 768 ? 20 : 80; // Adjust this value to match the height of your sticky header
+      const headerOffset = 100; // Account for top navbar + progress bar
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition =
         elementPosition + window.pageYOffset - headerOffset;

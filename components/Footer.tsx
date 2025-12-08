@@ -18,8 +18,8 @@ const Footer = () => {
         </Link>
       </div>
       <div className="absolute mt-10 flex justify-center w-full">
-        <p className="text-7xl md:text-9xl lg:text-[260px] text-[#030C0712] font-medium font-poppins">
-          Texavor
+        <p className="text-7xl md:text-9xl lg:text-[260px] text-[#030C0712] font-medium">
+          EasyWrite
         </p>
       </div>
     </div>

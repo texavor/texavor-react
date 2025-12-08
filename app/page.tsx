@@ -6,13 +6,13 @@ import NewFeatures from "./NewFeatures";
 import NewProductPreview from "./NewProductPreview";
 import NewHowItWorks from "./NewHowItWorks";
 import NewTestimonials from "./NewTestimonials";
+import PricingPreview from "./PricingPreview";
 import NewFAQ from "./NewFAQ";
 import NewFinalCTA from "./NewFinalCTA";
 
 export default function Home() {
   return (
     <PageTransition>
-      <LandingNav />
       <main className="flex min-h-screen flex-col items-center w-full pt-20">
         <NewHero />
         <NewTrustBar />
@@ -20,6 +20,7 @@ export default function Home() {
         <NewProductPreview />
         <NewHowItWorks />
         <NewTestimonials />
+        <PricingPreview />
         <NewFAQ />
         <NewFinalCTA />
       </main>

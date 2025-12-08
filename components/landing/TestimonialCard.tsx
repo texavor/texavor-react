@@ -7,6 +7,7 @@ interface TestimonialCardProps {
   company?: string;
   image: string;
   quote: string;
+  metrics?: string;
   className?: string;
 }
 
@@ -16,6 +17,7 @@ export default function TestimonialCard({
   company,
   image,
   quote,
+  metrics,
   className = "",
 }: TestimonialCardProps) {
   return (
@@ -26,6 +28,13 @@ export default function TestimonialCard({
         <p className="text-foreground leading-relaxed font-inter italic">
           &ldquo;{quote}&rdquo;
         </p>
+        {metrics && (
+          <div className="bg-[var(--green-light)] rounded-lg px-3 py-2">
+            <p className="text-sm font-semibold text-[var(--green-primary)]">
+              📈 {metrics}
+            </p>
+          </div>
+        )}
         <div className="flex items-center gap-3 mt-2">
           <div className="relative w-12 h-12 rounded-full overflow-hidden bg-muted flex-shrink-0">
             {image ? (
