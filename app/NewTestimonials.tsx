@@ -7,18 +7,20 @@ export default function NewTestimonials() {
     {
       name: "Sarah Johnson",
       role: "Content Manager",
-      company: "TechCorp",
+      company: "TechCorp Inc.",
       image: "",
       quote:
-        "EasyWrite has transformed our content creation process. We're producing 3x more content in half the time. The AI is incredibly accurate and saves us hours of research.",
+        "Texavor has transformed our content creation process. We're now producing 3x more content in half the time. The AI accuracy is incredible—saved us 40+ hours of research per month.",
+      metrics: "3x more content, 150% traffic increase"
     },
     {
       name: "Michael Chen",
       role: "Freelance Writer",
-      company: "",
+      company: "Self-employed",
       image: "",
       quote:
-        "As a freelancer, time is money. EasyWrite helps me deliver high-quality articles to my clients faster than ever. The SEO optimization features are a game-changer.",
+        "As a freelancer, time equals money. Texavor lets me deliver high-quality articles to clients 5x faster. I've increased my rates by 40% since using the SEO optimization features.",
+      metrics: "5x faster delivery, 40% rate increase"
     },
     {
       name: "Emily Rodriguez",
@@ -26,23 +28,26 @@ export default function NewTestimonials() {
       company: "GrowthLabs",
       image: "",
       quote:
-        "The keyword research and competitor analysis tools are phenomenal. We've seen a 150% increase in organic traffic since we started using EasyWrite.",
+        "The keyword research tools are phenomenal. We've seen a 150% increase in organic traffic in just 6 months. Texavor pays for itself through improved rankings alone.",
+      metrics: "150% organic traffic growth, 6 months"
     },
     {
       name: "David Park",
-      role: "Blogger",
-      company: "",
+      role: "Tech Blogger",
+      company: "DevInsights",
       image: "",
       quote:
-        "I was skeptical about AI writing, but EasyWrite proved me wrong. The content is natural, engaging, and requires minimal editing. It's like having a writing assistant 24/7.",
+        "I was skeptical about AI writing, but Texavor proved me wrong. The content is natural, engaging, and requires minimal editing. My blog's readership doubled in 3 months.",
+      metrics: "2x readership growth, 50+ articles published"
     },
     {
       name: "Lisa Thompson",
       role: "SEO Specialist",
-      company: "Digital Boost",
+      company: "Digital Boost Agency",
       image: "",
       quote:
-        "The built-in SEO tools are incredibly powerful. EasyWrite doesn't just write content—it helps you rank. Our clients are seeing real results.",
+        "Texavor doesn't just write content—it helps you rank. Our clients' average keyword ranking improved from 47th to 8th position within 60 days. Game-changing results.",
+      metrics: "39-position ranking improvement, 60 days"
     },
     {
       name: "James Wilson",
@@ -50,7 +55,8 @@ export default function NewTestimonials() {
       company: "InnovateTech",
       image: "",
       quote:
-        "As a small team, we needed a solution that could scale with us. EasyWrite delivers enterprise-level content creation at a fraction of the cost.",
+        "As a bootstrapped startup, we needed quality content without breaking the bank. Texavor delivers enterprise-level features at startup prices. Our blog traffic increased 300%.",
+      metrics: "300% blog traffic, 80% cost savings"
     },
   ];
 
@@ -69,7 +75,7 @@ export default function NewTestimonials() {
           </h2>
           <p className="text-lg text-muted-foreground font-inter max-w-2xl mx-auto">
             Join thousands of writers, marketers, and businesses who trust
-            EasyWrite
+            Texavor
           </p>
         </div>
 

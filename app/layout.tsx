@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
-import Navigation from "@/components/Navigation";
+import LandingNav from "./LandingNav";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import ReactQueryProvider from "./ReactQueryProvider";
@@ -50,7 +50,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppins.variable} ${inter.variable} antialiased`}>
         <ReactQueryProvider>
-          <Navigation />
+          <LandingNav />
           {children}
           <Footer />
           <Toaster />
