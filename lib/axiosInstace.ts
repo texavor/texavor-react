@@ -4,7 +4,7 @@ import { toast } from "sonner";
 export const baseURL =
   process.env.NODE_ENV == "development"
     ? "http://localhost:3000"
-    : "https://api.easywrite.dev";
+    : "https://api.texavor.com";
 
 // export const baseURL = "https://api.easywrite.dev";
 
