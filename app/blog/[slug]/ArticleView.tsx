@@ -98,7 +98,7 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
         />
       </div>
 
-      <div className="container mx-auto lg:w-[1200px] md:w-8/12 w-11/12 mt-10">
+      <div className="container mx-auto lg:w-[1200px] md:w-8/12 w-11/12 mt-32">
         <div className="flex flex-col lg:flex-row lg:gap-12">
           <div className="lg:w-[72%] xl:w-3/4">
             <div className="relative w-full max-w-4xl aspect-[1000/420] rounded-2xl overflow-hidden">
@@ -198,45 +198,28 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
 
           <div className="mt-8 lg:mt-0 lg:sticky lg:top-28 self-start h-fit">
             <div className="lg:max-w-[260px]">
-              <div className="bg-[#EEDED3] p-4 rounded-2xl border-none shadow-sm">
-                {" "}
-                <h2 className="font-poppins text-lg font-semibold text-gray-800 mb-4">
-                  Texavor
-                </h2>
+              <div className="bg-primary/5 rounded-2xl border-none shadow-none backdrop-blur-sm p-6">
+                <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden mb-4 shadow-sm border border-primary/10">
+                  <Image
+                    src="/screenshots/articleManagement.png"
+                    alt="Texavor Dashboard"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h4 className="font-poppins text-lg font-bold text-gray-900 mb-2">
+                  Write Faster & Better
+                </h4>
+                <p className="font-inter text-sm text-gray-600 mb-6 leading-relaxed">
+                  Streamline your content workflow. Plan, draft, and publish
+                  SEO-optimized articles in seconds.
+                </p>
                 <Link
                   href="/"
-                  rel="noopener noreferrer"
-                  className="block rounded-2xl overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-600"
+                  className="block w-full text-center font-poppins bg-[#104127] text-white font-medium py-3 px-4 rounded-xl hover:bg-[#0A2918] transition-all duration-200 text-sm shadow-lg shadow-primary/20 hover:-translate-y-0.5"
                 >
-                  <Image
-                    src="/article_easywrite.png"
-                    alt="Texavor"
-                    width={260}
-                    height={260}
-                    className="w-full h-auto shadow-sm object-cover mb-4 rounded-2xl"
-                  />
+                  Get Started 🚀
                 </Link>
-                <h4 className="font-inter text-base font-medium text-gray-900">
-                  Built for the New Era of Search
-                </h4>
-                <p className="font-inter text-sm text-gray-600 mt-2">
-                  Generic AI writers and outdated SEO tools are losing the
-                  battle for visibility. We focus on what's next.
-                </p>
-                <div className="flex items-center gap-2 mt-4">
-                  {false && (
-                    <p className="inline-block border-[1px] px-8 border-purple-600 text-purple-600 font-semibold py-2 px-4 rounded-full text-sm bg-white">
-                      Free
-                    </p>
-                  )}
-                  <Link
-                    href="/"
-                    rel="noopener noreferrer"
-                    className="inline-block font-poppins bg-[#104127] text-white font-semibold py-2 px-4 rounded-full hover:[#104127] transition-colors duration-200 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-600"
-                  >
-                    Join Waitlist 🚀
-                  </Link>
-                </div>
               </div>
             </div>
           </div>

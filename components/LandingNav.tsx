@@ -54,11 +54,11 @@ export default function LandingNav() {
         {/* Navigation Links - Centered */}
         <div className="hidden md:flex items-center gap-8">
           {[
-            { label: "Features", id: "features" },
-            { label: "How it Works", id: "how-it-works" },
-            { label: "Reviews", id: "testimonials" },
-            { label: "Pricing", id: "pricing" },
-            { label: "FAQ", id: "faq" },
+            // { label: "Features", id: "features" },
+            // { label: "How it Works", id: "how-it-works" },
+            // { label: "Reviews", id: "testimonials" },
+            // { label: "Pricing", id: "pricing" },
+            // { label: "FAQ", id: "faq" },
             { label: "Blog", id: "blog", href: "/blog" },
             { label: "Docs", id: "docs", href: "/docs" },
           ].map((item) =>

@@ -143,7 +143,7 @@ export default async function ArticlePage({
     // notFound();
     return (
       <>
-        <div className="container mx-auto flex justify-center lg:w-[1200px] md:w-8/12 w-11/12 mt-10 lg:mt-28">
+        <div className="container mx-auto flex justify-center lg:w-[1200px] md:w-8/12 w-11/12 mt-10 lg:mt-32">
           <img src="/article_not_found.png" className="md:size-[500px]" />
         </div>
         <div className="container mx-auto flex justify-center lg:w-[1200px] md:w-8/12 w-11/12 mt-10 lg:mt-28">

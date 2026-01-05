@@ -1,12 +1,8 @@
-// app/articles/page.tsx
-
 import React from "react";
 import { baseURL } from "@/lib/axiosInstace";
-import PageTransition from "@/components/PageTransition";
-import Image from "next/image";
-import { useIsMobile } from "@/hooks/use-mobile";
+import BlogClientWrapper from "./BlogClientWrapper";
 
-import ArticleCard from "./ArticleCard";
+export const revalidate = 3600; // Revalidate every hour
 
 interface ArticlePreview {
   slug: string;
@@ -48,117 +44,5 @@ const getArticles = async (): Promise<ArticlePreview[]> => {
 export default async function ArticleListPage() {
   const articleData = await getArticles();
 
-  return (
-    <PageTransition>
-      <div className="w-full md:max-w-[1200px] mx-auto py-2 px-4">
-        <h1 className="font-raleway text-[32px] font-semibold font-poppins text-[#0A2918]">
-          Stories by Texavor
-        </h1>
-        <div className="md:block hidden">
-          {articleData?.length === 0 ? (
-            <div className="w-full justify-center flex">
-              <Image
-                src="/not_found_article.png"
-                alt="not_found"
-                width={500}
-                height={500}
-              />
-            </div>
-          ) : (
-            <div className="flex my-4">
-              <ArticleCard
-                key={articleData?.[0]?.slug}
-                title={articleData?.[0]?.title}
-                description={articleData?.[0]?.description}
-                date={articleData?.[0]?.created_at}
-                tag={articleData?.[0]?.tag}
-                slug={articleData?.[0]?.slug}
-                image={articleData?.[0]?.image}
-                type="normal"
-              />
-              <div className="flex flex-col gap-4 justify-between">
-                {articleData?.length > 1 && (
-                  <ArticleCard
-                    key={articleData?.[1]?.slug}
-                    title={articleData?.[1]?.title}
-                    description={articleData?.[1]?.description}
-                    date={articleData?.[1]?.created_at}
-                    tag={articleData?.[1]?.tag}
-                    slug={articleData?.[1]?.slug}
-                    image={articleData?.[1]?.image}
-                    type="flex"
-                  />
-                )}
-                {articleData?.length > 2 && (
-                  <ArticleCard
-                    key={articleData?.[2]?.slug}
-                    title={articleData?.[2]?.title}
-                    description={articleData?.[2]?.description}
-                    date={articleData?.[2]?.created_at}
-                    tag={articleData?.[2]?.tag}
-                    slug={articleData?.[2]?.slug}
-                    image={articleData?.[2]?.image}
-                    type="flex"
-                  />
-                )}
-              </div>
-            </div>
-          )}
-        </div>
-        {articleData.length > 3 && (
-          <>
-            <p className="font-raleway text-[24px] font-medium font-poppins">
-              More Articles...
-            </p>
-            <div className="grid md:grid-cols-3 grid-cols-1 gap-x-4 gap-y-6 py-4 md:block hidden">
-              {articleData?.slice(3)?.map((item) => (
-                <ArticleCard
-                  key={item.slug}
-                  title={item.title}
-                  description={item.description}
-                  date={item.created_at}
-                  tag={item.tag}
-                  slug={item.slug}
-                  image={item?.image}
-                  type="normal"
-                />
-              ))}
-            </div>
-            <div className="grid md:grid-cols-3 grid-cols-1 gap-x-4 gap-y-6 py-4 md:hidden">
-              {articleData?.map((item) => (
-                <ArticleCard
-                  key={item.slug}
-                  title={item.title}
-                  description={item.description}
-                  date={item.created_at}
-                  tag={item.tag}
-                  slug={item.slug}
-                  image={item?.image}
-                  type="normal"
-                />
-              ))}
-            </div>
-          </>
-        )}
-        {articleData.length > 0 && (
-          <>
-            <div className="grid md:grid-cols-3 grid-cols-1 gap-x-4 gap-y-6 py-4 md:hidden">
-              {articleData?.map((item) => (
-                <ArticleCard
-                  key={item.slug}
-                  title={item.title}
-                  description={item.description}
-                  date={item.created_at}
-                  tag={item.tag}
-                  slug={item.slug}
-                  image={item?.image}
-                  type="normal"
-                />
-              ))}
-            </div>
-          </>
-        )}
-      </div>
-    </PageTransition>
-  );
+  return <BlogClientWrapper initialArticles={articleData} />;
 }
