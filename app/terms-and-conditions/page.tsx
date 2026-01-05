@@ -1,131 +1,133 @@
+"use client";
+
 import PageTransition from "@/components/PageTransition";
 
 const TermsAndConditions = () => {
   return (
     <PageTransition>
-      <main className="flex min-h-screen flex-col items-center justify-between p-4 md:p-10 w-full md:max-w-[1200px] mx-auto">
+      <main className="flex min-h-screen flex-col items-center justify-between p-4 md:p-32 w-full md:max-w-[1200px] mx-auto">
         <div className="w-full">
-          <h1 className="text-4xl font-bold text-center mb-8 font-poppins text-[#0A2918]">
+          <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 font-poppins text-gray-900 tracking-tight">
             Terms and Conditions
           </h1>
-          <div className="space-y-6 font-inter">
+          <div className="space-y-8 font-inter text-gray-600 leading-relaxed max-w-4xl mx-auto">
             <section>
-              <h2 className="text-2xl font-semibold mb-2">1. Introduction</h2>
-              <p>
-                Welcome to Texavor.dev! These Terms and Conditions govern your
-                use of our website and services. By accessing or using our
-                service, you agree to be bound by these terms. If you disagree
-                with any part of the terms, you may not access the service.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-semibold mb-2">2. Services</h2>
-              <p>
-                Texavor.dev is an AI content strategist for developers. We
-                provide tools to help you generate high-impact article ideas,
-                create strategic outlines, and analyze your content for
-                performance and gaps. Our goal is to help you create technical
-                content that gets discovered.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-semibold mb-2">3. User Accounts</h2>
-              <p>
-                To access certain features of our service, you may be required
-                to create an account. You are responsible for safeguarding your
-                account information and for all activities that occur under your
-                account. You agree to notify us immediately of any unauthorized
-                use of your account.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-semibold mb-2">4. User Content</h2>
-              <p>
-                You retain ownership of all content you create using our
-                services, including article ideas, outlines, and any other
-                generated text. We do not claim any ownership rights to your
-                content. You grant us a license solely to the extent necessary
-                to provide and improve our services.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-semibold mb-2">
-                5. Payments and Subscriptions
+              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+                1. Introduction
               </h2>
               <p>
-                [Details about pricing, billing, and refund policy will be added
-                here. We plan to offer various subscription plans to meet your
-                needs.]
+                Welcome to <strong>Texavor</strong>. These Terms and Conditions
+                govern your use of our website and AI-powered content creation
+                platform. By accessing or using our service, you agree to be
+                bound by these terms. If you disagree with any part of the
+                terms, you may not access the service.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-2">
-                6. Prohibited Activities
+              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+                2. Services Description
               </h2>
               <p>
-                You agree not to use the service for any unlawful purpose or to
-                engage in any activity that would disrupt or harm the service.
-                This includes, but is not limited to, attempting to gain
-                unauthorized access to our systems, transmitting any malware, or
-                using the service to generate spam or low-quality content.
+                Texavor provides AI-powered tools for developers and content
+                creators to generate article ideas, outlines, and full content
+                drafts. We use advanced language models to assist in the
+                creative process. While we strive for accuracy, users are
+                responsible for reviewing and verifying all AI-generated content
+                before publication.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-2">7. Termination</h2>
-              <p>
-                We may terminate or suspend your account at our sole discretion,
-                without prior notice or liability, for any reason, including if
-                you breach these Terms and Conditions. Upon termination, your
-                right to use the service will immediately cease.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-semibold mb-2">
-                8. Disclaimers and Limitation of Liability
+              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+                3. User Accounts & Security
               </h2>
               <p>
-                Our service is provided "as is" and "as available" without any
-                warranties. We do not guarantee that the service will be
-                error-free or that the results of using the service will meet
-                your requirements. In no event shall Texavor.dev be liable for
-                any indirect, incidental, special, consequential or punitive
-                damages.
+                To access full features, you must create a verified account. You
+                are responsible for maintaining the confidentiality of your
+                login credentials and for all activities that occur under your
+                account. Texavor reserves the right to terminate accounts that
+                violate these terms or engage in suspicious activity.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-2">9. Governing Law</h2>
-              <p>
-                These Terms shall be governed and construed in accordance with
-                the laws of [Your Country/State], without regard to its conflict
-                of law provisions.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-semibold mb-2">
-                10. Changes to Terms
+              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+                4. Intellectual Property & Content Ownership
               </h2>
               <p>
-                We reserve the right to modify these terms at any time. We will
-                notify you of any changes by posting the new Terms and
-                Conditions on this page. You are advised to review these Terms
-                periodically for any changes.
+                <strong>Your Content:</strong> You retain full ownership of all
+                content you generate using Texavor. We do not claim rights to
+                your output.
+              </p>
+              <p className="mt-2">
+                <strong>Our IP:</strong> The Texavor platform, branding, logo,
+                and underlying code are the exclusive property of Texavor
+                Solutions.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-2">11. Contact Us</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+                5. Subscription & Billing
+              </h2>
+              <ul className="list-disc pl-5 space-y-2">
+                <li>
+                  <strong>Free Trial:</strong> We currently offer a 30-day free
+                  trial for new users to experience our Pro features.
+                </li>
+                <li>
+                  <strong>Billing:</strong> Subscriptions are billed on a
+                  monthly or annual basis. You can cancel your subscription at
+                  any time, and access will continue until the end of the
+                  current billing cycle.
+                </li>
+                <li>
+                  <strong>Refunds:</strong> Refund requests are handled on a
+                  case-by-case basis. Please contact support if you believe you
+                  were billed incorrectly.
+                </li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+                6. Acceptable Use Policy
+              </h2>
+              <p>
+                You agree not to use Texavor to generate content that is
+                illegal, hateful, harassing, or infringing on intellectual
+                property rights. We strictly prohibit the use of our API or
+                platform for spam generation or malicious automation.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+                7. Limitation of Liability
+              </h2>
+              <p>
+                Texavor is provided "as is" without warranties of any kind. We
+                are not liable for any direct, indirect, incidental, or
+                consequential damages resulting from your use of the service or
+                reliance on AI-generated content.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+                8. Contact Us
+              </h2>
               <p>
                 If you have any questions about these Terms, please contact us
-                at [your contact email].
+                at{" "}
+                <a
+                  href="mailto:hello@texavor.com"
+                  className="text-primary hover:underline font-medium"
+                >
+                  hello@texavor.com
+                </a>
+                .
               </p>
             </section>
           </div>

@@ -296,7 +296,7 @@ If you continue to experience issues:
 
 1. **Check Dev.to Status:** Visit [devto.status.io](https://devto.status.io)
 2. **Review API Docs:** [Dev.to API Documentation](https://developers.forem.com/api)
-3. **Contact Support:** Email us at support@easywrite.dev
+3. **Contact Support:** Email us at hello@texavor.com
 4. **Community Forum:** Join our Discord community
 
 ---
@@ -383,6 +383,6 @@ Now that you've connected Dev.to, you can:
 - [Dev.to API Documentation](https://developers.forem.com/api)
 - [Dev.to Community Guidelines](https://dev.to/community-guidelines)
 - [Dev.to Editor Guide](https://dev.to/p/editor_guide)
-- [EasyWrite Support](mailto:support@easywrite.dev)
+- [Texavor Support](mailto:hello@texavor.com)
 
 **Need help?** Contact our support team or join our community Discord server!

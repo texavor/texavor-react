@@ -481,6 +481,6 @@ After connecting Hashnode:
 - [Hashnode Writing Guide](https://hashnode.com/writing-guide)
 - [Hashnode Community](https://hashnode.com/community)
 - [Hashnode GraphQL API](https://gql.hashnode.com/)
-- [EasyWrite Support](mailto:support@easywrite.dev)
+- [Texavor Support](mailto:hello@texavor.com)
 
 **Questions?** Contact our support team or visit our community forum!

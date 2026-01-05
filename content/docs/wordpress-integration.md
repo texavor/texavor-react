@@ -642,6 +642,6 @@ Now that WordPress is connected:
 - [WordPress REST API Handbook](https://developer.wordpress.org/rest-api/)
 - [Application Passwords Guide](https://make.wordpress.org/core/2020/11/05/application-passwords-integration-guide/)
 - [WordPress.org Support](https://wordpress.org/support/)
-- [EasyWrite Support](mailto:support@easywrite.dev)
+- [Texavor Support](mailto:hello@texavor.com)
 
 **Need help?** Contact our support team or visit the WordPress forums!

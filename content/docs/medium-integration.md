@@ -394,6 +394,6 @@ Medium API limits:
 - [Medium API Documentation](https://github.com/Medium/medium-api-docs)
 - [Medium Partner Program](https://medium.com/earn)
 - [Medium Writing Guide](https://medium.com/creators)
-- [EasyWrite Support](mailto:support@easywrite.dev)
+- [Texavor Support](mailto:hello@texavor.com)
 
 **Questions?** Contact our support team!

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
-import LandingNav from "./LandingNav";
+import LandingNav from "@/components/LandingNav";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import ReactQueryProvider from "./ReactQueryProvider";
@@ -20,21 +20,21 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Texavor - Authority for you blog",
+  title: "EasyWrite - AI Content Strategy & Writing",
   description:
     "AI developer content strategist. Generate high-impact, E-E-A-T-optimized technical article ideas for Google & AI Chatbots. Maximize discovery & authority.",
   verification: {
     google: "E4iB-NQGsBin8Lyn7z9uYrmUZR0YwVl4_FhB4bWaKzo",
   },
   openGraph: {
-    title: "Texavor - Authority for you blog",
+    title: "EasyWrite - AI Content Strategy & Writing",
     description:
       "AI developer content strategist. Generate high-impact, E-E-A-T-optimized technical article ideas for Google & AI Chatbots. Maximize discovery & authority.",
     images: "/easywriteOpenGraph.png",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Texavor - Authority for you blog",
+    title: "EasyWrite - AI Content Strategy & Writing",
     description:
       "AI developer content strategist. Generate high-impact, E-E-A-T-optimized technical article ideas for Google & AI Chatbots. Maximize discovery & authority.",
     images: "/easywriteOpenGraph.png",

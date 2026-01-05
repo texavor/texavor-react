@@ -499,6 +499,6 @@ Connected to Shopify? Now:
 - [Shopify Blog Best Practices](https://www.shopify.com/blog/topics/blogging)
 - [Shopify API Documentation](https://shopify.dev/docs/api/admin-rest)
 - [Shopify Help Center](https://help.shopify.com/)
-- [EasyWrite Support](mailto:support@easywrite.dev)
+- [Texavor Support](mailto:hello@texavor.com)
 
 **Questions?** Contact our support team!
