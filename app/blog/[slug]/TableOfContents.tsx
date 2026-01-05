@@ -68,8 +68,8 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
               }}
               className={`transition-colors duration-300 ${
                 activeId === heading.id
-                  ? "text-white font-semibold"
-                  : "text-gray-600 hover:text-black"
+                  ? "text-primary font-bold scale-105 origin-left"
+                  : "text-gray-600 hover:text-gray-900"
               }`}
             >
               {heading.text}
@@ -82,7 +82,7 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
   };
 
   return (
-    <div className="bg-[#EEDED3] p-6 rounded-2xl border-none shadow-md mb-8">
+    <div className="bg-primary/5 p-6 rounded-2xl mb-8 backdrop-blur-sm">
       <h2 className="font-raleway text-xl font-bold text-gray-900 mb-4">
         Table of Contents
       </h2>

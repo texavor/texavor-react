@@ -34,7 +34,7 @@ export async function generateMetadata({
 
   return {
     title: docData?.title || "Document Not Found",
-    description: docData?.description || "EasyWrite Documentation",
+    description: docData?.description || "Texavor Documentation",
   };
 }
 

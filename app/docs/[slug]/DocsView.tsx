@@ -105,11 +105,11 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
             />
           </button>
           {isMobileMenuOpen && (
-            <div className="mt-2 p-4 bg-[#0F3D2E] text-white rounded-xl shadow-xl max-h-[70vh] overflow-y-auto no-scrollbar">
+            <div className="mt-2 p-4 bg-white border border-gray-200 text-gray-900 rounded-xl shadow-xl max-h-[70vh] overflow-y-auto no-scrollbar">
               <div className="flex flex-col gap-3">
                 {allDocs.map((category) => (
                   <div key={category.slug}>
-                    <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                    <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 font-inter">
                       {category.name}
                     </div>
                     <div className="flex flex-col gap-1">
@@ -117,10 +117,10 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
                         <Link
                           key={doc.slug}
                           href={`/docs/${doc.slug}`}
-                          className={`block px-3 py-2 rounded-lg text-sm transition-colors ${
+                          className={`block px-3 py-2 rounded-lg text-sm transition-colors font-inter ${
                             doc.slug === docData.slug
-                              ? "bg-[#25A66A] text-white font-medium"
-                              : "text-gray-300 hover:bg-[#1a5442] hover:text-white"
+                              ? "bg-primary/5 text-primary font-medium"
+                              : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
                           }`}
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
@@ -138,7 +138,7 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
         <div className="flex flex-col lg:flex-row gap-8 xl:gap-12">
           {/* Left Sidebar - Desktop */}
           <aside className="hidden lg:block lg:w-72 flex-shrink-0">
-            <div className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto no-scrollbar bg-[#0F3D2E] rounded-xl p-4">
+            <div className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto no-scrollbar bg-[#f9f4f0]/50 border border-gray-100 rounded-xl p-4">
               <nav className="flex flex-col gap-2">
                 {allDocs.map((category) => {
                   const isCollapsed = collapsedCategories.has(category.slug);
@@ -150,7 +150,7 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
                     <div key={category.slug} className="mb-2">
                       <button
                         onClick={() => toggleCategory(category.slug)}
-                        className="w-full flex items-center justify-between px-3 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider hover:text-[#A8F0C4] transition-colors rounded-lg hover:bg-[#1a5442]"
+                        className="w-full flex items-center justify-between px-3 py-2 text-xs font-bold text-gray-500 uppercase tracking-wider hover:text-primary transition-colors rounded-lg hover:bg-gray-100 font-inter"
                       >
                         <span>{category.name}</span>
                         {isCollapsed ? (
@@ -165,10 +165,10 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
                             <Link
                               key={doc.slug}
                               href={`/docs/${doc.slug}`}
-                              className={`block px-3 py-2 rounded-lg text-sm transition-colors ${
+                              className={`block px-3 py-2 rounded-lg text-sm transition-colors font-inter ${
                                 doc.slug === docData.slug
-                                  ? "bg-[#25A66A] text-white font-medium"
-                                  : "text-gray-300 hover:bg-[#1a5442] hover:text-white"
+                                  ? "bg-primary/5 text-primary font-semibold"
+                                  : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
                               }`}
                             >
                               {doc.title}
@@ -220,16 +220,16 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
                 </div>
               )}
 
-              <div className="bg-gray-50 p-4 rounded-2xl border border-gray-100">
-                <h4 className="font-semibold text-gray-900 text-sm mb-2">
-                  Need Help?
+              <div className="bg-primary/5 p-4 rounded-2xl border-none shadow-none backdrop-blur-sm">
+                <h4 className="font-semibold text-gray-900 text-sm mb-2 font-poppins">
+                  Texavor Support
                 </h4>
-                <p className="text-xs text-gray-600 mb-3">
+                <p className="text-xs text-gray-600 mb-3 font-inter">
                   Can't find what you're looking for?
                 </p>
                 <Link
-                  href="mailto:support@easywrite.com"
-                  className="text-xs text-green-600 hover:text-green-700 font-medium"
+                  href="mailto:hello@texavor.com"
+                  className="text-xs text-primary hover:text-primary/80 font-medium font-inter"
                 >
                   Contact Support →
                 </Link>
