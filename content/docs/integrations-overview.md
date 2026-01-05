@@ -426,7 +426,7 @@ Be aware of API limitations:
 
 **Direct Support:**
 
-- Email: support@easywrite.dev
+- Email: hello@texavor.com
 - Live chat (Business plans)
 - Priority support (Enterprise)
 

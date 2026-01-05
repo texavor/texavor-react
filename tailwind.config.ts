@@ -15,6 +15,8 @@ module.exports = {
       fontFamily: {
         arcade: ["var(--font-arcade)"],
         raleway: ["var(--font-raleway)"],
+        poppins: ["var(--font-poppins)"],
+        inter: ["var(--font-inter)"],
       },
 
       borderRadius: {

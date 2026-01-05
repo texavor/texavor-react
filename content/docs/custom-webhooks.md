@@ -636,6 +636,6 @@ app.post("/webhook/db-sync", async (req, res) => {
 - [Webhook Best Practices](https://webhooks.fyi)
 - [Testing Tools](https://webhook.site)
 - [EasyWrite API Docs](https://api.easywrite.dev/docs)
-- [Support](mailto:support@easywrite.dev)
+- [Support](mailto:hello@texavor.com)
 
 **Need help?** Contact our support team or check the documentation!

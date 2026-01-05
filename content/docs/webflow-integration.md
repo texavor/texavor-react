@@ -344,6 +344,6 @@ Be aware of plan limits:
 - [Webflow CMS API Docs](https://developers.webflow.com/)
 - [Webflow University](https://university.webflow.com/)
 - [Webflow Forum](https://forum.webflow.com/)
-- [EasyWrite Support](mailto:support@easywrite.dev)
+- [Texavor Support](mailto:hello@texavor.com)
 
 **Need help?** Contact support or Webflow community!
