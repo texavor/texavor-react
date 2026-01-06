@@ -1,68 +1,87 @@
 "use client";
 
 import Image from "next/image";
-import { StaggerContainer, StaggerItem } from "@/components/ui/fade-in";
-
-const steps = [
-  {
-    number: "01",
-    title: "Connect Your Platforms",
-    description:
-      "Link your Medium, Dev.to, Hashnode, and WordPress accounts in seconds.",
-    image: "/screenshots/step1.png", // Placeholder path
-  },
-  {
-    number: "02",
-    title: "Generate Content",
-    description:
-      "Use AI to create high-quality, SEO-optimized articles based on your keywords.",
-    image: "/screenshots/step2.png",
-  },
-  {
-    number: "03",
-    title: "Orchestrate & Publish",
-    description:
-      "Receive competitor insights and publish perfectly formatted content to all your channels in one click.",
-    image: "/screenshots/step3.png",
-  },
-];
+import { Zap } from "lucide-react";
 
 export default function HowItWorks() {
+  const steps = [
+    {
+      number: "Step 1",
+      title: "Enter Blog Details",
+      description:
+        "Add your blog information and configure your content preferences to get started.",
+      image: "/screenshots/step1.png", // You'll add this image
+    },
+    {
+      number: "Step 2",
+      title: "Integrate Platform",
+      description: "Connect your favorite platforms in just a few clicks",
+      image: "/screenshots/step2.png", // You'll add this image
+    },
+    {
+      number: "Step 3",
+      title: "Start Getting AI Recommendations",
+      description:
+        "Get AI-powered topic suggestions and content recommendations tailored to your blog.",
+      image: "/screenshots/step3.png", // You'll add this image
+    },
+  ];
+
   return (
-    <section className="py-24 bg-gray-50/50">
-      <div className="container px-4 mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold font-poppins mb-4">How It Works</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Streamline your content workflow in three simple steps.
+    <section className="w-full py-24 md:py-32 relative overflow-hidden bg-white">
+      <div className="container mx-auto px-4 max-w-6xl relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-16 animate-fade-in">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-50 border border-gray-200 rounded-full text-xs font-medium text-primary mb-6 shadow-sm">
+            <Zap className="w-3 h-3 fill-primary" />
+            How It Works
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground font-poppins mb-6 tracking-tight">
+            Get Started in 3 Simple Steps
+          </h2>
+          <p className="text-lg text-muted-foreground font-inter max-w-2xl mx-auto leading-relaxed">
+            Three steps to set up Texavor and get your content workflow moving.
           </p>
         </div>
 
-        <StaggerContainer className="grid gap-12 lg:grid-cols-3">
-          {steps.map((step, index) => (
-            <StaggerItem key={index} className="relative group">
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 h-full">
-                <div className="mb-6 inline-block">
-                  <span className="text-5xl font-bold text-primary/10 font-poppins">
-                    {step.number}
-                  </span>
+        {/* Steps Grid */}
+        <div className="grid md:grid-cols-3 gap-6">
+          {steps.map((step, i) => (
+            <div
+              key={i}
+              className="bg-[#f9f4f0] rounded-3xl p-6 shadow-none transition-all duration-300 border-none"
+            >
+              {/* Image Preview Area */}
+              <div className="relative bg-[#f9f4f0] rounded-2xl mb-6 h-[320px] border-none overflow-hidden">
+                <div className="relative w-full h-full">
+                  <Image
+                    src={step.image}
+                    alt={step.title}
+                    fill
+                    className="object-cover object-top"
+                  />
                 </div>
-                <h3 className="text-xl font-bold mb-3 font-poppins">
-                  {step.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed mb-6">
-                  {step.description}
-                </p>
-                <div className="relative h-48 rounded-xl bg-gray-50 overflow-hidden border border-gray-100">
-                  {/* Placeholder for image */}
-                  <div className="absolute inset-0 flex items-center justify-center text-gray-300 text-sm">
-                    Image Placeholder
-                  </div>
-                </div>
+                {/* Bottom fade effect */}
+                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#f9f4f0] via-[#f9f4f0]/10 to-transparent pointer-events-none" />
               </div>
-            </StaggerItem>
+
+              {/* Step Number */}
+              <div className="text-xs font-semibold text-primary mb-2">
+                {step.number}
+              </div>
+
+              {/* Title */}
+              <h3 className="text-xl font-bold text-gray-900 mb-3 font-poppins">
+                {step.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-sm text-gray-600 leading-relaxed font-inter">
+                {step.description}
+              </p>
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
       </div>
     </section>
   );
