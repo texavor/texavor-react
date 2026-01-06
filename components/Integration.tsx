@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { Zap } from "lucide-react";
 
@@ -9,36 +10,43 @@ export default function Integration() {
       name: "Medium",
       image: "/integration/medium.png",
       position: "top-[15%] left-[5%]",
+      delay: 0,
     },
     {
       name: "Hashnode",
       image: "/integration/hashnode.png",
       position: "top-[40%] left-[15%]",
+      delay: 1,
     },
     {
       name: "WordPress",
       image: "/integration/wordpress.png",
       position: "bottom-[25%] left-[25%]",
+      delay: 2,
     },
     {
       name: "Webflow",
       image: "/integration/webflow.png",
       position: "bottom-[20%] left-[45%]",
+      delay: 0.5,
     },
     {
       name: "Webhook",
       image: "/integration/webhook.png",
       position: "bottom-[25%] right-[25%]",
+      delay: 1.5,
     },
     {
       name: "Dev.to",
       image: "/integration/devto.png",
       position: "top-[40%] right-[15%]",
+      delay: 2.5,
     },
     {
       name: "Shopify",
       image: "/integration/shopify.png",
       position: "top-[15%] right-[5%]",
+      delay: 3,
     },
   ];
 
@@ -70,10 +78,18 @@ export default function Integration() {
 
           {/* Integration icons */}
           {integrations.map((integration, i) => (
-            <div
+            <motion.div
               key={i}
-              className={`absolute ${integration.position} animate-float`}
-              style={{ animationDelay: `${i * 0.2}s` }}
+              className={`absolute ${integration.position}`}
+              animate={{
+                y: [0, -20, 0],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: integration.delay,
+              }}
             >
               <div className="relative group">
                 <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-2xl shadow-[0_10px_50px_rgba(16,65,39,0.25)] hover:shadow-[0_15px_60px_rgba(16,65,39,0.35)] transition-all duration-300 hover:scale-110 flex items-center justify-center p-0 overflow-hidden">
@@ -86,26 +102,10 @@ export default function Integration() {
                   />
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
-
-      {/* Add floating animation */}
-      <style jsx>{`
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-20px);
-          }
-        }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-      `}</style>
     </section>
   );
 }
