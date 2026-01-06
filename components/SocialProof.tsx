@@ -2,13 +2,25 @@
 
 export default function SocialProof() {
   const stats = [
-    { value: "10,000+", label: "Active Writers", sublabel: "This month" },
-    { value: "250,000+", label: "Articles Created", sublabel: "Since launch" },
-    { value: "4.9/5", label: "User Rating", sublabel: "From 2,500+ reviews" },
+    {
+      value: "10,000+",
+      label: "Verified Authors",
+      sublabel: "Building authority",
+    },
+    {
+      value: "250,000+",
+      label: "Articles Orchestrated",
+      sublabel: "Across 5+ platforms",
+    },
+    {
+      value: "4.9/5",
+      label: "Editorial Rating",
+      sublabel: "From technical teams",
+    },
     {
       value: "< 30 sec",
-      label: "Content Generation",
-      sublabel: "Average time",
+      label: "Platform Sync",
+      sublabel: "Dev.to, Medium, Hashnode",
     },
   ];
 
@@ -25,7 +37,7 @@ export default function SocialProof() {
     <section className="w-full py-16 border-y border-border/40 bg-white/50 backdrop-blur-sm">
       <div className="container mx-auto px-4 max-w-7xl">
         <p className="text-center text-sm font-semibold text-muted-foreground mb-10 font-inter uppercase tracking-wider">
-          Trusted by content creators worldwide
+          Trusted by high-growth technical teams
         </p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 divide-x divide-border/40">

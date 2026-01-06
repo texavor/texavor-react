@@ -1,8 +1,10 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Zap } from "lucide-react";
 import Image from "next/image";
+import { StaggerContainer, StaggerItem } from "@/components/ui/fade-in";
 
 // Simple bar chart component matching reference design
 const SimpleBarChart = () => {
@@ -32,7 +34,7 @@ const SimpleBarChart = () => {
           <div
             className={`w-full rounded-t-lg transition-all ${
               bar.active
-                ? "bg-gradient-to-b from-blue-500 to-blue-600 shadow-lg"
+                ? "bg-gradient-to-b from-primary to-primary/90 shadow-lg"
                 : "bg-gradient-to-b from-gray-200 to-gray-300"
             }`}
             style={{ height: `${bar.height}%` }}
@@ -42,7 +44,7 @@ const SimpleBarChart = () => {
 
       {/* Progress badge */}
       {bars.findIndex((b) => b.active) >= 0 && (
-        <div className="absolute top-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-lg">
+        <div className="absolute top-4 right-4 bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-lg">
           65% Progress
         </div>
       )}
@@ -778,49 +780,53 @@ const ThumbnailGeneration = () => {
   );
 };
 
-// Team Management component
-const TeamManagement = () => {
+// Author Management component
+const AuthorManagement = () => {
   const members = [
     {
       name: "Suraj Vishwakarma",
-      email: "surajvishwakarma625@gmail.com",
+      email: "suraj@texavor.com",
       role: "Admin",
       initial: "S",
       you: true,
+      platform: "Medium",
     },
     {
       name: "Akash Vishwakarma",
-      email: "akash@gmail.com",
+      email: "akash@texavor.com",
       role: "Editor",
       initial: "A",
       you: false,
+      platform: "WordPress",
     },
     {
-      name: "Lionel Messi",
-      email: "messi@gmail.com",
+      name: "Sarah Jenkins",
+      email: "sarah@tech.io",
       role: "Viewer",
-      initial: "L",
+      initial: "S",
       you: false,
+      platform: "Dev.to",
     },
     {
-      name: "Cristiano Ronaldo",
-      email: "cr7@gmail.com",
+      name: "David Chen",
+      email: "david@code.com",
       role: "Writer",
-      initial: "C",
+      initial: "D",
       you: false,
+      platform: "Hashnode",
     },
   ];
 
   const getRoleBadgeColor = (role: string) => {
     switch (role) {
       case "Admin":
-        return "bg-blue-100 text-blue-700 border-blue-200";
+        return "bg-green-100 text-green-700 border-green-200";
       case "Editor":
         return "bg-purple-100 text-purple-700 border-purple-200";
+      case "Viewer":
+        return "bg-blue-100 text-blue-700 border-blue-200";
       case "Writer":
         return "bg-orange-100 text-orange-700 border-orange-200";
-      case "Viewer":
-        return "bg-gray-100 text-gray-700 border-gray-200";
       default:
         return "bg-gray-100 text-gray-700 border-gray-200";
     }
@@ -832,15 +838,20 @@ const TeamManagement = () => {
 
       {/* Team Members Table */}
       <div className="bg-white rounded-xl border-none overflow-hidden">
-        <div className="px-4 py-2 bg-gray-50 border-b border-gray-200">
-          <h5 className="text-xs font-semibold text-gray-700">Team Members</h5>
+        <div className="px-4 py-2 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
+          <h5 className="text-xs font-semibold text-gray-700">
+            Author Profiles
+          </h5>
+          <span className="text-[10px] text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">
+            ● All Synced
+          </span>
         </div>
 
-        <div className="bg-orange-50/30 border-b border-gray-200">
+        <div className="bg-gray-50/50 border-b border-gray-200">
           <div className="grid grid-cols-12 gap-4 px-4 py-2 text-[10px] font-semibold text-gray-600">
-            <div className="col-span-7">Member</div>
-            <div className="col-span-4">Role</div>
-            <div className="col-span-1"></div>
+            <div className="col-span-6">Author</div>
+            <div className="col-span-3">Role</div>
+            <div className="col-span-3 text-right">Sync Source</div>
           </div>
         </div>
 
@@ -850,8 +861,8 @@ const TeamManagement = () => {
               key={i}
               className="grid grid-cols-12 gap-4 px-4 py-3 hover:bg-gray-50/50 transition-colors items-center"
             >
-              <div className="col-span-7 flex items-center gap-3">
-                <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-gray-700 font-semibold text-sm flex-shrink-0">
+              <div className="col-span-6 flex items-center gap-3">
+                <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 font-semibold text-xs border border-gray-200 flex-shrink-0">
                   {member.initial}
                 </div>
                 <div className="min-w-0">
@@ -868,7 +879,7 @@ const TeamManagement = () => {
                   </p>
                 </div>
               </div>
-              <div className="col-span-4">
+              <div className="col-span-3">
                 <span
                   className={`inline-flex px-2 py-1 rounded-md text-[10px] font-semibold border ${getRoleBadgeColor(
                     member.role
@@ -877,16 +888,10 @@ const TeamManagement = () => {
                   {member.role}
                 </span>
               </div>
-              <div className="col-span-1 flex justify-end">
-                <button className="text-gray-400 hover:text-gray-600 transition-colors">
-                  <svg
-                    className="w-4 h-4"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
-                  </svg>
-                </button>
+              <div className="col-span-3 text-right">
+                <span className="text-[10px] text-gray-400 font-medium">
+                  {member.platform}
+                </span>
               </div>
             </div>
           ))}
@@ -899,55 +904,57 @@ const TeamManagement = () => {
 export default function Features() {
   const features = [
     {
-      title: "Article Management",
-      description: "Create, edit, and manage your articles with ease.",
+      title: "Content Command Center",
+      description:
+        "Plan, write, and command your entire editorial calendar from one premium workspace.",
       component: <CalendarView />,
     },
     {
-      title: "Keyword Research",
+      title: "Strategic Keyword Intelligence",
       description:
-        "Discover high-volume keywords and trending topics with built-in research tools.",
+        "Don't just write. Target high-volume opportunities with built-in difficulty analysis.",
       component: <KeywordResearch />,
     },
     {
-      title: "Topic Generation",
-      description: "Generate topic ideas your articles with ease.",
+      title: "Smart Topic Generation",
+      description:
+        "Convert basic ideas into E-E-A-T optimized article concepts instantly.",
       component: <TopicGeneration />,
     },
     {
-      title: "Outline Generation",
+      title: "AI-Powered Outlining",
       description:
-        "Generate article outlines with ease and get started with your writing.",
+        "Generate structured, technically accurate outlines that respect your tone of voice.",
       component: <OutlineGeneration />,
     },
     {
-      title: "Competitor Analysis",
+      title: "Competitor Intelligence",
       description:
-        "Analyze your competitors and get insights on what works and what doesn't.",
+        "Track competitor content velocity and quality. Know exactly where to outperform them.",
       component: <CompetitorAnalysis />,
     },
     {
-      title: "Platform Integration",
+      title: "Precision Orchestration",
       description:
-        "One-click integration with platforms to schedule and managing articles.",
+        "One-click publishing to Dev.to, Hashnode, and Medium with perfect code block formatting.",
       component: <PlatformIntegration />,
     },
     {
-      title: "Thumbnails and Image Generation",
+      title: "Asset Generation",
       description:
-        "Generate thumbnails and images for your articles with ease.",
+        "Auto-generate code-styled thumbnails and cover images for every article.",
       component: <ThumbnailGeneration />,
     },
     {
-      title: "Team Management",
+      title: "Unified Author Identity",
       description:
-        "Manage your team with ease and get insights on what works and what doesn't.",
-      component: <TeamManagement />,
+        "Sync and manage author profiles across platforms. Build personal authority for every team member.",
+      component: <AuthorManagement />,
     },
     {
-      title: "Progress Tracking",
+      title: "Authority Tracking",
       description:
-        "Track & visualise your progress with simple charts. Stay in the loop as milestones turn into completed tasks, one step at a time.",
+        "Visualize your domain authority growth. Track how your content strategy translates to real metrics.",
       component: <ProgressStats />,
       large: true,
     },
@@ -963,10 +970,10 @@ export default function Features() {
         <div className="text-center mb-16 animate-fade-in">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-primary/20 rounded-full text-xs font-medium text-primary mb-6 shadow-sm">
             <Zap className="w-3 h-3 fill-primary" />
-            Our Features
+            The Content Engine
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground font-poppins mb-6 tracking-tight">
-            Features To Boost Your Productivity
+            The Complete Authority Engine
           </h2>
           <p className="text-lg text-muted-foreground font-inter max-w-2xl mx-auto leading-relaxed">
             Everything you need to plan, track, and deliver on all your tasks
@@ -974,67 +981,69 @@ export default function Features() {
         </div>
 
         {/* Feature Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           {features.map((feature, index) => (
-            <Card
+            <StaggerItem
               key={index}
               className={`
                 ${
                   feature.large ? "md:col-span-2 lg:col-span-2" : "col-span-1"
-                } border-[1px] border-gray-100 rounded-4xl p-3 shadow-xs`}
+                } h-full`}
             >
-              <div
-                className="shadow-none h-full transition-all duration-300 overflow-hidden
-                bg-gradient-to-tr from-gray-50 to-[#f9f4f0]
-                p-4 rounded-3xl border-[1px] border-gray-100"
-              >
+              <Card className="border-[1px] border-gray-100 rounded-[32px] p-3 h-full">
                 <div
-                  className={`${
-                    feature.large
-                      ? "grid md:grid-cols-2 gap-8 items-center"
-                      : "col-span-2"
-                  }`}
+                  className="shadow-none h-full overflow-hidden
+                  bg-gradient-to-tr from-gray-50 to-[#f9f4f0]
+                  p-4 rounded-3xl border-[1px] border-gray-100 cursor-pointer"
                 >
-                  <div>
-                    {/* Feature Visual */}
-                    <div className="mb-6 bg-transparent rounded-2xl overflow-hidden">
-                      {feature.component ? (
-                        feature.component
-                      ) : (
-                        <div className="min-h-[180px] flex items-center justify-center bg-white/60 backdrop-blur-sm border border-white/40 rounded-2xl p-6">
-                          <p className="text-sm text-gray-400 font-inter">
-                            Visual placeholder - {feature.title}
+                  <div
+                    className={`${
+                      feature.large
+                        ? "grid md:grid-cols-2 gap-8 items-center"
+                        : "col-span-2"
+                    }`}
+                  >
+                    <div>
+                      {/* Feature Visual */}
+                      <div className="mb-6 bg-transparent rounded-2xl overflow-hidden">
+                        {feature.component ? (
+                          feature.component
+                        ) : (
+                          <div className="min-h-[180px] flex items-center justify-center bg-white/60 backdrop-blur-sm border border-white/40 rounded-2xl p-6">
+                            <p className="text-sm text-gray-400 font-inter">
+                              Visual placeholder - {feature.title}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+
+                      <h3 className="text-2xl font-bold font-poppins mb-3 text-foreground">
+                        {feature.title}
+                      </h3>
+                      <p className="text-muted-foreground font-inter leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </div>
+
+                    {feature.large && (
+                      <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-white/40">
+                        <div className="mb-4">
+                          <p className="text-xs text-gray-500 font-medium mb-1">
+                            Project
+                          </p>
+                          <p className="text-sm font-semibold">
+                            Surajondev Marketing Campaign
                           </p>
                         </div>
-                      )}
-                    </div>
-
-                    <h3 className="text-2xl font-bold font-poppins mb-3 text-foreground">
-                      {feature.title}
-                    </h3>
-                    <p className="text-muted-foreground font-inter leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
-
-                  {feature.large && (
-                    <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-white/40">
-                      <div className="mb-4">
-                        <p className="text-xs text-gray-500 font-medium mb-1">
-                          Project
-                        </p>
-                        <p className="text-sm font-semibold">
-                          Olan Marketing Campaign
-                        </p>
+                        <SimpleBarChart />
                       </div>
-                      <SimpleBarChart />
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
-              </div>
-            </Card>
+              </Card>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

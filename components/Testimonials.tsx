@@ -6,39 +6,39 @@ export default function Testimonials() {
   const testimonials = [
     {
       name: "Adam Kings",
-      role: "Founder, Kingsy",
+      role: "Head of Engineering, Kingsy",
       quote:
-        "Texavor replaced three different tools we were using. Now our projects, chats, and tasks actually live in one place, my team loves it.",
+        "Texavor replaced our janky notion-to-markdown scripts. Now we publish technical deep-dives to Dev.to and our blog in one click.",
     },
     {
       name: "John Deo",
-      role: "Project Manager, Tripe",
+      role: "DevRel Manager, Tripe",
       quote:
-        "Onboarding was effortless. I invited my team and within minutes we were collaborating like we'd been using it for months.",
+        "The competitor intelligence is scary good. I spotted a gap in 'React Server Components' content and we ranked #1 in two weeks.",
     },
     {
       name: "Leila Matt",
-      role: "Marketing Director, Senkt",
+      role: "CTO, Senkt",
       quote:
-        "The app integrations are a game changer. We no longer have to change our workflow Texavor just made it flow better for the team.",
+        "Finally, an AI writer that understands code blocks. I don't have to fix indentation manually every time I generate a tutorial.",
     },
     {
       name: "Omar Stefan",
-      role: "Project Manager, Tripe",
+      role: "Senior Developer, Tripe",
       quote:
-        "Our productivity jumped because Texavor brings all our tools into one place. No more hopping around tasks.",
+        "The author syncing is a lifesaver. I can build my personal brand on Hashnode while contributing to the company blog seamlessly.",
     },
     {
       name: "Maya Stone",
-      role: "Teacher, Bard",
+      role: "Technical Writer, Bard",
       quote:
-        "Finally, a tool that doesn't overwhelm my team. Texavor just works, clean, fast, and simple.",
+        "Texavor helps me maintain a consistent tone across 20+ documentation pages. It's not just writing, it's strategy.",
     },
     {
       name: "Brima May",
-      role: "Integrations, Coptech",
+      role: "VP of Content, Coptech",
       quote:
-        "Before Texavor, things slipped through the cracks. Now every task has an owner and nothing gets lost.",
+        "We scaled from 2 to 10 articles a week without losing quality. The E-E-A-T checks ensure we never publish fluff.",
     },
   ];
 

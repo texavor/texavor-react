@@ -17,19 +17,21 @@ export default function Hero() {
           <Sparkles className="w-3.5 h-3.5 text-primary fill-primary/20" />
           <span className="text-slate-500">New</span>
           <span className="w-1 h-1 rounded-full bg-slate-300 mx-1" />
-          <span className="text-foreground">Texavor AI is now available</span>
+          <span className="text-foreground">
+            Competitor Intelligence is now live
+          </span>
         </div>
 
         {/* Headline */}
         <h1 className="text-5xl md:text-6xl lg:text-[72px] font-bold text-foreground font-poppins leading-[1.1] tracking-tight max-w-5xl mx-auto mb-6 animate-fade-slide-up">
-          Turn Scattered Ideas Into <br className="hidden md:block" />
-          Seamless Content
+          Build Authority. <br className="hidden md:block" />
+          Not Just Articles.
         </h1>
 
         {/* Subheadline */}
         <p className="text-lg md:text-xl text-muted-foreground font-inter leading-relaxed max-w-2xl mx-auto mb-10 animate-fade-slide-up [animation-delay:100ms]">
-          Texavor brings research, writing, and SEO together so your team can
-          focus on growth.
+          The command center for technical teams to research, write, and
+          orchestrate content that actually ranks.
         </p>
 
         {/* CTAs */}
