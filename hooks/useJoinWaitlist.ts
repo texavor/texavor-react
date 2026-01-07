@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { axiosInstance } from "@/lib/axiosInstace";
+import { axiosInstance } from "@/lib/axiosInstance";
 import { toast } from "sonner";
 
 interface WaitlistPayload {

@@ -60,14 +60,30 @@ export default function LandingNav() {
             // { label: "Pricing", id: "pricing" },
             // { label: "FAQ", id: "faq" },
             { label: "Blog", id: "blog", href: "/blog" },
+            {
+              label: "AI Visibility Tool",
+              id: "free-tools",
+              href: "/tools/ai-score",
+            },
             { label: "Docs", id: "docs", href: "/docs" },
           ].map((item) =>
             item.href ? (
               <Link
                 key={item.id}
                 href={item.href}
-                className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors font-poppins"
+                className={cn(
+                  "text-sm font-medium transition-colors font-poppins flex items-center gap-1.5",
+                  item.id === "free-tools"
+                    ? "text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200/60 hover:border-emerald-300 hover:bg-emerald-100/80 hover:shadow-sm"
+                    : "text-foreground/70 hover:text-foreground"
+                )}
               >
+                {item.id === "free-tools" && (
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                )}
                 {item.label}
               </Link>
             ) : (
