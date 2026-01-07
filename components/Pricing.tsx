@@ -120,10 +120,11 @@ export default function Pricing() {
                     }`}
                   >
                     <Link
-                      href="/signup"
+                      href={`${process.env.NEXT_PUBLIC_APP_URL}/register`}
                       className="flex items-center justify-center gap-2"
+                      target="_blank"
                     >
-                      {isRecommended ? "Upgrade to Pro" : `Get ${tier.name}`}
+                      {`Get ${tier.name}`}
                       <ArrowRight className="w-4 h-4" />
                     </Link>
                   </Button>
