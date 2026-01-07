@@ -59,11 +59,17 @@ export default function LandingNav() {
             // { label: "Reviews", id: "testimonials" },
             // { label: "Pricing", id: "pricing" },
             // { label: "FAQ", id: "faq" },
+            { label: "Home", id: "home", href: "/" },
             { label: "Blog", id: "blog", href: "/blog" },
             {
-              label: "AI Visibility Tool",
+              label: "Keyword Tool",
               id: "free-tools",
               href: "/tools/ai-score",
+            },
+            {
+              label: "GEO Website Auditor",
+              id: "website-auditor",
+              href: "/tools/website-auditor",
             },
             { label: "Docs", id: "docs", href: "/docs" },
           ].map((item) =>
@@ -73,12 +79,12 @@ export default function LandingNav() {
                 href={item.href}
                 className={cn(
                   "text-sm font-medium transition-colors font-poppins flex items-center gap-1.5",
-                  item.id === "free-tools"
+                  ["free-tools", "website-auditor"].includes(item.id)
                     ? "text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200/60 hover:border-emerald-300 hover:bg-emerald-100/80 hover:shadow-sm"
                     : "text-foreground/70 hover:text-foreground"
                 )}
               >
-                {item.id === "free-tools" && (
+                {["free-tools", "website-auditor"].includes(item.id) && (
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
