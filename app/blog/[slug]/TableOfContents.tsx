@@ -82,7 +82,7 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
   };
 
   return (
-    <div className="bg-primary/5 p-6 rounded-2xl mb-8 backdrop-blur-sm">
+    <div className="bg-gray-200 p-6 rounded-2xl mb-8 backdrop-blur-sm">
       <h2 className="font-raleway text-xl font-bold text-gray-900 mb-4">
         Table of Contents
       </h2>

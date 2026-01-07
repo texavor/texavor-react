@@ -21,14 +21,14 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
   const shareText = `${title} 🚀 by @surajondev\n\n`;
 
   const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-    url,
+    url
   )}&text=${encodeURIComponent(shareText)}`;
   const linkedinShareUrl = `https://www.linkedin.com/shareArticle?url=${encodeURIComponent(
-    url,
+    url
   )}`;
 
   return (
-    <div className="flex items-center gap-4 bg-[#EEDED3] bg-opacity-50 backdrop-blur-lg rounded-full px-4 py-2 shadow-sm">
+    <div className="flex items-center gap-4 bg-gray-200 bg-opacity-50 backdrop-blur-lg rounded-full px-4 py-2 shadow-sm">
       <a
         href={twitterShareUrl}
         target="_blank"

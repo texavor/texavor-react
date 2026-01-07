@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ShareButtons } from "./ShareButtons";
 import { TableOfContents } from "./TableOfContents";
+import { SidebarVisual } from "@/components/SidebarVisual";
 
 // Interfaces
 interface Heading {
@@ -125,7 +126,7 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
             <div className="flex flex-wrap">
               {articleData?.tags?.map((item, index) => (
                 <span
-                  className="font-inter font-light underline mr-2 decoration-green-600 decoration-2"
+                  className="font-inter text-sm italic font-light underline mr-2 decoration-lime-200 decoration-2"
                   key={index}
                 >
                   #{item}
@@ -196,27 +197,23 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
             </div>
           </div>
 
-          <div className="mt-8 lg:mt-0 lg:sticky lg:top-28 self-start h-fit">
+          <div className="mb-8 mt-8 lg:mt-0 lg:sticky lg:top-28 self-start h-fit">
             <div className="lg:max-w-[260px]">
-              <div className="bg-primary/5 rounded-2xl border-none shadow-none backdrop-blur-sm p-6">
-                <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden mb-4 shadow-sm border border-primary/10">
-                  <Image
-                    src="/screenshots/articleManagement.png"
-                    alt="Texavor Dashboard"
-                    fill
-                    className="object-cover"
-                  />
+              <div className="bg-gray-200 rounded-2xl border-none shadow-none backdrop-blur-sm p-6">
+                <div className="relative w-full rounded-xl overflow-hidden mb-4 shadow-none border border-primary/10 bg-white">
+                  <SidebarVisual />
                 </div>
                 <h4 className="font-poppins text-lg font-bold text-gray-900 mb-2">
-                  Write Faster & Better
+                  Authority for Blog
                 </h4>
-                <p className="font-inter text-sm text-gray-600 mb-6 leading-relaxed">
-                  Streamline your content workflow. Plan, draft, and publish
-                  SEO-optimized articles in seconds.
+                <p className="font-inter text-sm text-gray-700 mb-6 leading-relaxed">
+                  Turn raw technical insights into authority-building articles.
+                  Automate the drafting grunt work so you can focus on the
+                  engineering.
                 </p>
                 <Link
                   href="/"
-                  className="block w-full text-center font-poppins bg-[#104127] text-white font-medium py-3 px-4 rounded-xl hover:bg-[#0A2918] transition-all duration-200 text-sm shadow-lg shadow-primary/20 hover:-translate-y-0.5"
+                  className="block w-full text-center font-poppins bg-[#104127] text-white font-medium py-3 px-4 rounded-xl hover:bg-[#0A2918] transition-all duration-200 text-sm shadow-lg shadow-primary/20"
                 >
                   Get Started 🚀
                 </Link>
