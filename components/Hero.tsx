@@ -46,7 +46,7 @@ export default function Hero() {
             size="lg"
             className="h-12 px-6 rounded-lg bg-white border-gray-200 text-foreground font-semibold shadow-sm hover:bg-gray-50 hover:text-foreground font-poppins text-base min-w-[160px]"
           >
-            <Link href={`${process.env.NEXT_PUBLIC_APP_URL}`}>
+            <Link href={`${process.env.NEXT_PUBLIC_APP_URL}`} target="_blank">
               Start Free Trial
             </Link>
           </Button>
