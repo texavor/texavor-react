@@ -221,26 +221,6 @@ export default function AiScorePage() {
                 />
               </div>
 
-              <div className="flex-1 w-full space-y-2">
-                <Label htmlFor="website" className="sr-only">
-                  Website
-                </Label>
-                <form.Field
-                  name="website"
-                  children={(field) => (
-                    <Input
-                      id={field.name}
-                      name={field.name}
-                      value={field.state.value}
-                      onBlur={field.handleBlur}
-                      onChange={(e) => field.handleChange(e.target.value)}
-                      placeholder="Your website (optional)"
-                      className="h-12 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
-                    />
-                  )}
-                />
-              </div>
-
               <Button
                 type="submit"
                 size="lg"
@@ -660,49 +640,53 @@ export default function AiScorePage() {
             </div>
 
             {/* Upsell Section - Donezo Style Dark Card */}
-            {result?.upsell && (
-              <div className="relative rounded-2xl overflow-hidden bg-[#0A1A12] text-white p-8 md:p-12 text-center shadow-2xl">
-                {/* Background Pattern */}
-                <div
-                  className="absolute inset-0 opacity-20 pointer-events-none"
-                  style={{
-                    backgroundImage:
-                      "radial-gradient(circle at 50% 50%, #10B981 1px, transparent 1px)",
-                    backgroundSize: "24px 24px",
-                  }}
-                ></div>
+            {/* Upsell Section - Donezo Style Dark Card */}
+            <div className="relative rounded-2xl overflow-hidden bg-[#0A1A12] text-white p-8 md:p-12 text-center shadow-2xl">
+              {/* Background Pattern */}
+              <div
+                className="absolute inset-0 opacity-20 pointer-events-none"
+                style={{
+                  backgroundImage:
+                    "radial-gradient(circle at 50% 50%, #10B981 1px, transparent 1px)",
+                  backgroundSize: "24px 24px",
+                }}
+              ></div>
 
-                <div className="relative z-10 max-w-2xl mx-auto space-y-6">
-                  <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto backdrop-blur-sm mb-4">
-                    <Lock className="w-8 h-8 text-emerald-400" />
-                  </div>
-                  <h3 className="text-3xl md:text-4xl font-bold tracking-tight">
-                    {result.upsell.title}
-                  </h3>
-                  <p className="text-lg text-emerald-100/80">
-                    Unlock precise data on competitors, backlinks, and more.
-                  </p>
-
-                  <div className="flex flex-wrap justify-center gap-3 py-4">
-                    {result.upsell.locked_data.map((data, i) => (
-                      <span
-                        key={i}
-                        className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm font-medium flex items-center gap-2"
-                      >
-                        <Lock className="w-3 h-3 text-emerald-500" /> {data}
-                      </span>
-                    ))}
-                  </div>
-
-                  <Button
-                    size="lg"
-                    className="h-12 px-8 bg-emerald-500 hover:bg-emerald-400 text-[#0A1A12] font-semibold text-lg rounded-xl transition-all w-full sm:w-auto"
-                  >
-                    {result.upsell.cta}
-                  </Button>
+              <div className="relative z-10 max-w-2xl mx-auto space-y-6">
+                <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto backdrop-blur-sm mb-4">
+                  <Lock className="w-8 h-8 text-emerald-400" />
                 </div>
+                <h3 className="text-3xl md:text-4xl font-bold tracking-tight">
+                  Try Texavor for Deep Insights
+                </h3>
+                <p className="text-lg text-emerald-100/80">
+                  Unlock precise data on competitors, backlinks, and more.
+                </p>
+
+                <div className="flex flex-wrap justify-center gap-3 py-4">
+                  {[
+                    "Search Volume",
+                    "Keyword Difficulty",
+                    "CPC Cost",
+                    "Competitor List",
+                  ].map((data, i) => (
+                    <span
+                      key={i}
+                      className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm font-medium flex items-center gap-2"
+                    >
+                      <Lock className="w-3 h-3 text-emerald-500" /> {data}
+                    </span>
+                  ))}
+                </div>
+
+                <Button
+                  size="lg"
+                  className="h-12 px-8 bg-emerald-500 hover:bg-emerald-400 text-[#0A1A12] font-semibold text-lg rounded-xl transition-all w-full sm:w-auto"
+                >
+                  Start Free Trial
+                </Button>
               </div>
-            )}
+            </div>
 
             {/* Share & Copy Link */}
             {result?.viral_hook && (
