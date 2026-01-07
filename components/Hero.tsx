@@ -24,14 +24,18 @@ export default function Hero() {
 
         {/* Headline */}
         <h1 className="text-5xl md:text-6xl lg:text-[72px] font-bold text-foreground font-poppins leading-[1.1] tracking-tight max-w-5xl mx-auto mb-6 animate-fade-slide-up">
-          Build Authority. <br className="hidden md:block" />
-          Not Just Articles.
+          Don't Let AI <br className="hidden md:block" />
+          Bury Your Brand.
         </h1>
 
         {/* Subheadline */}
-        <p className="text-lg md:text-xl text-muted-foreground font-inter leading-relaxed max-w-2xl mx-auto mb-10 animate-fade-slide-up [animation-delay:100ms]">
-          The command center for technical teams to research, write, and
-          orchestrate content that actually ranks.
+        <p className="text-lg md:text-xl text-muted-foreground font-inter leading-relaxed max-w-3xl mx-auto mb-10 animate-fade-slide-up [animation-delay:100ms]">
+          The complete platform for managing articles and{" "}
+          <span className="text-foreground font-medium">
+            GEO (Generative Engine Optimization)
+          </span>
+          . Monitor your visibility in ChatGPT, fix "decayed" content before
+          LLMs ignore it, and dominate the search landscape.
         </p>
 
         {/* CTAs */}
@@ -42,10 +46,7 @@ export default function Hero() {
             size="lg"
             className="h-12 px-6 rounded-lg bg-white border-gray-200 text-foreground font-semibold shadow-sm hover:bg-gray-50 hover:text-foreground font-poppins text-base min-w-[160px]"
           >
-            <Link href="#demo" className="flex items-center">
-              <Play className="w-4 h-4 mr-2 fill-foreground" />
-              Get a Demo
-            </Link>
+            <Link href="/blog/new">Start Free Trial</Link>
           </Button>
 
           <Button
@@ -53,7 +54,9 @@ export default function Hero() {
             size="lg"
             className="h-12 px-8 rounded-lg bg-primary hover:bg-primary/90 text-white font-semibold shadow-lg shadow-primary/20 transition-all hover:scale-105 hover:shadow-xl font-poppins text-base min-w-[160px]"
           >
-            <Link href="/blog/new">Try Texavor For Free</Link>
+            <Link href="/tools/ai-score">
+              Test Your AI Visibility Score (Free)
+            </Link>
           </Button>
         </div>
 

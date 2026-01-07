@@ -910,9 +910,9 @@ export default function Features() {
       component: <CalendarView />,
     },
     {
-      title: "Strategic Keyword Intelligence",
+      title: "Google is only 40% of the battle.",
       description:
-        "Don't just write. Target high-volume opportunities with built-in difficulty analysis.",
+        "Traditional SEO tools ignore where 60% of devs search: ChatGPT, Claude, and Perplexity. Texavor tracks your LLM Share of Voice.",
       component: <KeywordResearch />,
     },
     {
@@ -922,9 +922,9 @@ export default function Features() {
       component: <TopicGeneration />,
     },
     {
-      title: "AI-Powered Outlining",
+      title: "Write for Answers, Not Clicks.",
       description:
-        "Generate structured, technically accurate outlines that respect your tone of voice.",
+        "Chatbots don't want 2,000-word fluff pieces. Our AEO Outline Generator structures content with 'Answer Nodes' that LLMs love to ingest.",
       component: <OutlineGeneration />,
     },
     {
@@ -946,15 +946,15 @@ export default function Features() {
       component: <ThumbnailGeneration />,
     },
     {
-      title: "Unified Author Identity",
+      title: "Proof of Human.",
       description:
-        "Sync and manage author profiles across platforms. Build personal authority for every team member.",
+        "In an ocean of AI slop, verified human authorship is the ultimate ranking signal. Texavor syncs your Author Biography across Dev.to, Medium, and your blog to prove E-E-A-T.",
       component: <AuthorManagement />,
     },
     {
-      title: "Authority Tracking",
+      title: "Stale Content is Invisible Content.",
       description:
-        "Visualize your domain authority growth. Track how your content strategy translates to real metrics.",
+        "LLMs hallucinate when data is old. Our Decay Risk Engine scans your articles 24/7. We alert you to update before AIs stop citing you.",
       component: <ProgressStats />,
       large: true,
     },

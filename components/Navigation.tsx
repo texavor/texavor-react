@@ -42,7 +42,7 @@ import {
 import { Input } from "./ui/input";
 import Image from "next/image";
 import { toast } from "sonner";
-import { axiosInstance } from "@/lib/axiosInstace";
+import { axiosInstance } from "@/lib/axiosInstance";
 //@ts-ignore
 import ct from "countries-and-timezones";
 

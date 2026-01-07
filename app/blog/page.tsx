@@ -1,5 +1,5 @@
 import React from "react";
-import { baseURL } from "@/lib/axiosInstace";
+import { baseURL } from "@/lib/axiosInstance";
 import BlogClientWrapper from "./BlogClientWrapper";
 
 export const revalidate = 3600; // Revalidate every hour

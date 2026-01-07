@@ -1,4 +1,4 @@
-import { baseURL } from "./axiosInstace";
+import { baseURL } from "./axiosInstance";
 import axios from "axios";
 
 export async function getAllPosts() {

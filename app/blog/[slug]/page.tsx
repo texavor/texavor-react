@@ -6,7 +6,7 @@ import { markedHighlight } from "marked-highlight";
 import hljs from "highlight.js";
 
 import Link from "next/link";
-import { baseURL } from "@/lib/axiosInstace";
+import { baseURL } from "@/lib/axiosInstance";
 import { ArticleView } from "./ArticleView";
 
 import "../../dracula.css";
