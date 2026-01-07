@@ -29,7 +29,9 @@ export default function CTA() {
             size="lg"
             className="bg-white text-primary hover:bg-gray-100 text-lg px-8 py-6 rounded-xl font-bold shadow-lg transition-transform hover:scale-105"
           >
-            <Link href="/signup">Get Started</Link>
+            <Link href={`${process.env.NEXT_PUBLIC_APP_URL}/register`}>
+              Get Started
+            </Link>
           </Button>
         </div>
       </div>

@@ -46,15 +46,17 @@ export default function Hero() {
             size="lg"
             className="h-12 px-6 rounded-lg bg-white border-gray-200 text-foreground font-semibold shadow-sm hover:bg-gray-50 hover:text-foreground font-poppins text-base min-w-[160px]"
           >
-            <Link href="/blog/new">Start Free Trial</Link>
+            <Link href={`${process.env.NEXT_PUBLIC_APP_URL}`}>
+              Start Free Trial
+            </Link>
           </Button>
 
           <Button
             asChild
             size="lg"
-            className="h-12 px-8 rounded-lg bg-primary hover:bg-primary/90 text-white font-semibold shadow-lg shadow-primary/20 transition-all hover:scale-105 hover:shadow-xl font-poppins text-base min-w-[160px]"
+            className="h-12 px-8 rounded-lg bg-primary hover:bg-primary/90 text-white font-semibold shadow-lg shadow-primary/20 transition-all hover:shadow-xl font-poppins text-base min-w-[160px]"
           >
-            <Link href="/tools/ai-score">
+            <Link href="/tools/website-auditor">
               Test Your AI Visibility Score (Free)
             </Link>
           </Button>

@@ -64,7 +64,7 @@ export default function LandingNav() {
             {
               label: "Keyword Tool",
               id: "free-tools",
-              href: "/tools/ai-score",
+              href: "/tools/keyword-research-tool",
             },
             {
               label: "GEO Website Auditor",
@@ -107,7 +107,8 @@ export default function LandingNav() {
         {/* CTA Buttons */}
         <div className="flex items-center gap-4 shrink-0">
           <Link
-            href="/login"
+            href={`${process.env.NEXT_PUBLIC_APP_URL}/login` || "/"}
+            target="_blank"
             className="hidden sm:inline-block text-sm font-medium text-foreground/70 hover:text-foreground transition-colors font-poppins"
           >
             Login
@@ -115,9 +116,11 @@ export default function LandingNav() {
           <Button
             asChild
             size="sm"
-            className="rounded-full bg-primary hover:bg-primary/90 text-white font-medium shadow-lg hover:shadow-xl px-6 h-10 font-poppins transition-all hover:scale-105"
+            className="rounded-full bg-primary hover:bg-primary/90 text-white font-medium shadow-lg hover:shadow-xl px-6 h-10 font-poppins transition-all"
           >
-            <Link href="/blog/new">Get Started</Link>
+            <Link href={process.env.NEXT_PUBLIC_APP_URL || "/"} target="_blank">
+              Get Started
+            </Link>
           </Button>
         </div>
       </nav>

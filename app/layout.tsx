@@ -20,21 +20,21 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "EasyWrite - AI Content Strategy & Writing",
+  title: "Texavor - Authority for your blog",
   description:
     "AI developer content strategist. Generate high-impact, E-E-A-T-optimized technical article ideas for Google & AI Chatbots. Maximize discovery & authority.",
   verification: {
     google: "E4iB-NQGsBin8Lyn7z9uYrmUZR0YwVl4_FhB4bWaKzo",
   },
   openGraph: {
-    title: "EasyWrite - AI Content Strategy & Writing",
+    title: "Texavor - Authority for your blog",
     description:
       "AI developer content strategist. Generate high-impact, E-E-A-T-optimized technical article ideas for Google & AI Chatbots. Maximize discovery & authority.",
     images: "/easywriteOpenGraph.png",
   },
   twitter: {
     card: "summary_large_image",
-    title: "EasyWrite - AI Content Strategy & Writing",
+    title: "Texavor - Authority for your blog",
     description:
       "AI developer content strategist. Generate high-impact, E-E-A-T-optimized technical article ideas for Google & AI Chatbots. Maximize discovery & authority.",
     images: "/easywriteOpenGraph.png",

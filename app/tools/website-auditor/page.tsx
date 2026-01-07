@@ -7,7 +7,7 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import MetricCard from "../ai-score/MetriCard"; // Reuse MetricCard
+import MetricCard from "../keyword-research-tool/MetriCard"; // Reuse MetricCard
 import {
   Card,
   CardContent,
