@@ -183,8 +183,8 @@ export default function AiScorePage() {
         </div>
 
         {/* Search Input Card - Restored Separated Style */}
-        <Card className="mb-16 bg-gray-100 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
-          <CardContent className="p-6">
+        <Card className="mb-16 bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
+          <CardContent className="px-4 py-1">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -213,7 +213,8 @@ export default function AiScorePage() {
                       />
                       {field.state.meta.errors ? (
                         <p className="text-sm text-destructive mt-1 absolute -bottom-6 left-0">
-                          {field.state.meta.errors.join(", ")}
+                          {/* @ts-ignore */}
+                          {field?.state?.meta?.errors[0]?.message}
                         </p>
                       ) : null}
                     </div>
@@ -427,7 +428,7 @@ export default function AiScorePage() {
                 </div>
 
                 {/* AI Summary (Widget 3) */}
-                <Card className="border border-border/50 shadow-none rounded-2xl bg-gray-200 dark:bg-zinc-900 overflow-hidden">
+                <Card className="border border-border/50 shadow-none rounded-2xl bg-primary/5 dark:bg-zinc-900 overflow-hidden">
                   <div className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
                   <CardHeader className="pb-2 pt-5">
                     <CardTitle className="text-2xl flex items-center gap-2 font-poppins">
@@ -528,7 +529,7 @@ export default function AiScorePage() {
             {/* Bottom Row: Prompts & Keywords */}
             <div className="grid md:grid-cols-2 gap-6">
               {/* Prompt Ideas (Widget 4) */}
-              <Card className="border border-border/50 shadow-none rounded-xl bg-gray-200 dark:bg-zinc-900 h-full">
+              <Card className="border border-border/50 shadow-none rounded-xl bg-primary/5 dark:bg-zinc-900 h-full">
                 <CardHeader className="pb-3 ">
                   <CardTitle className="text-2xl flex font-poppins items-center gap-2">
                     AI Prompt Ideas
@@ -582,7 +583,7 @@ export default function AiScorePage() {
               </Card>
 
               {/* Keyword Ideas (Widget 5) */}
-              <Card className="border border-border/50 shadow-none rounded-xl bg-gray-200 dark:bg-zinc-900 h-full">
+              <Card className="border border-border/50 shadow-none rounded-xl bg-primary/5 dark:bg-zinc-900 h-full">
                 <CardHeader className="pb-3">
                   <CardTitle className="text-2xl flex items-center gap-2">
                     Keyword Ideas

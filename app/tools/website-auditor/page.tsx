@@ -101,7 +101,7 @@ const AuditList = ({ checks }: { checks: AuditResult["checks"] }) => (
               {key.replace("_", " ")}
             </span>
             {check.value && (
-              <span className="text-xs font-bold bg-gray-100 dark:bg-zinc-800 px-2 py-0.5 rounded text-gray-700 dark:text-gray-300">
+              <span className="text-xs font-bold bg-primary/5 dark:bg-zinc-800 px-2 py-0.5 rounded text-gray-700 dark:text-gray-300">
                 {check.value}
               </span>
             )}
@@ -176,8 +176,8 @@ export default function WebsiteAuditorPage() {
         </div>
 
         {/* Search Input Card */}
-        <Card className="mb-16 bg-gray-100 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
-          <CardContent className="p-6">
+        <Card className="mb-16 bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
+          <CardContent className="px-4 py-1">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -259,15 +259,15 @@ export default function WebsiteAuditorPage() {
                   <div className="space-y-3 mt-2">
                     <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg opacity-80">
                       <CheckCircle className="w-4 h-4 text-green-500" />
-                      <div className="h-2 bg-gray-200 rounded w-24"></div>
+                      <div className="h-2 bg-primary/5 rounded w-24"></div>
                     </div>
                     <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg opacity-60">
                       <AlertTriangle className="w-4 h-4 text-yellow-500" />
-                      <div className="h-2 bg-gray-200 rounded w-32"></div>
+                      <div className="h-2 bg-primary/5 rounded w-32"></div>
                     </div>
                     <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg opacity-40">
                       <XCircle className="w-4 h-4 text-red-500" />
-                      <div className="h-2 bg-gray-200 rounded w-20"></div>
+                      <div className="h-2 bg-primary/5 rounded w-20"></div>
                     </div>
                   </div>
                 </CardContent>
@@ -347,7 +347,7 @@ export default function WebsiteAuditorPage() {
                 </div>
 
                 {/* Checks List */}
-                <Card className="border border-border/50 shadow-none rounded-2xl bg-gray-200 dark:bg-zinc-900 overflow-hidden">
+                <Card className="border border-border/50 shadow-none rounded-2xl bg-primary/5 dark:bg-zinc-900 overflow-hidden">
                   <CardHeader className="pb-4">
                     <CardTitle className="text-2xl flex items-center gap-2 font-poppins">
                       Technical Deep Dive

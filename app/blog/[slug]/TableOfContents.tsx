@@ -66,7 +66,7 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
                 e.preventDefault();
                 handleClick(heading.id);
               }}
-              className={`transition-colors duration-300 ${
+              className={`transition-colors font-inter duration-300 ${
                 activeId === heading.id
                   ? "text-primary font-bold scale-105 origin-left"
                   : "text-gray-600 hover:text-gray-900"
@@ -82,8 +82,8 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
   };
 
   return (
-    <div className="bg-gray-200 p-6 rounded-2xl mb-8 backdrop-blur-sm">
-      <h2 className="font-raleway text-xl font-bold text-gray-900 mb-4">
+    <div className="bg-primary/5 p-6 rounded-2xl mb-8 backdrop-blur-sm">
+      <h2 className="font-poppins text-xl font-bold text-gray-900 mb-4">
         Table of Contents
       </h2>
       {renderHeadings(headings)}

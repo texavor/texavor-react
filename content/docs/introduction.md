@@ -1,90 +1,78 @@
 ---
-title: "Introduction to EasyWrite"
-date: "2024-12-08"
-description: "Welcome to EasyWrite - Your AI-powered content creation platform"
+title: "Welcome to Texavor"
+date: "2026-01-08"
+description: "The complete command center for building technical authority in the AI Era."
 category: "getting-started"
 order: 1
 ---
 
-# Introduction to EasyWrite
+**Automated Authority. Built for the AI Era.**
 
-Welcome to **EasyWrite** - the ultimate AI-powered platform that transforms how you create, optimize, and manage your content. Whether you're a blogger, content marketer, or professional writer, EasyWrite provides everything you need to produce high-quality content efficiently.
+Welcome to **Texavor** — the platform designed to help technical teams and thought leaders dominate the 2026 search landscape. We go beyond simple "AI writing" to help you engineer content that ranks on Google _and_ gets cited by AI agents like ChatGPT, Claude, and Perplexity.
 
-## What is EasyWrite?
+![Dashboard Screenshot](/docs/dashboard.png)
 
-EasyWrite is a comprehensive content creation platform that combines the power of artificial intelligence with intuitive tools to help you:
+## Why Texavor?
 
-- ✍️ **Write Better Content** - AI-assisted writing tools to help you craft engaging articles
-- 🔍 **Optimize for SEO** - Built-in keyword research and SEO optimization
-- 📊 **Track Performance** - Detailed analytics and insights for your content
-- 🎨 **Create Stunning Visuals** - AI-powered thumbnail and image generation
-- ⚡ **Save Time** - Automated workflows and smart suggestions
+Modern authority requires a dual strategy. Texavor is the platform to optimize for both **Classic SEO** (Google Search) and **Future GEO** (AI Chatbots).
 
-## Key Features at a Glance
+- 🔍 **Dominate Search** - Traditional Keyword Research and SEO Analysis tools.
+- 🤖 **Rank in AI Chatbots** - Measure and improve your "AI Visibility Score".
+- 🛡️ **Guard Your Freshness** - Detect and fix "Content Decay" before LLMs stop citing you.
+- ⚡ **Deploy Like Code** - Research, draft, and publish to Dev.to, Hashnode, Webflow, Wordpress, Shopify, Medium and Custom Webhooks in one workflow.
 
-### AI Writing Assistant
+## Key Capabilities
 
-Generate content ideas, outlines, and complete drafts with advanced AI technology. Get suggestions as you write to improve quality and engagement.
+### 1. The AI Visibility Engine (GEO)
 
-### SEO Research Tools
+Don't just guess if ChatGPT knows your brand. Measure it.
 
-Find the right keywords, analyze competition, and optimize your content for search engines - all within one platform.
+- **AI Visibility Score:** See exactly how well your content answers user prompts.
+- **Prompt Research:** Discover the _exact questions_ users are asking AI about your niche.
+- **Website Auditor:** Check if your robots.txt and Schema are blocking AI crawlers.
 
-### Content Management
+![AI Visibility Radar Chart](/docs/aivisibility.png)
 
-Organize your articles, manage drafts, schedule publications, and keep track of all your content in one centralized dashboard.
+### 2. Strategic Content Intelligence
 
-### Analytics & Insights
+Move from "Keyword Stuffing" to "Topic Authority".
 
-Understand how your content performs with detailed analytics, track trends, and make data-driven decisions.
+- **Competitor LLM Tracker:** See who the AIs consider the "Top Authority" in your field (and how to beat them).
+- **Keyword Research v2:** Filter for high-intent questions that drive featured snippets.
 
-### Thumbnail Generation
+### 3. Automated Content Operations
 
-Create eye-catching thumbnails using AI-powered image generation tailored to your brand style.
+Eliminate the busywork of publishing.
 
-## Who is EasyWrite For?
+- **AEO Outlines:** Generate outlines specifically structured for Answer Engine Optimization (Direct Answers, FAQ Schema).
+- **Cross-Posting:** Publish to your own blog, Dev.to, and Medium simultaneously with canonical links handled automatically.
+- **Asset Generation:** Auto-generate code-styled thumbnails that developers click.
 
-### Solo Bloggers
+## Who is Texavor For?
 
-Build and grow your blog with powerful tools that help you create content faster without sacrificing quality.
+### All Domains & Industries
 
-### Content Teams
+Whether you're in Tech, Finance, Health, or Creative Arts, Texavor helps you build authority in your specific niche regardless of the domain.
 
-Collaborate seamlessly with team members, manage multiple blogs, and maintain consistent quality across all your content.
+### Personal Use & Creators
 
-### SEO Professionals
+Perfect for individual bloggers and creators who want to own their content distribution and grow a personal brand without enterprise complexity.
 
-Research keywords, analyze competition, and optimize content for maximum search visibility.
+### Technical Teams
 
-### Marketing Agencies
+Engineering teams who need to publish high-quality technical content without wasting days on formatting and distribution.
 
-Manage multiple clients, create diverse content types, and track performance across different publications.
+### Founders & Thought Leaders
 
-## How EasyWrite Works
+Busy experts who need to maintain a "Personal Brand" and "Domain Authority" but don't have time to manage a content calendar.
 
-1. **Connect Your Blog** - Link your blog platform to start managing content
-2. **Research Topics** - Use AI to discover trending topics and keywords
-3. **Create Content** - Write with AI assistance or generate complete drafts
-4. **Optimize** - Get SEO recommendations and improve your content
-5. **Publish & Track** - Schedule publications and monitor performance
+### Modern SEOs
 
-## Getting Started
-
-Ready to dive in? Here's what to do next:
-
-1. [Quick Start Guide](/docs/quick-start) - Get up and running in 5 minutes
-2. [Platform Guide](/docs/platform-guide) - Learn to navigate the interface
-3. [AI Writing Tools](/docs/ai-writing) - Master AI-powered content creation
+Marketers who understand that **Generative Engine Optimization (GEO)** is the future and need tools to track LLM mentions.
 
 ## Support & Resources
 
-Need help? We're here for you:
+Need help deploying your content strategy?
 
-- 📧 **Email Support**: support@easywrite.com
-- 💬 **Live Chat**: Available in your dashboard
-- 📚 **Knowledge Base**: Browse all documentation
-- 🎥 **Video Tutorials**: Watch step-by-step guides
-
----
-
-**Let's create something amazing together!** 🚀
+- 📧 **Email Support**: hello@texavor.com
+- 📚 **Documentation**: Browse the full guide

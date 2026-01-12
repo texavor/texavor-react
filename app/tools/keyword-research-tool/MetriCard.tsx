@@ -29,7 +29,7 @@ const MetricCard = ({
         "rounded-2xl p-6 relative overflow-hidden transition-all duration-300",
         isPrimary
           ? "bg-[#104127] text-white shadow-lg"
-          : "bg-gray-200 dark:bg-zinc-900 border border-border/50 text-foreground shadow-none",
+          : "bg-primary/5 dark:bg-zinc-900 border border-border/50 text-foreground shadow-none",
         className
       )}
     >

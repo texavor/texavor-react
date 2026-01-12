@@ -135,10 +135,10 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
           )}
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8 xl:gap-12">
+        <div className="flex flex-col lg:flex-row gap-8 xl:gap-12 mb-6">
           {/* Left Sidebar - Desktop */}
           <aside className="hidden lg:block lg:w-72 flex-shrink-0">
-            <div className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto no-scrollbar bg-[#f9f4f0]/50 border border-gray-100 rounded-xl p-4">
+            <div className="sticky top-30 max-h-[calc(100vh-6rem)] overflow-y-auto no-scrollbar bg-primary/5 border border-gray-100 rounded-xl p-4">
               <nav className="flex flex-col gap-2">
                 {allDocs.map((category) => {
                   const isCollapsed = collapsedCategories.has(category.slug);
@@ -201,9 +201,10 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
               </header>
 
               <div ref={articleContentRef}>
+                {/* @ts-ignore */}
                 <ArticleContent
                   html={html}
-                  relatedArticles={[]}
+                  // relatedArticles={[]}
                   setHeadings={setHeadings}
                   setIsTocLoaded={setIsTocLoaded}
                 />
@@ -213,7 +214,7 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
 
           {/* Right Sidebar - TOC */}
           <aside className="hidden xl:block w-64 flex-shrink-0">
-            <div className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto no-scrollbar scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+            <div className="sticky top-30 max-h-[calc(100vh-6rem)] overflow-y-auto no-scrollbar scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
               {headings.length > 0 && (
                 <div className="mb-8">
                   <TableOfContents headings={headings} />

@@ -13,7 +13,7 @@ export default function FAQ() {
     {
       question: "Can I try Texavor before paying?",
       answer:
-        "Yes! We offer a free trial that lets you experience the platform. No credit card required to get started.",
+        "Yes! We offer a free trial that lets you experience the platform.",
     },
     {
       question: "Is my team's data secure?",
