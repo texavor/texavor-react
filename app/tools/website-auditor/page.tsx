@@ -34,6 +34,7 @@ import {
   Globe,
   Share2,
   Lock,
+  MoveUpRight,
 } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { toast } from "sonner";
@@ -331,7 +332,49 @@ export default function WebsiteAuditorPage() {
               {/* Left Column: Metrics & Checks */}
               <div className="lg:col-span-8 space-y-6">
                 {/* Score Card */}
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-3 gap-4">
+                  {/* Website Info Card */}
+                  <Card className="border-none shadow-lg bg-[#104127] text-white rounded-2xl relative overflow-hidden p-6 transition-all duration-300">
+                    {/* Dynamic Background */}
+                    <div
+                      className="absolute inset-0 opacity-100 pointer-events-none"
+                      style={{
+                        background:
+                          "radial-gradient(circle at 10% 90%, #1a5d3a 0%, transparent 60%), linear-gradient(to top right, #104127 0%, #0d3520 100%)",
+                      }}
+                    />
+
+                    <div className="relative z-10 flex flex-col h-full justify-between">
+                      {/* Top Row: Icon & Arrow */}
+                      <div className="flex justify-between items-start mb-4">
+                        <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center shadow-sm border border-white/20">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={`https://www.google.com/s2/favicons?domain=${result.domain}&sz=128`}
+                            alt="Favicon"
+                            className="w-10 h-10 object-contain"
+                          />
+                        </div>
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white text-[#104127] transition-transform hover:-translate-y-1 hover:translate-x-1">
+                          <MoveUpRight className="w-4 h-4" />
+                        </div>
+                      </div>
+
+                      {/* Bottom Row: Text */}
+                      <div>
+                        <h3
+                          className="text-2xl font-bold text-white mb-2 truncate w-full font-inter"
+                          title={result.domain}
+                        >
+                          {result.domain}
+                        </h3>
+                        <div className="text-sm font-medium flex items-center gap-1.5 font-inter text-green-100">
+                          Analyzed Site
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+
                   <MetricCard
                     label="AI Readiness"
                     value={`${result.ai_readiness_score}/100`}

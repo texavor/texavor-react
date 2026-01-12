@@ -207,6 +207,12 @@ export default function Footer() {
             >
               Cookie policy
             </Link>
+            <Link
+              href="/refund-policy"
+              className="text-xs text-gray-500 hover:text-primary transition-colors font-inter"
+            >
+              Refund Policy
+            </Link>
           </div>
         </div>
       </div>

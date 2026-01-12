@@ -8,27 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import AiVisibilitySkeleton from "./AiVisibilitySkeleton";
-
-// ... existing imports ...
-
-// Inside component:
-{
-  /* Loading State */
-}
-{
-  loading && <AiVisibilitySkeleton />;
-}
-
-{
-  /* Empty State Feature Preview - Shows when no result and not loading */
-}
-{
-  !result && !loading && (
-    <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto opacity-90">
-      {/* ... existing feature preview content ... */}
-    </div>
-  );
-}
+import MetricCard from "./MetriCard";
 import {
   Card,
   CardContent,
@@ -266,6 +246,9 @@ export default function AiScorePage() {
             <AlertDescription>{error}</AlertDescription>
           </Alert>
         )}
+
+        {/* Loading State */}
+        {loading && <AiVisibilitySkeleton />}
 
         {/* Empty State Feature Preview - Shows when no result and not loading */}
         {!result && !loading && (
