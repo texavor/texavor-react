@@ -16,22 +16,51 @@ interface TableOfContentsProps {
 export function TableOfContents({ headings }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState("");
 
+  // Flatten headings for easier scroll tracking
+  const flattenHeadings = (nodes: Heading[]): Heading[] => {
+    return nodes.reduce((acc: Heading[], heading) => {
+      acc.push(heading);
+      if (heading.children) {
+        acc.push(...flattenHeadings(heading.children));
+      }
+      return acc;
+    }, []);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       let currentId = "";
-      headings.forEach((heading) => {
+      const allHeadings = flattenHeadings(headings);
+
+      // Find the last heading that is above the "reading line" (approx 100px from top)
+      for (const heading of allHeadings) {
         const element = document.getElementById(heading.id);
         if (element) {
           const rect = element.getBoundingClientRect();
-          if (rect.top >= 0 && rect.top <= 200) {
+          // If the element is above the threshold (scrolled past or just arriving), it's the candidate
+          if (rect.top < 150) {
             currentId = heading.id;
+          } else {
+            // Since headings are in order, once we find one below the threshold, we stop.
+            // But actually, we shouldn't stop if we want to be robust against layout quirks,
+            // though structurally they should be in order.
+            // For simplicity and correctness with the "last one wins" logic:
+            // We just keep checking. The loop continues, and 'currentId' gets updated
+            // only if the next one is *also* above the threshold.
+            // If we hit one that is NOT above (< 150), we simply don't update currentId,
+            // preserving the previous one as the "active" section.
+            break;
           }
         }
-      });
+      }
+
       setActiveId(currentId);
     };
 
     window.addEventListener("scroll", handleScroll);
+    // Call once on mount to set initial active state
+    handleScroll();
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };

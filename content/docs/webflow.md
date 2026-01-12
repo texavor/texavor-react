@@ -1,11 +1,10 @@
 ---
 title: "Webflow Integration"
+date: "2026-01-12"
 description: "Feed your pixel-perfect site with perfectly structured data."
 category: "platforms"
 order: 5
 ---
-
-# Webflow Integration
 
 **Your design is modern. Your publishing workflow should be too.**
 
@@ -35,7 +34,7 @@ You need three things:
 
 ## 2. Connect in Texavor
 
-1.  Navigate to **Settings** > **Integrations**.
+1.  Navigate to **Integrations**.
 2.  Click **Connect** on the Webflow card.
 3.  Paste the **API Token**.
 4.  Paste the **Site ID** and **Collection ID**.
@@ -54,3 +53,10 @@ When you click **Deploy**:
 
 **Q: Does it support Custom Fields?**
 A: We automatically map Title -> `name`, Slug -> `slug`, and Content -> `post-body`. Ensure your Collection uses these standard field names.
+
+## Support & Resources
+
+Need help publishing your content strategy?
+
+- 📧 **Email Support**: hello@texavor.com
+- 📚 **Documentation**: Browse the full guide

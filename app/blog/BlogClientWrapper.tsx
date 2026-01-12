@@ -56,10 +56,10 @@ export default function BlogClientWrapper({
         {/* Article Grid */}
         <div className="container mx-auto px-4 md:px-6 pb-20 max-w-7xl">
           {filteredArticles.length === 0 ? (
-            <div className="w-full flex flex-col items-center justify-center py-20 space-y-6">
+            <div className="w-full flex flex-col items-center justify-center space-y-6">
               <div className="relative w-64 h-64 opacity-50">
                 <Image
-                  src="/not_found_article.png"
+                  src="/empty-state.png"
                   alt="No articles found"
                   fill
                   className="object-contain"
@@ -68,15 +68,6 @@ export default function BlogClientWrapper({
               <p className="text-xl text-gray-500 font-inter font-medium">
                 No articles found matching your criteria.
               </p>
-              <button
-                onClick={() => {
-                  setSearchQuery("");
-                  setSelectedTag("All");
-                }}
-                className="text-primary hover:underline font-medium font-poppins"
-              >
-                Clear all filters
-              </button>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
