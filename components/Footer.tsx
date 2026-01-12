@@ -38,21 +38,29 @@ export default function Footer() {
             </Link>
             <p className="text-gray-500 font-inter text-sm leading-relaxed">
               Texavor helps teams work smarter, stay aligned, and get things
-              done with AI-powered content creation.
+              done with specialized content creation workflows.
             </p>
           </div>
 
           {/* Links Columns */}
           <div className="flex flex-wrap gap-12 md:gap-24">
-            {/* Features */}
+            {/* Product */}
             <div>
               <h4 className="font-semibold text-gray-900 font-poppins mb-6">
-                Features
+                Product
               </h4>
               <ul className="space-y-4 text-sm text-gray-500 font-inter">
                 <li>
                   <Link
-                    href="#integrations"
+                    href="/#features"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Features
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/#integrations"
                     className="hover:text-primary transition-colors"
                   >
                     Integrations
@@ -60,7 +68,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="#pricing"
+                    href="/#pricing"
                     className="hover:text-primary transition-colors"
                   >
                     Pricing
@@ -68,27 +76,43 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="#demo"
+                    href="/blog"
                     className="hover:text-primary transition-colors"
                   >
-                    Demo
+                    Changelog
                   </Link>
                 </li>
               </ul>
             </div>
 
-            {/* About Us */}
+            {/* Resources */}
             <div>
               <h4 className="font-semibold text-gray-900 font-poppins mb-6">
-                About Us
+                Resources
               </h4>
               <ul className="space-y-4 text-sm text-gray-500 font-inter">
                 <li>
                   <Link
-                    href="/about"
+                    href="/docs/introduction"
                     className="hover:text-primary transition-colors"
                   >
-                    Recourse
+                    Documentation
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/tools/ai-visibility-calculator"
+                    className="hover:text-primary transition-colors"
+                  >
+                    AI Visibility Calculator
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/tools/website-auditor"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Website Auditor
                   </Link>
                 </li>
                 <li>
@@ -96,49 +120,49 @@ export default function Footer() {
                     href="/blog"
                     className="hover:text-primary transition-colors"
                   >
-                    Blogs
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/careers"
-                    className="hover:text-primary transition-colors"
-                  >
-                    Careers
+                    Blog
                   </Link>
                 </li>
               </ul>
             </div>
 
-            {/* Support */}
-            <div>
+            {/* Company */}
+            {/* <div>
               <h4 className="font-semibold text-gray-900 font-poppins mb-6">
-                Faq
+                Company
               </h4>
               <ul className="space-y-4 text-sm text-gray-500 font-inter">
                 <li>
                   <Link
-                    href="/help"
+                    href="#"
                     className="hover:text-primary transition-colors"
                   >
-                    Help Center
+                    About
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/contact"
+                    href="#"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Careers
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="mailto:hello@texavor.com"
                     className="hover:text-primary transition-colors"
                   >
                     Contact
                   </Link>
                 </li>
               </ul>
-            </div>
+            </div> */}
 
             {/* Socials */}
             <div>
               <h4 className="font-semibold text-gray-900 font-poppins mb-6">
-                Follow Our Socials:
+                Socials
               </h4>
               <div className="flex items-center gap-4">
                 <Link

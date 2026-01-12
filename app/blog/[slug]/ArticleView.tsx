@@ -174,7 +174,7 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                   </Link>
                 </p>
               )}
-            <div ref={articleContentRef}>
+            <div ref={articleContentRef} className="pb-6">
               <ArticleContent
                 html={html}
                 relatedArticles={articleData.relatedArticles}
