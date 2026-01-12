@@ -9,7 +9,7 @@ order: 3
 
 Medium is an excellent "Distribution Channel". Texavor allows you to push content there while keeping 100% of the SEO credit on your own domain.
 
-![Placeholder for Screenshot: Medium Integration Modal]
+![Medium Integration](/docs/medium-integration.png)
 
 ## Features
 
@@ -26,7 +26,7 @@ Medium is an excellent "Distribution Channel". Texavor allows you to push conten
 
 ## 2. Connect in Texavor
 
-1.  Navigate to **Settings** > **Integrations**.
+1.  Navigate to **Integrations**.
 2.  Click **Connect** on the Medium card.
 3.  Paste your token.
 4.  Click **Verify**. We will fetch your user profile.

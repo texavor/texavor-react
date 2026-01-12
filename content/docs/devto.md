@@ -9,7 +9,7 @@ order: 1
 
 Texavor connects directly to the Forem API (the engine behind Dev.to) to publish your Markdown content as native Dev.to posts.
 
-![Placeholder for Screenshot: Dev.to Integration Card]
+![Devto Integration](/docs/devto-integration.png)
 
 ## Features
 

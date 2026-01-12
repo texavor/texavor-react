@@ -9,20 +9,44 @@ order: 7
 
 You can use Texavor as your **Writing Environment** and **Authority Engine**, then push content to your own custom website via a secure Webhook.
 
-![Placeholder for Screenshot: Webhook Configuration Panel]
+## 1. Field Mapping
 
-## How It Works
+By default, we send a standard JSON payload. However, your API might expect different keys (e.g., `body` instead of `content`).
 
-1.  **Write:** Create your article in Texavor (use our AI tools, AEO outlines, etc).
-2.  **Deploy:** Select "Custom Webhook" as the destination.
-3.  **Receive:** We POST a JSON payload to your endpoint.
-4.  **Publish:** Your API route saves the Markdown to your DB or triggers a Vercel rebuild.
+Use the **Field Mapping** section to rename our keys to match your database schema.
 
-## 1. Setting Up the Receiver
+![Field Mapping Configuration](/docs/custom-webhook-field-mapping.png)
 
-Your endpoint must accept a `POST` request.
+- **Left Side:** The value we send (e.g., `{{title}}`).
+- **Right Side:** The JSON key you want to receive (e.g., `title`).
 
-### The Payload Structure
+**Example:**
+If you map `Content` -> `markdown`, your payload will look like: `{"markdown": "# My Article..."}` instead of `{"content": "..."}`.
+
+## 2. Advanced Configuration
+
+We support full REST semantics for keeping your blog in sync.
+
+![Advanced Configuration](/docs/custom-webhook-advanced.png)
+
+### Content Format
+
+- **Markdown:** Best for Next.js/Astro/Hugo. We send raw markdown.
+- **HTML (Pre-rendered):** Best for legacy PHP/Rails apps. We convert the markdown to safe HTML before sending.
+
+### Update & Delete (Syncing)
+
+Does your API support editing articles?
+
+- **Response ID Field:** When you first create an article, your API should return its ID (e.g., `{"id": 123}`). Tell us which field holds that ID (default: `id`).
+- **Update URL (PATCH):** If we need to update that article later, we will send a `PATCH` request to this URL.
+  - _Example:_ `https://api.mysite.com/articles`
+- **Delete URL (DELETE):** If you delete an article in Texavor, we can delete it on your site too.
+  - _Example:_ `https://api.mysite.com/articles/{id}`
+
+## 3. The Base Payload (Reference)
+
+If you don't use mapping, this is the default JSON:
 
 ```json
 {
@@ -30,65 +54,22 @@ Your endpoint must accept a `POST` request.
   "payload": {
     "title": "My Article Title",
     "slug_suggestion": "my-article-title",
-    "content_markdown": "# My Article Title\n\nHere is the body...",
-    "content_html": "<h1>My Article Title</h1><p>Here is the body...</p>",
+    "content_markdown": "# My Article Title...",
     "metadata": {
       "tags": ["react", "tutorial"],
       "cover_image": "https://assets.texavor.com/..."
-    },
-    "seo": {
-      "meta_description": "A generated description.",
-      "canonical_url": "https://texavor.com/..."
     }
   }
 }
 ```
 
-## 2. Security (Verifying the Signature)
+## 4. Security
 
-To prevent anyone else from posting to your blog, we sign every request with an HMAC SHA-256 signature in the `X-Texavor-Signature` header.
+We sign every request with an HMAC SHA-256 signature in the `X-Texavor-Signature` header. See the [Headless Starter Kit](https://github.com/texavor/headless-starter) for verification code.
 
-### Next.js API Route Example (`/app/api/webhook/route.ts`)
+## Support & Resources
 
-```typescript
-import crypto from "crypto";
-import { NextResponse } from "next/server";
+Need help publishing your content strategy?
 
-export async function POST(req: Request) {
-  const body = await req.text();
-  const signature = req.headers.get("x-texavor-signature");
-  const secret = process.env.TEXAVOR_WEBHOOK_SECRET;
-
-  // 1. Verify Signature
-  const expectedSignature = crypto
-    .createHmac("sha256", secret!)
-    .update(body)
-    .digest("hex");
-
-  if (signature !== expectedSignature) {
-    return NextResponse.json({ error: "Invalid Signature" }, { status: 401 });
-  }
-
-  // 2. Process Content
-  const data = JSON.parse(body);
-  const { title, content_markdown } = data.payload;
-
-  // ... Save to Database or CMS ...
-  console.log(`Received article: ${title}`);
-
-  return NextResponse.json({ status: "success" });
-}
-```
-
-## 3. Configuring in Dashboard
-
-1.  Go to **Settings** > **Integrations**.
-2.  Select **Custom Webhook**.
-3.  **Endpoint URL:** `https://your-site.com/api/webhook`.
-4.  **Secret:** Copy the generated secret to your `.env` file (e.g., `TEXAVOR_WEBHOOK_SECRET`).
-
-## Use Cases
-
-- **Static Site Generators:** Trigger a rebuild hook on Vercel/Netlify.
-- **Custom CMS:** Push content into a Postgres/Supabase database.
-- **Newsletter:** Forward the content to a ConvertKit/Substack email wrapper.
+- 📧 **Email Support**: hello@texavor.com
+- 📚 **Documentation**: Browse the full guide

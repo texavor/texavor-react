@@ -11,7 +11,7 @@ order: 5
 If 1,000 people view your page but 0 people trust you, you have failed.
 Texavor measures **Authority Metrics**—metrics that track your dominance in the AI Knowledge Graph.
 
-![Placeholder for Screenshot: Analytics Dashboard]
+![Authority Analytics Dashboard showing 'Mention Frequency' and 'Freshness' charts](/docs/dashboard.png)
 
 ## 1. LLM Share of Voice (The "New Metric")
 
@@ -47,3 +47,10 @@ We also pull standard data from your connected platforms via API:
 - **Medium:** Views, Reads (if token allows).
 
 _Note: Traffic data relies on the platform's API availability._
+
+## Support & Resources
+
+Need help publishing your content strategy?
+
+- 📧 **Email Support**: hello@texavor.com
+- 📚 **Documentation**: Browse the full guide

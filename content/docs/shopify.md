@@ -1,15 +1,18 @@
 ---
 title: "Shopify Integration"
+date: "2026-01-12"
 description: "Turn your e-commerce store into a traffic magnet."
 category: "platforms"
 order: 6
 ---
 
+# Shopify Integration
+
 **Blog posts are cheaper than Instagram Ads.**
 
 Texavor connects to your Shopify store to help you publish "Money Pages"—guides, comparisons, and stories that rank on Google and drive free traffic to your products.
 
-![Placeholder for Screenshot: Shopify Connect Modal]
+![Shopify Integration](/docs/shopify-integration.png)
 
 ## Features
 
@@ -17,31 +20,24 @@ Texavor connects to your Shopify store to help you publish "Money Pages"—guide
 - **Multiple Blogs:** Choose between your "News", "Guides", or any other blog handle you created in Shopify.
 - **SEO Meta Sync:** We sync your Title Tag and Meta Description directly to Shopify's SEO fields.
 
-## 1. Create a Custom App in Shopify
+## 1. Connect via OAuth
 
-1.  Go to **Shopify Admin > Settings > Apps and sales channels**.
-2.  Click **Develop apps** > **Create an app**.
-3.  Name it "Texavor".
-4.  **Configure Admin API Scopes:**
-    - `write_content` (Required to publish articles)
-    - `read_content`
-5.  Click **Install App**.
-6.  **Reveal Token:** Copy the "Admin API access token" (starts with `shpat_...`).
+We use the secure Shopify App Protocol. You do **not** need to create a Private App anymore.
 
-## 2. Connect in Texavor
-
-1.  Navigate to **Settings** > **Integrations**.
+1.  Navigate to **Integrations**.
 2.  Click **Connect** on the Shopify card.
 3.  **Shop Domain:** Enter your `myshopify.com` domain (e.g., `suraj-store.myshopify.com`).
-4.  **Access Token:** Paste the `shpat_` token.
-5.  Click **Verify**.
+4.  **Shopify Blog:** Enter the handle of the blog you want to post to (default is `news`).
+5.  Click **Redirects to Shopify**.
+6.  You will be taken to your Shopify Admin to approve the "Texavor" app.
+7.  Once approved, you will be redirected back to Texavor.
 
-## 3. Publishing Workflow
+## 2. Publishing Workflow
 
 When you click **Deploy**:
 
 1.  Select **[x] Shopify**.
-2.  **Blog:** Select the destination blog (e.g., "News" or "Tutorials").
+2.  **Blog:** Confirm the destination blog (e.g., "News").
 3.  **Handle:** (Optional) Customize the URL ending.
 4.  **Tags:** Tags will appear as Shopify Blog Tags (useful for filtering on your storefront).
 
@@ -52,3 +48,10 @@ A: Yes. In Texavor, paste your product URL. We convert it into a standard link. 
 
 **Q: Does it work with Headless Shopify?**
 A: Yes, because we write to the Storefront API backend. Your headless frontend just needs to fetch the blog data as usual.
+
+## Support & Resources
+
+Need help publishing your content strategy?
+
+- 📧 **Email Support**: hello@texavor.com
+- 📚 **Documentation**: Browse the full guide
