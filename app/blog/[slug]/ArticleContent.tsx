@@ -197,7 +197,7 @@ export const ArticleContent = memo(function ArticleContent({
   return (
     <article
       ref={articleRef}
-      className="prose lg:prose-lg max-w-none font-inter text-[#2B2B2B]"
+      className="prose lg:prose-lg max-w-none font-inter text-[#2B2B2B] break-words w-full"
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );

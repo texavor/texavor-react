@@ -30,7 +30,7 @@ export default function Pricing() {
           <div className="mb-2">
             <Tabs
               defaultValue="monthly"
-              className="w-[400px] flex flex-col items-center"
+              className="w-full max-w-[400px] flex flex-col items-center"
               onValueChange={(value) => setIsAnnual(value === "annual")}
             >
               <TabsList className="grid w-full grid-cols-2 rounded-full h-12 p-1 bg-gray-100">
@@ -58,7 +58,7 @@ export default function Pricing() {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto items-center">
+        <div className="grid md:grid-cols-3 gap-8 md:gap-6 max-w-5xl mx-auto items-center">
           {Object.entries(PRICING_TIERS).map(([key, tier]) => {
             const period = isAnnual ? tier.yearly : tier.monthly;
             const isRecommended = tier.recommended;
@@ -68,7 +68,7 @@ export default function Pricing() {
                 key={key}
                 className={`relative rounded-3xl p-8 transition-all duration-300 ${
                   isRecommended
-                    ? "bg-white border-2 border-primary shadow-2xl scale-110 z-10"
+                    ? "bg-white border-2 border-primary shadow-2xl md:scale-110 z-10"
                     : "bg-white border border-gray-100 shadow-sm hover:shadow-md"
                 }`}
               >

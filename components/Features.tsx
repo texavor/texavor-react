@@ -90,7 +90,7 @@ const ProgressStats = () => {
   ];
 
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
       {stats.map((stat, i) => (
         <div key={i} className="bg-white rounded-xl border-none p-4">
           <div className="flex items-start justify-between mb-3">
@@ -231,51 +231,55 @@ const KeywordResearch = () => {
   };
 
   return (
-    <div className="w-full bg-white rounded-xl border-none">
-      {/* Table Header */}
-      <div className="grid grid-cols-12 gap-2 px-4 py-3 bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-600">
-        <div className="col-span-5">Keyword</div>
-        <div className="col-span-2 text-center">Volume</div>
-        <div className="col-span-2 text-center">CPC</div>
-        <div className="col-span-2 text-center">Competition</div>
-        <div className="col-span-1 text-center">Diff</div>
-      </div>
-
-      {/* Table Rows */}
-      <div className="divide-y divide-gray-100">
-        {keywords.map((kw, i) => (
-          <div
-            key={i}
-            className="grid grid-cols-12 gap-2 px-4 py-3 hover:bg-gray-50/50 transition-colors items-center"
-          >
-            <div className="col-span-5 text-sm text-gray-800 font-medium truncate">
-              {kw.keyword}
-            </div>
-            <div className="col-span-2 text-center text-sm text-gray-600">
-              {kw.volume.toLocaleString()}
-            </div>
-            <div className="col-span-2 text-center text-sm text-blue-600 font-semibold">
-              {kw.cpc}
-            </div>
-            <div className="col-span-2 flex items-center justify-center">
-              <div className="w-full max-w-[80px] h-2 bg-gray-200 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"
-                  style={{ width: `${kw.competition}%` }}
-                />
-              </div>
-            </div>
-            <div className="col-span-1 flex justify-center">
-              <div
-                className={`w-7 h-7 rounded-full ${getDifficultyColor(
-                  kw.difficulty
-                )} text-white text-xs font-bold flex items-center justify-center`}
-              >
-                {kw.difficulty}
-              </div>
-            </div>
+    <div className="w-full bg-white rounded-xl border-none overflow-hidden">
+      <div className="overflow-x-auto">
+        <div className="min-w-[500px]">
+          {/* Table Header */}
+          <div className="grid grid-cols-12 gap-2 px-4 py-3 bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-600">
+            <div className="col-span-5">Keyword</div>
+            <div className="col-span-2 text-center">Volume</div>
+            <div className="col-span-2 text-center">CPC</div>
+            <div className="col-span-2 text-center">Competition</div>
+            <div className="col-span-1 text-center">Diff</div>
           </div>
-        ))}
+
+          {/* Table Rows */}
+          <div className="divide-y divide-gray-100">
+            {keywords.map((kw, i) => (
+              <div
+                key={i}
+                className="grid grid-cols-12 gap-2 px-4 py-3 hover:bg-gray-50/50 transition-colors items-center"
+              >
+                <div className="col-span-5 text-sm text-gray-800 font-medium truncate">
+                  {kw.keyword}
+                </div>
+                <div className="col-span-2 text-center text-sm text-gray-600">
+                  {kw.volume.toLocaleString()}
+                </div>
+                <div className="col-span-2 text-center text-sm text-blue-600 font-semibold">
+                  {kw.cpc}
+                </div>
+                <div className="col-span-2 flex items-center justify-center">
+                  <div className="w-full max-w-[80px] h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"
+                      style={{ width: `${kw.competition}%` }}
+                    />
+                  </div>
+                </div>
+                <div className="col-span-1 flex justify-center">
+                  <div
+                    className={`w-7 h-7 rounded-full ${getDifficultyColor(
+                      kw.difficulty
+                    )} text-white text-xs font-bold flex items-center justify-center`}
+                  >
+                    {kw.difficulty}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Footer Action */}
@@ -535,13 +539,18 @@ const CompetitorAnalysis = () => {
               </button>
             </div>
           </div>
-          <button className="px-3 py-1.5 bg-primary text-white text-xs font-semibold rounded-lg hover:bg-primary/90 transition-colors">
+          <button className="hidden md:block px-3 py-1.5 bg-primary text-white text-xs font-semibold rounded-lg hover:bg-primary/90 transition-colors">
             Run Analysis
           </button>
         </div>
 
+        {/* Mobile Action Button */}
+        <button className="md:hidden w-full py-2 mb-4 bg-primary text-white text-xs font-semibold rounded-lg hover:bg-primary/90 transition-colors">
+          Run Analysis
+        </button>
+
         {/* Score Cards */}
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           <div className="bg-green-50 rounded-lg p-3 border border-green-100">
             <div className="text-[10px] text-green-700 font-medium mb-1">
               Content Score
@@ -596,7 +605,7 @@ const PlatformIntegration = () => {
   ];
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {platforms.map((platform, i) => (
         <div
           key={i}
@@ -686,7 +695,7 @@ const ThumbnailGeneration = () => {
 
   return (
     <div className="w-full space-y-4">
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {styles.map((style, i) => (
           <div
             key={i}

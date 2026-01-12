@@ -20,7 +20,7 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
 
   const shareText = `${title} 🚀 by @surajondev\n\n`;
 
-  const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+  const twitterShareUrl = `https://x.com/intent/tweet?url=${encodeURIComponent(
     url
   )}&text=${encodeURIComponent(shareText)}`;
   const linkedinShareUrl = `https://www.linkedin.com/shareArticle?url=${encodeURIComponent(
@@ -28,14 +28,20 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
   )}`;
 
   return (
-    <div className="flex items-center gap-4 bg-gray-200 bg-opacity-50 backdrop-blur-lg rounded-full px-4 py-2 shadow-sm">
+    <div className="flex items-center gap-4 bg-primary/5 text-primary backdrop-blur-lg rounded-full px-4 py-2 shadow-sm">
       <a
         href={twitterShareUrl}
         target="_blank"
         rel="noopener noreferrer"
         className="text-black"
       >
-        <Twitter size={20} />
+        <svg
+          viewBox="0 0 24 24"
+          className="w-5 h-5 fill-current"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
       </a>
       <div className="border-l border-gray-700 h-5"></div>
       <a
