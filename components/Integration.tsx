@@ -51,7 +51,10 @@ export default function Integration() {
   ];
 
   return (
-    <section className="w-full py-24 md:py-32 relative overflow-hidden bg-gray-50">
+    <section
+      id="integrations"
+      className="w-full py-24 md:py-32 relative overflow-hidden bg-gray-50"
+    >
       <div className="container mx-auto px-4 max-w-5xl relative z-10">
         {/* Section Header */}
         <div className="text-center mb-20 animate-fade-in">
