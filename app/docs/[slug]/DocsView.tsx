@@ -23,6 +23,8 @@ interface DocsViewProps {
   allDocs: DocCategory[];
 }
 
+const EMPTY_ARTICLES: any[] = [];
+
 export function DocsView({ docData, html, allDocs }: DocsViewProps) {
   const [scrollPercentage, setScrollPercentage] = useState(0);
   const [headings, setHeadings] = useState<Heading[]>([]);
@@ -204,9 +206,10 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
                 {/* @ts-ignore */}
                 <ArticleContent
                   html={html}
-                  // relatedArticles={[]}
+                  relatedArticles={EMPTY_ARTICLES}
                   setHeadings={setHeadings}
                   setIsTocLoaded={setIsTocLoaded}
+                  // enableImageZoom={true}
                 />
               </div>
             </article>

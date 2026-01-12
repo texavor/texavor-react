@@ -30,7 +30,7 @@ We help you move from "Invisible" to "Top Citation".
 AI models prioritize fresh, accurate information. If your "React Tutorial" references version 16, ChatGPT will ignore it for version 19 queries.
 
 **The Freshness Guard:**
-We don't just check the date. We ask an LLM: _"Is the information in this article still semantically valid today?"_
+We don't just check the date. We use our semantic analysis engine to verify: _"Is the information in this article still semantically valid today?"_
 
 - **Evergreen Score:** High score means safe to leave alone.
 - **Decay Risk:** High risk triggers an alert to update your content immediately.
@@ -44,7 +44,7 @@ You shouldn't be copy-pasting Markdown between your blog, Dev.to, and Medium.
 **Texavor is your Source of Truth.**
 
 1.  Write once in Texavor.
-2.  **Deploy** to all platforms.
+2.  **Publish** to all platforms.
 3.  We handle the `rel=canonical` tags so Google knows the original source is _your domain_, even if the content goes viral on Medium.
 
 ---
@@ -56,9 +56,9 @@ AI Agents look for "Human Signals" to verify truth.
 **Unified Author Profile:**
 Texavor syncs your bio across all platforms. When an AI sees the same Author Name + Bio on Dev.to and your Personal Blog, it reinforces your entity graph, making you a "Trusted Source".
 
-## Next Steps
+## Support & Resources
 
-Now that you understand the _Why_, learn the _How_:
+Need help publishing your content strategy?
 
-- [Workflows](/docs/workflows) - Step-by-step guides.
-- [AI Tools](/docs/ai-features) - Using the generators.
+- 📧 **Email Support**: hello@texavor.com
+- 📚 **Documentation**: Browse the full guide

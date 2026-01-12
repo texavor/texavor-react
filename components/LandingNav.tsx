@@ -62,9 +62,9 @@ export default function LandingNav() {
             { label: "Home", id: "home", href: "/" },
             { label: "Blog", id: "blog", href: "/blog" },
             {
-              label: "Keyword Tool",
+              label: "AI Visibility Calculator",
               id: "free-tools",
-              href: "/tools/keyword-research-tool",
+              href: "/tools/ai-visibility-calculator",
             },
             {
               label: "GEO Website Auditor",

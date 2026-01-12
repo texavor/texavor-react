@@ -72,7 +72,7 @@ Marketers who understand that **Generative Engine Optimization (GEO)** is the fu
 
 ## Support & Resources
 
-Need help deploying your content strategy?
+Need help publishing your content strategy?
 
 - 📧 **Email Support**: hello@texavor.com
 - 📚 **Documentation**: Browse the full guide

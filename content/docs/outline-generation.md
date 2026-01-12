@@ -1,16 +1,16 @@
 ---
-title: "AEO Outlining"
+title: "Outline Generation"
 date: "2026-01-08"
 description: "Generate structured frameworks designed for Feature Snippets and AI Answers."
-category: "creation-suite"
-order: 1
+category: "research-tools"
+order: 3
 ---
 
 **Don't just write. Structure for citations.**
 
 Traditional outlines are just lists of bullet points. Texavor's **AEO (Answer Engine Optimization) Outlines** are engineering frameworks designed to force AI models to recognize your content as the "Direct Answer".
 
-![Placeholder for Screenshot: Outline Generator showing 'AEO Mode' toggle enabled]
+![Dashboard Screenshot](/docs/outline-generation.png)
 
 ## What is AEO Mode?
 
@@ -61,4 +61,9 @@ When you publish an article based on an AEO Outline, Texavor automatically gener
 
 This gives you a "Triple Threat" in search results.
 
-[Start a New Draft](/app/articles/new)
+## Support & Resources
+
+Need help publishing your content strategy?
+
+- 📧 **Email Support**: hello@texavor.com
+- 📚 **Documentation**: Browse the full guide

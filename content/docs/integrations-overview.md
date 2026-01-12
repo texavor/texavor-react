@@ -1,14 +1,14 @@
 ---
 title: "The Content Orchestrator"
-description: "Write once. Deploy to your Blog, Dev.to, and Medium in a single click."
+description: "Write once. Publish to your Blog, Dev.to, and Medium in a single click."
 date: "2026-01-08"
 category: "platforms"
 order: 0
 ---
 
-Texavor's specialized **"Deploy"** engine treats your content like code. You push to multiple destinations, and we handle the SEO canonicals, image hosting, and formatting quirks for each platform.
+Texavor's specialized **"Publish"** engine treats your content like code. You push to multiple destinations, and we handle the SEO canonicals, image hosting, and formatting quirks for each platform.
 
-![Placeholder for Screenshot: Deploy Modal showing multiple platforms selected]
+![Integration Publish](/docs/integration-publish.png)
 
 ## Supported Platforms
 
@@ -40,15 +40,22 @@ A major fear of cross-posting is **Duplicate Content Penalties**. Texavor solves
 
 ## How to Configure
 
-1.  Go to **Settings** > **Integrations**.
+1.  Go to **Integrations**.
 2.  Click **Connect** on your desired platform.
 3.  Enter your API Key (found in your platform's developer settings).
 4.  Detailed setup guides are available in the sidebar under "Platforms".
 
-## Deployment Workflow
+## Publish Workflow
 
 1.  Draft your article in Texavor.
-2.  Click **Deploy**.
+2.  Click **Publish** or **Schedule** as per your choice.
 3.  Select destinations (e.g., [x] My Blog, [x] Dev.to).
 4.  **Customize:** You can override the title/cover image for specific platforms if needed.
-5.  **Push:** Texavor deploys the content asynchronously and returns a "Live URL" for each.
+5.  **Push:** Texavor publishes the content asynchronously and returns a "Live URL" for each.
+
+## Support & Resources
+
+Need help publishing your content strategy?
+
+- 📧 **Email Support**: hello@texavor.com
+- 📚 **Documentation**: Browse the full guide

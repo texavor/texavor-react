@@ -9,7 +9,7 @@ order: 2
 
 Hashnode is the preferred platform for developers who want a custom domain (e.g., `blog.texavor.com`) without the headache of hosting. Texavor connects via their GraphQL API to push content instantly.
 
-![Placeholder for Screenshot: Hashnode Connect Modal]
+![Hashnode Integration](/docs/hashnode-integration.png)
 
 ## Features
 
@@ -28,7 +28,7 @@ Hashnode is the preferred platform for developers who want a custom domain (e.g.
 
 ## 2. Connect in Texavor
 
-1.  Navigate to **Settings** > **Integrations**.
+1.  Navigate to **Integrations**.
 2.  Click **Connect** on the Hashnode card.
 3.  Enter your **Access Token** and **Publication ID**.
 4.  Click **Verify**. We will fetch your blog title to confirm access.

@@ -3,14 +3,14 @@ title: "The Visual Asset Studio"
 date: "2026-01-08"
 description: "Generate 'Developer-Grade' diagrams, charts, and covers. No generic stock photos allowed."
 category: "creation-suite"
-order: 3
+order: 2
 ---
 
 **Developers ignore stock photos of "Business people shaking hands".**
 
 Texavor's Visual Studio is tuned to generate **Technical Aesthetics**—Cyberpunk, Synthwave, Clean UI, and Minimalist Dark Mode visuals that appeal to engineers.
 
-![Placeholder for Screenshot: Asset Studio showing 'Terminal Style' options]
+![Thumbnail Generator](/docs/thumbnail-generation.png)
 
 ## 1. The "Code-Style" Generator
 
@@ -37,19 +37,13 @@ AI images often look generic. We fix this by layering your **Brand Identity** _o
 
 ## 3. Beyond Thumbnails: Diagram Generation
 
-_(Beta Feature)_
-
 Texavor can turn text descriptions into **Mermaid.js** diagrams or simple architectural flowcharts.
 
 1.  Highlight a step-by-step list in your editor.
 2.  Click **"Visualize"**.
 3.  We generate a clean flow-chart image representing the logic.
 
-## 4. Open Graph (OG) Automation
+Need help publishing your content strategy?
 
-When you deploy to Dev.to or share on Twitter, the "Preview Card" decides if people click.
-
-- **Auto-Resize:** We generate 1200x630 (Facebook/LinkedIn) and 1000x420 (Dev.to) variants.
-- **Text Readability:** We ensure the title is legible even on mobile screens.
-
-[Configure Brand Assets](/settings/branding)
+- 📧 **Email Support**: hello@texavor.com
+- 📚 **Documentation**: Browse the full guide

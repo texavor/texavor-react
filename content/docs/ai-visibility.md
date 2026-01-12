@@ -1,6 +1,6 @@
 ---
-title: "AI Visibility Engine"
-date: "2026-01-08"
+title: "AI Visibility"
+date: "2026-01-12"
 description: "Move beyond 'Search Volume'. Measure your visibility in the Answer Engine Era."
 category: "intelligence-engine"
 order: 1
@@ -8,9 +8,9 @@ order: 1
 
 **Rank for Prompts, not just Keywords.**
 
-Traditional SEO tools tell you how many people search for a term. Texavor's **AI Visibility Engine** tells you how likely an AI agent is to **cite your content** when answering that user's question.
+Traditional SEO tools tell you how many people search for a term. Texavor's **AI Visibility** tells you how likely an AI agent is to **cite your content** when answering that user's question.
 
-![Placeholder for Screenshot: AI Visibility Dashboard showing Radar Chart]
+![AI Visibility Dashboard showing Radar Chart](/docs/aivisibility.png)
 
 ## 1. The Metric: AI Visibility Score
 
@@ -60,3 +60,12 @@ We still provide the standard data for your Hybrid Strategy:
 - **CPC:** Commercial intent proxy.
 
 Use these to validate traffic potential, but use **AI Visibility** to validate _ranking probability_.
+
+[Check AI Visibility for Free](/tools/ai-visibility-calculator)
+
+## Support & Resources
+
+Need help publishing your content strategy?
+
+- 📧 **Email Support**: hello@texavor.com
+- 📚 **Documentation**: Browse the full guide

@@ -9,7 +9,7 @@ order: 4
 
 Texavor connects to your self-hosted WordPress (or WP Engine/Kinsta) site via the native REST API. We support "Headless-style" publishing where we inject the content, set the SEO meta, and handle the media library uploads for you.
 
-![Placeholder for Screenshot: WordPress Connect Modal]
+![WordPress Integration](/docs/wordpress-integration.png)
 
 ## Features
 
@@ -29,7 +29,7 @@ _(Requires WordPress 5.6+)_
 
 ## 2. Connect in Texavor
 
-1.  Navigate to **Settings** > **Integrations**.
+1.  Navigate to **Integrations**.
 2.  Click **Connect** on the WordPress card.
 3.  **Site URL:** Enter your full URL (e.g., `https://myblog.com`).
 4.  **Username:** Your WordPress username (NOT your email).
@@ -53,3 +53,10 @@ A: Currently, we write to the standard `post` type. If you need CPT support (e.g
 
 **Q: "JSON Error" or "Rest API Disabled"?**
 A: Some security plugins (like Wordfence) block the REST API. You may need to whitelist the Texavor IP or enable the REST API in your security settings.
+
+## Support & Resources
+
+Need help publishing your content strategy?
+
+- 📧 **Email Support**: hello@texavor.com
+- 📚 **Documentation**: Browse the full guide

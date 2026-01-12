@@ -1,49 +1,47 @@
 ---
-title: "Authority Gap Detector"
-date: "2026-01-08"
-description: "Don't brainstorm. Let AI find the holes in your topical authority."
-category: "creation-suite"
-order: 4
+title: "Topic Generation"
+date: "2026-01-12"
+description: "Discover 'Knowledge Gaps' that offer high Opportunity."
+category: "research-tools"
+order: 2
 ---
 
-**To rank for "React", you must also cover "React State", "React Hooks", and "React Performance".**
+**Don't brainstorm. Let Texavor find the holes in your topical authority.**
 
-Texavor's **Authority Detector** isn't a random idea generator. It scans your existing content map and suggests the _missing pieces_ required to complete your "Knowledge Graph".
+To dominate a niche (like "SaaS Marketing"), you don't just need _good_ articles. You need _complete coverage_. The Topic Generator scans the Knowledge Graph to find what you are missing.
 
-![Placeholder for Screenshot: Topic Node View showing 'Missing' links]
+![Topic Generation Dashboard](/docs/topic-generation.png)
 
-## 1. How "Topical Authority" Works
+## 1. Generating Ideas
 
-AI Search (ChatGPT, Perplexity) views you as an Entity.
-If you have 10 articles on "Database Migrations" but 0 on "Database Backups", the AI considers your authority "Incomplete" and is less likely to cite you as an expert.
+1.  Enter a seed keyword (e.g., `Generative Engine Optimization`).
+2.  Click **Submit**.
+3.  The system returns a list of specific content angles:
+    - **Guides:** Comprehensive "Pillar content".
+    - **Comparisons:** "X vs Y" for decision makers.
+    - **Analyses:** Deep dives into trends.
 
-**The Goal:** Complete the graph.
+## 2. Topic Metrics
 
-## 2. Using the Detector
+Expand any topic card to see the "Why This Topic?" analysis.
 
-1.  **Select a Pillar:** Enter a core topic (e.g., "Next.js").
-2.  **Scan:** The AI analyzes the top 20 Semantic Concepts related to "Next.js".
-3.  **Gap Analysis:** It checks _your_ blog to see which ones you are missing.
+![Topic Keyword Analysis](/docs/topic-analysis.png)
 
-**Output Example:**
+- **Difficulty (Gauge):** (0-10) How hard it is to rank. Lower is better.
+- **Opportunity:** (0-10) A composite score of High Volume + Low Competition + High Relevance.
+- **Authority Score:** Checks if this topic reinforces your existing content cluster.
+- **GEO Score:** (Generative Engine Optimization) Checks if this topic is frequently cited by LLMs.
 
-- ✅ Next.js Routing (You have this)
-- ✅ Next.js SSR (You have this)
-- ❌ **Next.js Middleware** (GAP DETECTED - High Priority)
-- ❌ **Next.js Edge Functions** (GAP DETECTED - Medium Priority)
+## 3. The "Why" Insights
 
-## 3. From Gap to Article
+For each suggestion, we provide:
 
-Once a gap is found:
+- **Why This Topic?** e.g., _"SERP gaps show sparse research on GEO techniques."_
+- **Unique Approach:** How you should frame your article to stand out (e.g., _"Focus on actionable steps for developers."_)
 
-1.  Click **"Fill Gap"**.
-2.  Texavor immediately launches the **AEO Outline Generator** for that specific topic.
-3.  It pre-fills the prompt with: _"Write a technical guide on Next.js Middleware to complete the topical authority for [Domain]."_
+## Support & Resources
 
-## 4. Modes
+Need help publishing your content strategy?
 
-- **Gap Mode:** Find missing sub-topics (described above).
-- **Trend Mode:** Find rising topics in your niche (e.g., "React 19 Alpha").
-- **Question Mode:** Find specific long-tail questions your competitors haven't answered.
-
-[Find Your Authority Gaps](/tools/topic-gap)
+- 📧 **Email Support**: hello@texavor.com
+- 📚 **Documentation**: Browse the full guide

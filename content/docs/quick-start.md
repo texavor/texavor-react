@@ -1,20 +1,20 @@
 ---
 title: "Quick Start Guide"
 date: "2026-01-08"
-description: "From Zero to Authority. Deploy your first GEO-optimized article in 5 minutes."
+description: "From Zero to Authority. Publish your first GEO-optimized article in 5 minutes."
 category: "getting-started"
 order: 2
 ---
 
-**Deploy Your First AI-Optimized Article**
+**Publish Your First AI-Optimized Article**
 
-This guide will walk you through the **Texavor Workflow**: From registration to deploying your first authority-building article.
+This guide will walk you through the **Texavor Workflow**: From registration to publishing your first authority-building article.
 
 ## Step 1: Register Account
 
 1.  Visit the Signup Page.
-2.  Enter your email or continue with Google/GitHub.
-3.  Verify your email address to unlock the dashboard.
+2.  Enter your email or continue with Google.
+3.  Verify your email address.
 
 ---
 
@@ -40,7 +40,7 @@ As soon as you connect, Texavor's **Website Auditor** runs in the background:
 
 _Wait for the "Sync Complete" notification._
 
-![Placeholder for Screenshot: Onboarding Loading Screen showing "Parsing Sitemap" and "Analyzing Schema"]
+![Analyzing Blog](/docs/analyzing-blog.png)
 
 ---
 
@@ -62,14 +62,15 @@ Ready to write?
 1.  **Create Article:** Click "New Draft".
 2.  **Generate AEO Outline:** Toggle "AEO Mode" to get a structure optimized for Featured Snippets and AI Answers.
 3.  **Write:** Use the editor to draft your content.
-4.  **Deploy:** Publish directly to your connected platforms in one click.
+4.  **Publish:** Publish directly to your connected platforms in one click.
 
-![Placeholder for Screenshot: Dashboard showing Quick Actions for New Article and Research]
+![Dashboard](/docs/dashboard.png)
 
 ---
 
-## Next Steps
+## Support & Resources
 
-- [Deep Dive: How the Freshness Guard Works](/docs/core-concepts/freshness)
-- [Setting up Competitor Tracking](/docs/workflows/competitor-tracking)
-- [Understanding AI Visibility Scores](/docs/core-concepts/ai-visibility)
+Need help publishing your content strategy?
+
+- 📧 **Email Support**: hello@texavor.com
+- 📚 **Documentation**: Browse the full guide

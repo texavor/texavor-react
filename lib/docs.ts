@@ -32,45 +32,27 @@ export const docsStructure: DocCategory[] = [
     items: [],
   },
   {
+    name: "Research Tools",
+    slug: "research-tools",
+    order: 2,
+    items: [],
+  },
+  {
     name: "Creation Suite",
     slug: "creation-suite",
-    order: 2,
+    order: 3,
     items: [],
   },
   {
     name: "Intelligence Engine",
     slug: "intelligence-engine",
-    order: 3,
+    order: 4,
     items: [],
   },
   {
     name: "Integration Platforms",
     slug: "platforms",
-    order: 4,
-    items: [],
-  },
-  {
-    name: "Content Creation",
-    slug: "content",
     order: 5,
-    items: [],
-  },
-  {
-    name: "Integrations",
-    slug: "integrations",
-    order: 6,
-    items: [],
-  },
-  {
-    name: "Analytics & Insights",
-    slug: "analytics",
-    order: 7,
-    items: [],
-  },
-  {
-    name: "Settings & Configuration",
-    slug: "settings",
-    order: 8,
     items: [],
   },
 ];

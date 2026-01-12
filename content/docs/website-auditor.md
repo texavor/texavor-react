@@ -1,16 +1,16 @@
 ---
 title: "Website AI Auditor"
-date: "2026-01-08"
+date: "2026-01-12"
 description: "How to check if your site is visible to ChatGPT, Claude, and Google AI."
 category: "intelligence-engine"
-order: 1
+order: 2
 ---
 
 **Is your website invisible to AI?**
 
 Traditional SEO tools check if _Googlebot_ can crawl your site. Texavor's **Website Auditor** checks if **AI Agents** (like GPTBot, CCBot, and Anthropic-AI) can read, understand, and cite your content.
 
-![Placeholder for Screenshot: Auditor Dashboard showing Pass/Fail checks]
+![Website Auditor Dashboard showing Pass/Fail checks](/docs/website-auditor.png)
 
 ## Why Audit for AI?
 
@@ -19,12 +19,6 @@ AI Search engines work differently than Google keywording:
 1.  **Crawl:** They need specific permission (robots.txt) to read your site.
 2.  **Understand:** They rely heavily on **Schema** (Structured Data) to know "Who wrote this?" and "Is this a trusted brand?".
 3.  **Process:** They prefer high "Content Density" (clean HTML) over messy, script-heavy pages.
-
-## How to Run an Audit
-
-1.  Navigate to **Tools** > **Website Auditor**.
-2.  Enter your **Domain URL** (e.g., `https://texavor.com`).
-3.  Click **Analyze**.
 
 ## Understanding Your Score
 
@@ -58,4 +52,11 @@ The Auditor gives you an **AI Readiness Score (0-100)** based on 4 pillars:
 - **Grade B (70-89):** Good, but missing some semantic signals.
 - **Grade F (<60):** You are likely blocking AI crawlers or have no schema.
 
-[Run an Audit Now](/tools/auditor)
+[**Run an Audit Now**](/tools/auditor)
+
+## Support & Resources
+
+Need help publishing your content strategy?
+
+- 📧 **Email Support**: hello@texavor.com
+- 📚 **Documentation**: Browse the full guide
