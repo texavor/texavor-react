@@ -71,7 +71,7 @@ export default function LandingNav() {
               id: "website-auditor",
               href: "/tools/website-auditor",
             },
-            { label: "Docs", id: "docs", href: "/docs" },
+            { label: "Docs", id: "docs", href: "/docs/introduction" },
           ].map((item) =>
             item.href ? (
               <Link
