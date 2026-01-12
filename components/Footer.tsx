@@ -10,8 +10,8 @@ export default function Footer() {
   return (
     <footer className="w-full bg-gray-50 pt-20 pb-12 relative overflow-hidden">
       {/* Large Watermark Text */}
-      <div className="absolute top-[40%] left-1/2 -translate-x-1/2 w-full text-center pointer-events-none select-none z-0">
-        <h1 className="text-[15vw] font-bold text-gray-200/40 font-poppins tracking-tighter leading-none">
+      <div className="absolute bottom-26 left-1/2 -translate-x-1/2 w-full text-center pointer-events-none select-none z-[1]">
+        <h1 className="text-[23vw] md:text-[18vw] font-bold text-foreground/5 font-poppins tracking-tighter leading-none">
           Texavor
         </h1>
       </div>
@@ -166,7 +166,8 @@ export default function Footer() {
               </h4>
               <div className="flex items-center gap-4">
                 <Link
-                  href="#"
+                  href="https://x.com/texavor"
+                  target="_blank"
                   className="text-gray-600 hover:text-primary transition-colors"
                 >
                   <svg
@@ -185,7 +186,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-transparent">
           <p className="text-xs text-gray-500 font-inter">
-            &copy; {currentYear} Texavor Solutions. All rights reserved.
+            &copy; {currentYear} Texavor. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <Link

@@ -61,10 +61,10 @@ export default function Hero() {
         </div>
 
         {/* Background Glows */}
-        <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[120%] h-full overflow-hidden -z-10 pointer-events-none">
-          <div className="absolute top-40 left-[10%] w-[30rem] h-[30rem] bg-green-400/20 rounded-full blur-[100px] animate-blob" />
-          <div className="absolute top-20 right-[10%] w-[35rem] h-[35rem] bg-emerald-400/20 rounded-full blur-[120px] animate-blob animation-delay-2000" />
-          <div className="absolute top-[40%] left-[30%] w-[40rem] h-[40rem] bg-primary/10 rounded-full blur-[100px] animate-blob animation-delay-4000" />
+        <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-full max-w-7xl h-full -z-10 pointer-events-none">
+          <div className="absolute top-40 left-[10%] w-[30rem] h-[30rem] bg-green-400/10 rounded-full blur-[100px] animate-blob" />
+          <div className="absolute top-20 right-[10%] w-[35rem] h-[35rem] bg-emerald-400/10 rounded-full blur-[120px] animate-blob animation-delay-2000" />
+          <div className="absolute top-[40%] left-[30%] w-[40rem] h-[40rem] bg-primary/5 rounded-full blur-[100px] animate-blob animation-delay-4000" />
         </div>
 
         {/* Hero Visual */}

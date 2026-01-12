@@ -7,7 +7,28 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import MetricCard from "./MetriCard";
+import AiVisibilitySkeleton from "./AiVisibilitySkeleton";
+
+// ... existing imports ...
+
+// Inside component:
+{
+  /* Loading State */
+}
+{
+  loading && <AiVisibilitySkeleton />;
+}
+
+{
+  /* Empty State Feature Preview - Shows when no result and not loading */
+}
+{
+  !result && !loading && (
+    <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto opacity-90">
+      {/* ... existing feature preview content ... */}
+    </div>
+  );
+}
 import {
   Card,
   CardContent,
@@ -191,7 +212,7 @@ export default function AiScorePage() {
                 e.stopPropagation();
                 form.handleSubmit();
               }}
-              className="flex flex-col md:flex-row gap-4 items-start"
+              className="flex flex-col md:flex-row gap-4 items-center md:items-start"
             >
               <div className="flex-1 w-full space-y-2">
                 <Label htmlFor="keyword" className="sr-only">
@@ -212,7 +233,7 @@ export default function AiScorePage() {
                         className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
                       />
                       {field.state.meta.errors ? (
-                        <p className="text-sm text-destructive mt-1 absolute -bottom-6 left-0">
+                        <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
                           {/* @ts-ignore */}
                           {field?.state?.meta?.errors[0]?.message}
                         </p>
@@ -543,7 +564,7 @@ export default function AiScorePage() {
                     {result?.prompt_ideas?.map((prompt, i) => (
                       <li
                         key={i}
-                        className="flex items-center h-16 gap-3 p-3 rounded-2xl bg-gray-50 dark:bg-zinc-800/50 border border-border/50 hover:border-primary/20 hover:bg-white dark:hover:bg-zinc-800 transition-all group relative"
+                        className="flex items-center min-h-[4rem] h-auto gap-3 p-3 rounded-2xl bg-gray-50 dark:bg-zinc-800/50 border border-border/50 hover:border-primary/20 hover:bg-white dark:hover:bg-zinc-800 transition-all group relative"
                         style={{
                           background:
                             "radial-gradient(circle at 10% 90%, #1a5d3a 0%, transparent 60%), linear-gradient(to top right, #104127 0%, #0d3520 100%)",
@@ -551,7 +572,7 @@ export default function AiScorePage() {
                       >
                         {/* Content with Tooltip */}
                         <div className="flex-1 min-w-0 relative">
-                          <p className="text-sm font-medium text-white truncate cursor-help">
+                          <p className="text-sm font-medium text-white break-words whitespace-normal leading-tight cursor-help">
                             {prompt}
                           </p>
                           <p className="text-xs text-gray-200">
@@ -597,7 +618,7 @@ export default function AiScorePage() {
                     {result?.keyword_ideas?.map((idea, i) => (
                       <li
                         key={i}
-                        className="flex items-center h-16 gap-3 p-3 rounded-2xl bg-gray-50 dark:bg-zinc-800/50 border border-border/50 hover:border-primary/20 hover:bg-white dark:hover:bg-zinc-800 transition-all group relative"
+                        className="flex items-center min-h-[4rem] h-auto gap-3 p-3 rounded-2xl bg-gray-50 dark:bg-zinc-800/50 border border-border/50 hover:border-primary/20 hover:bg-white dark:hover:bg-zinc-800 transition-all group relative"
                         style={{
                           background:
                             "radial-gradient(circle at 10% 90%, #1a5d3a 0%, transparent 60%), linear-gradient(to top right, #104127 0%, #0d3520 100%)",
@@ -605,7 +626,7 @@ export default function AiScorePage() {
                       >
                         {/* Content with Tooltip */}
                         <div className="flex-1 min-w-0 relative">
-                          <p className="text-sm font-medium text-white truncate cursor-help">
+                          <p className="text-sm font-medium text-white break-words whitespace-normal leading-tight cursor-help">
                             {idea?.term}
                           </p>
                           {idea?.vol &&

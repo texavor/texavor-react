@@ -50,7 +50,7 @@ export default function BlogClientWrapper({
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-white mt-6 lg:mt-0">
         {/* Hero Section */}
         <BlogHero />
         {/* Article Grid */}

@@ -9,43 +9,43 @@ export default function Integration() {
     {
       name: "Medium",
       image: "/integration/medium.png",
-      position: "top-[15%] left-[5%]",
+      position: "md:top-[15%] md:left-[5%]",
       delay: 0,
     },
     {
       name: "Hashnode",
       image: "/integration/hashnode.png",
-      position: "top-[40%] left-[15%]",
+      position: "md:top-[40%] md:left-[15%]",
       delay: 1,
     },
     {
       name: "WordPress",
       image: "/integration/wordpress.png",
-      position: "bottom-[25%] left-[25%]",
+      position: "md:bottom-[25%] md:left-[25%]",
       delay: 2,
     },
     {
       name: "Webflow",
       image: "/integration/webflow.png",
-      position: "bottom-[20%] left-[45%]",
+      position: "md:bottom-[20%] md:left-[45%]",
       delay: 0.5,
     },
     {
       name: "Webhook",
       image: "/integration/webhook.png",
-      position: "bottom-[25%] right-[25%]",
+      position: "md:bottom-[25%] md:right-[25%]",
       delay: 1.5,
     },
     {
       name: "Dev.to",
       image: "/integration/devto.png",
-      position: "top-[40%] right-[15%]",
+      position: "md:top-[40%] md:right-[15%]",
       delay: 2.5,
     },
     {
       name: "Shopify",
       image: "/integration/shopify.png",
-      position: "top-[15%] right-[5%]",
+      position: "md:top-[15%] md:right-[5%]",
       delay: 3,
     },
   ];
@@ -57,12 +57,12 @@ export default function Integration() {
     >
       <div className="container mx-auto px-4 max-w-5xl relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-20 animate-fade-in">
+        <div className="text-center mb-12 md:mb-20 animate-fade-in">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-primary/20 rounded-full text-xs font-medium text-primary mb-6 shadow-sm">
             <Zap className="w-3 h-3 fill-primary" />
             Integrations
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground font-poppins mb-6 tracking-tight">
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground font-poppins mb-6 tracking-tight">
             Publish Everywhere, <br />
             Manage From One Place
           </h2>
@@ -73,40 +73,42 @@ export default function Integration() {
         </div>
 
         {/* Floating Integration Icons */}
-        <div className="relative h-[350px] flex items-center justify-center">
+        <div className="relative min-h-[400px] md:h-[350px] flex flex-col md:block items-center justify-center">
           {/* Central glow effect */}
-          <div className="absolute inset-0 flex items-center justify-center">
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div className="w-[300px] h-[300px] bg-primary/5 rounded-full blur-[100px]" />
           </div>
 
-          {/* Integration icons */}
-          {integrations.map((integration, i) => (
-            <motion.div
-              key={i}
-              className={`absolute ${integration.position}`}
-              animate={{
-                y: [0, -20, 0],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: integration.delay,
-              }}
-            >
-              <div className="relative group">
-                <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-2xl shadow-[0_10px_50px_rgba(16,65,39,0.25)] hover:shadow-[0_15px_60px_rgba(16,65,39,0.35)] transition-all duration-300 hover:scale-110 flex items-center justify-center p-0 overflow-hidden">
-                  <Image
-                    src={integration.image}
-                    alt={integration.name}
-                    width={80}
-                    height={80}
-                    className="w-full h-full object-cover"
-                  />
+          {/* Integration icons grid/floating */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:block gap-6 w-full md:w-auto">
+            {integrations.map((integration, i) => (
+              <motion.div
+                key={i}
+                className={`flex items-center justify-center md:absolute ${integration.position}`}
+                animate={{
+                  y: [0, -20, 0],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: integration.delay,
+                }}
+              >
+                <div className="relative group">
+                  <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-2xl shadow-[0_10px_50px_rgba(16,65,39,0.25)] hover:shadow-[0_15px_60px_rgba(16,65,39,0.35)] transition-all duration-300 hover:scale-110 flex items-center justify-center p-0 overflow-hidden border border-gray-100/50">
+                    <Image
+                      src={integration.image}
+                      alt={integration.name}
+                      width={80}
+                      height={80}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

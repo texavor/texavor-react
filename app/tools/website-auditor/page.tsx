@@ -7,7 +7,8 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import MetricCard from "../ai-visibility-calculator/MetriCard"; // Reuse MetricCard
+import WebsiteAuditorSkeleton from "./WebsiteAuditorSkeleton";
+import MetricCard from "../ai-visibility-calculator/MetriCard";
 import {
   Card,
   CardContent,
@@ -184,7 +185,7 @@ export default function WebsiteAuditorPage() {
                 e.stopPropagation();
                 form.handleSubmit();
               }}
-              className="flex flex-col md:flex-row gap-4 items-start"
+              className="flex flex-col md:flex-row gap-4 items-center md:items-start"
             >
               <div className="flex-1 w-full space-y-2">
                 <Label htmlFor="url" className="sr-only">
@@ -205,7 +206,7 @@ export default function WebsiteAuditorPage() {
                         className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
                       />
                       {field.state.meta.errors ? (
-                        <p className="text-sm text-destructive mt-1 absolute -bottom-6 left-0">
+                        <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
                           {field?.state?.meta?.errors[0]?.message}
                         </p>
                       ) : null}
@@ -236,6 +237,9 @@ export default function WebsiteAuditorPage() {
             <AlertDescription>{error}</AlertDescription>
           </Alert>
         )}
+
+        {/* Loading Skeleton */}
+        {loading && <WebsiteAuditorSkeleton />}
 
         {/* Empty State Feature Preview */}
         {!result && !loading && (
