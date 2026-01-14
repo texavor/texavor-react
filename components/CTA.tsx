@@ -20,7 +20,7 @@ export default function CTA() {
             Start today and see how easy teamwork can be with Texavor.
             <br />
             <span className="font-bold text-white mt-2 block">
-              Launch Offer: Get a 30-day free trial!
+              Launch Offer: Get a 14-day free trial!
             </span>
           </p>
 

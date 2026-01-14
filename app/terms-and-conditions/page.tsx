@@ -73,7 +73,7 @@ const TermsAndConditions = () => {
               </h2>
               <ul className="list-disc pl-5 space-y-2">
                 <li>
-                  <strong>Free Trial:</strong> We currently offer a 30-day free
+                  <strong>Free Trial:</strong> We currently offer a 14-day free
                   trial for new users to experience our Pro features.
                 </li>
                 <li>
