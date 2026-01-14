@@ -1,12 +1,12 @@
 import axios from "axios";
 import { toast } from "sonner";
 
-// export const baseURL =
-//   process.env.NODE_ENV == "development"
-//     ? "http://localhost:3000"
-//     : "https://api.texavor.com";
+export const baseURL =
+  process.env.NODE_ENV == "development"
+    ? "http://localhost:3000"
+    : "https://www.api.texavor.com";
 
-export const baseURL = "https://api.texavor.com";
+// export const baseURL = "https://api.easywrite.dev";
 
 export const axiosInstance = axios.create({
   baseURL,
@@ -17,19 +17,6 @@ export const axiosInstance = axios.create({
     Accept: "application/json",
   },
 });
-
-axiosInstance.interceptors.request.use(
-  (config: any) => {
-    const accessToken = localStorage.getItem("access_token");
-    if (accessToken) {
-      config.headers.Authorization = `Bearer ${accessToken}`;
-    }
-    return config;
-  },
-  (error: any) => {
-    return Promise.reject(error);
-  }
-);
 
 axiosInstance.interceptors.request.use(
   async (config) => {
@@ -52,38 +39,76 @@ axiosInstance.interceptors.response.use(
   (response) => {
     return response;
   },
-  (error) => {
+  async (error) => {
     const { response } = error;
-    if (response && response?.status === 401 && typeof window !== "undefined") {
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("access_expires_at");
+
+    if (
+      response &&
+      response?.status === 401 &&
+      typeof window !== "undefined" &&
+      window.location.pathname !== "/login" &&
+      response?.config?.method === "get" &&
+      !response?.config?.url?.includes("integration")
+    ) {
+      try {
+        await axios.post("/api/logout");
+      } catch (error) {
+        console.error("Logout failed:", error);
+      }
+
+      localStorage.removeItem("auth_token");
       localStorage.removeItem("user");
-      window.location.href = "/auth/login";
+      window.location.href = "/login";
     } else {
-      // Display toast for other errors
-      // toast("Error", {
-      //   description: response?.data?.errors || "Error occurred",
-      // });
       const flattenErrors = (errors: any) => {
         if (!errors) return null;
-        return Object.keys(errors)
-          .map((key) => {
-            const messages = errors[key];
-            if (Array.isArray(messages)) {
-              return `${
-                key.charAt(0).toUpperCase() + key.slice(1)
-              } ${messages.join(", ")}`;
-            }
-            return null;
-          })
-          .filter(Boolean)
-          .join("; ");
+
+        if (
+          Array.isArray(errors) &&
+          errors.every((e) => typeof e === "string")
+        ) {
+          return errors.join("; ");
+        }
+
+        if (typeof errors === "object" && !Array.isArray(errors)) {
+          const messages = Object.keys(errors)
+            .map((key) => {
+              const value = errors[key];
+              if (typeof value === "string") {
+                return `${key.charAt(0).toUpperCase() + key.slice(1)} ${value}`;
+              }
+              if (Array.isArray(value)) {
+                return `${
+                  key.charAt(0).toUpperCase() + key.slice(1)
+                } ${value.join(", ")}`;
+              }
+              return null;
+            })
+            .filter(Boolean)
+            .join("; ");
+          return messages || null;
+        }
+        return null;
       };
-      toast.error(
-        response?.data?.message ||
-          flattenErrors(response?.data) ||
-          "Error occurred"
-      );
+
+      const data = response?.data;
+      let message = "Error occurred";
+
+      if (data) {
+        const flattened =
+          flattenErrors(data.errors) || flattenErrors(data.status?.errors);
+        if (flattened) {
+          message = flattened;
+        } else if (data.error) {
+          message = data.error;
+        } else if (data.message) {
+          message = data.message;
+        } else if (data.status?.message) {
+          message = data.status.message;
+        }
+      }
+
+      toast.error(message);
     }
     return Promise.reject(error);
   }
