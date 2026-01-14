@@ -56,7 +56,7 @@ export default function FAQ() {
     <section id="faq" className="w-full py-24 md:py-32 bg-gray-50">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-16 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-gray-200 rounded-full text-xs font-medium text-primary mb-6 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-gray-200 rounded-full text-xs font-medium text-primary mb-6 shadow-xs">
             <HelpCircle className="w-3 h-3" />
             FAQ
           </div>
@@ -74,7 +74,7 @@ export default function FAQ() {
               key={index}
               type="single"
               collapsible
-              className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300"
+              className="bg-white rounded-2xl border border-gray-100 shadow-xs hover:shadow-sm transition-all duration-300"
             >
               <AccordionItem
                 key={index}
@@ -103,7 +103,7 @@ export default function FAQ() {
           ))}
 
           {/* Contact Us Card */}
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 flex items-center justify-between">
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-xs p-6 flex items-center justify-between">
             <span className="font-semibold text-gray-900 font-poppins text-sm">
               Can't find what you're looking for?
             </span>
