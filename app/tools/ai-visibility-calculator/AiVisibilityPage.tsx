@@ -137,7 +137,7 @@ export default function AiScorePage() {
       const message =
         error?.response?.data?.message ||
         "Something went wrong. Please try again.";
-      toast.error(message);
+      // toast.error(message);
     },
   });
 

@@ -11,6 +11,7 @@ export const baseURL = "https://api.texavor.com";
 export const axiosInstance = axios.create({
   baseURL,
   // timeout: 30000,
+  withCredentials: true,
   headers: {
     "Content-Type": "application/json; charset=UTF-8",
     Accept: "application/json",
