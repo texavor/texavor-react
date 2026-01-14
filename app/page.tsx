@@ -14,6 +14,7 @@ import CTA from "@/components/CTA"; // Final CTA section
 export default function Home() {
   return (
     <PageTransition>
+      {/**/}
       <main className="flex min-h-screen flex-col items-center w-full pt-0">
         <Hero />
         {/* <SocialProof /> */}
