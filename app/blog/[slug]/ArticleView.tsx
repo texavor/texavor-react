@@ -197,7 +197,7 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
             </div>
           </div>
 
-          <div className="mb-8 mt-8 lg:mt-0 lg:sticky lg:top-28 self-start h-fit">
+          <div className="mb-12 mt-8 lg:mt-0 lg:sticky lg:top-28 self-start h-fit">
             <div className="lg:max-w-[260px]">
               <div className="bg-primary/5 rounded-2xl border-none shadow-none backdrop-blur-sm p-6">
                 <div className="relative w-full rounded-xl overflow-hidden mb-4 shadow-none border border-primary/10 bg-white">

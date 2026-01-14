@@ -1,6 +1,11 @@
 import React from "react";
 import { baseURL } from "@/lib/axiosInstance";
 import BlogClientWrapper from "./BlogClientWrapper";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog",
+};
 
 export const revalidate = 3600; // Revalidate every hour
 

@@ -20,7 +20,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Texavor - Authority for your blog",
+  title: {
+    template: "%s | Texavor",
+    default: "Texavor - Authority for your blog",
+  },
   description:
     "AI developer content strategist. Generate high-impact, E-E-A-T-optimized technical article ideas for Google & AI Chatbots. Maximize discovery & authority.",
   verification: {
