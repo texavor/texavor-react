@@ -43,11 +43,20 @@ const RefundPolicy = () => {
                   to a billing error or double charge on our end.
                 </li>
                 <li>
-                  <strong>14-Day Money-Back Guarantee:</strong> For new
-                  subscriptions, we may offer a full refund if requested within
-                  14 days of the initial purchase, provided you have not
-                  excessively used the generation credits or violated our Terms
-                  of Service.
+                  <strong>Money-Back Guarantee:</strong> We offer a refund for
+                  new subscriptions if requested within the applicable window,
+                  provided you have not excessively used the generation credits
+                  or violated our Terms of Service:
+                  <ul className="list-disc pl-5 mt-2 space-y-1">
+                    <li>
+                      <strong>Monthly Plans:</strong> 3-day money-back
+                      guarantee.
+                    </li>
+                    <li>
+                      <strong>Yearly Plans:</strong> 14-day money-back
+                      guarantee.
+                    </li>
+                  </ul>
                 </li>
               </ul>
             </section>
@@ -60,7 +69,10 @@ const RefundPolicy = () => {
                 Refunds are generally <strong>not</strong> granted for:
               </p>
               <ul className="list-disc pl-5 space-y-2">
-                <li>Change of mind after the 14-day window.</li>
+                <li>
+                  Change of mind after the applicable refund window (3 days for
+                  monthly, 14 days for yearly).
+                </li>
                 <li>
                   Unused credits or subscription time at the end of a billing
                   period.
