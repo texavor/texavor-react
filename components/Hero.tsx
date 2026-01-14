@@ -77,7 +77,7 @@ export default function Hero() {
                 <div className="w-2.5 h-2.5 rounded-full bg-gray-300" />
                 <div className="w-2.5 h-2.5 rounded-full bg-gray-300" />
               </div>
-              <div className="ml-4 bg-white border border-gray-200 rounded-md px-3 py-0.5 text-[10px] text-gray-400 font-medium font-inter flex items-center gap-1 min-w-[150px] justify-center">
+              <div className="ml-4 bg-white border border-gray-200 rounded-md px-3 py-0.5 text-[10px] text-gray-500 font-medium font-inter flex items-center gap-1 min-w-[150px] justify-center">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
                 texavor.com
               </div>
@@ -90,6 +90,7 @@ export default function Hero() {
               width={1400}
               height={900}
               priority
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
               className="w-full h-auto block"
             />
           </div>

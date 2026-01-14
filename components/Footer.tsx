@@ -168,6 +168,7 @@ export default function Footer() {
                 <Link
                   href="https://x.com/texavor"
                   target="_blank"
+                  aria-label="Follow us on X"
                   className="text-gray-600 hover:text-primary transition-colors"
                 >
                   <svg

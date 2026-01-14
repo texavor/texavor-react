@@ -324,9 +324,9 @@ const TopicGeneration = () => {
         >
           <div className="flex items-start justify-between gap-3">
             <div className="flex-1 min-w-0">
-              <h4 className="text-sm font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+              <div className="text-sm font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-primary transition-colors">
                 {topic.title}
-              </h4>
+              </div>
               <p className="text-xs text-gray-600 line-clamp-2 mb-3">
                 {topic.description}
               </p>
@@ -338,7 +338,10 @@ const TopicGeneration = () => {
                 </span>
               </div>
             </div>
-            <button className="flex-shrink-0 w-8 h-8 rounded-full bg-primary hover:bg-primary/90 text-white flex items-center justify-center transition-all hover:scale-110 shadow-sm">
+            <button
+              aria-label="Add topic"
+              className="flex-shrink-0 w-8 h-8 rounded-full bg-primary hover:bg-primary/90 text-white flex items-center justify-center transition-all hover:scale-110 shadow-sm"
+            >
               <svg
                 className="w-4 h-4"
                 fill="none"
@@ -402,10 +405,13 @@ const OutlineGeneration = () => {
                 />
               </svg>
             </div>
-            <h5 className="flex-1 text-sm font-bold text-gray-900">
+            <div className="text-sm font-bold text-gray-900 flex-1">
               {section.title}
-            </h5>
-            <button className="text-gray-400 hover:text-red-500 transition-colors">
+            </div>
+            <button
+              aria-label="Remove section"
+              className="text-gray-400 hover:text-red-500 transition-colors"
+            >
               <svg
                 className="w-4 h-4"
                 fill="none"
@@ -722,9 +728,9 @@ const ThumbnailGeneration = () => {
               )}
               <div className="text-center px-4">
                 <div className="text-2xl mb-2">{style.icon}</div>
-                <h5 className="text-white font-bold text-sm">
+                <div className="text-white font-bold text-sm">
                   React Article Title
-                </h5>
+                </div>
                 <p className="text-white/70 text-[10px] mt-1">ARTICLE STYLE</p>
               </div>
             </div>
@@ -732,9 +738,9 @@ const ThumbnailGeneration = () => {
             {/* Style Info */}
             <div className="p-4">
               <div className="flex items-start justify-between mb-2">
-                <h5 className="text-sm font-bold text-gray-900">
+                <div className="text-sm font-bold text-gray-900">
                   {style.name}
-                </h5>
+                </div>
                 <span className="px-2 py-0.5 bg-orange-100 text-orange-700 text-[9px] font-semibold rounded-full flex items-center gap-1">
                   🔥 {style.badge}
                 </span>
@@ -848,9 +854,9 @@ const AuthorManagement = () => {
       {/* Team Members Table */}
       <div className="bg-white rounded-xl border-none overflow-hidden">
         <div className="px-4 py-2 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
-          <h5 className="text-xs font-semibold text-gray-700">
+          <div className="text-xs font-semibold text-gray-700">
             Author Profiles
-          </h5>
+          </div>
           <span className="text-[10px] text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">
             ● All Synced
           </span>
