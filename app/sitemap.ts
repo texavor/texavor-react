@@ -58,7 +58,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const posts = await getAllPosts();
   const postPages: MetadataRoute.Sitemap = posts.map((post: any) => ({
-    url: `https://texavor.com/blog/${post?.slug}`,
+    url: `https://www.texavor.com/blog/${post?.slug}`,
     lastModified: new Date(post?.updated_at),
     changeFrequency: "weekly",
     priority: 0.8,
@@ -66,7 +66,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const docs = getAllDocs();
   const docPages: MetadataRoute.Sitemap = docs.map((doc: any) => ({
-    url: `https://texavor.com/docs/${doc?.slug}`,
+    url: `https://www.texavor.com/docs/${doc?.slug}`,
     lastModified: new Date(), // Ideally this would come from git commit time or similar if available
     changeFrequency: "monthly",
     priority: 0.7,

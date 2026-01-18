@@ -42,6 +42,10 @@ export const metadata: Metadata = {
       "AI developer content strategist. Generate high-impact, E-E-A-T-optimized technical article ideas for Google & AI Chatbots. Maximize discovery & authority.",
     images: "/easywriteOpenGraph.png",
   },
+  alternates: {
+    canonical: "https://www.texavor.com",
+  },
+  metadataBase: new URL("https://www.texavor.com"),
 };
 
 export default function RootLayout({

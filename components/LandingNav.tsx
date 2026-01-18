@@ -64,7 +64,7 @@ export default function LandingNav() {
         className={cn(
           "w-full max-w-5xl rounded-full bg-white shadow-xl shadow-black/5 transition-all duration-300 flex items-center justify-between py-2 sm:py-3 px-6 pointer-events-auto border border-black/5 relative z-50",
           isScrolled &&
-            "py-2 bg-white/70 backdrop-blur-md supports-[backdrop-filter]:bg-white/60"
+            "py-2 bg-white/70 backdrop-blur-md supports-[backdrop-filter]:bg-white/60",
         )}
       >
         {/* Logo */}
@@ -93,7 +93,7 @@ export default function LandingNav() {
                   "text-sm font-medium transition-colors font-poppins flex items-center gap-1.5",
                   ["free-tools", "website-auditor"].includes(item.id)
                     ? "text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200/60 hover:border-emerald-300 hover:bg-emerald-100/80 hover:shadow-sm"
-                    : "text-foreground/70 hover:text-foreground"
+                    : "text-foreground/70 hover:text-foreground",
                 )}
               >
                 {["free-tools", "website-auditor"].includes(item.id) && (
@@ -112,7 +112,7 @@ export default function LandingNav() {
               >
                 {item.label}
               </button>
-            )
+            ),
           )}
         </div>
 
@@ -132,7 +132,7 @@ export default function LandingNav() {
           </button>
 
           <Link
-            href={`${process.env.NEXT_PUBLIC_APP_URL}/login` || "/"}
+            href={`${process.env.NEXT_PUBLIC_APP_URL || ""}/login`}
             target="_blank"
             className="hidden sm:inline-block text-sm font-medium text-foreground/70 hover:text-foreground transition-colors font-poppins"
           >
@@ -171,12 +171,12 @@ export default function LandingNav() {
                         "block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200",
                         ["free-tools", "website-auditor"].includes(item.id)
                           ? "bg-emerald-50 text-emerald-800 border border-emerald-100"
-                          : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                          : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
                       )}
                     >
                       <div className="flex items-center gap-2">
                         {["free-tools", "website-auditor"].includes(
-                          item.id
+                          item.id,
                         ) && (
                           <span className="relative flex h-2 w-2">
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -199,7 +199,7 @@ export default function LandingNav() {
               <div className="h-px bg-gray-100 my-2" />
 
               <Link
-                href={`${process.env.NEXT_PUBLIC_APP_URL}/login` || "/"}
+                href={`${process.env.NEXT_PUBLIC_APP_URL || ""}/login`}
                 target="_blank"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block px-4 py-3 rounded-xl text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200 sm:hidden"
