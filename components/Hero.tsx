@@ -45,6 +45,7 @@ export default function Hero() {
             variant="outline"
             size="lg"
             className="h-12 px-6 rounded-lg bg-white border-gray-200 text-foreground font-semibold shadow-sm hover:bg-gray-50 hover:text-foreground font-poppins text-base min-w-[160px]"
+            aria-label="Start Free Trial"
           >
             <Link href={`${process.env.NEXT_PUBLIC_APP_URL}`} target="_blank">
               Start Free Trial
@@ -55,6 +56,7 @@ export default function Hero() {
             asChild
             size="lg"
             className="h-12 px-8 rounded-lg bg-primary hover:bg-primary/90 text-white font-semibold shadow-lg shadow-primary/20 transition-all hover:shadow-xl font-poppins text-base min-w-[160px]"
+            aria-label="Test Your Website"
           >
             <Link href="/tools/website-auditor">Test Your Website (Free)</Link>
           </Button>
@@ -90,8 +92,11 @@ export default function Hero() {
               width={1400}
               height={900}
               priority
+              quality={85}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
               className="w-full h-auto block"
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAMklEQVR4NAAhAN//AOPj4+vr6+Dg4Ojo6AA8PDz/+/v///8A8fHx/Pz8AAAA+/v7+vr6ZQA7Yx00cQAAAABJRU5ErkJggg=="
             />
           </div>
         </div>

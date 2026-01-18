@@ -270,7 +270,7 @@ const KeywordResearch = () => {
                 <div className="col-span-1 flex justify-center">
                   <div
                     className={`w-7 h-7 rounded-full ${getDifficultyColor(
-                      kw.difficulty
+                      kw.difficulty,
                     )} text-white text-xs font-bold flex items-center justify-center`}
                   >
                     {kw.difficulty}
@@ -287,7 +287,10 @@ const KeywordResearch = () => {
         <span className="text-xs text-gray-500">
           Showing 5 of 1,247 keywords
         </span>
-        <button className="px-3 py-1.5 bg-primary text-white text-xs font-semibold rounded-lg hover:bg-primary/90 transition-colors">
+        <button
+          aria-label="View all keywords"
+          className="px-3 py-1.5 bg-primary text-white text-xs font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+        >
           View All
         </button>
       </div>
@@ -438,7 +441,10 @@ const OutlineGeneration = () => {
                 <span>{point}</span>
               </div>
             ))}
-            <button className="flex items-center gap-1 text-xs text-primary hover:text-primary/80 font-medium mt-2">
+            <button
+              aria-label="Add key point"
+              className="flex items-center gap-1 text-xs text-primary hover:text-primary/80 font-medium mt-2"
+            >
               <svg
                 className="w-3 h-3"
                 fill="none"
@@ -527,7 +533,10 @@ const CompetitorAnalysis = () => {
                 </svg>
                 5 Analyses
               </span>
-              <button className="flex items-center gap-1 text-primary hover:text-primary/80">
+              <button
+                aria-label="Visit website"
+                className="flex items-center gap-1 text-primary hover:text-primary/80"
+              >
                 <svg
                   className="w-3 h-3"
                   fill="none"
@@ -545,13 +554,19 @@ const CompetitorAnalysis = () => {
               </button>
             </div>
           </div>
-          <button className="hidden md:block px-3 py-1.5 bg-primary text-white text-xs font-semibold rounded-lg hover:bg-primary/90 transition-colors">
+          <button
+            aria-label="Run Analysis"
+            className="hidden md:block px-3 py-1.5 bg-primary text-white text-xs font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+          >
             Run Analysis
           </button>
         </div>
 
         {/* Mobile Action Button */}
-        <button className="md:hidden w-full py-2 mb-4 bg-primary text-white text-xs font-semibold rounded-lg hover:bg-primary/90 transition-colors">
+        <button
+          aria-label="Run Analysis"
+          className="md:hidden w-full py-2 mb-4 bg-primary text-white text-xs font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+        >
           Run Analysis
         </button>
 
@@ -660,6 +675,9 @@ const PlatformIntegration = () => {
           </p>
 
           <button
+            aria-label={
+              platform.connected ? "Manage integration" : "Connect integration"
+            }
             className={`w-full py-2 rounded-lg text-sm font-semibold transition-colors ${
               platform.connected
                 ? "bg-primary text-white hover:bg-primary/90"
@@ -762,6 +780,7 @@ const ThumbnailGeneration = () => {
 
               {/* Action Button */}
               <button
+                aria-label={style.selected ? "Style Selected" : "Select Style"}
                 className={`w-full py-2 rounded-lg text-sm font-semibold transition-colors ${
                   style.selected
                     ? "bg-green-600 text-white"
@@ -897,7 +916,7 @@ const AuthorManagement = () => {
               <div className="col-span-3">
                 <span
                   className={`inline-flex px-2 py-1 rounded-md text-[10px] font-semibold border ${getRoleBadgeColor(
-                    member.role
+                    member.role,
                   )}`}
                 >
                   {member.role}
