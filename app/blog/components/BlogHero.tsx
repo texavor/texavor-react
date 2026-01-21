@@ -19,9 +19,9 @@ export default function BlogHero() {
             The Texavor Blog
           </div>
           <h1 className="text-4xl md:text-6xl font-bold font-poppins text-gray-900 tracking-tight leading-tight">
-            Insights for the <br className="hidden md:block" />
+            Insights for <br className="hidden md:block" />
             <span className="text-primary relative inline-block">
-              Modern Developer
+              Content Creators
               <svg
                 className="absolute w-full h-3 -bottom-1 left-0 text-primary/20 -z-10"
                 viewBox="0 0 100 10"
@@ -37,8 +37,8 @@ export default function BlogHero() {
             </span>
           </h1>
           <p className="text-lg md:text-xl text-gray-600 font-inter leading-relaxed max-w-2xl mx-auto">
-            Expert advice on AI content strategy, development workflows, and
-            building a technical audience.
+            Master AI-powered content strategy, SEO optimization, and audience
+            growth—whether you're a marketer, writer, or entrepreneur.
           </p>
         </motion.div>
       </div>
