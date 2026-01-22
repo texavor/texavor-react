@@ -462,6 +462,12 @@ export default function WebsiteAuditorPage() {
               </div>
             </div>
 
+            <div className="flex justify-center mt-8">
+              <p className="text-sm text-gray-500">
+                Analysis based on {result.samples_analyzed} sample pages.
+              </p>
+            </div>
+
             {/* Upsell Section - Standardized */}
             <div className="relative rounded-2xl overflow-hidden bg-[#0A1A12] text-white p-8 md:p-12 text-center shadow-2xl mt-8">
               {/* Background Pattern */}
@@ -513,12 +519,6 @@ export default function WebsiteAuditorPage() {
                   </Link>{" "}
                 </Button>
               </div>
-            </div>
-
-            <div className="flex justify-center mt-8">
-              <p className="text-sm text-gray-500">
-                Analysis based on {result.samples_analyzed} sample pages.
-              </p>
             </div>
           </div>
         )}
