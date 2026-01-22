@@ -153,7 +153,7 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                   Updated on{` `}
                   {format(
                     new Date(articleData.updated_at || new Date()),
-                    "dd MMM, yyyy"
+                    "dd MMM, yyyy",
                   )}
                 </p>
               </div>
@@ -204,12 +204,12 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                   <SidebarVisual />
                 </div>
                 <h4 className="font-poppins text-lg font-bold text-gray-900 mb-2">
-                  Authority for Blog
+                  Get Cited by AI
                 </h4>
                 <p className="font-inter text-sm text-gray-700 mb-6 leading-relaxed">
-                  Turn raw technical insights into authority-building articles.
-                  Automate the drafting grunt work so you can focus on the
-                  engineering.
+                  Turn raw technical insights into Answer Engine Optimized
+                  articles. Automate the drafting grunt work so you can focus on
+                  the engineering.
                 </p>
                 <Link
                   href="/"
