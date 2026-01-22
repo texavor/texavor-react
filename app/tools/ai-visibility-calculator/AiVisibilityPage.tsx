@@ -46,6 +46,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import LandingNav from "@/components/LandingNav";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 // --- Types based on Guide ---
 
@@ -128,7 +129,7 @@ export default function AiScorePage() {
     mutationFn: async (values: { keyword: string; website?: string }) => {
       const response = await axiosInstance.get(
         "/api/v1/public/tools/analyze_keyword",
-        { params: values }
+        { params: values },
       );
       return response.data as AnalysisResult;
     },
@@ -407,11 +408,11 @@ export default function AiScorePage() {
                           className={cn(
                             "inline-flex items-center rounded text-xs font-bold uppercase",
                             getDifficultyColor(
-                              result?.metrics?.seo_difficulty || 0
+                              result?.metrics?.seo_difficulty || 0,
                             )
                               .replace("text-", "text-")
                               .replace("bg-", "text-")
-                              .replace("border-", "")
+                              .replace("border-", ""),
                           )}
                         >
                           {result?.metrics?.seo_difficulty_label}
@@ -688,7 +689,12 @@ export default function AiScorePage() {
                   size="lg"
                   className="h-12 px-8 bg-emerald-500 hover:bg-emerald-400 text-[#0A1A12] font-semibold text-lg rounded-xl transition-all w-full sm:w-auto"
                 >
-                  Start Free Trial
+                  <Link
+                    href={`${process.env.NEXT_PUBLIC_APP_URL}`}
+                    target="_blank"
+                  >
+                    Start Free Trial
+                  </Link>{" "}
                 </Button>
               </div>
             </div>
@@ -699,7 +705,7 @@ export default function AiScorePage() {
                 <button
                   onClick={() => {
                     navigator.clipboard.writeText(
-                      `${result.viral_hook.share_text} ${result.viral_hook.url}`
+                      `${result.viral_hook.share_text} ${result.viral_hook.url}`,
                     );
                     toast.success("Link copied!");
                   }}

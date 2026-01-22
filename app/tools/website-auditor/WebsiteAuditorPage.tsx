@@ -39,6 +39,7 @@ import {
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 // --- Types ---
 
@@ -132,7 +133,7 @@ export default function WebsiteAuditorPage() {
       // Assuming endpoint exists or we mock it. The prompt implies implementing based on doc.
       const response = await axiosInstance.get(
         "/api/v1/public/tools/analyze_website",
-        { params: values }
+        { params: values },
       );
       return response.data as AuditResult;
     },
@@ -504,7 +505,12 @@ export default function WebsiteAuditorPage() {
                   size="lg"
                   className="h-12 px-8 bg-emerald-500 hover:bg-emerald-400 text-[#0A1A12] font-semibold text-lg rounded-xl transition-all w-full sm:w-auto"
                 >
-                  Start Free Trial
+                  <Link
+                    href={`${process.env.NEXT_PUBLIC_APP_URL}`}
+                    target="_blank"
+                  >
+                    Start Free Trial
+                  </Link>{" "}
                 </Button>
               </div>
             </div>
