@@ -48,6 +48,12 @@ export default function Integration() {
       position: "md:top-[15%] md:right-[5%]",
       delay: 3,
     },
+    {
+      name: "Substack",
+      image: "/integration/substack.png",
+      position: "md:top-[5%] md:left-[45%]",
+      delay: 0.25,
+    },
   ];
 
   return (

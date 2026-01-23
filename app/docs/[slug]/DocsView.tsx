@@ -32,7 +32,7 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
   const articleContentRef = useRef<HTMLDivElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [collapsedCategories, setCollapsedCategories] = useState<Set<string>>(
-    new Set()
+    new Set(),
   );
 
   const handleScroll = useCallback(() => {
@@ -140,12 +140,12 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
         <div className="flex flex-col lg:flex-row gap-8 xl:gap-12 mb-6">
           {/* Left Sidebar - Desktop */}
           <aside className="hidden lg:block lg:w-72 flex-shrink-0">
-            <div className="sticky top-30 max-h-[calc(100vh-6rem)] overflow-y-auto no-scrollbar bg-primary/5 border border-gray-100 rounded-xl p-4">
+            <div className="sticky top-30 max-h-[calc(100vh-140px)] overflow-y-auto no-scrollbar bg-primary/5 border border-gray-100 rounded-xl p-4">
               <nav className="flex flex-col gap-2">
                 {allDocs.map((category) => {
                   const isCollapsed = collapsedCategories.has(category.slug);
                   const hasActiveDoc = category.items.some(
-                    (doc) => doc.slug === docData.slug
+                    (doc) => doc.slug === docData.slug,
                   );
 
                   return (

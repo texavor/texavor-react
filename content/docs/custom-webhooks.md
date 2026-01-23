@@ -2,7 +2,7 @@
 title: "Headless Mode (Custom Webhooks)"
 description: "Use Texavor as the CMS for your Next.js, Astro, or Remix blog."
 category: "platforms"
-order: 7
+order: 8
 ---
 
 **Love your own stack?** Keep it.

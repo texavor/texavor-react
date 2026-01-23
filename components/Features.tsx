@@ -608,8 +608,7 @@ const PlatformIntegration = () => {
     {
       name: "Medium",
       type: "Rss Integration",
-      logo: "M",
-      bgColor: "bg-black",
+      logo: "/integration/medium.png",
       connected: true,
       description:
         "Connect your Medium account to automatically import and sync articles.",
@@ -617,8 +616,7 @@ const PlatformIntegration = () => {
     {
       name: "WordPress",
       type: "Api Integration",
-      logo: "W",
-      bgColor: "bg-blue-600",
+      logo: "/integration/wordpress.png",
       connected: false,
       description:
         "Connect your WordPress account to automatically import and sync articles.",
@@ -637,10 +635,13 @@ const PlatformIntegration = () => {
           }`}
         >
           <div className="flex items-start gap-3 mb-3">
-            <div
-              className={`w-12 h-12 ${platform.bgColor} rounded-lg flex items-center justify-center text-white font-bold text-lg flex-shrink-0`}
-            >
-              {platform.logo}
+            <div className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 relative overflow-hidden">
+              <Image
+                src={platform.logo}
+                alt={platform.name}
+                fill
+                className="object-contain"
+              />
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">
