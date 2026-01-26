@@ -179,7 +179,7 @@ export default function AiScorePage() {
             AI Visibility Calculator
           </h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-inter">
-            Test how well your content ranks in AI search results with our
+            Test how well your topic ranks in AI search results with our
             advanced 5-point analysis.
           </p>
         </div>
