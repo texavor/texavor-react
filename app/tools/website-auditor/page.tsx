@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import WebsiteAuditorPage from "./WebsiteAuditorPage";
+import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
   title: "Website AI Auditor",
@@ -8,5 +9,23 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <WebsiteAuditorPage />;
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Website AI Auditor",
+    applicationCategory: "DeveloperApplication",
+    operatingSystem: "Web",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+  };
+
+  return (
+    <>
+      <Schema script={schema} />
+      <WebsiteAuditorPage />
+    </>
+  );
 }

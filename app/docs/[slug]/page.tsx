@@ -5,6 +5,7 @@ import hljs from "highlight.js";
 import Link from "next/link";
 import { DocsView } from "./DocsView";
 import { getAllDocs, getDocData, getDocsByCategory, DocData } from "@/lib/docs";
+import Schema from "@/components/Schema";
 import "../../dracula.css";
 
 const marked = new Marked(
@@ -14,7 +15,7 @@ const marked = new Marked(
       const language = hljs.getLanguage(lang) ? lang : "plaintext";
       return hljs.highlight(code, { language }).value;
     },
-  })
+  }),
 );
 
 export async function generateStaticParams() {
@@ -68,7 +69,40 @@ export default async function DocPage({
 
   const parsedHtml = marked.parse(docData.content || "") as string;
   const categorizedDocs = getDocsByCategory();
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: docData.title,
+    description: docData.description,
+    image: ["https://www.texavor.com/default-docs.jpg"],
+    datePublished: new Date().toISOString(), // Ideal if we had actual dates
+    dateModified: new Date().toISOString(),
+    author: {
+      "@type": "Organization",
+      name: "Texavor Team",
+      url: "https://www.texavor.com",
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": "https://www.texavor.com/#organization",
+      name: "Texavor",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.texavor.com/logo.png",
+      },
+    },
+    url: `https://www.texavor.com/docs/${slug}`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://www.texavor.com/docs/${slug}`,
+    },
+  };
+
   return (
-    <DocsView docData={docData} html={parsedHtml} allDocs={categorizedDocs} />
+    <>
+      <Schema script={schema} />
+      <DocsView docData={docData} html={parsedHtml} allDocs={categorizedDocs} />
+    </>
   );
 }

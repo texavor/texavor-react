@@ -8,6 +8,7 @@ import hljs from "highlight.js";
 import Link from "next/link";
 import { baseURL } from "@/lib/axiosInstance";
 import { ArticleView } from "./ArticleView";
+import Schema from "@/components/Schema";
 
 import "../../dracula.css";
 
@@ -57,7 +58,7 @@ const marked = new Marked(
       const language = hljs.getLanguage(lang) ? lang : "plaintext";
       return hljs.highlight(code, { language }).value;
     },
-  })
+  }),
 );
 
 // This function now runs at BUILD TIME for each slug
@@ -65,7 +66,7 @@ async function getArticleData(slug: string): Promise<ArticleData | null> {
   try {
     const axiosInstance = getServerAxiosInstance();
     const response = await axiosInstance.get(
-      `${baseURL}/easywrite_articles/${slug}`
+      `${baseURL}/easywrite_articles/${slug}`,
     );
     return response.data;
   } catch (error) {
@@ -158,5 +159,44 @@ export default async function ArticlePage({
   }
 
   const parsedHtml = marked.parse(articleData?.content || "") as string;
-  return <ArticleView articleData={articleData} html={parsedHtml} />;
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: articleData.title,
+    description: articleData.description,
+    image: articleData.image
+      ? [articleData.image]
+      : ["https://www.texavor.com/default-blog.jpg"],
+    datePublished: articleData.created_at,
+    dateModified: articleData.updated_at,
+    author: {
+      "@type": "Person",
+      name: articleData.easywrite_author?.name || "Texavor Team",
+      url: `https://www.texavor.com/author/${articleData.easywrite_author?.username}`,
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": "https://www.texavor.com/#organization",
+      name: "Texavor",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.texavor.com/logo.png",
+      },
+    },
+    url: `https://www.texavor.com/blog/${params.slug}`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://www.texavor.com/blog/${params.slug}`,
+    },
+  };
+
+  return (
+    <>
+      <div className="hidden">
+        <Schema script={schema} />
+      </div>
+      <ArticleView articleData={articleData} html={parsedHtml} />
+    </>
+  );
 }

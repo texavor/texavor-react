@@ -1,53 +1,50 @@
 import React from "react";
 import { baseURL } from "@/lib/axiosInstance";
 import BlogClientWrapper from "./BlogClientWrapper";
-import { Metadata } from "next";
+import Schema from "@/components/Schema";
 
-export const metadata: Metadata = {
-  title: "Blog",
-};
+export const revalidate = 60; // Revalidate every 60 seconds
 
-export const revalidate = 3600; // Revalidate every hour
-
-interface ArticlePreview {
-  slug: string;
-  title: string;
-  description: string;
-  created_at: string;
-  tag: string[];
-  image: string;
-}
-
-// Create SSR-safe axios instance
-const getServerAxiosInstance = () => {
+async function getArticles() {
   const axios = require("axios");
-  return axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-};
-
-// Fetch articles at the server level
-const getArticles = async (): Promise<ArticlePreview[]> => {
   try {
-    const axiosInstance = getServerAxiosInstance();
-    const response = await axiosInstance.get(`${baseURL}/easywrite_articles`);
-
-    if (Array.isArray(response.data)) {
-      return response.data;
-    } else {
-      return [];
-    }
+    const response = await axios.get(`${baseURL}/easywrite_articles`);
+    return Array.isArray(response.data) ? response.data : [];
   } catch (error) {
     console.error("Error fetching articles:", error);
     return [];
   }
-};
+}
 
-export default async function ArticleListPage() {
-  const articleData = await getArticles();
+export default async function Blog() {
+  const articles = await getArticles();
 
-  return <BlogClientWrapper initialArticles={articleData} />;
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": "https://www.texavor.com/blog",
+    name: "Texavor Blog",
+    description: "Insights and guides on AI content creation and optimization.",
+    url: "https://www.texavor.com/blog",
+    organization: {
+      "@id": "https://www.texavor.com/#organization",
+    },
+    blogPost: articles.map((article: any) => ({
+      "@type": "BlogPosting",
+      headline: article.title,
+      url: `https://www.texavor.com/blog/${article.slug}`,
+      datePublished: article.created_at,
+      dateModified: article.updated_at,
+      image: article.image
+        ? [article.image]
+        : ["https://www.texavor.com/default-blog.jpg"],
+    })),
+  };
+
+  return (
+    <>
+      <Schema script={schema} />
+      <BlogClientWrapper initialArticles={articles} />
+    </>
+  );
 }

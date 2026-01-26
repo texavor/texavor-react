@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import AiVisibilityPage from "./AiVisibilityPage";
+import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
   title: "AI Visibility Calculator",
@@ -8,5 +9,23 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <AiVisibilityPage />;
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "AI Visibility Calculator",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+  };
+
+  return (
+    <>
+      <Schema script={schema} />
+      <AiVisibilityPage />
+    </>
+  );
 }
