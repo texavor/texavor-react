@@ -22,7 +22,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: {
     template: "%s | Texavor",
-    default: "Texavor - Authority for your blog",
+    default: "Texavor",
   },
   description:
     "AI developer content strategist. Generate high-impact, E-E-A-T-optimized technical article ideas for Google & AI Chatbots. Maximize discovery & authority.",
@@ -30,14 +30,14 @@ export const metadata: Metadata = {
     google: "E4iB-NQGsBin8Lyn7z9uYrmUZR0YwVl4_FhB4bWaKzo",
   },
   openGraph: {
-    title: "Texavor - Authority for your blog",
+    title: "Texavor",
     description:
       "AI developer content strategist. Generate high-impact, E-E-A-T-optimized technical article ideas for Google & AI Chatbots. Maximize discovery & authority.",
     images: "/easywriteOpenGraph.png",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Texavor - Authority for your blog",
+    title: "Texavor",
     description:
       "AI developer content strategist. Generate high-impact, E-E-A-T-optimized technical article ideas for Google & AI Chatbots. Maximize discovery & authority.",
     images: "/easywriteOpenGraph.png",

@@ -23,17 +23,22 @@ export default function Home() {
         url: "https://www.texavor.com",
         name: "Texavor",
         description: "AI-powered content creation and optimization platform.",
-        potentialAction: [
-          {
-            "@type": "SearchAction",
-            target: {
-              "@type": "EntryPoint",
-              urlTemplate:
-                "https://www.texavor.com/search?q={search_term_string}",
-            },
-            "query-input": "required name=search_term_string",
-          },
-        ],
+        publisher: {
+          "@id": "https://www.texavor.com/#organization",
+        },
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://www.texavor.com/#product",
+        name: "Texavor",
+        applicationCategory: "ContentOptimizationApplication",
+        operatingSystem: "Web",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "USD",
+        },
+        image: "https://www.texavor.com/texavor.png",
       },
       {
         "@type": "Organization",
@@ -42,12 +47,9 @@ export default function Home() {
         url: "https://www.texavor.com",
         logo: {
           "@type": "ImageObject",
-          url: "https://www.texavor.com/logo.png", // Replace with actual logo URL if available
+          url: "https://www.texavor.com/texavor.png",
         },
-        sameAs: [
-          "https://twitter.com/texavor", // Replace with actual social links
-          "https://linkedin.com/company/texavor",
-        ],
+        sameAs: ["https://twitter.com/texavor"],
       },
     ],
   };
