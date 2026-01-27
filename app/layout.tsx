@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import ReactQueryProvider from "./ReactQueryProvider";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -68,6 +69,7 @@ export default function RootLayout({
         data-website-id="cd47a42b-95db-4fae-a72e-1b6737411074"
         strategy="afterInteractive"
       />
+      <Analytics />
     </html>
   );
 }
