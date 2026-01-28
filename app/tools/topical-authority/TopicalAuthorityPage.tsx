@@ -94,6 +94,7 @@ export default function TopicalAuthorityPage() {
 
   const form = useForm({
     defaultValues: { topic: "" },
+    //@ts-ignore
     validatorAdapter: zodValidator(),
     //@ts-ignore
     validators: { onChange: formSchema },
