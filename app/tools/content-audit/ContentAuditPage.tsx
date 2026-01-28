@@ -89,6 +89,7 @@ export default function ContentAuditPage() {
 
   const form = useForm({
     defaultValues: { url: "" },
+    //@ts-ignore
     validatorAdapter: zodValidator(),
     //@ts-ignore
     validators: { onChange: formSchema },

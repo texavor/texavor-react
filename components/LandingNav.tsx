@@ -12,14 +12,9 @@ const NAV_ITEMS = [
   { label: "Home", id: "home", href: "/" },
   { label: "Blog", id: "blog", href: "/blog" },
   {
-    label: "AI Visibility Calculator",
+    label: "Free Tools",
     id: "free-tools",
-    href: "/tools/ai-visibility-calculator",
-  },
-  {
-    label: "GEO Website Auditor",
-    id: "website-auditor",
-    href: "/tools/website-auditor",
+    href: "/tools",
   },
   { label: "Docs", id: "docs", href: "/docs/introduction" },
 ];
