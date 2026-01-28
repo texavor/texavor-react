@@ -106,6 +106,7 @@ export default function FaqSchemaPage() {
   // --- Forms ---
   const autoForm = useForm({
     defaultValues: { url: "" },
+    //@ts-ignore
     validatorAdapter: zodValidator(),
     validators: { onChange: autoSchema },
     onSubmit: async ({ value }) => {
