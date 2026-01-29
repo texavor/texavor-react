@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { axiosInstance } from "@/lib/axiosInstance";
@@ -88,50 +88,7 @@ export default function BrandAuthorityPage() {
   const [result, setResult] = useState<DomainAuthorityResponse | null>(null);
   const [showLimitModal, setShowLimitModal] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState<string>("");
-  const turnstileRef = useRef<HTMLDivElement>(null);
-
-  // Debug Turnstile loading
-  useEffect(() => {
-    console.log(
-      "[Turnstile Debug] Token state changed:",
-      turnstileToken ? "Token received" : "No token",
-    );
-    console.log("[Turnstile Debug] Token value:", turnstileToken);
-  }, [turnstileToken]);
-
-  useEffect(() => {
-    console.log(
-      "[Turnstile Debug] Component mounted, checking for Turnstile script...",
-    );
-    const checkScript = setInterval(() => {
-      if (window.turnstile) {
-        console.log("[Turnstile Debug] Turnstile API loaded successfully");
-        clearInterval(checkScript);
-      }
-    }, 500);
-
-    // Check if widget container exists and has content
-    const checkWidget = setInterval(() => {
-      if (turnstileRef.current) {
-        const iframe = turnstileRef.current.querySelector("iframe");
-        const hasChildren = turnstileRef.current.children.length > 0;
-        console.log("[Turnstile Debug] Container check:", {
-          exists: true,
-          hasChildren,
-          childCount: turnstileRef.current.children.length,
-          hasIframe: !!iframe,
-          innerHTML: turnstileRef.current.innerHTML.substring(0, 100),
-        });
-      } else {
-        console.log("[Turnstile Debug] Container ref not yet available");
-      }
-    }, 2000);
-
-    return () => {
-      clearInterval(checkScript);
-      clearInterval(checkWidget);
-    };
-  }, []);
+  const [isWaitingForToken, setIsWaitingForToken] = useState(false);
 
   // Form
   const form = useForm({
@@ -141,11 +98,34 @@ export default function BrandAuthorityPage() {
     //@ts-ignore
     validatorAdapter: zodValidator(),
     onSubmit: async ({ value }) => {
-      if (!turnstileToken) {
-        toast.error("Please wait for security verification to complete");
+      // If token already exists, submit immediately
+      if (turnstileToken) {
+        checkMutation.mutate(value);
         return;
       }
-      checkMutation.mutate(value);
+
+      // No token yet - wait for it
+      setIsWaitingForToken(true);
+      toast.info("Verifying security, please wait...");
+
+      // Poll for token with timeout
+      const maxWait = 15000; // 15 seconds
+      const startTime = Date.now();
+      const pollInterval = 100; // Check every 100ms
+
+      const tokenCheck = setInterval(() => {
+        if (turnstileToken) {
+          clearInterval(tokenCheck);
+          setIsWaitingForToken(false);
+          checkMutation.mutate(value);
+        } else if (Date.now() - startTime > maxWait) {
+          clearInterval(tokenCheck);
+          setIsWaitingForToken(false);
+          toast.error(
+            "Security verification timeout. Please refresh and try again.",
+          );
+        }
+      }, pollInterval);
     },
   });
 
@@ -298,46 +278,29 @@ export default function BrandAuthorityPage() {
                   type="submit"
                   size="lg"
                   className="h-12 w-48 font-semibold text-lg bg-[#104127] hover:bg-[#0c311d] text-white shadow-lg hover:shadow-xl transition-all shrink-0"
-                  disabled={checkMutation.isPending || !turnstileToken}
+                  disabled={checkMutation.isPending || isWaitingForToken}
                 >
-                  {checkMutation.isPending ? (
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  {isWaitingForToken ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Verifying...
+                    </>
+                  ) : checkMutation.isPending ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Checking...
+                    </>
                   ) : (
                     "Check Authority"
                   )}
                 </Button>
               </div>
 
-              <div
-                ref={turnstileRef}
-                className="flex justify-start min-h-[65px] bg-slate-50 dark:bg-zinc-900 p-2 rounded border border-dashed border-slate-300 dark:border-zinc-700"
-              >
+              <div className="flex justify-start">
                 <Turnstile
                   siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
-                  options={{
-                    theme: "light",
-                    size: "normal",
-                  }}
-                  onSuccess={(token) => {
-                    console.log(
-                      "[Turnstile Debug] Token received from widget:",
-                      token,
-                    );
-                    setTurnstileToken(token);
-                  }}
-                  onError={(error) => {
-                    console.error("[Turnstile Debug] Widget error:", error);
-                  }}
-                  onLoad={() => {
-                    console.log("[Turnstile Debug] Widget loaded and rendered");
-                  }}
-                  onExpire={() => {
-                    console.log("[Turnstile Debug] Token expired");
-                    setTurnstileToken("");
-                  }}
-                  onTimeout={() => {
-                    console.error("[Turnstile Debug] Widget timeout");
-                  }}
+                  onSuccess={(token) => setTurnstileToken(token)}
+                  onExpire={() => setTurnstileToken("")}
                 />
               </div>
             </form>

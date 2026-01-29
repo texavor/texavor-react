@@ -78,6 +78,7 @@ interface AuthorityResult {
 
 export default function TopicalAuthorityPage() {
   const [turnstileToken, setTurnstileToken] = useState<string>("");
+  const [isWaitingForToken, setIsWaitingForToken] = useState(false);
 
   const mutation = useMutation({
     mutationFn: async (values: { topic: string }) => {
@@ -108,7 +109,27 @@ export default function TopicalAuthorityPage() {
     //@ts-ignore
     validators: { onChange: formSchema },
     onSubmit: async ({ value }) => {
-      await mutation.mutateAsync(value);
+      if (turnstileToken) {
+        await mutation.mutateAsync(value);
+        return;
+      }
+      setIsWaitingForToken(true);
+      toast.info("Verifying security, please wait...");
+      const maxWait = 15000;
+      const startTime = Date.now();
+      const tokenCheck = setInterval(() => {
+        if (turnstileToken) {
+          clearInterval(tokenCheck);
+          setIsWaitingForToken(false);
+          mutation.mutateAsync(value);
+        } else if (Date.now() - startTime > maxWait) {
+          clearInterval(tokenCheck);
+          setIsWaitingForToken(false);
+          toast.error(
+            "Security verification timeout. Please refresh and try again.",
+          );
+        }
+      }, 100);
     },
   });
 
@@ -178,10 +199,18 @@ export default function TopicalAuthorityPage() {
                   type="submit"
                   size="lg"
                   className="h-12 px-8 min-w-[140px] font-semibold text-lg bg-[#104127] hover:bg-[#0c311d] text-white shadow-lg hover:shadow-xl transition-all"
-                  disabled={loading}
+                  disabled={loading || isWaitingForToken}
                 >
-                  {loading ? (
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  {isWaitingForToken ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Verifying...
+                    </>
+                  ) : loading ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Generating...
+                    </>
                   ) : (
                     "Generate Map"
                   )}
@@ -190,8 +219,8 @@ export default function TopicalAuthorityPage() {
               <div className="flex justify-start">
                 <Turnstile
                   siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
-                  injectScript={false}
                   onSuccess={(token) => setTurnstileToken(token)}
+                  onExpire={() => setTurnstileToken("")}
                 />
               </div>
             </form>

@@ -76,6 +76,7 @@ interface ApiResponse {
 export default function FaqSchemaPage() {
   const [activeTab, setActiveTab] = useState<"manual" | "auto">("manual");
   const [turnstileToken, setTurnstileToken] = useState<string>("");
+  const [isWaitingForToken, setIsWaitingForToken] = useState(false);
   const [qaPairs, setQaPairs] = useState<QaPair[]>([
     { question: "", answer: "" },
   ]);
@@ -118,7 +119,27 @@ export default function FaqSchemaPage() {
     validatorAdapter: zodValidator(),
     validators: { onChange: autoSchema },
     onSubmit: async ({ value }) => {
-      await extractMutation.mutateAsync(value);
+      if (turnstileToken) {
+        await extractMutation.mutateAsync(value);
+        return;
+      }
+      setIsWaitingForToken(true);
+      toast.info("Verifying security, please wait...");
+      const maxWait = 15000;
+      const startTime = Date.now();
+      const tokenCheck = setInterval(() => {
+        if (turnstileToken) {
+          clearInterval(tokenCheck);
+          setIsWaitingForToken(false);
+          extractMutation.mutateAsync(value);
+        } else if (Date.now() - startTime > maxWait) {
+          clearInterval(tokenCheck);
+          setIsWaitingForToken(false);
+          toast.error(
+            "Security verification timeout. Please refresh and try again.",
+          );
+        }
+      }, 100);
     },
   });
 
@@ -329,18 +350,25 @@ export default function FaqSchemaPage() {
                                     process.env
                                       .NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""
                                   }
-                                  injectScript={false}
                                   onSuccess={(token) =>
                                     setTurnstileToken(token)
                                   }
+                                  onExpire={() => setTurnstileToken("")}
                                 />
                               </div>
                               <Button
                                 type="submit"
-                                disabled={extractMutation.isPending}
+                                disabled={
+                                  extractMutation.isPending || isWaitingForToken
+                                }
                                 className="bg-[#104127] hover:bg-[#0c311d] text-white shadow-md transition-all w-32 shrink-0 self-start"
                               >
-                                {extractMutation.isPending ? (
+                                {isWaitingForToken ? (
+                                  <>
+                                    <Loader2 className="w-4 h-4 animate-spin" />
+                                    Verifying...
+                                  </>
+                                ) : extractMutation.isPending ? (
                                   <Loader2 className="w-4 h-4 animate-spin" />
                                 ) : (
                                   <>
