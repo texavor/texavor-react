@@ -288,7 +288,7 @@ export default function BrandAuthorityPage() {
                 </Button>
               </div>
 
-              <div className="flex justify-start">
+              <div className="flex justify-start min-h-[65px] bg-slate-50 dark:bg-zinc-900 p-2 rounded border border-dashed border-slate-300 dark:border-zinc-700">
                 <Turnstile
                   siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
                   injectScript={false}
@@ -301,6 +301,16 @@ export default function BrandAuthorityPage() {
                   }}
                   onError={(error) => {
                     console.error("[Turnstile Debug] Widget error:", error);
+                  }}
+                  onLoad={() => {
+                    console.log("[Turnstile Debug] Widget loaded and rendered");
+                  }}
+                  onExpire={() => {
+                    console.log("[Turnstile Debug] Token expired");
+                    setTurnstileToken("");
+                  }}
+                  onTimeout={() => {
+                    console.error("[Turnstile Debug] Widget timeout");
                   }}
                 />
               </div>
