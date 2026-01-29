@@ -33,6 +33,8 @@ import {
   RadialBar,
   PolarAngleAxis,
   ResponsiveContainer,
+  AreaChart,
+  Area,
 } from "recharts";
 import { toast } from "sonner";
 import Link from "next/link";
@@ -69,6 +71,16 @@ interface DomainAuthorityResponse {
     cta_link: string;
   };
 }
+
+// Dummy Data for Feature Preview
+const dummyTrendData = [
+  { name: "Jan", value: 30 },
+  { name: "Feb", value: 45 },
+  { name: "Mar", value: 42 },
+  { name: "Apr", value: 60 },
+  { name: "May", value: 55 },
+  { name: "Jun", value: 75 },
+];
 
 // --- Components ---
 
@@ -181,7 +193,6 @@ export default function BrandAuthorityPage() {
             referring domains, and organic traffic estimates.
           </p>
         </div>
-
         {/* Limit Banner */}
         {result && (
           <div className="max-w-3xl mx-auto mb-6">
@@ -194,7 +205,6 @@ export default function BrandAuthorityPage() {
             </div>
           </div>
         )}
-
         {/* Input Card */}
         <Card className="mb-16 bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
           <CardContent className="px-6 py-2">
@@ -204,43 +214,38 @@ export default function BrandAuthorityPage() {
                 e.stopPropagation();
                 form.handleSubmit();
               }}
-              className="flex flex-col md:flex-row gap-4 items-center"
+              className="flex flex-col gap-4"
             >
-              <div className="flex-1 w-full space-y-2">
-                <Label htmlFor="url" className="sr-only">
-                  Website URL
-                </Label>
-                <form.Field
-                  name="url"
-                  validators={{
-                    onChange: z.string().url("Please enter a valid URL"),
-                  }}
-                  children={(field) => (
-                    <div className="relative">
-                      <Globe className="absolute left-3 top-3.5 w-5 h-5 text-muted-foreground" />
-                      <Input
-                        placeholder="https://example.com"
-                        value={field.state.value}
-                        onChange={(e) => field.handleChange(e.target.value)}
-                        onBlur={field.handleBlur}
-                        className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
-                      />
-                      {field.state.meta.errors ? (
-                        <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
-                          {field.state.meta.errors[0]?.message}
-                        </p>
-                      ) : null}
-                    </div>
-                  )}
-                />
-              </div>
-              <div className="flex flex-col gap-4">
-                <div>
-                  <Turnstile
-                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
-                    onSuccess={(token) => setTurnstileToken(token)}
+              <div className="flex flex-col md:flex-row gap-4 items-center w-full">
+                <div className="flex-1 w-full space-y-2">
+                  <Label htmlFor="url" className="sr-only">
+                    Website URL
+                  </Label>
+                  <form.Field
+                    name="url"
+                    validators={{
+                      onChange: z.string().url("Please enter a valid URL"),
+                    }}
+                    children={(field) => (
+                      <div className="relative">
+                        <Globe className="absolute left-3 top-3.5 w-5 h-5 text-muted-foreground" />
+                        <Input
+                          placeholder="https://example.com"
+                          value={field.state.value}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                          onBlur={field.handleBlur}
+                          className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
+                        />
+                        {field.state.meta.errors ? (
+                          <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
+                            {field.state.meta.errors[0]?.message}
+                          </p>
+                        ) : null}
+                      </div>
+                    )}
                   />
                 </div>
+
                 <Button
                   type="submit"
                   size="lg"
@@ -254,11 +259,133 @@ export default function BrandAuthorityPage() {
                   )}
                 </Button>
               </div>
+
+              <div className="flex justify-start">
+                <Turnstile
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                  onSuccess={(token) => setTurnstileToken(token)}
+                />
+              </div>
             </form>
           </CardContent>
         </Card>
+        {/* Feature Preview (Empty State) - Always show when no result */}
+        {!result && (
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16 px-4">
+            {/* Feature 1: Authority Score */}
+            <div className="relative group">
+              <div className="absolute inset-0 bg-emerald-100/50 dark:bg-emerald-900/20 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
+              <Card className="relative h-full border border-border/20 shadow-sm rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500 hover:shadow-md">
+                <CardHeader className="pb-2">
+                  <div className="w-10 h-10 rounded-full bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center mb-3">
+                    <ShieldCheck className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                  </div>
+                  <CardTitle className="text-xl font-poppins">
+                    Domain Authority
+                  </CardTitle>
+                  <CardDescription className="font-inter">
+                    Predict ranking potential (0-100).
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex items-center justify-center p-6">
+                  <div className="relative h-40 w-40">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <RadialBarChart
+                        innerRadius="80%"
+                        outerRadius="100%"
+                        barSize={10}
+                        data={[{ value: 75, fill: "#10b981" }]}
+                        startAngle={90}
+                        endAngle={-270}
+                      >
+                        <RadialBar
+                          background={{ fill: "rgba(16, 185, 129, 0.1)" }}
+                          dataKey="value"
+                          cornerRadius={30}
+                        />
+                      </RadialBarChart>
+                    </ResponsiveContainer>
+                    <div className="absolute inset-0 flex items-center justify-center flex-col">
+                      <span className="text-4xl font-bold font-poppins text-emerald-600 dark:text-emerald-400">
+                        75
+                      </span>
+                      <span className="text-xs text-muted-foreground uppercase">
+                        Score
+                      </span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
 
-        {/* Results Section */}
+            {/* Feature 2: Traffic Trends */}
+            <div className="relative group mt-8 md:mt-0">
+              <div className="absolute inset-0 bg-blue-100/50 dark:bg-blue-900/20 rounded-3xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500"></div>
+              <Card className="relative h-full border border-border/20 shadow-sm rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform rotate-1 group-hover:rotate-2 transition-transform duration-500 hover:shadow-md">
+                <CardHeader className="pb-2">
+                  <div className="w-10 h-10 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center mb-3">
+                    <BarChart className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  <CardTitle className="text-xl font-poppins">
+                    Traffic Insights
+                  </CardTitle>
+                  <CardDescription className="font-inter">
+                    See growth trends and organic visits.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="pb-0 px-0">
+                  <div className="mt-4 px-6">
+                    <div className="flex items-center justify-between mb-4">
+                      <div>
+                        <p className="text-2xl font-bold text-slate-800 dark:text-slate-100">
+                          12.5K
+                        </p>
+                        <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                          Visits / Mo
+                        </div>
+                      </div>
+                    </div>
+                    <div className="h-32 w-full">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <AreaChart data={dummyTrendData}>
+                          <defs>
+                            <linearGradient
+                              id="colorValAuth"
+                              x1="0"
+                              y1="0"
+                              x2="0"
+                              y2="1"
+                            >
+                              <stop
+                                offset="5%"
+                                stopColor="#3b82f6"
+                                stopOpacity={0.1}
+                              />
+                              <stop
+                                offset="95%"
+                                stopColor="#3b82f6"
+                                stopOpacity={0}
+                              />
+                            </linearGradient>
+                          </defs>
+                          <Area
+                            type="monotone"
+                            dataKey="value"
+                            stroke="#3b82f6"
+                            strokeWidth={2}
+                            fillOpacity={1}
+                            fill="url(#colorValAuth)"
+                          />
+                        </AreaChart>
+                      </ResponsiveContainer>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        )}
+        {/* Results Section */}{" "}
         {result && (
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
             {/* Top Row: Authority Gauge */}
