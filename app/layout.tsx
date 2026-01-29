@@ -65,6 +65,10 @@ export default function RootLayout({
         </ReactQueryProvider>
       </body>
       <Script
+        src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+        strategy="beforeInteractive"
+      />
+      <Script
         src="https://cloud.umami.is/script.js"
         data-website-id="cd47a42b-95db-4fae-a72e-1b6737411074"
         strategy="afterInteractive"

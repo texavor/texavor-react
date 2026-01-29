@@ -252,6 +252,7 @@ export default function AiScorePage() {
               <div className="flex justify-start">
                 <Turnstile
                   siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                  injectScript={false}
                   onSuccess={(token) => setTurnstileToken(token)}
                 />
               </div>
