@@ -344,18 +344,6 @@ export default function FaqSchemaPage() {
                                 placeholder="https://example.com/faq"
                                 className="flex-1 bg-white dark:bg-zinc-950/50"
                               />
-                              <div className="flex justify-start">
-                                <Turnstile
-                                  siteKey={
-                                    process.env
-                                      .NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""
-                                  }
-                                  onSuccess={(token) =>
-                                    setTurnstileToken(token)
-                                  }
-                                  onExpire={() => setTurnstileToken("")}
-                                />
-                              </div>
                               <Button
                                 type="submit"
                                 disabled={
@@ -377,6 +365,16 @@ export default function FaqSchemaPage() {
                                   </>
                                 )}
                               </Button>
+                            </div>
+                            <div className="flex justify-start">
+                              <Turnstile
+                                siteKey={
+                                  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
+                                  ""
+                                }
+                                onSuccess={(token) => setTurnstileToken(token)}
+                                onExpire={() => setTurnstileToken("")}
+                              />
                             </div>
                             {field.state.meta.errors ? (
                               <p className="text-sm text-red-500">
