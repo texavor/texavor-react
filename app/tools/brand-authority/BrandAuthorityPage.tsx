@@ -142,11 +142,9 @@ export default function BrandAuthorityPage() {
     validatorAdapter: zodValidator(),
     onSubmit: async ({ value }) => {
       if (!turnstileToken) {
-        console.error("[Turnstile Debug] Form submitted without token!");
         toast.error("Please wait for security verification to complete");
         return;
       }
-      console.log("[Turnstile Debug] Form submitted with token");
       checkMutation.mutate(value);
     },
   });
