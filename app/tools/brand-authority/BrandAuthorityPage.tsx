@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { axiosInstance } from "@/lib/axiosInstance";
@@ -89,6 +89,28 @@ export default function BrandAuthorityPage() {
   const [showLimitModal, setShowLimitModal] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState<string>("");
 
+  // Debug Turnstile loading
+  useEffect(() => {
+    console.log(
+      "[Turnstile Debug] Token state changed:",
+      turnstileToken ? "Token received" : "No token",
+    );
+    console.log("[Turnstile Debug] Token value:", turnstileToken);
+  }, [turnstileToken]);
+
+  useEffect(() => {
+    console.log(
+      "[Turnstile Debug] Component mounted, checking for Turnstile script...",
+    );
+    const checkScript = setInterval(() => {
+      if (window.turnstile) {
+        console.log("[Turnstile Debug] Turnstile API loaded successfully");
+        clearInterval(checkScript);
+      }
+    }, 500);
+    return () => clearInterval(checkScript);
+  }, []);
+
   // Form
   const form = useForm({
     defaultValues: {
@@ -97,6 +119,12 @@ export default function BrandAuthorityPage() {
     //@ts-ignore
     validatorAdapter: zodValidator(),
     onSubmit: async ({ value }) => {
+      if (!turnstileToken) {
+        console.error("[Turnstile Debug] Form submitted without token!");
+        toast.error("Please wait for security verification to complete");
+        return;
+      }
+      console.log("[Turnstile Debug] Form submitted with token");
       checkMutation.mutate(value);
     },
   });
@@ -250,7 +278,7 @@ export default function BrandAuthorityPage() {
                   type="submit"
                   size="lg"
                   className="h-12 w-48 font-semibold text-lg bg-[#104127] hover:bg-[#0c311d] text-white shadow-lg hover:shadow-xl transition-all shrink-0"
-                  disabled={checkMutation.isPending}
+                  disabled={checkMutation.isPending || !turnstileToken}
                 >
                   {checkMutation.isPending ? (
                     <Loader2 className="mr-2 h-5 w-5 animate-spin" />
@@ -264,7 +292,16 @@ export default function BrandAuthorityPage() {
                 <Turnstile
                   siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
                   injectScript={false}
-                  onSuccess={(token) => setTurnstileToken(token)}
+                  onSuccess={(token) => {
+                    console.log(
+                      "[Turnstile Debug] Token received from widget:",
+                      token,
+                    );
+                    setTurnstileToken(token);
+                  }}
+                  onError={(error) => {
+                    console.error("[Turnstile Debug] Widget error:", error);
+                  }}
                 />
               </div>
             </form>
