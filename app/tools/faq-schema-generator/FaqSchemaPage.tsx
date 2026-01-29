@@ -337,9 +337,7 @@ export default function FaqSchemaPage() {
                               </div>
                               <Button
                                 type="submit"
-                                disabled={
-                                  extractMutation.isPending || !turnstileToken
-                                }
+                                disabled={extractMutation.isPending}
                                 className="bg-[#104127] hover:bg-[#0c311d] text-white shadow-md transition-all w-32 shrink-0 self-start"
                               >
                                 {extractMutation.isPending ? (

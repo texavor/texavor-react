@@ -66,7 +66,7 @@ export default function RootLayout({
       </body>
       <Script
         src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
-        strategy="beforeInteractive"
+        strategy="afterInteractive"
       />
       <Script
         src="https://cloud.umami.is/script.js"

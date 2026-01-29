@@ -250,7 +250,7 @@ export default function BrandAuthorityPage() {
                   type="submit"
                   size="lg"
                   className="h-12 w-48 font-semibold text-lg bg-[#104127] hover:bg-[#0c311d] text-white shadow-lg hover:shadow-xl transition-all shrink-0"
-                  disabled={checkMutation.isPending || !turnstileToken}
+                  disabled={checkMutation.isPending}
                 >
                   {checkMutation.isPending ? (
                     <Loader2 className="mr-2 h-5 w-5 animate-spin" />

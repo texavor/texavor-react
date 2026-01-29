@@ -227,7 +227,7 @@ export default function WebsiteAuditorPage() {
                   type="submit"
                   size="lg"
                   className="h-12 px-8 min-w-[140px] font-semibold text-lg bg-[#104127] hover:bg-[#0c311d] text-white shadow-lg hover:shadow-xl transition-all"
-                  disabled={loading || !turnstileToken}
+                  disabled={loading}
                 >
                   {loading ? (
                     <Loader2 className="mr-2 h-5 w-5 animate-spin" />
