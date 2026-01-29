@@ -316,7 +316,6 @@ export default function BrandAuthorityPage() {
               >
                 <Turnstile
                   siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
-                  injectScript={false}
                   options={{
                     theme: "light",
                     size: "normal",
