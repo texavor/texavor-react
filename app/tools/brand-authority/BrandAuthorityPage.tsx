@@ -109,24 +109,24 @@ export default function BrandAuthorityPage() {
         clearInterval(checkScript);
       }
     }, 500);
-    
+
     // Check if widget container exists and has content
     const checkWidget = setInterval(() => {
       if (turnstileRef.current) {
-        const iframe = turnstileRef.current.querySelector('iframe');
+        const iframe = turnstileRef.current.querySelector("iframe");
         const hasChildren = turnstileRef.current.children.length > 0;
         console.log("[Turnstile Debug] Container check:", {
           exists: true,
           hasChildren,
           childCount: turnstileRef.current.children.length,
           hasIframe: !!iframe,
-          innerHTML: turnstileRef.current.innerHTML.substring(0, 100)
+          innerHTML: turnstileRef.current.innerHTML.substring(0, 100),
         });
       } else {
         console.log("[Turnstile Debug] Container ref not yet available");
       }
     }, 2000);
-    
+
     return () => {
       clearInterval(checkScript);
       clearInterval(checkWidget);
@@ -310,13 +310,17 @@ export default function BrandAuthorityPage() {
                 </Button>
               </div>
 
-              <div 
+              <div
                 ref={turnstileRef}
                 className="flex justify-start min-h-[65px] bg-slate-50 dark:bg-zinc-900 p-2 rounded border border-dashed border-slate-300 dark:border-zinc-700"
               >
                 <Turnstile
                   siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
                   injectScript={false}
+                  options={{
+                    theme: "light",
+                    size: "normal",
+                  }}
                   onSuccess={(token) => {
                     console.log(
                       "[Turnstile Debug] Token received from widget:",
