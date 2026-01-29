@@ -30,18 +30,14 @@ const tools = [
       "Check your Domain Authority (DA), Backlinks, and Organic Traffic estimates instantly.",
     href: "/tools/brand-authority",
     icon: Globe,
-    color: "text-emerald-500",
-    bg: "bg-emerald-500/10",
     gradient: "from-emerald-500/20 to-teal-500/5",
   },
   {
     title: "AI Visibility Calculator",
     description:
-      "Measure your brand's visibility in AI Overviews (SGE) and Large Language Models.",
+      "Analyze keyword rankings in AI Overviews (SGE) and optimize for Large Language Models.",
     href: "/tools/ai-visibility-calculator",
     icon: Sparkles,
-    color: "text-purple-500",
-    bg: "bg-purple-500/10",
     gradient: "from-purple-500/20 to-indigo-500/5",
   },
   {
@@ -50,8 +46,6 @@ const tools = [
       "Technical audit for the AI era. Check Robots.txt, Sitemap, and Schema health.",
     href: "/tools/website-auditor",
     icon: MonitorCheck,
-    color: "text-blue-500",
-    bg: "bg-blue-500/10",
     gradient: "from-blue-500/20 to-cyan-500/5",
   },
   {
@@ -60,8 +54,6 @@ const tools = [
       "Boost CTR instantly by generating valid JSON-LD FAQ Schema markup.",
     href: "/tools/faq-schema-generator",
     icon: FileCode,
-    color: "text-orange-500",
-    bg: "bg-orange-500/10",
     gradient: "from-orange-500/20 to-amber-500/5",
   },
   {
@@ -70,8 +62,6 @@ const tools = [
       "Visualize contextual relationships and build semantic authority for your niche.",
     href: "/tools/topical-authority",
     icon: Network,
-    color: "text-pink-500",
-    bg: "bg-pink-500/10",
     gradient: "from-pink-500/20 to-rose-500/5",
   },
   {
@@ -80,8 +70,6 @@ const tools = [
       "Analyze your content depth, keyword usage, and optimization score.",
     href: "/tools/content-audit",
     icon: FileText,
-    color: "text-indigo-500",
-    bg: "bg-indigo-500/10",
     gradient: "from-indigo-500/20 to-violet-500/5",
   },
 ];
@@ -101,7 +89,7 @@ export default function ToolsPage() {
           <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-foreground font-poppins">
             Free{" "}
             <span className="text-primary bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-500">
-              AI SEO Tools
+              AEO and SEO Tools
             </span>
           </h1>
           <p className="text-muted-foreground text-xl max-w-2xl mx-auto font-inter leading-relaxed">
@@ -114,34 +102,36 @@ export default function ToolsPage() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {tools.map((tool) => (
             <Link key={tool.href} href={tool.href} className="group h-full">
-              <Card className="h-full border-border/50 bg-white dark:bg-zinc-900 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/20 hover:-translate-y-1 overflow-hidden relative group-hover:ring-1 group-hover:ring-primary/20">
-                {/* Hover Gradient Background */}
+              <Card className="h-full border-none shadow-lg bg-[#104127] text-white rounded-2xl relative overflow-hidden flex flex-col transition-all duration-300">
+                {/* Dynamic Background */}
                 <div
-                  className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-br ${tool.gradient}`}
+                  className="absolute inset-0 opacity-100 pointer-events-none"
+                  style={{
+                    background:
+                      "radial-gradient(circle at 10% 90%, #1a5d3a 0%, transparent 60%), linear-gradient(to top right, #104127 0%, #0d3520 100%)",
+                  }}
                 />
 
                 <CardHeader className="pb-2 relative z-10">
                   <div className="flex justify-between items-start mb-4">
-                    <div
-                      className={`p-3 rounded-xl ${tool.bg} ${tool.color} transition-transform group-hover:scale-110 duration-300`}
-                    >
-                      <tool.icon className="w-6 h-6" />
+                    <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center shadow-sm border border-white/20 transition-transform group-hover:scale-110 duration-300">
+                      <tool.icon className="w-6 h-6 text-emerald-100" />
                     </div>
-                    <div className="p-2 rounded-full bg-slate-50 dark:bg-zinc-800 text-muted-foreground opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1">
+                    <div className="p-2 rounded-full bg-white text-[#104127] opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1 hover:bg-emerald-50">
                       <MoveUpRight className="w-4 h-4" />
                     </div>
                   </div>
-                  <CardTitle className="text-xl font-bold font-poppins group-hover:text-primary transition-colors">
+                  <CardTitle className="text-xl font-bold font-poppins text-white">
                     {tool.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="relative z-10">
-                  <CardDescription className="text-base font-inter line-clamp-2">
+                  <CardDescription className="text-base font-inter line-clamp-3 text-emerald-100/80">
                     {tool.description}
                   </CardDescription>
                 </CardContent>
                 <CardFooter className="relative z-10 pt-0 mt-auto">
-                  <span className="text-sm font-semibold text-primary flex items-center gap-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                  <span className="text-sm font-semibold text-white flex items-center gap-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
                     Launch Tool <ArrowRight className="w-4 h-4" />
                   </span>
                 </CardFooter>
@@ -152,7 +142,7 @@ export default function ToolsPage() {
 
         {/* CTA Section */}
         <div className="mt-24 text-center">
-          <div className="relative rounded-3xl overflow-hidden bg-[#104127] text-white p-12 md:p-16 text-center shadow-2xl max-w-4xl mx-auto">
+          <div className="relative rounded-3xl overflow-hidden bg-[#104127] text-white p-12 md:p-16 text-center shadow-2xl w-full mx-auto">
             <div
               className="absolute inset-0 opacity-20 pointer-events-none"
               style={{
@@ -169,7 +159,7 @@ export default function ToolsPage() {
                 Get access to advanced competitor analysis, unlimited checks,
                 and historical data with Texavor Pro.
               </p>
-              <Link href="/pricing">
+              <Link href="/#pricing">
                 <Button
                   size="lg"
                   className="bg-white text-emerald-800 hover:bg-emerald-50 text-lg h-12 px-8 shadow-xl mt-4"

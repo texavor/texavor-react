@@ -4,6 +4,8 @@ import { useForm } from "@tanstack/react-form";
 import { zodValidator } from "@tanstack/zod-form-adapter";
 import { useMutation } from "@tanstack/react-query";
 import * as z from "zod";
+import { useState } from "react";
+import { Turnstile } from "@marsidev/react-turnstile";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -75,11 +77,18 @@ interface AuthorityResult {
 }
 
 export default function TopicalAuthorityPage() {
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
+
   const mutation = useMutation({
     mutationFn: async (values: { topic: string }) => {
       const response = await axiosInstance.post(
         "/api/v1/public/tools/topical_authority",
         values,
+        {
+          headers: {
+            "X-Turnstile-Token": turnstileToken,
+          },
+        },
       );
       return response.data as AuthorityResult;
     },
@@ -133,49 +142,57 @@ export default function TopicalAuthorityPage() {
                 e.stopPropagation();
                 form.handleSubmit();
               }}
-              className="flex flex-col md:flex-row gap-4 items-center md:items-start"
+              className="flex flex-col gap-4"
             >
-              <div className="flex-1 w-full space-y-2">
-                <Label htmlFor="topic" className="sr-only">
-                  Topic
-                </Label>
-                <form.Field
-                  name="topic"
-                  children={(field) => (
-                    <div className="relative">
-                      <Search className="absolute left-3 top-3.5 w-5 h-5 text-muted-foreground" />
-                      <Input
-                        id={field.name}
-                        name={field.name}
-                        value={field.state.value}
-                        onBlur={field.handleBlur}
-                        onChange={(e) => field.handleChange(e.target.value)}
-                        placeholder="e.g. technical seo"
-                        className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
-                      />
-                      {field.state.meta.errors ? (
-                        <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
-                          {/* @ts-ignore */}
-                          {field?.state?.meta?.errors[0]?.message}
-                        </p>
-                      ) : null}
-                    </div>
+              <div className="flex flex-col md:flex-row gap-4 items-center md:items-start w-full">
+                <div className="flex-1 w-full space-y-2">
+                  <Label htmlFor="topic" className="sr-only">
+                    Topic
+                  </Label>
+                  <form.Field
+                    name="topic"
+                    children={(field) => (
+                      <div className="relative">
+                        <Search className="absolute left-3 top-3.5 w-5 h-5 text-muted-foreground" />
+                        <Input
+                          id={field.name}
+                          name={field.name}
+                          value={field.state.value}
+                          onBlur={field.handleBlur}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                          placeholder="e.g. technical seo"
+                          className="h-12 pl-10 text-lg bg-white dark:bg-zinc-950/50 border-input"
+                        />
+                        {field.state.meta.errors ? (
+                          <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
+                            {/* @ts-ignore */}
+                            {field?.state?.meta?.errors[0]?.message}
+                          </p>
+                        ) : null}
+                      </div>
+                    )}
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="h-12 px-8 min-w-[140px] font-semibold text-lg bg-[#104127] hover:bg-[#0c311d] text-white shadow-lg hover:shadow-xl transition-all"
+                  disabled={loading || !turnstileToken}
+                >
+                  {loading ? (
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  ) : (
+                    "Generate Map"
                   )}
+                </Button>
+              </div>
+              <div className="flex justify-start">
+                <Turnstile
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                  onSuccess={(token) => setTurnstileToken(token)}
                 />
               </div>
-
-              <Button
-                type="submit"
-                size="lg"
-                className="h-12 px-8 min-w-[140px] font-semibold text-lg bg-[#104127] hover:bg-[#0c311d] text-white shadow-lg hover:shadow-xl transition-all"
-                disabled={loading}
-              >
-                {loading ? (
-                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                ) : (
-                  "Generate Map"
-                )}
-              </Button>
             </form>
           </CardContent>
         </Card>
@@ -191,13 +208,12 @@ export default function TopicalAuthorityPage() {
         {/* Loading State */}
         {loading && <TopicalAuthoritySkeleton />}
 
-        {/* Empty State Feature Preview - Keeping same as before */}
         {!result && !loading && (
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto opacity-90">
             {/* Feature 1: Cluster Visualization */}
             <div className="relative group">
               <div className="absolute inset-0 bg-emerald-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
+              <Card className="relative h-full bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50 overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
                 <CardHeader className="pb-2">
                   <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center mb-3">
                     <Network className="w-5 h-5 text-blue-600" />
@@ -222,7 +238,7 @@ export default function TopicalAuthorityPage() {
             {/* Feature 2: Authority Score */}
             <div className="relative group mt-8 md:mt-0">
               <div className="absolute inset-0 bg-purple-100/50 rounded-3xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform rotate-1 group-hover:rotate-2 transition-transform duration-500">
+              <Card className="relative h-full bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50 overflow-hidden transform rotate-1 group-hover:rotate-2 transition-transform duration-500">
                 <CardHeader className="pb-2">
                   <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center mb-3">
                     <Layers className="w-5 h-5 text-purple-600" />
@@ -321,7 +337,7 @@ export default function TopicalAuthorityPage() {
                   type="secondary"
                   icon={<Network className="w-4 h-4" />}
                 />
-                <Card className="sm:col-span-2 border border-border/50 shadow-none rounded-2xl bg-white dark:bg-zinc-900 p-6 flex flex-col md:flex-row items-center gap-6">
+                <Card className="sm:col-span-2 bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none rounded-2xl p-6 ring-1 ring-border/50 flex flex-col md:flex-row items-center gap-6">
                   <div className="flex-1 space-y-2">
                     <h3 className="text-lg font-semibold flex items-center gap-2">
                       <AlertTriangle className="w-5 h-5 text-orange-500" />
@@ -374,7 +390,7 @@ export default function TopicalAuthorityPage() {
                 value="visual"
                 className="space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300"
               >
-                <Card className="border-none shadow-none bg-transparent">
+                <Card className="bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50 rounded-xl overflow-hidden p-1">
                   <TopicVisualGraph
                     initialNodes={result.visual_graph.nodes}
                     initialEdges={result.visual_graph.edges}
@@ -397,7 +413,7 @@ export default function TopicalAuthorityPage() {
                 value="gaps"
                 className="space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300"
               >
-                <Card className="border border-border/50 bg-orange-50/50 dark:bg-orange-950/10">
+                <Card className="bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50">
                   <CardHeader>
                     <CardTitle className="text-orange-700 dark:text-orange-400">
                       Missing Pillars

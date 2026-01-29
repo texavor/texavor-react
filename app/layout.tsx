@@ -22,7 +22,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Texavor",
+    template: "%s",
     default: "Texavor",
   },
   description:

@@ -1,11 +1,5 @@
 "use client";
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { HelpCircle, Plus, X } from "lucide-react";
 
 export default function FAQ() {
@@ -70,36 +64,28 @@ export default function FAQ() {
 
         <div className="max-w-3xl mx-auto space-y-4">
           {faqs.map((faq, index) => (
-            <Accordion
+            <details
               key={index}
-              type="single"
-              collapsible
-              className="bg-white rounded-2xl border border-gray-100 shadow-xs hover:shadow-sm transition-all duration-300"
+              className="group bg-white rounded-2xl border border-gray-100 shadow-xs hover:shadow-sm transition-all duration-300 open:ring-1 open:ring-primary/5"
             >
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="border-none px-6"
-              >
-                <AccordionTrigger className="text-left font-semibold text-gray-900 hover:text-primary transition-colors font-poppins py-5 text-sm hover:no-underline [&>svg]:hidden group">
-                  <span className="flex-1">{faq.question}</span>
-                  {/* Custom Toggle Icon */}
-                  <div className="flex-shrink-0 ml-4 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center transition-all duration-300 group-data-[state=open]:bg-primary/20">
-                    <Plus
-                      className="w-3.5 h-3.5 text-primary group-data-[state=open]:hidden"
-                      strokeWidth={3}
-                    />
-                    <X
-                      className="w-3.5 h-3.5 text-primary hidden group-data-[state=open]:block"
-                      strokeWidth={3}
-                    />
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="text-gray-600 font-inter pb-5 text-sm leading-relaxed">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+              <summary className="flex items-center justify-between w-full px-6 py-5 text-left font-semibold text-gray-900 hover:text-primary transition-colors font-poppins text-sm cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                <span className="flex-1">{faq.question}</span>
+                {/* Custom Toggle Icon */}
+                <div className="flex-shrink-0 ml-4 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center transition-all duration-300 group-open:bg-primary/20">
+                  <Plus
+                    className="w-3.5 h-3.5 text-primary group-open:hidden"
+                    strokeWidth={3}
+                  />
+                  <X
+                    className="w-3.5 h-3.5 text-primary hidden group-open:block"
+                    strokeWidth={3}
+                  />
+                </div>
+              </summary>
+              <div className="px-6 pb-5 text-gray-600 font-inter text-sm leading-relaxed animate-in slide-in-from-top-2 fade-in duration-200">
+                {faq.answer}
+              </div>
+            </details>
           ))}
 
           {/* Contact Us Card */}

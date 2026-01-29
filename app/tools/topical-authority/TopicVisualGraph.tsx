@@ -35,7 +35,7 @@ export default function TopicVisualGraph({
   );
 
   return (
-    <div className="h-[500px] w-full border border-border/50 rounded-xl overflow-hidden bg-slate-50 dark:bg-zinc-900/50 shadow-inner">
+    <div className="h-[500px] w-full border-none rounded-xl overflow-hidden bg-slate-50 dark:bg-zinc-900/50 shadow-inner ring-1 ring-border/50">
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -43,7 +43,7 @@ export default function TopicVisualGraph({
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         fitView
-        className="bg-slate-50 dark:bg-zinc-950"
+        className="bg-slate-50 dark:bg-zinc-950 [&_.react-flow__pane]:cursor-default [&_.react-flow__pane]:!text-black"
         defaultEdgeOptions={{
           type: "smoothstep",
           animated: true,

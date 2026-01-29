@@ -3,6 +3,8 @@
 import { useForm } from "@tanstack/react-form";
 import { zodValidator } from "@tanstack/zod-form-adapter";
 import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
+import { Turnstile } from "@marsidev/react-turnstile";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -78,10 +80,10 @@ interface AuditResult {
 
 const StatusIcon = ({ status }: { status: string }) => {
   if (status === "pass")
-    return <CheckCircle className="w-5 h-5 text-white flex-shrink-0" />;
+    return <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />;
   if (status === "fail")
-    return <XCircle className="w-5 h-5 text-red-400 flex-shrink-0" />;
-  return <AlertTriangle className="w-5 h-5 text-yellow-400 flex-shrink-0" />;
+    return <XCircle className="w-5 h-5 text-red-600 flex-shrink-0" />;
+  return <AlertTriangle className="w-5 h-5 text-yellow-600 flex-shrink-0" />;
 };
 
 const AuditList = ({ checks }: { checks: AuditResult["checks"] }) => (
@@ -90,17 +92,13 @@ const AuditList = ({ checks }: { checks: AuditResult["checks"] }) => (
       <div
         key={key}
         className="flex items-start gap-3 p-3 bg-white dark:bg-zinc-800/50 rounded-lg border border-gray-100 dark:border-zinc-800"
-        style={{
-          background:
-            "radial-gradient(circle at 10% 90%, #1a5d3a 0%, transparent 60%), linear-gradient(to top right, #104127 0%, #0d3520 100%)",
-        }}
       >
         <div className="mt-0.5">
           <StatusIcon status={check.status} />
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between">
-            <span className="font-semibold text-sm capitalize text-white dark:text-gray-100">
+            <span className="font-semibold text-sm capitalize text-black dark:text-gray-100">
               {key.replace("_", " ")}
             </span>
             {check.value && (
@@ -109,7 +107,7 @@ const AuditList = ({ checks }: { checks: AuditResult["checks"] }) => (
               </span>
             )}
           </div>
-          <p className="text-xs text-gray-200 dark:text-gray-400 mt-0.5 leading-snug">
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 leading-snug">
             {check.message}
           </p>
         </div>
@@ -127,13 +125,20 @@ const dummyRadarData = [
 ];
 
 export default function WebsiteAuditorPage() {
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
+
   const mutation = useMutation({
     mutationFn: async (values: { url: string }) => {
       // For now, let's stick to the real API call if requested, but user said "do this" based on doc.
       // Assuming endpoint exists or we mock it. The prompt implies implementing based on doc.
       const response = await axiosInstance.get(
         "/api/v1/public/tools/analyze_website",
-        { params: values },
+        {
+          params: values,
+          headers: {
+            "X-Turnstile-Token": turnstileToken,
+          },
+        },
       );
       return response.data as AuditResult;
     },
@@ -166,7 +171,7 @@ export default function WebsiteAuditorPage() {
 
   return (
     <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
-      <div className="container px-4 mx-auto pb-20">
+      <div className="container max-w-7xl px-4 mx-auto pb-20">
         {/* Header */}
         <div className="text-center mb-12 space-y-4">
           <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary to-green-600 bg-clip-text text-transparent pb-2 font-poppins">
@@ -187,48 +192,56 @@ export default function WebsiteAuditorPage() {
                 e.stopPropagation();
                 form.handleSubmit();
               }}
-              className="flex flex-col md:flex-row gap-4 items-center md:items-start"
+              className="flex flex-col gap-4"
             >
-              <div className="flex-1 w-full space-y-2">
-                <Label htmlFor="url" className="sr-only">
-                  Website URL
-                </Label>
-                <form.Field
-                  name="url"
-                  children={(field) => (
-                    <div className="relative">
-                      <Globe className="absolute left-3 top-3.5 w-5 h-5 text-muted-foreground" />
-                      <Input
-                        id={field.name}
-                        name={field.name}
-                        value={field.state.value}
-                        onBlur={field.handleBlur}
-                        onChange={(e) => field.handleChange(e.target.value)}
-                        placeholder="https://texavor.com"
-                        className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
-                      />
-                      {field.state.meta.errors ? (
-                        <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
-                          {field?.state?.meta?.errors[0]?.message}
-                        </p>
-                      ) : null}
-                    </div>
+              <div className="flex flex-col md:flex-row gap-4 items-center md:items-start w-full">
+                <div className="flex-1 w-full space-y-2">
+                  <Label htmlFor="url" className="sr-only">
+                    Website URL
+                  </Label>
+                  <form.Field
+                    name="url"
+                    children={(field) => (
+                      <div className="relative">
+                        <Globe className="absolute left-3 top-3.5 w-5 h-5 text-muted-foreground" />
+                        <Input
+                          id={field.name}
+                          name={field.name}
+                          value={field.state.value}
+                          onBlur={field.handleBlur}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                          placeholder="https://texavor.com"
+                          className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
+                        />
+                        {field.state.meta.errors ? (
+                          <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
+                            {field?.state?.meta?.errors[0]?.message}
+                          </p>
+                        ) : null}
+                      </div>
+                    )}
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="h-12 px-8 min-w-[140px] font-semibold text-lg bg-[#104127] hover:bg-[#0c311d] text-white shadow-lg hover:shadow-xl transition-all"
+                  disabled={loading || !turnstileToken}
+                >
+                  {loading ? (
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  ) : (
+                    "Audit"
                   )}
+                </Button>
+              </div>
+              <div className="flex justify-start">
+                <Turnstile
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                  onSuccess={(token) => setTurnstileToken(token)}
                 />
               </div>
-
-              <Button
-                type="submit"
-                size="lg"
-                className="h-12 px-8 min-w-[140px] font-semibold text-lg bg-[#104127] hover:bg-[#0c311d] text-white shadow-lg hover:shadow-xl transition-all"
-                disabled={loading}
-              >
-                {loading ? (
-                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                ) : (
-                  "Audit"
-                )}
-              </Button>
             </form>
           </CardContent>
         </Card>

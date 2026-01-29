@@ -72,8 +72,8 @@ export default function ClusterTable({ cluster }: ClusterTableProps) {
   };
 
   return (
-    <div className="rounded-xl border border-border/50 overflow-hidden shadow-sm bg-white dark:bg-zinc-900">
-      <div className="p-4 bg-slate-50 dark:bg-zinc-900/50 border-b border-border/50 flex justify-between items-center">
+    <div className="rounded-xl overflow-hidden bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50">
+      <div className="p-4 bg-slate-100/80 dark:bg-zinc-800/50 border-b border-border/20 flex justify-between items-center">
         <h3 className="font-poppins font-semibold text-lg flex items-center gap-2">
           {cluster.name}
           <Badge variant="outline" className="ml-2 bg-white dark:bg-zinc-800">
@@ -89,12 +89,20 @@ export default function ClusterTable({ cluster }: ClusterTableProps) {
         </div>
       </div>
       <Table>
-        <TableHeader>
-          <TableRow className="hover:bg-transparent">
-            <TableHead className="w-[40%]">Keyword</TableHead>
-            <TableHead>Intent</TableHead>
-            <TableHead>Difficulty</TableHead>
-            <TableHead className="text-right">Volume</TableHead>
+        <TableHeader className="bg-slate-100/80 dark:bg-zinc-800/50">
+          <TableRow className="bg-primary hover:bg-primary border-b border-border/10">
+            <TableHead className="w-[40%] text-xs uppercase tracking-wider font-semibold text-gray-100">
+              Keyword
+            </TableHead>
+            <TableHead className="text-xs uppercase tracking-wider font-semibold text-gray-100">
+              Intent
+            </TableHead>
+            <TableHead className="text-xs uppercase tracking-wider font-semibold text-gray-100">
+              Difficulty
+            </TableHead>
+            <TableHead className="text-right text-xs uppercase tracking-wider font-semibold text-gray-100">
+              Volume
+            </TableHead>
             <TableHead className="w-[50px]"></TableHead>
           </TableRow>
         </TableHeader>

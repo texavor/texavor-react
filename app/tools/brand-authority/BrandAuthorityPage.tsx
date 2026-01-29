@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
+import { Turnstile } from "@marsidev/react-turnstile";
 import { axiosInstance } from "@/lib/axiosInstance";
 import {
   Card,
@@ -10,6 +11,7 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
+import MetricCard from "../ai-visibility-calculator/MetriCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -70,42 +72,10 @@ interface DomainAuthorityResponse {
 
 // --- Components ---
 
-function StatCard({
-  icon: Icon,
-  label,
-  value,
-  subtext,
-  className,
-}: {
-  icon: any;
-  label: string;
-  value: string | number;
-  subtext: string;
-  className?: string;
-}) {
-  return (
-    <Card
-      className={`border-border/50 shadow-sm bg-white dark:bg-zinc-900 ${className}`}
-    >
-      <CardContent className="p-6 flex items-center justify-between">
-        <div>
-          <p className="text-sm font-medium text-muted-foreground font-inter">
-            {label}
-          </p>
-          <div className="text-3xl font-bold mt-1 font-poppins">{value}</div>
-          <p className="text-xs text-muted-foreground mt-1">{subtext}</p>
-        </div>
-        <div className="p-3 rounded-full bg-primary/10 text-primary">
-          <Icon className="w-6 h-6" />
-        </div>
-      </CardContent>
-    </Card>
-  );
-}
-
 export default function BrandAuthorityPage() {
   const [result, setResult] = useState<DomainAuthorityResponse | null>(null);
   const [showLimitModal, setShowLimitModal] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
 
   // Form
   const form = useForm({
@@ -126,6 +96,11 @@ export default function BrandAuthorityPage() {
       const response = await axiosInstance.post(
         "/api/v1/public/tools/brand_authority",
         values,
+        {
+          headers: {
+            "X-Turnstile-Token": turnstileToken,
+          },
+        },
       );
       return response.data as DomainAuthorityResponse;
     },
@@ -221,15 +196,15 @@ export default function BrandAuthorityPage() {
         )}
 
         {/* Input Card */}
-        <Card className="mb-16 bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50 max-w-3xl">
-          <CardContent className="px-4 py-1">
+        <Card className="mb-16 bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
+          <CardContent className="px-6 py-2">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 form.handleSubmit();
               }}
-              className="flex flex-col md:flex-row gap-4 items-center md:items-start"
+              className="flex flex-col md:flex-row gap-4 items-center"
             >
               <div className="flex-1 w-full space-y-2">
                 <Label htmlFor="url" className="sr-only">
@@ -259,18 +234,26 @@ export default function BrandAuthorityPage() {
                   )}
                 />
               </div>
-              <Button
-                type="submit"
-                size="lg"
-                className="h-12 px-8 min-w-[140px] font-semibold text-lg bg-[#104127] hover:bg-[#0c311d] text-white shadow-lg hover:shadow-xl transition-all"
-                disabled={checkMutation.isPending}
-              >
-                {checkMutation.isPending ? (
-                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                ) : (
-                  "Check Authority"
-                )}
-              </Button>
+              <div className="flex flex-col gap-4">
+                <div>
+                  <Turnstile
+                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                    onSuccess={(token) => setTurnstileToken(token)}
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="h-12 w-48 font-semibold text-lg bg-[#104127] hover:bg-[#0c311d] text-white shadow-lg hover:shadow-xl transition-all shrink-0"
+                  disabled={checkMutation.isPending || !turnstileToken}
+                >
+                  {checkMutation.isPending ? (
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  ) : (
+                    "Check Authority"
+                  )}
+                </Button>
+              </div>
             </form>
           </CardContent>
         </Card>
@@ -357,29 +340,33 @@ export default function BrandAuthorityPage() {
               {/* Metrics Grid */}
               <div className="lg:col-span-8 flex flex-col gap-6">
                 <div className="grid sm:grid-cols-2 gap-6 h-full">
-                  <StatCard
-                    icon={LinkIcon}
+                  <MetricCard
                     label="Total Backlinks"
                     value={formatNumber(result.metrics.backlinks)}
+                    type="secondary"
                     subtext="External links to site"
+                    icon={<LinkIcon className="w-4 h-4" />}
                   />
-                  <StatCard
-                    icon={Users}
+                  <MetricCard
                     label="Referring Domains"
                     value={formatNumber(result.metrics.referring_domains)}
+                    type="secondary"
                     subtext="Unique domains linking"
+                    icon={<Users className="w-4 h-4" />}
                   />
-                  <StatCard
-                    icon={Search}
+                  <MetricCard
                     label="Organic Keywords"
                     value={formatNumber(result.metrics.organic_keywords)}
-                    subtext="Ranking in Top 100"
+                    type="secondary"
+                    subtext="Total ranking keywords"
+                    icon={<Search className="w-4 h-4" />}
                   />
-                  <StatCard
-                    icon={BarChart}
+                  <MetricCard
                     label="Est. Monthly Traffic"
                     value={formatNumber(result.metrics.estimated_traffic)}
+                    type="secondary"
                     subtext="From organic search"
+                    icon={<BarChart className="w-4 h-4" />}
                   />
                 </div>
               </div>

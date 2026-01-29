@@ -1,5 +1,8 @@
 "use client";
 
+import { useState } from "react";
+import { Turnstile } from "@marsidev/react-turnstile";
+
 import { useForm } from "@tanstack/react-form";
 import { zodValidator } from "@tanstack/zod-form-adapter";
 import { useMutation } from "@tanstack/react-query";
@@ -125,11 +128,18 @@ const dummyTrendData = [
 ];
 
 export default function AiScorePage() {
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
+
   const mutation = useMutation({
     mutationFn: async (values: { keyword: string; website?: string }) => {
       const response = await axiosInstance.get(
         "/api/v1/public/tools/analyze_keyword",
-        { params: values },
+        {
+          params: values,
+          headers: {
+            "X-Turnstile-Token": turnstileToken,
+          },
+        },
       );
       return response.data as AnalysisResult;
     },
@@ -193,49 +203,58 @@ export default function AiScorePage() {
                 e.stopPropagation();
                 form.handleSubmit();
               }}
-              className="flex flex-col md:flex-row gap-4 items-center md:items-start"
+              className="flex flex-col gap-4"
             >
-              <div className="flex-1 w-full space-y-2">
-                <Label htmlFor="keyword" className="sr-only">
-                  Keyword
-                </Label>
-                <form.Field
-                  name="keyword"
-                  children={(field) => (
-                    <div className="relative">
-                      <Search className="absolute left-3 top-3.5 w-5 h-5 text-muted-foreground" />
-                      <Input
-                        id={field.name}
-                        name={field.name}
-                        value={field.state.value}
-                        onBlur={field.handleBlur}
-                        onChange={(e) => field.handleChange(e.target.value)}
-                        placeholder="e.g. how to bake sourdough"
-                        className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
-                      />
-                      {field.state.meta.errors ? (
-                        <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
-                          {/* @ts-ignore */}
-                          {field?.state?.meta?.errors[0]?.message}
-                        </p>
-                      ) : null}
-                    </div>
+              <div className="flex flex-col md:flex-row gap-4 items-center md:items-start w-full">
+                <div className="flex-1 w-full space-y-2">
+                  <Label htmlFor="keyword" className="sr-only">
+                    Keyword
+                  </Label>
+                  <form.Field
+                    name="keyword"
+                    children={(field) => (
+                      <div className="relative">
+                        <Search className="absolute left-3 top-3.5 w-5 h-5 text-muted-foreground" />
+                        <Input
+                          id={field.name}
+                          name={field.name}
+                          value={field.state.value}
+                          onBlur={field.handleBlur}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                          placeholder="e.g. how to bake sourdough"
+                          className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
+                        />
+                        {field.state.meta.errors ? (
+                          <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
+                            {/* @ts-ignore */}
+                            {field?.state?.meta?.errors[0]?.message}
+                          </p>
+                        ) : null}
+                      </div>
+                    )}
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="h-12 px-8 min-w-[140px] font-semibold text-lg bg-[#104127] hover:bg-[#0c311d] text-white shadow-lg hover:shadow-xl transition-all"
+                  disabled={loading || !turnstileToken}
+                >
+                  {loading ? (
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  ) : (
+                    "Analyze"
                   )}
-                />
+                </Button>
               </div>
 
-              <Button
-                type="submit"
-                size="lg"
-                className="h-12 px-8 min-w-[140px] font-semibold text-lg bg-[#104127] hover:bg-[#0c311d] text-white shadow-lg hover:shadow-xl transition-all"
-                disabled={loading}
-              >
-                {loading ? (
-                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                ) : (
-                  "Analyze"
-                )}
-              </Button>
+              <div className="flex justify-start">
+                <Turnstile
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                  onSuccess={(token) => setTurnstileToken(token)}
+                />
+              </div>
             </form>
           </CardContent>
         </Card>
@@ -436,7 +455,7 @@ export default function AiScorePage() {
                 <Card className="border border-border/50 shadow-none rounded-2xl bg-primary/5 dark:bg-zinc-900 overflow-hidden">
                   <div className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
                   <CardHeader className="pb-2 pt-5">
-                    <CardTitle className="text-2xl flex items-center gap-2 font-poppins">
+                    <CardTitle className="text-lg font-semibold flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400">
                       AI Field Strategy
                     </CardTitle>
                   </CardHeader>
@@ -536,7 +555,7 @@ export default function AiScorePage() {
               {/* Prompt Ideas (Widget 4) */}
               <Card className="border border-border/50 shadow-none rounded-xl bg-primary/5 dark:bg-zinc-900 h-full">
                 <CardHeader className="pb-3 ">
-                  <CardTitle className="text-2xl flex font-poppins items-center gap-2">
+                  <CardTitle className="text-lg font-semibold flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400">
                     AI Prompt Ideas
                   </CardTitle>
                   <CardDescription className="text-inter text-gray-500">
@@ -549,23 +568,19 @@ export default function AiScorePage() {
                       <li
                         key={i}
                         className="flex items-center min-h-[4rem] h-auto gap-3 p-3 rounded-2xl bg-gray-50 dark:bg-zinc-800/50 border border-border/50 hover:border-primary/20 hover:bg-white dark:hover:bg-zinc-800 transition-all group relative"
-                        style={{
-                          background:
-                            "radial-gradient(circle at 10% 90%, #1a5d3a 0%, transparent 60%), linear-gradient(to top right, #104127 0%, #0d3520 100%)",
-                        }}
                       >
                         {/* Content with Tooltip */}
                         <div className="flex-1 min-w-0 relative">
-                          <p className="text-sm font-medium text-white break-words whitespace-normal leading-tight cursor-help">
+                          <p className="text-sm font-medium text-black break-words whitespace-normal leading-tight cursor-help">
                             {prompt}
                           </p>
-                          <p className="text-xs text-gray-200">
+                          <p className="text-xs text-gray-500">
                             AI Generated Prompt
                           </p>
 
                           {/* Custom Tooltip */}
                           <div className="absolute bottom-full left-0 mb-2 w-max max-w-[250px] hidden group-hover:block z-50">
-                            <div className="bg-slate-900 text-white text-xs rounded-lg py-2 px-3 shadow-xl">
+                            <div className="bg-white text-black text-xs rounded-lg py-2 px-3 shadow-xl">
                               {prompt}
                               <div className="absolute top-full left-4 -mt-1 border-4 border-transparent border-t-slate-900"></div>
                             </div>
@@ -576,7 +591,7 @@ export default function AiScorePage() {
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="h-8 w-8 text-white hover:text-white hover:bg-primary/10 rounded-full transition-colors"
+                          className="h-8 w-8 text-gray-700 hover:text-gray-700 hover:bg-primary/10 rounded-full transition-colors"
                           onClick={() => copyToClipboard(prompt)}
                         >
                           <Copy className="w-4 h-4" />
@@ -590,7 +605,7 @@ export default function AiScorePage() {
               {/* Keyword Ideas (Widget 5) */}
               <Card className="border border-border/50 shadow-none rounded-xl bg-primary/5 dark:bg-zinc-900 h-full">
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-2xl flex items-center gap-2">
+                  <CardTitle className="text-lg font-semibold flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400">
                     Keyword Ideas
                   </CardTitle>
                   <CardDescription>
@@ -603,26 +618,22 @@ export default function AiScorePage() {
                       <li
                         key={i}
                         className="flex items-center min-h-[4rem] h-auto gap-3 p-3 rounded-2xl bg-gray-50 dark:bg-zinc-800/50 border border-border/50 hover:border-primary/20 hover:bg-white dark:hover:bg-zinc-800 transition-all group relative"
-                        style={{
-                          background:
-                            "radial-gradient(circle at 10% 90%, #1a5d3a 0%, transparent 60%), linear-gradient(to top right, #104127 0%, #0d3520 100%)",
-                        }}
                       >
                         {/* Content with Tooltip */}
                         <div className="flex-1 min-w-0 relative">
-                          <p className="text-sm font-medium text-white break-words whitespace-normal leading-tight cursor-help">
+                          <p className="text-sm font-medium text-black break-words whitespace-normal leading-tight cursor-help">
                             {idea?.term}
                           </p>
                           {idea?.vol &&
                             idea.vol.toLowerCase() !== "unknown" && (
-                              <p className="text-xs text-white font-mono mt-0.5">
+                              <p className="text-xs text-gray-500 font-mono mt-0.5">
                                 {idea.vol}
                               </p>
                             )}
 
                           {/* Custom Tooltip */}
                           <div className="absolute bottom-full left-0 mb-2 w-max max-w-[250px] hidden group-hover:block z-50">
-                            <div className="bg-slate-900 text-white text-xs rounded-lg py-2 px-3 shadow-xl">
+                            <div className="bg-white text-black text-xs rounded-lg py-2 px-3 shadow-xl">
                               {idea?.term}
                               <div className="absolute top-full left-4 -mt-1 border-4 border-transparent border-t-slate-900"></div>
                             </div>
@@ -633,7 +644,7 @@ export default function AiScorePage() {
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="h-8 w-8 text-white hover:text-white hover:bg-primary/10 rounded-full transition-colors"
+                          className="h-8 w-8 text-gray-700 hover:text-gray-700 hover:bg-primary/10 rounded-full transition-colors"
                           onClick={() => copyToClipboard(idea?.term)}
                         >
                           <Copy className="w-4 h-4" />

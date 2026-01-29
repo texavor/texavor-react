@@ -4,6 +4,8 @@ import { useForm } from "@tanstack/react-form";
 import { zodValidator } from "@tanstack/zod-form-adapter";
 import { useMutation } from "@tanstack/react-query";
 import * as z from "zod";
+import { useState } from "react";
+import { Turnstile } from "@marsidev/react-turnstile";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -70,11 +72,18 @@ interface AuditResult {
 }
 
 export default function ContentAuditPage() {
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
+
   const mutation = useMutation({
     mutationFn: async (values: { url: string }) => {
       const response = await axiosInstance.post(
         "/api/v1/public/tools/content_audit",
         values,
+        {
+          headers: {
+            "X-Turnstile-Token": turnstileToken,
+          },
+        },
       );
       return response.data as AuditResult;
     },
@@ -134,46 +143,60 @@ export default function ContentAuditPage() {
     label: string;
     value: any;
     status?: string;
-  }) => (
-    <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-zinc-800/50 rounded-lg border border-border/50">
-      <div className="flex items-center gap-3">
-        <StatusIcon
-          status={
-            status ||
-            (value === true
-              ? "present"
-              : value === false
-                ? "missing"
-                : undefined)
-          }
-        />
-        <span className="font-medium text-sm text-foreground capitalize">
-          {label.replace(/_/g, " ")}
-        </span>
-      </div>
-      <div className="flex items-center gap-2">
-        <span className="text-sm font-mono text-muted-foreground">
-          {typeof value === "boolean" ? (value ? "Yes" : "No") : value}
-        </span>
-        {status && (
-          <span
-            className={cn(
-              "text-xs px-2 py-0.5 rounded font-bold uppercase",
-              status.toLowerCase() === "good" ||
-                status.toLowerCase() === "exact match"
-                ? "bg-emerald-100 text-emerald-700"
-                : status.toLowerCase() === "too short" ||
-                    status.toLowerCase() === "missing"
-                  ? "bg-red-100 text-red-700"
-                  : "bg-amber-100 text-amber-700",
-            )}
-          >
-            {status}
+  }) => {
+    const isRedundant =
+      typeof value === "string" &&
+      status &&
+      value.toLowerCase() === status.toLowerCase();
+
+    // For specific cases like "0" value and "Good" status, we want both.
+    // The redundancy check mainly handles "Good" + "Good" cases.
+
+    return (
+      <div className="flex justify-between items-center p-3 rounded-lg bg-white dark:bg-zinc-800 border border-border/50 shadow-none">
+        <div className="flex items-center gap-3">
+          <StatusIcon
+            status={
+              status ||
+              (value === true
+                ? "present"
+                : value === false
+                  ? "missing"
+                  : undefined)
+            }
+          />
+          <span className="font-medium text-sm text-foreground capitalize">
+            {label.replace(/_/g, " ")}
           </span>
-        )}
+        </div>
+        <div className="flex items-center gap-2">
+          {!isRedundant && (
+            <span className="text-sm font-mono text-muted-foreground">
+              {typeof value === "boolean" ? (value ? "Yes" : "No") : value}
+            </span>
+          )}
+          {status && (
+            <span
+              className={cn(
+                "text-xs px-2 py-0.5 rounded font-bold uppercase",
+                status.toLowerCase() === "good" ||
+                  status.toLowerCase() === "exact match" ||
+                  status.toLowerCase() === "optimal" ||
+                  status.toLowerCase() === "present"
+                  ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"
+                  : status.toLowerCase() === "too short" ||
+                      status.toLowerCase() === "missing"
+                    ? "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
+                    : "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400",
+              )}
+            >
+              {status}
+            </span>
+          )}
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
@@ -198,49 +221,58 @@ export default function ContentAuditPage() {
                 e.stopPropagation();
                 form.handleSubmit();
               }}
-              className="flex flex-col md:flex-row gap-4 items-center md:items-start"
+              className="flex flex-col gap-4"
             >
-              <div className="flex-1 w-full space-y-2">
-                <Label htmlFor="url" className="sr-only">
-                  URL
-                </Label>
-                <form.Field
-                  name="url"
-                  children={(field) => (
-                    <div className="relative">
-                      <Layout className="absolute left-3 top-3.5 w-5 h-5 text-muted-foreground" />
-                      <Input
-                        id={field.name}
-                        name={field.name}
-                        value={field.state.value}
-                        onBlur={field.handleBlur}
-                        onChange={(e) => field.handleChange(e.target.value)}
-                        placeholder="https://example.com/blog/article"
-                        className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
-                      />
-                      {field.state.meta.errors ? (
-                        <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
-                          {/* @ts-ignore */}
-                          {field?.state?.meta?.errors[0]?.message}
-                        </p>
-                      ) : null}
-                    </div>
+              <div className="flex flex-col md:flex-row gap-4 items-center md:items-start w-full">
+                <div className="flex-1 w-full space-y-2">
+                  <Label htmlFor="url" className="sr-only">
+                    URL
+                  </Label>
+                  <form.Field
+                    name="url"
+                    children={(field) => (
+                      <div className="relative">
+                        <Layout className="absolute left-3 top-3.5 w-5 h-5 text-muted-foreground" />
+                        <Input
+                          id={field.name}
+                          name={field.name}
+                          value={field.state.value}
+                          onBlur={field.handleBlur}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                          placeholder="https://example.com/blog/article"
+                          className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
+                        />
+                        {field.state.meta.errors ? (
+                          <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
+                            {/* @ts-ignore */}
+                            {field?.state?.meta?.errors[0]?.message}
+                          </p>
+                        ) : null}
+                      </div>
+                    )}
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="h-12 px-8 min-w-[140px] font-semibold text-lg bg-[#104127] hover:bg-[#0c311d] text-white shadow-lg hover:shadow-xl transition-all"
+                  disabled={loading || !turnstileToken}
+                >
+                  {loading ? (
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  ) : (
+                    "Audit URL"
                   )}
-                />
+                </Button>
               </div>
 
-              <Button
-                type="submit"
-                size="lg"
-                className="h-12 px-8 min-w-[140px] font-semibold text-lg bg-[#104127] hover:bg-[#0c311d] text-white shadow-lg hover:shadow-xl transition-all"
-                disabled={loading}
-              >
-                {loading ? (
-                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                ) : (
-                  "Audit URL"
-                )}
-              </Button>
+              <div className="flex justify-start">
+                <Turnstile
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                  onSuccess={(token) => setTurnstileToken(token)}
+                />
+              </div>
             </form>
           </CardContent>
         </Card>
@@ -259,36 +291,95 @@ export default function ContentAuditPage() {
         {/* Empty State Feature Preview */}
         {!result && !loading && (
           <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto opacity-90">
-            {[
-              {
-                icon: Zap,
-                title: "Technical Scan",
-                desc: "Speed & Meta Check",
-              },
-              {
-                icon: FileText,
-                title: "Content Quality",
-                desc: "Depth & Readability",
-              },
-              {
-                icon: LinkIcon,
-                title: "Structure Analysis",
-                desc: "Links & Tags",
-              },
-            ].map((item, i) => (
-              <Card
-                key={i}
-                className="border border-border/20 shadow-none bg-white dark:bg-zinc-900 rounded-xl"
-              >
-                <CardHeader className="text-center pb-2">
-                  <div className="w-12 h-12 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                    <item.icon className="w-6 h-6 text-primary" />
+            {/* Feature 1: Technical Scan */}
+            <div className="relative group">
+              <div className="absolute inset-0 bg-emerald-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
+              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
+                <CardHeader className="pb-2">
+                  <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center mb-3">
+                    <Zap className="w-5 h-5 text-emerald-600" />
                   </div>
-                  <CardTitle className="text-lg">{item.title}</CardTitle>
-                  <CardDescription>{item.desc}</CardDescription>
+                  <CardTitle className="text-xl font-poppins">
+                    Technical Scan
+                  </CardTitle>
+                  <CardDescription className="font-inter">
+                    Speed & Meta Check
+                  </CardDescription>
                 </CardHeader>
+                <CardContent className="flex items-center justify-center p-6">
+                  <div className="space-y-2 w-full max-w-[150px] opacity-60">
+                    <div className="flex items-center gap-2">
+                      <div className="h-2 w-full bg-emerald-100 rounded-full overflow-hidden">
+                        <div className="h-full w-[80%] bg-emerald-500"></div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="h-2 w-full bg-emerald-100 rounded-full overflow-hidden">
+                        <div className="h-full w-[60%] bg-emerald-500"></div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="h-2 w-full bg-emerald-100 rounded-full overflow-hidden">
+                        <div className="h-full w-[90%] bg-emerald-500"></div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
               </Card>
-            ))}
+            </div>
+
+            {/* Feature 2: Content Quality */}
+            <div className="relative group mt-8 md:mt-0">
+              <div className="absolute inset-0 bg-blue-100/50 rounded-3xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500"></div>
+              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform rotate-1 group-hover:rotate-2 transition-transform duration-500">
+                <CardHeader className="pb-2">
+                  <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center mb-3">
+                    <FileText className="w-5 h-5 text-blue-600" />
+                  </div>
+                  <CardTitle className="text-xl font-poppins">
+                    Content Quality
+                  </CardTitle>
+                  <CardDescription className="font-inter">
+                    Depth & Readability
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex items-center justify-center p-6">
+                  <div className="space-y-2 w-full max-w-[120px] opacity-60 p-3 border border-blue-100 rounded bg-white dark:bg-zinc-950">
+                    <div className="h-2 w-full bg-blue-100 rounded"></div>
+                    <div className="h-2 w-[80%] bg-blue-100 rounded"></div>
+                    <div className="h-2 w-[90%] bg-blue-100 rounded"></div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Feature 3: Structure Analysis */}
+            <div className="relative group mt-8 md:mt-0">
+              <div className="absolute inset-0 bg-purple-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
+              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
+                <CardHeader className="pb-2">
+                  <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center mb-3">
+                    <LinkIcon className="w-5 h-5 text-purple-600" />
+                  </div>
+                  <CardTitle className="text-xl font-poppins">
+                    Structure Analysis
+                  </CardTitle>
+                  <CardDescription className="font-inter">
+                    Links & Tags
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex items-center justify-center p-6">
+                  <div className="flex flex-col items-center gap-1 opacity-60">
+                    <div className="w-8 h-8 rounded-full border-2 border-purple-200"></div>
+                    <div className="h-4 w-0.5 bg-purple-200"></div>
+                    <div className="flex gap-4">
+                      <div className="w-6 h-6 rounded-full border-2 border-purple-200"></div>
+                      <div className="w-6 h-6 rounded-full border-2 border-purple-200"></div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         )}
 
@@ -378,12 +469,12 @@ export default function ContentAuditPage() {
                   icon={<FileText className="w-4 h-4" />}
                   subtext={result.analysis.content_quality.content_status}
                 />
-                <Card className="sm:col-span-2 bg-white dark:bg-zinc-900 border border-border/50 rounded-xl p-6 flex flex-col justify-center">
-                  <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
+                <Card className="sm:col-span-2 bg-primary/5 shadow-none dark:bg-zinc-900 border border-border/50 rounded-xl p-6 flex flex-col justify-center">
+                  <h3 className="text-lg font-medium flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400 mb-4">
                     <AlertTriangle className="w-5 h-5 text-amber-500" />
                     Improvement Opportunities
                   </h3>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-col gap-3">
                     {Object.entries(result.analysis.on_page).map(
                       ([key, val]: any) => {
                         const status =
@@ -392,29 +483,21 @@ export default function ContentAuditPage() {
                             : typeof val === "string"
                               ? val
                               : "";
+
+                        // Error State (Too Short, Missing, etc)
                         if (
                           status === "Too Short" ||
                           status === "Missing" ||
-                          status === "Too Long"
+                          status === "Too Long" ||
+                          (status && status.includes("Recommended"))
                         ) {
                           return (
-                            <span
+                            <AnalysisItem
                               key={key}
-                              className="bg-red-50 text-red-700 border border-red-100 px-3 py-1 rounded text-sm font-medium capitalize"
-                            >
-                              Fix {key.replace(/_/g, " ")}
-                            </span>
-                          );
-                        }
-                        if (status && status.includes("Recommended")) {
-                          return (
-                            <span
-                              key={key}
-                              className="bg-amber-50 text-amber-700 border border-amber-100 px-3 py-1 rounded text-sm font-medium capitalize flex items-center gap-1"
-                            >
-                              <AlertTriangle className="w-3 h-3" />
-                              {key.replace(/_/g, " ")}: {status}
-                            </span>
+                              label={key}
+                              value=""
+                              status={status}
+                            />
                           );
                         }
                         return null;
@@ -422,10 +505,11 @@ export default function ContentAuditPage() {
                     )}
 
                     {result.analysis.structure.missing_alt_tags > 0 && (
-                      <span className="bg-amber-50 text-amber-700 border border-amber-100 px-3 py-1 rounded text-sm font-medium">
-                        Add Alt Tags (
-                        {result.analysis.structure.missing_alt_tags})
-                      </span>
+                      <AnalysisItem
+                        label="Images"
+                        value=""
+                        status={`Add Alt Tags (${result.analysis.structure.missing_alt_tags})`}
+                      />
                     )}
 
                     {/* Empty State for Improvements */}
@@ -438,9 +522,9 @@ export default function ContentAuditPage() {
                           !val.status.includes("Recommended")),
                     ) &&
                       result.analysis.structure.missing_alt_tags === 0 && (
-                        <div className="flex items-center gap-2 text-emerald-600 bg-emerald-50 px-3 py-2 rounded-lg border border-emerald-100 w-full">
-                          <CheckCircle className="w-5 h-5" />
-                          <span className="font-medium">
+                        <div className="w-full flex items-center gap-3 p-4 rounded-lg bg-emerald-100/50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-900/50 text-emerald-800 dark:text-emerald-300">
+                          <CheckCircle className="w-4 h-4 flex-shrink-0" />
+                          <span className="font-semibold text-sm">
                             Great job! No major issues found.
                           </span>
                         </div>
@@ -453,14 +537,14 @@ export default function ContentAuditPage() {
             {/* Analysis Detail Grids */}
             <div className="grid md:grid-cols-2 gap-6">
               {/* On-Page & Technical */}
-              <Card className="border border-border/50 shadow-none">
+              <Card className="border border-border/50 shadow-none bg-primary/5 dark:bg-zinc-900">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="text-lg font-medium flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400">
                     <Layout className="w-5 h-5 text-blue-500" />
                     On-Page & Technical
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-3">
+                <CardContent className="space-y-4">
                   <AnalysisItem
                     label="Title Tag"
                     value={result.analysis.on_page.title.value}
@@ -496,14 +580,14 @@ export default function ContentAuditPage() {
               </Card>
 
               {/* Quality & Structure */}
-              <Card className="border border-border/50 shadow-none">
+              <Card className="border border-border/50 shadow-none bg-primary/5 dark:bg-zinc-900">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="text-lg font-medium flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400">
                     <FileText className="w-5 h-5 text-emerald-500" />
                     Quality & Structure
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-3">
+                <CardContent className="space-y-4">
                   <AnalysisItem
                     label="Readability"
                     value={result.analysis.content_quality.readability_check}
@@ -544,9 +628,9 @@ export default function ContentAuditPage() {
             {/* Header Structure (New Section) */}
             {result.analysis.structure.header_structure &&
               result.analysis.structure.header_structure.length > 0 && (
-                <Card className="border border-border/50 shadow-none">
+                <Card className="border border-border/50 shadow-none bg-primary/5 dark:bg-zinc-900">
                   <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
+                    <CardTitle className="text-lg font-medium flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400">
                       <Layout className="w-5 h-5 text-purple-500" />
                       Header Structure
                     </CardTitle>
@@ -555,29 +639,26 @@ export default function ContentAuditPage() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-2 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
+                    <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
                       {result.analysis.structure.header_structure.map(
                         (header: any, index: number) => (
                           <div
                             key={index}
                             className={cn(
-                              "p-2 rounded border border-border/40 text-sm flex items-start gap-3",
-                              header.tag === "h1"
-                                ? "bg-purple-50 dark:bg-purple-900/20 border-purple-200"
-                                : "bg-slate-50 dark:bg-zinc-900/30",
+                              "p-3 rounded-lg bg-white border border-gray-100 dark:border-zinc-800 text-sm flex items-start gap-4 transition-colors",
                             )}
                           >
                             <span
                               className={cn(
-                                "font-mono font-bold uppercase text-xs px-1.5 py-0.5 rounded",
+                                "font-mono font-bold uppercase text-xs px-2 py-1 rounded shrink-0",
                                 header.tag === "h1"
                                   ? "bg-purple-100 text-purple-700"
-                                  : "bg-slate-200 text-slate-700",
+                                  : "bg-black/10 text-black",
                               )}
                             >
                               {header.tag}
                             </span>
-                            <span className="text-foreground/90 leading-tight line-clamp-2">
+                            <span className="text-black font-medium leading-relaxed">
                               {header.text}
                             </span>
                           </div>

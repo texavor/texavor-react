@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Turnstile } from "@marsidev/react-turnstile";
 import { useForm } from "@tanstack/react-form";
 import { zodValidator } from "@tanstack/zod-form-adapter";
 import { useMutation } from "@tanstack/react-query";
@@ -39,6 +40,7 @@ import { toast } from "sonner";
 import hljs from "highlight.js";
 import "highlight.js/styles/github-dark.css";
 import React from "react";
+import Image from "next/image";
 
 // --- Types & Schemas ---
 
@@ -73,6 +75,7 @@ interface ApiResponse {
 
 export default function FaqSchemaPage() {
   const [activeTab, setActiveTab] = useState<"manual" | "auto">("manual");
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
   const [qaPairs, setQaPairs] = useState<QaPair[]>([
     { question: "", answer: "" },
   ]);
@@ -85,8 +88,13 @@ export default function FaqSchemaPage() {
   const extractMutation = useMutation({
     mutationFn: async (values: { url: string }) => {
       const response = await axiosInstance.post(
-        "/api/tools/faq-extractor",
+        "/api/v1/public/tools/faq_schema_generator",
         values,
+        {
+          headers: {
+            "X-Turnstile-Token": turnstileToken,
+          },
+        },
       );
       return response.data as ApiResponse;
     },
@@ -198,7 +206,7 @@ export default function FaqSchemaPage() {
       <div className="container max-w-7xl px-4 mx-auto pb-20">
         {/* Header */}
         <div className="text-center mb-12 space-y-4">
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent pb-2 font-poppins">
+          <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary to-green-600 bg-clip-text text-transparent pb-2 font-poppins">
             FAQ Schema Generator
           </h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-inter">
@@ -221,7 +229,7 @@ export default function FaqSchemaPage() {
               </TabsList>
 
               <TabsContent value="manual" className="space-y-4">
-                <Card className="border-border/50 shadow-sm bg-white dark:bg-zinc-900">
+                <Card className="bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50">
                   <CardHeader>
                     <CardTitle>Questions & Answers</CardTitle>
                     <CardDescription>
@@ -232,7 +240,7 @@ export default function FaqSchemaPage() {
                     {qaPairs.map((pair, index) => (
                       <div
                         key={index}
-                        className="relative p-4 rounded-xl bg-slate-50 dark:bg-zinc-800/50 border border-border/50 space-y-3 group"
+                        className="relative p-4 rounded-xl bg-white dark:bg-zinc-950/50 border border-border/50 space-y-3 group"
                       >
                         <div className="flex justify-between items-start gap-4">
                           <div className="space-y-2 w-full">
@@ -243,7 +251,7 @@ export default function FaqSchemaPage() {
                                 updatePair(index, "question", e.target.value)
                               }
                               placeholder="e.g., What is your return policy?"
-                              className="bg-white dark:bg-zinc-900"
+                              className="bg-slate-50 dark:bg-zinc-900"
                             />
                           </div>
                           {qaPairs.length > 1 && (
@@ -265,7 +273,7 @@ export default function FaqSchemaPage() {
                               updatePair(index, "answer", e.target.value)
                             }
                             placeholder="e.g., You can return items within 30 days..."
-                            className="bg-white dark:bg-zinc-900 min-h-[80px]"
+                            className="bg-slate-50 dark:bg-zinc-900 min-h-[80px]"
                           />
                         </div>
                       </div>
@@ -273,7 +281,7 @@ export default function FaqSchemaPage() {
                     <Button
                       onClick={addPair}
                       variant="outline"
-                      className="w-full border-dashed"
+                      className="w-full border-dashed hover:bg-primary/5 hover:text-primary hover:border-primary/50"
                     >
                       <Plus className="w-4 h-4 mr-2" />
                       Add Another Question
@@ -283,7 +291,7 @@ export default function FaqSchemaPage() {
               </TabsContent>
 
               <TabsContent value="auto" className="space-y-4">
-                <Card className="border-border/50 shadow-sm bg-white dark:bg-zinc-900">
+                <Card className="bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50">
                   <CardHeader>
                     <CardTitle>Extract from URL</CardTitle>
                     <CardDescription>
@@ -313,12 +321,25 @@ export default function FaqSchemaPage() {
                                 }
                                 onBlur={field.handleBlur}
                                 placeholder="https://example.com/faq"
-                                className="flex-1"
+                                className="flex-1 bg-white dark:bg-zinc-950/50"
                               />
+                              <div className="flex justify-start">
+                                <Turnstile
+                                  siteKey={
+                                    process.env
+                                      .NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""
+                                  }
+                                  onSuccess={(token) =>
+                                    setTurnstileToken(token)
+                                  }
+                                />
+                              </div>
                               <Button
                                 type="submit"
-                                disabled={extractMutation.isPending}
-                                className="bg-blue-600 hover:bg-blue-700 text-white"
+                                disabled={
+                                  extractMutation.isPending || !turnstileToken
+                                }
+                                className="bg-[#104127] hover:bg-[#0c311d] text-white shadow-md transition-all w-32 shrink-0 self-start"
                               >
                                 {extractMutation.isPending ? (
                                   <Loader2 className="w-4 h-4 animate-spin" />
@@ -338,9 +359,9 @@ export default function FaqSchemaPage() {
                           </div>
                         )}
                       />
-                      <Alert className="bg-blue-50 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 border-blue-200 dark:border-blue-900">
-                        <Globe className="w-4 h-4" />
-                        <AlertDescription>
+                      <Alert className="bg-[#104127] border-none text-white">
+                        <Globe className="w-4 h-4 text-emerald-400" />
+                        <AlertDescription className="text-gray-200">
                           This checks the URL for common FAQ patterns (H2/H3 +
                           Paragraphs) and converts them into schema
                           automatically.
@@ -356,10 +377,15 @@ export default function FaqSchemaPage() {
           {/* Right Column: Preview & Output */}
           <div className="space-y-6 sticky top-8">
             {/* Preview Card */}
-            <Card className="border-border/50 shadow-sm overflow-hidden bg-white dark:bg-zinc-900">
-              <CardHeader className="bg-slate-50 dark:bg-zinc-950/50 border-b border-border/50 py-3">
+            <Card className="bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50 overflow-hidden">
+              <CardHeader className="bg-slate-50/50 dark:bg-zinc-950/50 border-b-2 border-[#104127] py-3">
                 <CardTitle className="text-sm font-medium uppercase tracking-wider text-muted-foreground flex items-center gap-2">
-                  <Globe className="w-4 h-4" />
+                  <Image
+                    src="/icons/google.png"
+                    alt="Google"
+                    width={18}
+                    height={18}
+                  />
                   Google Search Preview
                 </CardTitle>
               </CardHeader>
@@ -393,7 +419,7 @@ export default function FaqSchemaPage() {
             <Card className="border-gray-800 shadow-xl bg-[#0d1117] text-gray-300">
               <CardHeader className="border-b border-gray-800 py-3 flex flex-row items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Code className="w-4 h-4 text-blue-400" />
+                  <Code className="w-4 h-4 text-emerald-400" />
                   <span className="font-mono text-sm font-semibold text-white">
                     {showMicrodata
                       ? "Microdata (HTML)"
@@ -454,7 +480,7 @@ export default function FaqSchemaPage() {
 
             {/* Actions */}
             <div className="flex justify-end gap-4">
-              <Button variant="outline" asChild>
+              <Button variant="outline" asChild className="hover:bg-slate-100">
                 <a
                   href="https://search.google.com/test/rich-results"
                   target="_blank"
@@ -472,7 +498,7 @@ export default function FaqSchemaPage() {
                   )
                 }
                 disabled={!generatedSchema}
-                className="bg-blue-600 hover:bg-blue-700 text-white"
+                className="bg-[#104127] hover:bg-[#0c311d] text-white shadow-lg transition-all"
               >
                 <Copy className="w-4 h-4 mr-2" />
                 Copy Code
