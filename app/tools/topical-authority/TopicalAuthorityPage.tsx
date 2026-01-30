@@ -4,7 +4,7 @@ import { useForm } from "@tanstack/react-form";
 import { zodValidator } from "@tanstack/zod-form-adapter";
 import { useMutation } from "@tanstack/react-query";
 import * as z from "zod";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -79,6 +79,7 @@ interface AuthorityResult {
 export default function TopicalAuthorityPage() {
   const [turnstileToken, setTurnstileToken] = useState<string>("");
   const [isWaitingForToken, setIsWaitingForToken] = useState(false);
+  const [pendingValues, setPendingValues] = useState<any>(null);
 
   const mutation = useMutation({
     mutationFn: async (values: { topic: string }) => {
@@ -114,24 +115,36 @@ export default function TopicalAuthorityPage() {
         return;
       }
       setIsWaitingForToken(true);
+      setPendingValues(value);
       toast.info("Verifying security, please wait...");
-      const maxWait = 15000;
-      const startTime = Date.now();
-      const tokenCheck = setInterval(() => {
-        if (turnstileToken) {
-          clearInterval(tokenCheck);
+    },
+  });
+
+  // Watch for token and pending values
+  useEffect(() => {
+    if (turnstileToken && isWaitingForToken && pendingValues) {
+      setIsWaitingForToken(false);
+      mutation.mutateAsync(pendingValues);
+      setPendingValues(null);
+    }
+  }, [turnstileToken, isWaitingForToken, pendingValues]);
+
+  // Timeout safety
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    if (isWaitingForToken) {
+      timeout = setTimeout(() => {
+        if (isWaitingForToken) {
           setIsWaitingForToken(false);
-          mutation.mutateAsync(value);
-        } else if (Date.now() - startTime > maxWait) {
-          clearInterval(tokenCheck);
-          setIsWaitingForToken(false);
+          setPendingValues(null);
           toast.error(
             "Security verification timeout. Please refresh and try again.",
           );
         }
-      }, 100);
-    },
-  });
+      }, 15000);
+    }
+    return () => clearTimeout(timeout);
+  }, [isWaitingForToken]);
 
   const result = mutation.data;
   const loading = mutation.isPending;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Turnstile } from "@marsidev/react-turnstile";
 
 import { useForm } from "@tanstack/react-form";
@@ -130,6 +130,7 @@ const dummyTrendData = [
 export default function AiScorePage() {
   const [turnstileToken, setTurnstileToken] = useState<string>("");
   const [isWaitingForToken, setIsWaitingForToken] = useState(false);
+  const [pendingValues, setPendingValues] = useState<any>(null);
 
   const mutation = useMutation({
     mutationFn: async (values: { keyword: string; website?: string }) => {
@@ -164,24 +165,36 @@ export default function AiScorePage() {
         return;
       }
       setIsWaitingForToken(true);
+      setPendingValues(value);
       toast.info("Verifying security, please wait...");
-      const maxWait = 15000;
-      const startTime = Date.now();
-      const tokenCheck = setInterval(() => {
-        if (turnstileToken) {
-          clearInterval(tokenCheck);
+    },
+  });
+
+  // Watch for token and pending values
+  useEffect(() => {
+    if (turnstileToken && isWaitingForToken && pendingValues) {
+      setIsWaitingForToken(false);
+      mutation.mutateAsync(pendingValues);
+      setPendingValues(null);
+    }
+  }, [turnstileToken, isWaitingForToken, pendingValues]);
+
+  // Timeout safety
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    if (isWaitingForToken) {
+      timeout = setTimeout(() => {
+        if (isWaitingForToken) {
           setIsWaitingForToken(false);
-          mutation.mutateAsync(value);
-        } else if (Date.now() - startTime > maxWait) {
-          clearInterval(tokenCheck);
-          setIsWaitingForToken(false);
+          setPendingValues(null);
           toast.error(
             "Security verification timeout. Please refresh and try again.",
           );
         }
-      }, 100);
-    },
-  });
+      }, 15000);
+    }
+    return () => clearTimeout(timeout);
+  }, [isWaitingForToken]);
 
   const result = mutation.data;
   const loading = mutation.isPending;

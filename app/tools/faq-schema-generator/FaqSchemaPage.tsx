@@ -77,6 +77,7 @@ export default function FaqSchemaPage() {
   const [activeTab, setActiveTab] = useState<"manual" | "auto">("manual");
   const [turnstileToken, setTurnstileToken] = useState<string>("");
   const [isWaitingForToken, setIsWaitingForToken] = useState(false);
+  const [pendingValues, setPendingValues] = useState<any>(null);
   const [qaPairs, setQaPairs] = useState<QaPair[]>([
     { question: "", answer: "" },
   ]);
@@ -124,24 +125,36 @@ export default function FaqSchemaPage() {
         return;
       }
       setIsWaitingForToken(true);
+      setPendingValues(value);
       toast.info("Verifying security, please wait...");
-      const maxWait = 15000;
-      const startTime = Date.now();
-      const tokenCheck = setInterval(() => {
-        if (turnstileToken) {
-          clearInterval(tokenCheck);
+    },
+  });
+
+  // Watch for token and pending values
+  useEffect(() => {
+    if (turnstileToken && isWaitingForToken && pendingValues) {
+      setIsWaitingForToken(false);
+      extractMutation.mutateAsync(pendingValues);
+      setPendingValues(null);
+    }
+  }, [turnstileToken, isWaitingForToken, pendingValues]);
+
+  // Timeout safety
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    if (isWaitingForToken) {
+      timeout = setTimeout(() => {
+        if (isWaitingForToken) {
           setIsWaitingForToken(false);
-          extractMutation.mutateAsync(value);
-        } else if (Date.now() - startTime > maxWait) {
-          clearInterval(tokenCheck);
-          setIsWaitingForToken(false);
+          setPendingValues(null);
           toast.error(
             "Security verification timeout. Please refresh and try again.",
           );
         }
-      }, 100);
-    },
-  });
+      }, 15000);
+    }
+    return () => clearTimeout(timeout);
+  }, [isWaitingForToken]);
 
   // --- Logic ---
 

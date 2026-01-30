@@ -4,7 +4,7 @@ import { useForm } from "@tanstack/react-form";
 import { zodValidator } from "@tanstack/zod-form-adapter";
 import { useMutation } from "@tanstack/react-query";
 import * as z from "zod";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -75,6 +75,7 @@ interface AuditResult {
 export default function ContentAuditPage() {
   const [turnstileToken, setTurnstileToken] = useState<string>("");
   const [isWaitingForToken, setIsWaitingForToken] = useState(false);
+  const [pendingValues, setPendingValues] = useState<any>(null);
 
   const mutation = useMutation({
     mutationFn: async (values: { url: string }) => {
@@ -110,24 +111,36 @@ export default function ContentAuditPage() {
         return;
       }
       setIsWaitingForToken(true);
+      setPendingValues(value);
       toast.info("Verifying security, please wait...");
-      const maxWait = 15000;
-      const startTime = Date.now();
-      const tokenCheck = setInterval(() => {
-        if (turnstileToken) {
-          clearInterval(tokenCheck);
+    },
+  });
+
+  // Watch for token and pending values
+  useEffect(() => {
+    if (turnstileToken && isWaitingForToken && pendingValues) {
+      setIsWaitingForToken(false);
+      mutation.mutateAsync(pendingValues);
+      setPendingValues(null);
+    }
+  }, [turnstileToken, isWaitingForToken, pendingValues]);
+
+  // Timeout safety
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    if (isWaitingForToken) {
+      timeout = setTimeout(() => {
+        if (isWaitingForToken) {
           setIsWaitingForToken(false);
-          mutation.mutateAsync(value);
-        } else if (Date.now() - startTime > maxWait) {
-          clearInterval(tokenCheck);
-          setIsWaitingForToken(false);
+          setPendingValues(null);
           toast.error(
             "Security verification timeout. Please refresh and try again.",
           );
         }
-      }, 100);
-    },
-  });
+      }, 15000);
+    }
+    return () => clearTimeout(timeout);
+  }, [isWaitingForToken]);
 
   const result = mutation.data;
   const loading = mutation.isPending;
@@ -175,8 +188,8 @@ export default function ContentAuditPage() {
     // The redundancy check mainly handles "Good" + "Good" cases.
 
     return (
-      <div className="flex justify-between items-center p-3 rounded-lg bg-white dark:bg-zinc-800 border border-border/50 shadow-none">
-        <div className="flex items-center gap-3">
+      <div className="flex flex-col sm:flex-row justify-between sm:items-center items-start gap-2 p-3 rounded-lg bg-white dark:bg-zinc-800 border border-border/50 shadow-none">
+        <div className="flex items-center gap-3 w-full sm:w-auto">
           <StatusIcon
             status={
               status ||
@@ -191,7 +204,7 @@ export default function ContentAuditPage() {
             {label.replace(/_/g, " ")}
           </span>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto pl-8 sm:pl-0">
           {!isRedundant && (
             <span className="text-sm font-mono text-muted-foreground">
               {typeof value === "boolean" ? (value ? "Yes" : "No") : value}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { axiosInstance } from "@/lib/axiosInstance";
@@ -89,6 +89,7 @@ export default function BrandAuthorityPage() {
   const [showLimitModal, setShowLimitModal] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState<string>("");
   const [isWaitingForToken, setIsWaitingForToken] = useState(false);
+  const [pendingValues, setPendingValues] = useState<any>(null);
 
   // Form
   const form = useForm({
@@ -98,36 +99,41 @@ export default function BrandAuthorityPage() {
     //@ts-ignore
     validatorAdapter: zodValidator(),
     onSubmit: async ({ value }) => {
-      // If token already exists, submit immediately
       if (turnstileToken) {
         checkMutation.mutate(value);
         return;
       }
-
-      // No token yet - wait for it
       setIsWaitingForToken(true);
+      setPendingValues(value);
       toast.info("Verifying security, please wait...");
+    },
+  });
 
-      // Poll for token with timeout
-      const maxWait = 15000; // 15 seconds
-      const startTime = Date.now();
-      const pollInterval = 100; // Check every 100ms
+  // Watch for token and pending values
+  useEffect(() => {
+    if (turnstileToken && isWaitingForToken && pendingValues) {
+      setIsWaitingForToken(false);
+      checkMutation.mutate(pendingValues);
+      setPendingValues(null);
+    }
+  }, [turnstileToken, isWaitingForToken, pendingValues]);
 
-      const tokenCheck = setInterval(() => {
-        if (turnstileToken) {
-          clearInterval(tokenCheck);
+  // Timeout safety
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    if (isWaitingForToken) {
+      timeout = setTimeout(() => {
+        if (isWaitingForToken) {
           setIsWaitingForToken(false);
-          checkMutation.mutate(value);
-        } else if (Date.now() - startTime > maxWait) {
-          clearInterval(tokenCheck);
-          setIsWaitingForToken(false);
+          setPendingValues(null);
           toast.error(
             "Security verification timeout. Please refresh and try again.",
           );
         }
-      }, pollInterval);
-    },
-  });
+      }, 15000);
+    }
+    return () => clearTimeout(timeout);
+  }, [isWaitingForToken]);
 
   // Mutation
   const checkMutation = useMutation({
@@ -503,8 +509,8 @@ export default function BrandAuthorityPage() {
 
               {/* Metrics Grid */}
               <div className="lg:col-span-8 flex flex-col gap-6">
-                <div className="grid sm:grid-cols-2 gap-6 h-full">
-                  <MetricCard
+                <div className="grid sm:grid-cols-2 gap-6">
+                  {/* <MetricCard
                     label="Total Backlinks"
                     value={formatNumber(result.metrics.backlinks)}
                     type="secondary"
@@ -517,7 +523,7 @@ export default function BrandAuthorityPage() {
                     type="secondary"
                     subtext="Unique domains linking"
                     icon={<Users className="w-4 h-4" />}
-                  />
+                  /> */}
                   <MetricCard
                     label="Organic Keywords"
                     value={formatNumber(result.metrics.organic_keywords)}
@@ -601,7 +607,7 @@ export default function BrandAuthorityPage() {
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="sm:justify-start gap-2">
-            <Link href="/pricing" className="w-full sm:w-auto">
+            <Link href="#pricing" className="w-full sm:w-auto">
               <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
                 Get Unlimited Access
               </Button>

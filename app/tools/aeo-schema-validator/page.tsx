@@ -66,6 +66,7 @@ export default function AEOSchemaValidatorPage() {
   const [isWaitingForToken, setIsWaitingForToken] = useState(false);
   const [copied, setCopied] = useState(false);
   const [currentSchemaIndex, setCurrentSchemaIndex] = useState(0);
+  const [pendingValues, setPendingValues] = useState<any>(null);
 
   // Reset index when result changes
   useEffect(() => {
@@ -125,29 +126,39 @@ export default function AEOSchemaValidatorPage() {
       }
 
       setIsWaitingForToken(true);
+      setPendingValues(value);
       toast.info("Verifying security, please wait...");
-
-      const maxWait = 15000;
-      const startTime = Date.now();
-
-      const tokenCheck = setInterval(() => {
-        if (turnstileToken) {
-          clearInterval(tokenCheck);
-          setIsWaitingForToken(false);
-          mutation.mutateAsync(value);
-        } else if (Date.now() - startTime > maxWait) {
-          clearInterval(tokenCheck);
-          setIsWaitingForToken(false);
-          toast.error(
-            "Security verification timeout. Please refresh and try again.",
-          );
-        }
-      }, 100);
     },
   });
 
   const result = mutation.data;
   const loading = mutation.isPending;
+
+  // Watch for token and pending values
+  useEffect(() => {
+    if (turnstileToken && isWaitingForToken && pendingValues) {
+      setIsWaitingForToken(false);
+      mutation.mutateAsync(pendingValues);
+      setPendingValues(null);
+    }
+  }, [turnstileToken, isWaitingForToken, pendingValues]);
+
+  // Timeout safety
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    if (isWaitingForToken) {
+      timeout = setTimeout(() => {
+        if (isWaitingForToken) {
+          setIsWaitingForToken(false);
+          setPendingValues(null);
+          toast.error(
+            "Security verification timeout. Please refresh and try again.",
+          );
+        }
+      }, 15000);
+    }
+    return () => clearTimeout(timeout);
+  }, [isWaitingForToken]);
 
   useEffect(() => {
     if (result) {
