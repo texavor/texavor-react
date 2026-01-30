@@ -72,6 +72,14 @@ const tools = [
     icon: FileText,
     gradient: "from-indigo-500/20 to-violet-500/5",
   },
+  {
+    title: "AEO Schema Validator",
+    description:
+      "Validate your Schema Markup for Answer Engine Optimization (AEO) and AI Search readiness.",
+    href: "/tools/aeo-schema-validator",
+    icon: Sparkles,
+    gradient: "from-emerald-500/20 to-teal-500/5",
+  },
 ];
 
 export default function ToolsPage() {
