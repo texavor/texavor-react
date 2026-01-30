@@ -26,6 +26,12 @@ export default function Pricing() {
             Flexible options designed to match every team's workflow.
           </p>
 
+          <div className="flex items-center justify-center gap-2 mb-8">
+            <span className="px-4 py-1.5 rounded-full bg-emerald-100/50 text-emerald-700 text-sm font-semibold border border-emerald-200 flex items-center gap-2">
+              ✨ Start with a 14-day free trial
+            </span>
+          </div>
+
           {/* Monthly/Annual Checkbox using Tabs */}
           <div className="mb-2">
             <Tabs
