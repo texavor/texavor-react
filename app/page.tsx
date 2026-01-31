@@ -93,6 +93,58 @@ export default function Home() {
           ]
         : []),
 
+      // SiteNavigationElement - Helps Google understand key pages for sitelinks
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://www.texavor.com/#navigation",
+        name: "Main Navigation",
+        url: "https://www.texavor.com",
+        hasPart: [
+          {
+            "@type": "WebPage",
+            "@id": "https://www.app.texavor.com/login",
+            name: "Login",
+            url: "https://www.app.texavor.com/login",
+            description: "Sign in to your Texavor account",
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.app.texavor.com/register",
+            name: "Register",
+            url: "https://www.app.texavor.com/register",
+            description: "Create a new Texavor account",
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.texavor.com#pricing",
+            name: "Pricing",
+            url: "https://www.texavor.com/pricing",
+            description: "View Texavor pricing plans and features",
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.texavor.com/tools",
+            name: "Free Tools",
+            url: "https://www.texavor.com/tools",
+            description: "Free SEO and AEO tools",
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.texavor.com/docs",
+            name: "Documentation",
+            url: "https://www.texavor.com/docs",
+            description: "Texavor documentation and guides",
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.texavor.com/blog",
+            name: "Blog",
+            url: "https://www.texavor.com/blog",
+            description: "Insights on AI content creation and AEO",
+          },
+        ],
+      },
+
       // WebPage Schema for the homepage
       {
         "@type": "WebPage",
