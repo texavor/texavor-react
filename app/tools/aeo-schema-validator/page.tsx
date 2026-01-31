@@ -34,6 +34,7 @@ import { toast } from "sonner";
 import AEOHealthGrid from "./components/AEOHealthGrid";
 import ScoreDisplay from "./components/ScoreDisplay";
 import Schema from "@/components/Schema";
+import AEOSchemaValidatorSkeleton from "./AEOSchemaValidatorSkeleton";
 import hljs from "highlight.js";
 import "highlight.js/styles/github-dark.css";
 
@@ -310,6 +311,82 @@ export default function AEOSchemaValidatorPage() {
             <AlertTitle>Error</AlertTitle>
             <AlertDescription>{error}</AlertDescription>
           </Alert>
+        )}
+
+        {/* Loading Skeleton */}
+        {loading && <AEOSchemaValidatorSkeleton />}
+
+        {/* Empty State Feature Preview */}
+        {!result && !loading && (
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto opacity-90">
+            {/* Feature 1: AEO Health Checks */}
+            <div className="relative group">
+              <div className="absolute inset-0 bg-emerald-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
+              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
+                <CardHeader className="pb-2">
+                  <div className="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center mb-3">
+                    <Sparkles className="w-5 h-5 text-green-600" />
+                  </div>
+                  <CardTitle className="text-xl font-poppins">
+                    AEO Health Analysis
+                  </CardTitle>
+                  <CardDescription className="font-inter">
+                    Comprehensive checks for AI search readiness and answer
+                    engine optimization.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="pb-6">
+                  <div className="space-y-3 mt-2">
+                    <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg opacity-80">
+                      <Check className="w-4 h-4 text-green-500" />
+                      <div className="h-2 bg-primary/5 rounded w-32"></div>
+                    </div>
+                    <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg opacity-60">
+                      <Check className="w-4 h-4 text-green-500" />
+                      <div className="h-2 bg-primary/5 rounded w-28"></div>
+                    </div>
+                    <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg opacity-40">
+                      <AlertTriangle className="w-4 h-4 text-yellow-500" />
+                      <div className="h-2 bg-primary/5 rounded w-24"></div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Feature 2: Schema Detection */}
+            <div className="relative group mt-8 md:mt-0">
+              <div className="absolute inset-0 bg-purple-100/50 rounded-3xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500"></div>
+              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform rotate-1 group-hover:rotate-2 transition-transform duration-500">
+                <CardHeader className="pb-2">
+                  <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center mb-3">
+                    <Code className="w-5 h-5 text-purple-600" />
+                  </div>
+                  <CardTitle className="text-xl font-poppins">
+                    Schema Markup Detection
+                  </CardTitle>
+                  <CardDescription className="font-inter">
+                    Automatically detect and validate JSON-LD structured data
+                    for voice search optimization.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="pb-6">
+                  <div className="bg-[#0d1117] rounded-lg p-4 mt-2">
+                    <div className="space-y-2">
+                      <div className="h-2 bg-gray-800 rounded w-3/4"></div>
+                      <div className="h-2 bg-gray-800 rounded w-full"></div>
+                      <div className="h-2 bg-gray-800 rounded w-5/6"></div>
+                      <div className="h-2 bg-gray-800 rounded w-2/3"></div>
+                      <div className="flex items-center gap-2 mt-3">
+                        <Code className="w-3 h-3 text-emerald-400" />
+                        <div className="h-2 bg-emerald-400/20 rounded w-20"></div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         )}
 
         {/* Results */}
