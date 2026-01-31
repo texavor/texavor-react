@@ -23,11 +23,25 @@ export default async function Blog() {
     "@context": "https://schema.org",
     "@type": "Blog",
     "@id": "https://www.texavor.com/blog",
-    name: "Texavor Blog",
-    description: "Insights and guides on AI content creation and optimization.",
     url: "https://www.texavor.com/blog",
-    organization: {
-      "@id": "https://www.texavor.com/#organization",
+    name: "Texavor Blog",
+    description:
+      "Insights and guides on AI content creation, Answer Engine Optimization (AEO), and SEO strategies for the AI era.",
+    author: {
+      "@type": "Person",
+      name: "Suraj Vishwakarma",
+      url: "https://www.texavor.com",
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Suraj Vishwakarma",
+      url: "https://www.texavor.com",
+    },
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": "https://www.texavor.com",
+      url: "https://www.texavor.com",
+      name: "Texavor",
     },
     blogPost: articles.map((article: any) => ({
       "@type": "BlogPosting",
@@ -37,7 +51,12 @@ export default async function Blog() {
       dateModified: article.updated_at,
       image: article.image
         ? [article.image]
-        : ["https://www.texavor.com/default-blog.jpg"],
+        : ["https://www.texavor.com/texavor.png"],
+      author: {
+        "@type": "Person",
+        name: "Suraj Vishwakarma",
+        url: "https://www.texavor.com",
+      },
     })),
   };
 

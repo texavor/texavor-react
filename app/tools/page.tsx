@@ -22,6 +22,7 @@ import {
   Search,
 } from "lucide-react";
 import { MoveUpRight } from "lucide-react";
+import Schema from "@/components/Schema";
 
 const tools = [
   {
@@ -83,8 +84,48 @@ const tools = [
 ];
 
 export default function ToolsPage() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://www.texavor.com/tools",
+    url: "https://www.texavor.com/tools",
+    name: "Free AEO and SEO Tools - Texavor",
+    description:
+      "Professional-grade free SEO and AEO tools including Domain Authority Checker, AI Visibility Calculator, Website Auditor, FAQ Schema Generator, and more.",
+    inLanguage: "en-US",
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": "https://www.texavor.com",
+      url: "https://www.texavor.com",
+      name: "Texavor",
+    },
+    author: {
+      "@type": "Person",
+      name: "Suraj Vishwakarma",
+      url: "https://www.texavor.com",
+    },
+    numberOfItems: tools.length,
+    itemListElement: tools.map((tool, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "SoftwareApplication",
+        name: tool.title,
+        description: tool.description,
+        url: `https://www.texavor.com${tool.href}`,
+        applicationCategory: "BusinessApplication",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "USD",
+        },
+      },
+    })),
+  };
+
   return (
     <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
+      <Schema script={schema} />
       <div className="container max-w-7xl px-4 mx-auto pb-20">
         {/* Hero Section */}
         <div className="text-center mb-16 space-y-4">

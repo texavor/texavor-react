@@ -70,34 +70,121 @@ export default async function DocPage({
   const parsedHtml = marked.parse(docData.content || "") as string;
   const categorizedDocs = getDocsByCategory();
 
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "TechArticle",
-    headline: docData.title,
-    description: docData.description,
-    image: ["https://www.texavor.com/default-docs.jpg"],
-    datePublished: new Date().toISOString(), // Ideal if we had actual dates
-    dateModified: new Date().toISOString(),
-    author: {
-      "@type": "Organization",
-      name: "Texavor Team",
-      url: "https://www.texavor.com",
-    },
-    publisher: {
-      "@type": "Organization",
-      "@id": "https://www.texavor.com/#organization",
-      name: "Texavor",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://www.texavor.com/logo.png",
-      },
-    },
-    url: `https://www.texavor.com/docs/${slug}`,
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": `https://www.texavor.com/docs/${slug}`,
-    },
+  // Detect if this is a How-To guide
+  const isHowTo =
+    docData.title?.toLowerCase().includes("how to") ||
+    docData.title?.toLowerCase().includes("guide") ||
+    docData.title?.toLowerCase().includes("quick start") ||
+    docData.category === "getting-started" ||
+    docData.slug?.includes("guide");
+
+  // Enhanced step extraction from markdown
+  const extractSteps = (content: string) => {
+    // Match ## headers that look like steps (e.g., "## Step 1:", "## 1.", "## Register Account")
+    const stepRegex = /^##\s+(?:Step\s+)?(\d+[:.)]?\s*)?(.+)$/gim;
+    const matches = [...content.matchAll(stepRegex)];
+
+    return matches
+      .filter((match) => {
+        const text = match[2].trim().toLowerCase();
+        // Filter out common non-step headers
+        return (
+          !text.includes("why") &&
+          !text.includes("what is") &&
+          !text.includes("key capabilities") &&
+          !text.includes("support") &&
+          !text.includes("resources")
+        );
+      })
+      .map((match, index) => {
+        const stepNumber = match[1]
+          ? match[1].trim().replace(/[:.)]$/, "")
+          : String(index + 1);
+        const stepName = match[2].trim();
+
+        // Try to extract description from content after this header
+        const headerIndex = content.indexOf(match[0]);
+        const nextHeaderIndex = content.indexOf("\n## ", headerIndex + 1);
+        const sectionContent =
+          nextHeaderIndex > -1
+            ? content.substring(headerIndex, nextHeaderIndex)
+            : content.substring(headerIndex);
+
+        // Get first paragraph as description
+        const descMatch = sectionContent.match(/\n\n([^\n]+)/);
+        const description = descMatch ? descMatch[1].trim() : stepName;
+
+        return {
+          "@type": "HowToStep",
+          position: parseInt(stepNumber) || index + 1,
+          name: stepName,
+          text: description.substring(0, 200), // Limit description length
+        };
+      });
   };
+
+  const steps = isHowTo ? extractSteps(docData.content || "") : [];
+
+  // Choose schema type based on content
+  const schema =
+    isHowTo && steps.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "HowTo",
+          "@id": `https://www.texavor.com/docs/${slug}`,
+          url: `https://www.texavor.com/docs/${slug}`,
+          name: docData.title,
+          description: docData.description,
+          image: ["https://www.texavor.com/texavor.png"],
+          step: steps,
+          author: {
+            "@type": "Person",
+            name: "Suraj Vishwakarma",
+            url: "https://www.texavor.com",
+          },
+          publisher: {
+            "@type": "Person",
+            name: "Suraj Vishwakarma",
+            url: "https://www.texavor.com",
+          },
+          isPartOf: {
+            "@type": "WebSite",
+            "@id": "https://www.texavor.com",
+            url: "https://www.texavor.com",
+            name: "Texavor",
+          },
+        }
+      : {
+          "@context": "https://schema.org",
+          "@type": "TechArticle",
+          "@id": `https://www.texavor.com/docs/${slug}`,
+          url: `https://www.texavor.com/docs/${slug}`,
+          headline: docData.title,
+          description: docData.description,
+          image: ["https://www.texavor.com/texavor.png"],
+          datePublished: new Date().toISOString(),
+          dateModified: new Date().toISOString(),
+          author: {
+            "@type": "Person",
+            name: "Suraj Vishwakarma",
+            url: "https://www.texavor.com",
+          },
+          publisher: {
+            "@type": "Person",
+            name: "Suraj Vishwakarma",
+            url: "https://www.texavor.com",
+          },
+          isPartOf: {
+            "@type": "WebSite",
+            "@id": "https://www.texavor.com",
+            url: "https://www.texavor.com",
+            name: "Texavor",
+          },
+          mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `https://www.texavor.com/docs/${slug}`,
+          },
+        };
 
   return (
     <>

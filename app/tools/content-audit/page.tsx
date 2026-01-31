@@ -1,6 +1,7 @@
 import React from "react";
 import ContentAuditPage from "./ContentAuditPage";
 import { Metadata } from "next";
+import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
   title: "Free Content Audit Tool | Check SEO Health & Quality Instantly",
@@ -9,27 +10,39 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://www.texavor.com/tools/content-audit",
+    url: "https://www.texavor.com/tools/content-audit",
+    name: "Content Quality Audit - Free SEO Analysis Tool",
+    description:
+      "Analyze your content depth, keyword usage, and optimization score. Scan any URL to identify technical errors, thin content, and missing metadata.",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    browserRequirements: "Requires JavaScript. Requires HTML5.",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+    author: {
+      "@type": "Person",
+      name: "Suraj Vishwakarma",
+      url: "https://www.texavor.com",
+    },
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": "https://www.texavor.com",
+      url: "https://www.texavor.com",
+      name: "Texavor",
+    },
+  };
+
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            name: "Texavor Content Audit Tool",
-            applicationCategory: "SEO Application",
-            operatingSystem: "Web",
-            offers: {
-              "@type": "Offer",
-              price: "0",
-              priceCurrency: "USD",
-            },
-            description:
-              "Free SEO content audit tool to analyze on-page factors, technical health, and content quality.",
-          }),
-        }}
-      />
+      <Schema script={schema} />
       <ContentAuditPage />
     </>
   );

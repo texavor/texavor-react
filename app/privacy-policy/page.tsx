@@ -1,10 +1,36 @@
 "use client";
 
 import PageTransition from "@/components/PageTransition";
+import Schema from "@/components/Schema";
 
 const PrivacyPolicy = () => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://www.texavor.com/privacy-policy",
+    url: "https://www.texavor.com/privacy-policy",
+    name: "Privacy Policy - Texavor",
+    description:
+      "Learn how Texavor collects, uses, and protects your personal data. Our privacy policy explains data collection, usage, security measures, and your rights.",
+    inLanguage: "en-US",
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": "https://www.texavor.com",
+      url: "https://www.texavor.com",
+      name: "Texavor",
+    },
+    author: {
+      "@type": "Person",
+      name: "Suraj Vishwakarma",
+      url: "https://www.texavor.com",
+    },
+    datePublished: "2026-01-31",
+    dateModified: "2026-01-31",
+  };
+
   return (
     <PageTransition>
+      <Schema script={schema} />
       <main className="flex min-h-screen flex-col items-center justify-between p-4 md:p-32 w-full md:max-w-[1200px] mx-auto">
         <div className="w-full">
           <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 font-poppins text-gray-900 tracking-tight">

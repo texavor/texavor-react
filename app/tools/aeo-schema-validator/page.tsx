@@ -33,7 +33,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { toast } from "sonner";
 import AEOHealthGrid from "./components/AEOHealthGrid";
 import ScoreDisplay from "./components/ScoreDisplay";
-import UsageSchema from "./components/UsageSchema";
+import Schema from "@/components/Schema";
 import hljs from "highlight.js";
 import "highlight.js/styles/github-dark.css";
 
@@ -187,9 +187,39 @@ export default function AEOSchemaValidatorPage() {
       mutation.error?.message
     : null;
 
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://www.texavor.com/tools/aeo-schema-validator",
+    url: "https://www.texavor.com/tools/aeo-schema-validator",
+    name: "AEO Schema Validator - Free AI Search Readiness Tool",
+    description:
+      "Validate your Schema Markup for Answer Engine Optimization (AEO) and AI Search readiness. Analyze your content for AI search engines and get optimization recommendations.",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    browserRequirements: "Requires JavaScript. Requires HTML5.",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+    author: {
+      "@type": "Person",
+      name: "Suraj Vishwakarma",
+      url: "https://www.texavor.com",
+    },
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": "https://www.texavor.com",
+      url: "https://www.texavor.com",
+      name: "Texavor",
+    },
+  };
+
   return (
     <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
-      <UsageSchema />
+      <Schema script={schema} />
       <div className="container max-w-7xl px-4 mx-auto pb-20">
         {/* Header */}
         <div className="text-center mb-12 space-y-4">

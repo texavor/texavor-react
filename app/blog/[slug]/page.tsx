@@ -160,42 +160,97 @@ export default async function ArticlePage({
 
   const parsedHtml = marked.parse(articleData?.content || "") as string;
 
-  const schema = {
+  // Extract FAQs from content (looking for Q&A patterns)
+  const extractFAQs = (content: string) => {
+    const faqs: Array<{ question: string; answer: string }> = [];
+
+    // Pattern 1: ## Question? followed by answer
+    const qaPattern =
+      /^##\s+(.+\?)\s*[\r\n]+[\r\n]+(.+?)(?=[\r\n]+##|[\r\n]+---|[\r\n]+[\r\n]+##|$)/gim;
+    let matches = [...content.matchAll(qaPattern)];
+
+    matches.forEach((match) => {
+      faqs.push({
+        question: match[1].trim(),
+        answer: match[2].trim().substring(0, 500), // Limit answer length
+      });
+    });
+
+    // Pattern 2: **Q:** or **Question:** format
+    const boldQAPattern =
+      /\*\*(?:Q|Question):\*\*\s*(.+?)[\r\n]+\*\*(?:A|Answer):\*\*\s*(.+?)(?=[\r\n]+\*\*(?:Q|Question):|$)/gi;
+    matches = [...content.matchAll(boldQAPattern)];
+
+    matches.forEach((match) => {
+      faqs.push({
+        question: match[1].trim(),
+        answer: match[2].trim().substring(0, 500),
+      });
+    });
+
+    return faqs;
+  };
+
+  const faqs = extractFAQs(articleData?.content || "");
+
+  // BlogPosting schema
+  const blogSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    "@id": `https://www.texavor.com/blog/${params.slug}`,
+    url: `https://www.texavor.com/blog/${params.slug}`,
     headline: articleData.title,
     description: articleData.description,
     image: articleData.image
       ? [articleData.image]
-      : ["https://www.texavor.com/default-blog.jpg"],
+      : ["https://www.texavor.com/texavor.png"],
     datePublished: articleData.created_at,
     dateModified: articleData.updated_at,
     author: {
       "@type": "Person",
-      name: articleData.easywrite_author?.name || "Texavor Team",
-      url: `https://www.texavor.com/author/${articleData.easywrite_author?.username}`,
+      name: articleData.easywrite_author?.name || "Suraj Vishwakarma",
+      url: articleData.easywrite_author?.username
+        ? `https://www.texavor.com/author/${articleData.easywrite_author.username}`
+        : "https://www.texavor.com",
     },
     publisher: {
-      "@type": "Organization",
-      "@id": "https://www.texavor.com/#organization",
-      name: "Texavor",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://www.texavor.com/logo.png",
-      },
+      "@type": "Person",
+      name: "Suraj Vishwakarma",
+      url: "https://www.texavor.com",
     },
-    url: `https://www.texavor.com/blog/${params.slug}`,
+    isPartOf: {
+      "@type": "Blog",
+      "@id": "https://www.texavor.com/blog",
+      name: "Texavor Blog",
+    },
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `https://www.texavor.com/blog/${params.slug}`,
     },
   };
 
+  // FAQPage schema (only if FAQs found)
+  const faqSchema =
+    faqs.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "@id": `https://www.texavor.com/blog/${params.slug}#faq`,
+          mainEntity: faqs.map((faq) => ({
+            "@type": "Question",
+            name: faq.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: faq.answer,
+            },
+          })),
+        }
+      : null;
+
   return (
     <>
-      <div className="hidden">
-        <Schema script={schema} />
-      </div>
+      <Schema script={blogSchema} />
+      {faqSchema && <Schema script={faqSchema} />}
       <ArticleView articleData={articleData} html={parsedHtml} />
     </>
   );

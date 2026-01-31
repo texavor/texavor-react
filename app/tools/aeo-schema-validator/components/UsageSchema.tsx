@@ -4,17 +4,31 @@ const UsageSchema = () => {
   const schema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "Texavor AEO Schema Validator",
-    applicationCategory: "SEOApplication",
-    operatingSystem: "All",
-    browserRequirements: "Requires JavaScript",
+    "@id": "https://www.texavor.com/tools/aeo-schema-validator",
+    url: "https://www.texavor.com/tools/aeo-schema-validator",
+    name: "AEO Schema Validator - Free AI Search Readiness Tool",
+    description:
+      "Validate your Schema Markup for Answer Engine Optimization (AEO) and AI Search readiness. Analyze your content for AI search engines and get optimization recommendations.",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    browserRequirements: "Requires JavaScript. Requires HTML5.",
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
     },
-    description:
-      "Validate your Schema Markup for Answer Engine Optimization (AEO) and AI Search readiness.",
+    author: {
+      "@type": "Person",
+      name: "Suraj Vishwakarma",
+      url: "https://www.texavor.com",
+    },
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": "https://www.texavor.com",
+      url: "https://www.texavor.com",
+      name: "Texavor",
+    },
   };
 
   return (
