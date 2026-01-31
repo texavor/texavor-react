@@ -39,10 +39,60 @@ export default function Home() {
         description:
           "AI-powered content creation and optimization platform for Answer Engine Optimization (AEO) and SEO.",
         publisher: {
-          "@type": "Person",
-          name: "Suraj Vishwakarma",
+          "@id": "https://www.texavor.com/#person",
+        },
+        // Knowledge Graph connections
+        about: [
+          {
+            "@type": "Thing",
+            name: "Answer Engine Optimization",
+            sameAs: "https://en.wikipedia.org/wiki/Search_engine_optimization",
+          },
+          {
+            "@type": "Thing",
+            name: "Artificial Intelligence",
+            sameAs: "https://en.wikipedia.org/wiki/Artificial_intelligence",
+          },
+          {
+            "@type": "Thing",
+            name: "Content Marketing",
+            sameAs: "https://en.wikipedia.org/wiki/Content_marketing",
+          },
+        ],
+        // Voice Search optimization
+        speakable: {
+          "@type": "SpeakableSpecification",
+          cssSelector: [".hero-title", ".hero-description"],
+        },
+      },
+
+      // Person Schema for E-E-A-T (Expertise, Experience, Authoritativeness, Trust)
+      {
+        "@type": "Person",
+        "@id": "https://www.texavor.com/#person",
+        name: "Suraj Vishwakarma",
+        url: "https://www.texavor.com",
+        description:
+          "Founder of Texavor, expert in AI visibility optimization and Answer Engine Optimization (AEO)",
+        jobTitle: "Founder & CEO",
+        worksFor: {
+          "@type": "Organization",
+          name: "Texavor",
           url: "https://www.texavor.com",
         },
+        // Social profiles for Knowledge Graph
+        sameAs: [
+          "https://x.com/texavor",
+          "https://www.linkedin.com/company/texavor",
+          "https://github.com/texavor",
+        ],
+        knowsAbout: [
+          "Answer Engine Optimization",
+          "AI Visibility Tracking",
+          "Content Optimization",
+          "SEO",
+          "Generative Engine Optimization",
+        ],
       },
 
       // Enhanced SoftwareApplication Schema
@@ -76,10 +126,41 @@ export default function Home() {
         screenshot: "https://www.texavor.com/texavor.png",
         softwareVersion: "2.0",
         author: {
-          "@type": "Person",
-          name: "Suraj Vishwakarma",
-          url: "https://www.texavor.com",
+          "@id": "https://www.texavor.com/#person",
         },
+        // Mentions of related technologies/platforms
+        mentions: [
+          {
+            "@type": "SoftwareApplication",
+            name: "ChatGPT",
+            sameAs: "https://en.wikipedia.org/wiki/ChatGPT",
+          },
+          {
+            "@type": "SoftwareApplication",
+            name: "Perplexity AI",
+            url: "https://www.perplexity.ai",
+          },
+          {
+            "@type": "Thing",
+            name: "Large Language Models",
+            sameAs: "https://en.wikipedia.org/wiki/Large_language_model",
+          },
+        ],
+        // What the software is about
+        about: [
+          {
+            "@type": "Thing",
+            name: "Answer Engine Optimization",
+          },
+          {
+            "@type": "Thing",
+            name: "AI Visibility",
+          },
+          {
+            "@type": "Thing",
+            name: "Content Optimization",
+          },
+        ],
       },
 
       // FAQPage Schema - Only if FAQs exist
