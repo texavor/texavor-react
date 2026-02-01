@@ -36,6 +36,11 @@ export async function generateMetadata({
   return {
     title: docData?.title || "Document Not Found",
     description: docData?.description || "Texavor Documentation",
+    twitter: {
+      card: "summary_large_image",
+      title: docData?.title || "Texavor Documentation",
+      description: docData?.description || "Optimize for AI Search (AEO)",
+    },
   };
 }
 
