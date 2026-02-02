@@ -72,20 +72,16 @@ const SocialCard = ({ card }: { card: any }) => {
         />
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col items-center max-w-4xl">
-          <div className="mb-8 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+        <div className="relative z-10 flex flex-col items-center max-w-5xl px-4">
+          <div className="mb-4 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
             {card.icon}
           </div>
 
-          <h2 className="text-3xl font-medium text-green-100 mb-6 tracking-wide uppercase opacity-90">
-            {card.subtitle}
-          </h2>
-
-          <h1 className="text-8xl font-bold text-white tracking-tight mb-8 leading-tight drop-shadow-sm">
+          <h1 className="text-9xl font-extrabold text-white tracking-tight leading-none drop-shadow-lg mb-6">
             {card.title}
           </h1>
 
-          <p className="text-4xl text-green-50/90 font-light leading-snug">
+          <p className="text-5xl text-green-50 font-semibold leading-tight max-w-5xl opacity-100 drop-shadow-sm">
             {card.description}
           </p>
         </div>
