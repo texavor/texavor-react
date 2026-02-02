@@ -34,14 +34,14 @@ export const metadata: Metadata = {
     title: "Texavor",
     description:
       "AI developer content strategist. Generate high-impact, E-E-A-T-optimized technical article ideas for Google & AI Chatbots. Maximize discovery & authority.",
-    images: "/easywriteOpenGraph.png",
+    // images: "/easywriteOpenGraph.png",
   },
   twitter: {
     card: "summary_large_image",
     title: "Texavor",
     description:
       "AI developer content strategist. Generate high-impact, E-E-A-T-optimized technical article ideas for Google & AI Chatbots. Maximize discovery & authority.",
-    images: "/easywriteOpenGraph.png",
+    // images: "/easywriteOpenGraph.png",
   },
   alternates: {
     canonical: "https://www.texavor.com",
