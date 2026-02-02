@@ -66,6 +66,60 @@ module.exports = {
           5: "hsl(var(--chart-5))",
         },
       },
+      typography: (theme: any) => ({
+        DEFAULT: {
+          css: {
+            color: theme("colors.zinc.700"),
+            maxWidth: "none",
+            h1: {
+              color: theme("colors.zinc.900"),
+            },
+            h2: {
+              color: theme("colors.zinc.900"),
+            },
+            h3: {
+              color: theme("colors.zinc.900"),
+            },
+            h4: {
+              color: theme("colors.zinc.900"),
+            },
+            strong: {
+              color: theme("colors.zinc.900"),
+            },
+            blockquote: {
+              color: theme("colors.zinc.900"),
+              borderLeftColor: theme("colors.zinc.200"),
+            },
+            a: {
+              color: theme("colors.green.600"),
+              textDecoration: "underline",
+              "&:hover": {
+                color: theme("colors.green.700"),
+              },
+            },
+            code: {
+              color: theme("colors.zinc.800"),
+              // backgroundColor: theme("colors.zinc.100"),
+              borderRadius: theme("borderRadius.md"),
+              paddingLeft: theme("padding[1.5]"),
+              paddingRight: theme("padding[1.5]"),
+              paddingTop: theme("padding[0.5]"),
+              paddingBottom: theme("padding[0.5]"),
+              fontWeight: "500",
+            },
+            // Remove the default backticks forcefully
+            "code::before": {
+              content: "none",
+            },
+            "code::after": {
+              content: "none",
+            },
+            th: {
+              color: theme("colors.zinc.900"),
+            },
+          },
+        },
+      }),
     },
   },
   plugins: [require("@tailwindcss/typography"), require("tailwindcss-animate")],

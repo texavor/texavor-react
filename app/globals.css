@@ -156,10 +156,20 @@
 }
 
 /* Tiptap Placeholder Styles */
-.tiptap p.is-editor-empty:first-child::before {
-  color: #1f2937; /* gray-800 */
-  content: attr(data-placeholder);
-  float: left;
-  height: 0;
-  pointer-events: none;
+/* Forcefully remove backticks and style prose inline code ONLY (exclude code blocks) */
+.prose :where(code):not(:where([class~="not-prose"] *)):not(:where(pre *)) {
+    background-color: rgb(244 244 245); /* zinc-100 */
+    color: rgb(39 39 42); /* zinc-800 */
+    border-radius: 0.25rem;
+    padding-left: 0.375rem;
+    padding-right: 0.375rem;
+    padding-top: 0.125rem;
+    padding-bottom: 0.125rem;
+    font-weight: 600 !important;
+}
+.prose :where(code):not(:where([class~="not-prose"] *))::before {
+    content: none !important;
+}
+.prose :where(code):not(:where([class~="not-prose"] *))::after {
+    content: none !important;
 }

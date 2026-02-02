@@ -159,7 +159,7 @@ export const ArticleContent = memo(function ArticleContent({
       h2Elements.length < 2
     ) {
       console.log(
-        "⚠️ Not enough h2 elements or no related articles to inject."
+        "⚠️ Not enough h2 elements or no related articles to inject.",
       );
       return;
     }
@@ -197,7 +197,7 @@ export const ArticleContent = memo(function ArticleContent({
   return (
     <article
       ref={articleRef}
-      className="prose lg:prose-lg max-w-none font-inter text-[#2B2B2B] break-words w-full"
+      className="prose lg:prose-lg max-w-none font-inter prose-code:font-semibold text-[#2B2B2B] break-words w-full"
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );
