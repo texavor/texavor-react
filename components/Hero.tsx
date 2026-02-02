@@ -18,24 +18,23 @@ export default function Hero() {
           <span className="text-slate-500">New</span>
           <span className="w-1 h-1 rounded-full bg-slate-300 mx-1" />
           <span className="text-foreground">
-            Competitor Intelligence is now live
+            AEO Intent Research Module is live
           </span>
         </div>
 
         {/* Headline */}
         <h1 className="text-5xl md:text-6xl lg:text-[72px] font-bold text-foreground font-poppins leading-[1.1] tracking-tight max-w-5xl mx-auto mb-6 animate-fade-slide-up">
-          Don't Let AI <br className="hidden md:block" />
-          Bury Your Brand.
+          The Research-First CMS <br className="hidden md:block" />
+          for the AEO Era.
         </h1>
 
         {/* Subheadline */}
         <p className="text-lg md:text-xl text-muted-foreground font-inter leading-relaxed max-w-3xl mx-auto mb-10 animate-fade-slide-up [animation-delay:100ms]">
-          The complete platform for managing articles and{" "}
+          Texavor is the complete platform for managing articles and{" "}
           <span className="text-foreground font-medium">
             GEO (Generative Engine Optimization)
           </span>
-          . Monitor your visibility in ChatGPT, fix "decayed" content before
-          LLMs ignore it, and dominate the search landscape.
+          . Monitor visibility, fix content decay, and rank in ChatGPT.
         </p>
 
         {/* CTAs */}

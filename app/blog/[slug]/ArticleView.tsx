@@ -207,15 +207,16 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                   Get Cited by AI
                 </h4>
                 <p className="font-inter text-sm text-gray-700 mb-6 leading-relaxed">
-                  Turn raw technical insights into Answer Engine Optimized
-                  articles. Automate the drafting grunt work so you can focus on
-                  the engineering.
+                  Texavor turns raw insights into{" "}
+                  <span className="font-semibold">data-backed</span>, Answer
+                  Engine Optimized articles. Stop guessing and start ranking in
+                  ChatGPT & Perplexity.
                 </p>
                 <Link
                   href="/"
                   className="block w-full text-center font-poppins bg-[#104127] text-white font-medium py-3 px-4 rounded-xl hover:bg-[#0A2918] transition-all duration-200 text-sm shadow-lg shadow-primary/20"
                 >
-                  Get Started 🚀
+                  Try Texavor Free 🚀
                 </Link>
               </div>
             </div>

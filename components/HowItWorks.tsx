@@ -7,22 +7,23 @@ export default function HowItWorks() {
   const steps = [
     {
       number: "Step 1",
-      title: "Enter Blog Details",
+      title: "Analyze AEO Intent & Competitor Gaps",
       description:
-        "Add your blog information and configure your content preferences to get started.",
+        "Understand exactly what questions your audience is asking AI. Research competitor visibility in Perplexity and Google SGE.",
       image: "/screenshots/step1.png", // You'll add this image
     },
     {
       number: "Step 2",
-      title: "Integrate Platform",
-      description: "Connect your favorite platforms in just a few clicks",
+      title: "Generate Data-Backed Content",
+      description:
+        "Create E-E-A-T optimized briefs and articles that answer user queries directly and authoritatively.",
       image: "/screenshots/step2.png", // You'll add this image
     },
     {
       number: "Step 3",
-      title: "Start Getting AI Recommendations",
+      title: "Track & Fix AI Visibility",
       description:
-        "Get AI-powered topic suggestions and content recommendations tailored to your blog.",
+        "Monitor your 'Share of Voice' in LLMs. Get alerts when your content decays or competitors outrank you.",
       image: "/screenshots/step3.png", // You'll add this image
     },
   ];

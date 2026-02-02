@@ -202,21 +202,21 @@ const CalendarView = () => {
 const KeywordResearch = () => {
   const keywords = [
     {
-      keyword: "AI content writing tools",
+      keyword: "AI visibility tracking",
       volume: 2400,
       cpc: "$3.20",
       competition: 75,
       difficulty: 45,
     },
     {
-      keyword: "SEO article generator",
+      keyword: "GEO optimization tools",
       volume: 1800,
       cpc: "$2.80",
       competition: 60,
       difficulty: 38,
     },
     {
-      keyword: "blog post automation",
+      keyword: "AEO intent research",
       volume: 980,
       cpc: "$2.10",
       competition: 45,
@@ -302,18 +302,17 @@ const KeywordResearch = () => {
 const TopicGeneration = () => {
   const topics = [
     {
-      title:
-        "Step-by-Step Guide: Building a Modern React Dashboard with TypeScript",
+      title: "Data-Backed Brief: Optimizing for Google SGE",
       description:
-        "Learn how to create a production-ready React dashboard using TypeScript, Tailwind CSS, and best practices.",
-      badge: "Tutorial",
+        "Based on analysis of top 10 SERP results. Recommended word count: 1800. Key entities to include: 'Zero-Click Searches', 'AI Overviews'.",
+      badge: "High Potential",
       badgeColor: "bg-green-100 text-green-700 border-green-200",
     },
     {
-      title: "Advanced React Patterns: Custom Hooks for State Management",
+      title: "Content Gap: Missing 'Pricing' Comparisons",
       description:
-        "Master advanced React patterns with custom hooks to simplify complex state management scenarios.",
-      badge: "Guide",
+        "Competitors rank for 'Texavor vs others' but your site lacks a direct comparison page. High intent opportunity.",
+      badge: "Gap Analysis",
       badgeColor: "bg-blue-100 text-blue-700 border-blue-200",
     },
   ];
@@ -945,15 +944,14 @@ export default function Features() {
       component: <CalendarView />,
     },
     {
-      title: "Google is only 40% of the battle.",
+      title: "Deep Research & AEO Intent",
       description:
-        "Traditional SEO tools ignore where 60% of devs search: ChatGPT, Claude, and Perplexity. Texavor tracks your LLM Share of Voice.",
+        "How do you rank in AI? Start with data. Analyze intent and competition before you write.",
       component: <KeywordResearch />,
     },
     {
-      title: "Smart Topic Generation",
-      description:
-        "Convert basic ideas into E-E-A-T optimized article concepts instantly.",
+      title: "Data-Backed Topic Briefs",
+      description: "Generate content briefs based on live SERP and LLM data.",
       component: <TopicGeneration />,
     },
     {
@@ -963,9 +961,9 @@ export default function Features() {
       component: <OutlineGeneration />,
     },
     {
-      title: "Competitor Intelligence",
+      title: "SERP & LLM Analysis",
       description:
-        "Track competitor content velocity and quality. Know exactly where to outperform them.",
+        "Track where your competitors appear in Perplexity and Google SGE. Spot gaps instantly.",
       component: <CompetitorAnalysis />,
     },
     {
