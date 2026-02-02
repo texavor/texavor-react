@@ -101,7 +101,7 @@ export default function Home() {
         "@id": "https://www.texavor.com/#features",
         name: "Texavor",
         description:
-          "AI-powered content creation and optimization platform. Track your visibility across ChatGPT, Perplexity, and other AI/LLMs. Get mentioned in AI with Texavor.",
+          "Generate high-impact, E-E-A-T optimized technical articles. Monitor Share of Voice on ChatGPT, Perplexity & Claude. Fix content decay before you lose rank.",
         applicationCategory: "BusinessApplication",
         applicationSubCategory: "ContentOptimizationApplication",
         operatingSystem: "Web",

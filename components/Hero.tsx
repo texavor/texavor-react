@@ -17,9 +17,7 @@ export default function Hero() {
           <Sparkles className="w-3.5 h-3.5 text-primary fill-primary/20" />
           <span className="text-slate-500">New</span>
           <span className="w-1 h-1 rounded-full bg-slate-300 mx-1" />
-          <span className="text-foreground">
-            AEO Intent Research Module is live
-          </span>
+          <span className="text-foreground">Content Decay Engine is live</span>
         </div>
 
         {/* Headline */}
@@ -32,9 +30,10 @@ export default function Hero() {
         <p className="text-lg md:text-xl text-muted-foreground font-inter leading-relaxed max-w-3xl mx-auto mb-10 animate-fade-slide-up [animation-delay:100ms]">
           Texavor is the complete platform for managing articles and{" "}
           <span className="text-foreground font-medium">
-            GEO (Generative Engine Optimization)
+            Answer Engine Optimization (AEO)
           </span>
-          . Monitor visibility, fix content decay, and rank in ChatGPT.
+          . Monitor visibility, fix content decay, and rank in ChatGPT,
+          Perplexity, and Claude.
         </p>
 
         {/* CTAs */}

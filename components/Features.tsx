@@ -979,7 +979,7 @@ export default function Features() {
       component: <ThumbnailGeneration />,
     },
     {
-      title: "Proof of Human.",
+      title: "Authority Engine (Proof of Human).",
       description:
         "In an ocean of AI slop, verified human authorship is the ultimate ranking signal. Texavor syncs your Author Biography across Dev.to, Medium, and your blog to prove E-E-A-T.",
       component: <AuthorManagement />,

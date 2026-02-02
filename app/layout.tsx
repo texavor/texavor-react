@@ -23,24 +23,24 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: {
     template: "%s",
-    default: "Texavor",
+    default: "Texavor - AEO & Content Optimization Platform for Developers",
   },
   description:
-    "AI developer content strategist. Generate high-impact, E-E-A-T-optimized technical article ideas for Google & AI Chatbots. Maximize discovery & authority.",
+    "Generate high-impact, E-E-A-T optimized technical articles. Monitor Share of Voice on ChatGPT, Perplexity & Claude. Fix content decay before you lose rank.",
   verification: {
     google: "E4iB-NQGsBin8Lyn7z9uYrmUZR0YwVl4_FhB4bWaKzo",
   },
   openGraph: {
-    title: "Texavor",
+    title: "Texavor - AEO & Content Optimization Platform for Developers",
     description:
-      "AI developer content strategist. Generate high-impact, E-E-A-T-optimized technical article ideas for Google & AI Chatbots. Maximize discovery & authority.",
+      "Generate high-impact, E-E-A-T optimized technical articles. Monitor Share of Voice on ChatGPT, Perplexity & Claude. Fix content decay before you lose rank.",
     // images: "/easywriteOpenGraph.png",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Texavor",
+    title: "Texavor - AEO & Content Optimization Platform for Developers",
     description:
-      "AI developer content strategist. Generate high-impact, E-E-A-T-optimized technical article ideas for Google & AI Chatbots. Maximize discovery & authority.",
+      "Generate high-impact, E-E-A-T optimized technical articles. Monitor Share of Voice on ChatGPT, Perplexity & Claude. Fix content decay before you lose rank.",
     // images: "/easywriteOpenGraph.png",
   },
   alternates: {
