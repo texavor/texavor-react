@@ -742,7 +742,7 @@ export default function ContentAuditPage() {
                     className="h-12 px-8 bg-emerald-500 hover:bg-emerald-400 text-[#0A1A12] font-semibold text-lg rounded-xl transition-all w-full sm:w-auto"
                     asChild
                   >
-                    <Link href={result.upsell?.cta_link || "/pricing"}>
+                    <Link href={result.upsell?.cta_link || "#pricing"}>
                       Start Site Audit
                     </Link>
                   </Button>

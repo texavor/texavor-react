@@ -210,7 +210,7 @@ export default function Home() {
             "@type": "WebPage",
             "@id": "https://www.texavor.com#pricing",
             name: "Pricing",
-            url: "https://www.texavor.com/pricing",
+            url: "https://www.texavor.com#pricing",
             description: "View Texavor pricing plans and features",
           },
           {

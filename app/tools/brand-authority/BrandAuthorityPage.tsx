@@ -186,7 +186,7 @@ export default function BrandAuthorityPage() {
         },
         upsell: {
           message: "Get full competitor analysis with Texavor Pro.",
-          cta_link: "/pricing",
+          cta_link: "#pricing",
         },
       });
       toast.info("Using demo data (API simulation)");

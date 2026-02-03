@@ -107,7 +107,7 @@ export async function POST(req: Request) {
       },
       upsell: {
         message: "Use our AI Writer to auto-generate perfect snippets.",
-        cta_link: "/pricing",
+        cta_link: "#pricing",
       },
     });
   } catch (error) {
