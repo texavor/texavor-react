@@ -43,9 +43,7 @@ export const metadata: Metadata = {
       "Generate high-impact, E-E-A-T optimized technical articles. Monitor Share of Voice on ChatGPT, Perplexity & Claude. Fix content decay before you lose rank.",
     // images: "/easywriteOpenGraph.png",
   },
-  alternates: {
-    canonical: "https://www.texavor.com",
-  },
+
   metadataBase: new URL("https://www.texavor.com"),
 };
 

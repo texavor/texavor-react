@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Website AI Auditor",
   description:
     "Is your website ready for the AI era? Check your specialized readiness for Crawlers, RAG, and Entity Understanding.",
+  alternates: {
+    canonical: "/tools/website-auditor",
+  },
 };
 
 export default function Page() {

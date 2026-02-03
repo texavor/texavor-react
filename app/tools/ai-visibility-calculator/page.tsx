@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "AI Visibility Calculator",
   description:
     "Test how well your content ranks in AI search results with our advanced 5-point analysis.",
+  alternates: {
+    canonical: "/tools/ai-visibility-calculator",
+  },
 };
 
 export default function Page() {

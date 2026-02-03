@@ -120,12 +120,9 @@ export async function generateMetadata(props: {
       description: articleData?.description || "Read this interesting article",
       images: articleData?.image ? [articleData.image] : [],
     },
-    ...(articleData?.canonical_url &&
-      extractDomain(articleData?.canonical_url) !== "texavor.com" && {
-        alternates: {
-          canonical: articleData.canonical_url,
-        },
-      }),
+    alternates: {
+      canonical: articleData?.canonical_url || `/blog/${params.slug}`,
+    },
   };
 }
 

@@ -90,6 +90,9 @@ export const metadata = {
     description:
       "Professional-grade free SEO and AEO tools including Domain Authority Checker, AI Visibility Calculator, Website Auditor, FAQ Schema Generator, and more.",
   },
+  alternates: {
+    canonical: "/tools",
+  },
 };
 
 export default function ToolsPage() {

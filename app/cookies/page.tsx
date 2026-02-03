@@ -173,6 +173,9 @@ export const metadata = {
     description:
       "Learn about how Texavor uses cookies to improve your experience and provide better service. Information about essential, performance, and functionality cookies.",
   },
+  alternates: {
+    canonical: "/cookies",
+  },
 };
 
 export default CookiePolicy;

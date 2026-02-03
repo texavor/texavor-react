@@ -167,6 +167,9 @@ export const metadata = {
     description:
       "Learn about Texavor's refund policy including eligibility, money-back guarantees (3-day for monthly, 14-day for yearly), and how to request a refund.",
   },
+  alternates: {
+    canonical: "/refund-policy",
+  },
 };
 
 export default RefundPolicy;

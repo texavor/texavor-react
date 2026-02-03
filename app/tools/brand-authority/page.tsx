@@ -7,6 +7,9 @@ export const metadata: Metadata = {
     "Free Brand Authority Checker | Test Your Social & Schema Signals | Texavor",
   description:
     "Calculate your Brand Authority Score instantly. We analyze your Social Links, Knowledge Graph Schema, and SSL Security to verify your E-E-A-T.",
+  alternates: {
+    canonical: "/tools/brand-authority",
+  },
 };
 
 export default function Page() {

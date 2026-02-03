@@ -1,7 +1,17 @@
 import React from "react";
 import { baseURL } from "@/lib/axiosInstance";
 import BlogClientWrapper from "./BlogClientWrapper";
+import { Metadata } from "next";
 import Schema from "@/components/Schema";
+
+export const metadata: Metadata = {
+  title: "Texavor Blog | Insights on AEO & AI Content Strategy",
+  description:
+    "Insights and guides on AI content creation, Answer Engine Optimization (AEO), and SEO strategies for the AI era.",
+  alternates: {
+    canonical: "/blog",
+  },
+};
 
 export const revalidate = 60; // Revalidate every 60 seconds
 

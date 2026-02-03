@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Free Content Audit Tool | Check SEO Health & Quality Instantly",
   description:
     "Scan any URL to identify technical errors, thin content, and missing metadata. Get a free health score and 100% actionable fix list.",
+  alternates: {
+    canonical: "/tools/content-audit",
+  },
 };
 
 export default function Page() {

@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Free FAQ Schema Generator | JSON-LD & Microdata Creator | Texavor",
   description:
     "Instantly generate Google-compliant FAQ Schema. Type your questions or auto-extract them from any URL. 100% Free.",
+  alternates: {
+    canonical: "/tools/faq-schema-generator",
+  },
 };
 
 export default function Page() {

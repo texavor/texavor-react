@@ -1,4 +1,15 @@
+import type { Metadata } from "next";
 import PageTransition from "@/components/PageTransition";
+
+export const metadata: Metadata = {
+  title: "Texavor - AEO & Content Optimization Platform for Developers",
+  description:
+    "Generate high-impact, E-E-A-T optimized technical articles. Monitor Share of Voice on ChatGPT, Perplexity & Claude. Fix content decay before you lose rank.",
+  alternates: {
+    canonical: "/",
+  },
+};
+
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import dynamic from "next/dynamic";

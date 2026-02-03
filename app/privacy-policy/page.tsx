@@ -165,6 +165,9 @@ export const metadata = {
     description:
       "Learn how Texavor collects, uses, and protects your personal data. Our privacy policy explains data collection, usage, security measures, and your rights.",
   },
+  alternates: {
+    canonical: "/privacy-policy",
+  },
 };
 
 export default PrivacyPolicy;

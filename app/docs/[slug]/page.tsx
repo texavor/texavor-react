@@ -41,6 +41,9 @@ export async function generateMetadata({
       title: docData?.title || "Texavor Documentation",
       description: docData?.description || "Optimize for AI Search (AEO)",
     },
+    alternates: {
+      canonical: `/docs/${slug}`,
+    },
   };
 }
 

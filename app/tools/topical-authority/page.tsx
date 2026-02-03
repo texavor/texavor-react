@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Free Topical Authority Map Generator | Build SEO Clusters Instantly",
   description:
     "Visualise your topical authority. Enter a keyword to generate a complete topic cluster map and content strategy for free. No signup required.",
+  alternates: {
+    canonical: "/tools/topical-authority",
+  },
 };
 
 export default function Page() {

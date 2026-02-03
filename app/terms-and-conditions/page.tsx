@@ -169,6 +169,9 @@ export const metadata = {
     description:
       "Read Texavor's Terms and Conditions covering service usage, user accounts, intellectual property, subscriptions, acceptable use policy, and liability.",
   },
+  alternates: {
+    canonical: "/terms-and-conditions",
+  },
 };
 
 export default TermsAndConditions;
