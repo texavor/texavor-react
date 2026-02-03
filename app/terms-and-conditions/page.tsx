@@ -162,5 +162,15 @@ const TermsAndConditions = () => {
     </PageTransition>
   );
 };
+export const metadata = {
+  title: "Terms and Conditions | Texavor",
+  description:
+    "Read Texavor's Terms and Conditions covering service usage, user accounts, intellectual property, subscriptions, acceptable use policy, and liability.",
+  openGraph: {
+    title: "Terms and Conditions | Texavor",
+    description:
+      "Read Texavor's Terms and Conditions covering service usage, user accounts, intellectual property, subscriptions, acceptable use policy, and liability.",
+  },
+};
 
 export default TermsAndConditions;

@@ -160,4 +160,15 @@ const RefundPolicy = () => {
   );
 };
 
+export const metadata = {
+  title: "Refund Policy | Texavor",
+  description:
+    "Learn about Texavor's refund policy including eligibility, money-back guarantees (3-day for monthly, 14-day for yearly), and how to request a refund.",
+  openGraph: {
+    title: "Refund Policy | Texavor",
+    description:
+      "Learn about Texavor's refund policy including eligibility, money-back guarantees (3-day for monthly, 14-day for yearly), and how to request a refund.",
+  },
+};
+
 export default RefundPolicy;

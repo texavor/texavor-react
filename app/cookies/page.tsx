@@ -166,4 +166,15 @@ const CookiePolicy = () => {
   );
 };
 
+export const metadata = {
+  title: "Cookie Policy | Texavor",
+  description:
+    "Learn about how Texavor uses cookies to improve your experience and provide better service. Information about essential, performance, and functionality cookies.",
+  openGraph: {
+    title: "Cookie Policy | Texavor",
+    description:
+      "Learn about how Texavor uses cookies to improve your experience and provide better service. Information about essential, performance, and functionality cookies.",
+  },
+};
+
 export default CookiePolicy;

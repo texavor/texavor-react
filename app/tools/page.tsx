@@ -83,6 +83,17 @@ const tools = [
   },
 ];
 
+export const metadata = {
+  title: "Free AEO & SEO Tools | Texavor",
+  description:
+    "Professional-grade free SEO and AEO tools including Domain Authority Checker, AI Visibility Calculator, Website Auditor, FAQ Schema Generator, and more.",
+  openGraph: {
+    title: "Free AEO & SEO Tools | Texavor",
+    description:
+      "Professional-grade free SEO and AEO tools including Domain Authority Checker, AI Visibility Calculator, Website Auditor, FAQ Schema Generator, and more.",
+  },
+};
+
 export default function ToolsPage() {
   const schema = {
     "@context": "https://schema.org",

@@ -158,4 +158,15 @@ const PrivacyPolicy = () => {
   );
 };
 
+export const metadata = {
+  title: "Privacy Policy | Texavor",
+  description:
+    "Learn how Texavor collects, uses, and protects your personal data. Our privacy policy explains data collection, usage, security measures, and your rights.",
+  openGraph: {
+    title: "Privacy Policy | Texavor",
+    description:
+      "Learn how Texavor collects, uses, and protects your personal data. Our privacy policy explains data collection, usage, security measures, and your rights.",
+  },
+};
+
 export default PrivacyPolicy;
