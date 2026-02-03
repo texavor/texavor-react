@@ -49,7 +49,7 @@ When you click **Deploy**:
 ## FAQ
 
 **Q: Does it work with Custom Post Types (CPT)?**
-A: Currently, we write to the standard `post` type. If you need CPT support (e.g., for a "Books" section), use the [Custom Webhook](/platforms/custom-webhooks) integration instead.
+A: Currently, we write to the standard `post` type. If you need CPT support (e.g., for a "Books" section), use the [Custom Webhook](/docs/custom-webhooks) integration instead.
 
 **Q: "JSON Error" or "Rest API Disabled"?**
 A: Some security plugins (like Wordfence) block the REST API. You may need to whitelist the Texavor IP or enable the REST API in your security settings.

@@ -52,7 +52,7 @@ The Auditor gives you an **AI Readiness Score (0-100)** based on 4 pillars:
 - **Grade B (70-89):** Good, but missing some semantic signals.
 - **Grade F (<60):** You are likely blocking AI crawlers or have no schema.
 
-[**Run an Audit Now**](/tools/auditor)
+[**Run an Audit Now**](/tools/website-auditor)
 
 ## Support & Resources
 

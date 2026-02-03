@@ -16,19 +16,19 @@ We currently support direct API integration with:
 
 ### 🟢 Zero-Config Platforms
 
-- **[Dev.to](/docs/platforms/devto):** Native markdown support. (Tags, Collections).
-- **[Hashnode](/docs/platforms/hashnode):** Full API support. (Custom Domain, Series).
-- **[Medium](/docs/platforms/medium):** Content distribution. (Publications, Tags).
+- **[Dev.to](/docs/devto):** Native markdown support. (Tags, Collections).
+- **[Hashnode](/docs/hashnode):** Full API support. (Custom Domain, Series).
+- **[Medium](/docs/medium):** Content distribution. (Publications, Tags).
 
-### � CMS Integrations
+### CMS Integrations
 
-- **[WordPress](/docs/platforms/wordpress):** Post to your self-hosted WP site.
-- **[Shopify](/docs/platforms/shopify):** Post to your e-commerce blog.
-- **[Webflow](/docs/platforms/webflow):** Post to CMS Collections.
+- **[WordPress](/docs/wordpress):** Post to your self-hosted WP site.
+- **[Shopify](/docs/shopify):** Post to your e-commerce blog.
+- **[Webflow](/docs/webflow):** Post to CMS Collections.
 
 ### 🔴 Advanced
 
-- **[Custom Webhooks](/docs/platforms/custom-webhooks):** Trigger a specialized JSON payload to your own Next.js/Remix API.
+- **[Custom Webhooks](/docs/custom-webhooks):** Trigger a specialized JSON payload to your own Next.js/Remix API.
 
 ## The "Canonical" Strategy
 

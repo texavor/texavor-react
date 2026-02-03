@@ -13,6 +13,7 @@ export interface DocData {
   content: string;
   category?: string;
   order?: number;
+  lastModified: Date;
   [key: string]: any;
 }
 
@@ -78,9 +79,11 @@ export function getAllDocs(): DocData[] {
       const matterResult = matter(fileContents);
 
       // Combine the data with the id
+      const stats = fs.statSync(fullPath);
       return {
         slug,
         content: matterResult.content,
+        lastModified: stats.mtime,
         ...matterResult.data,
       } as DocData;
     })
@@ -118,7 +121,7 @@ export function getDocData(slug: string): DocData | null {
 export function getDocsByCategory(): DocCategory[] {
   const allDocs = getAllDocs();
   const categorizedDocs = JSON.parse(
-    JSON.stringify(docsStructure)
+    JSON.stringify(docsStructure),
   ) as DocCategory[];
 
   // Organize docs into categories
@@ -129,7 +132,7 @@ export function getDocsByCategory(): DocCategory[] {
     } else {
       // If no category specified or category not found, add to "Getting Started"
       const defaultCategory = categorizedDocs.find(
-        (cat) => cat.slug === "getting-started"
+        (cat) => cat.slug === "getting-started",
       );
       if (defaultCategory) {
         defaultCategory.items.push(doc);

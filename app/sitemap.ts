@@ -103,7 +103,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const docs = getAllDocs();
   const docPages: MetadataRoute.Sitemap = docs.map((doc: any) => ({
     url: `https://www.texavor.com/docs/${doc?.slug}`,
-    lastModified: new Date(), // Ideally this would come from git commit time or similar if available
+    lastModified: doc.lastModified || new Date(),
     changeFrequency: "monthly",
     priority: 0.7,
   }));
