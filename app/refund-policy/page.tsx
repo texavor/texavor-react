@@ -1,5 +1,3 @@
-"use client";
-
 import PageTransition from "@/components/PageTransition";
 import Link from "next/link";
 import Schema from "@/components/Schema";
