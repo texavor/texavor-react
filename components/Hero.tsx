@@ -85,7 +85,7 @@ export default function Hero() {
 
             {/* Screenshot */}
             <Image
-              src="/screenshots/hero.png"
+              src="/screenshots/hero.webp"
               alt="Texavor Dashboard Interface"
               width={1400}
               height={900}
@@ -93,8 +93,6 @@ export default function Hero() {
               quality={85}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
               className="w-full h-auto block"
-              placeholder="blur"
-              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAMklEQVR4NAAhAN//AOPj4+vr6+Dg4Ojo6AA8PDz/+/v///8A8fHx/Pz8AAAA+/v7+vr6ZQA7Yx00cQAAAABJRU5ErkJggg=="
             />
           </div>
         </div>

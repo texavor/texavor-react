@@ -10,7 +10,7 @@ order: 2
 
 Texavor's Visual Studio is tuned to generate **Technical Aesthetics**—Cyberpunk, Synthwave, Clean UI, and Minimalist Dark Mode visuals that appeal to engineers.
 
-![Thumbnail Generator](/docs/thumbnail-generation.png)
+![Thumbnail Generator](/docs/thumbnail-generation.webp)
 
 ## 1. The "Code-Style" Generator
 
