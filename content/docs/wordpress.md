@@ -1,6 +1,6 @@
 ---
 title: "WordPress Integration"
-description: "Publish to self-hosted WordPress sites via the REST API."
+description: "Publish directly to your self-hosted WordPress site using the REST API. Texavor handles all formatting and image uploads for a seamless publishing experience."
 category: "platforms"
 order: 4
 ---

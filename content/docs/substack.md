@@ -1,6 +1,6 @@
 ---
 title: "Substack Integration"
-description: "Publish newsletters seamlessly to Substack."
+description: "Publish your technical newsletters seamlessly to Substack directly from Texavor. We handle the formatting so you can focus on building your subscriber base."
 category: "platforms"
 order: 7
 ---

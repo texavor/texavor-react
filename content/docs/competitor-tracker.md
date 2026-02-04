@@ -1,6 +1,6 @@
 ---
 title: "Competitor LLM Tracker"
-description: "Track your Share of Voice inside AI models."
+description: "Track your brand's Share of Voice inside AI models like ChatGPT and Perplexity. See exactly how you stack up against competitors in generated responses."
 category: "intelligence-engine"
 date: "2026-01-08"
 order: 3

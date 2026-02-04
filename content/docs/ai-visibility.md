@@ -1,7 +1,7 @@
 ---
 title: "AI Visibility"
 date: "2026-01-12"
-description: "Move beyond 'Search Volume'. Measure your visibility in the Answer Engine Era."
+description: "Move beyond traditional Search Volume. Measure your visibility in the Answer Engine Era and understand how often AI recommends your specific products."
 category: "intelligence-engine"
 order: 1
 ---

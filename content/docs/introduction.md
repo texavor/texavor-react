@@ -1,7 +1,7 @@
 ---
 title: "Welcome to Texavor"
 date: "2026-01-08"
-description: "The complete command center for building technical authority in the AI Era."
+description: "The complete command center for building technical authority in the AI Era. Learn how Texavor helps you research, write, and distribute developer-grade content."
 category: "getting-started"
 order: 1
 ---

@@ -1,7 +1,7 @@
 ---
 title: "The Visual Asset Studio"
 date: "2026-01-08"
-description: "Generate 'Developer-Grade' diagrams, charts, and covers. No generic stock photos allowed."
+description: "Create developer-grade diagrams, charts, and cover images automatically. Stop using generic stock photos and start visualizing your technical concepts clearly."
 category: "creation-suite"
 order: 2
 ---

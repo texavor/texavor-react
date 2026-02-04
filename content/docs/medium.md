@@ -1,6 +1,6 @@
 ---
 title: "Medium Integration"
-description: "Cross-post to Medium safely without SEO penalties."
+description: "Cross-post your technical content to Medium safely using canonical tags. Reach a wider audience without risking SEO penalties or duplicate content issues now."
 category: "platforms"
 order: 3
 ---

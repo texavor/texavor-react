@@ -1,7 +1,7 @@
 ---
 title: "The Command Center"
 date: "2026-01-08"
-description: "Master the Texavor interface. Your bridge between raw data and published authority."
+description: "Master the Texavor interface to streamline your workflow. Your bridge between raw data, content creation, and published authority across all your channels."
 category: "platform"
 order: 2
 ---

@@ -1,6 +1,6 @@
 ---
 title: "The Content Orchestrator"
-description: "Write once. Publish to your Blog, Dev.to, and Medium in a single click."
+description: "Write once and publish everywhere. Connect your Blog, Dev.to, Medium, and more. Manage your entire content distribution strategy from a single dashboard."
 date: "2026-01-08"
 category: "platforms"
 order: 0

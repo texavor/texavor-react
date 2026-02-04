@@ -1,7 +1,7 @@
 ---
 title: "Website AI Auditor"
 date: "2026-01-12"
-description: "How to check if your site is visible to ChatGPT, Claude, and Google AI."
+description: "Analyze your website's visibility across AI search engines like ChatGPT and Claude. Identify technical gaps and optimize your content for the Answer Engine Era."
 category: "intelligence-engine"
 order: 2
 ---

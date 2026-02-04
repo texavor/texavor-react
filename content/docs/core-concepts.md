@@ -1,7 +1,7 @@
 ---
 title: "Core Concepts"
 date: "2026-01-08"
-description: "Understanding AI Visibility, Content Decay, and Authority Building."
+description: "Master the fundamentals of AI Visibility, Content Decay, and Authority Building. Understand the key metrics that drive success in the new era of search."
 category: "getting-started"
 order: 3
 ---

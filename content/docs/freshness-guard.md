@@ -1,6 +1,6 @@
 ---
 title: "Freshness Guard"
-description: "Detect and fix Content Decay before you lose AI citations."
+description: "Detect and fix Content Decay before you lose critical AI citations. Our automated system monitors your older posts and alerts you when they need refreshing."
 date: "2026-01-12"
 category: "intelligence-engine"
 order: 3

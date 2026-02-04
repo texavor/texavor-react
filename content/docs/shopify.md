@@ -1,7 +1,7 @@
 ---
 title: "Shopify Integration"
 date: "2026-01-12"
-description: "Turn your e-commerce store into a traffic magnet."
+description: "Turn your Shopify store into a traffic magnet by publishing AEO-optimized blog content. Drive more organic sales by answering your customers' questions first."
 category: "platforms"
 order: 6
 ---

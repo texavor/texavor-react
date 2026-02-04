@@ -1,7 +1,7 @@
 ---
 title: "Webflow Integration"
 date: "2026-01-12"
-description: "Feed your pixel-perfect site with perfectly structured data."
+description: "Seamlessly publish your optimized content to Webflow CMS collections. Maintain perfect clean code and structure while scaling your programmatic SEO campaigns."
 category: "platforms"
 order: 5
 ---

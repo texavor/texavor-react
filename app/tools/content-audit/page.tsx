@@ -6,7 +6,7 @@ import Schema from "@/components/Schema";
 export const metadata: Metadata = {
   title: "Free Content Audit Tool | Check SEO Health & Quality Instantly",
   description:
-    "Scan any URL to identify technical errors, thin content, and missing metadata. Get a free health score and 100% actionable fix list.",
+    "Scan any URL to identify technical errors, thin content, and missing metadata. Get a free health score and actionable fix list to improve your rankings.",
   alternates: {
     canonical: "/tools/content-audit",
   },

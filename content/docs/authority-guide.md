@@ -1,6 +1,6 @@
 ---
 title: "Authority Analytics"
-description: "Stop counting Pageviews. Start measuring Influence."
+description: "Stop counting vanity Pageviews and start measuring your real Influence. Learn how to build genuine topical authority that stands the test of AI updates."
 category: "intelligence-engine"
 date: "2026-01-08"
 order: 5

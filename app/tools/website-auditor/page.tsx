@@ -5,7 +5,7 @@ import Schema from "@/components/Schema";
 export const metadata: Metadata = {
   title: "Website AI Auditor",
   description:
-    "Is your website ready for the AI era? Check your specialized readiness for Crawlers, RAG, and Entity Understanding.",
+    "Is your website ready for the AI era? Check your specialized readiness for Crawlers, RAG, and Entity Understanding with our comprehensive technical audit.",
   alternates: {
     canonical: "/tools/website-auditor",
   },

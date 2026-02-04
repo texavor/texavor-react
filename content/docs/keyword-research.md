@@ -1,7 +1,7 @@
 ---
 title: "Keyword Research"
 date: "2026-01-12"
-description: "Find high-value topics with 'AI Visibility' scores."
+description: "Find high-value topics using our proprietary 'AI Visibility' scores. Target exactly what users are asking LLMs and capture traffic that others are missing."
 category: "research-tools"
 order: 1
 ---

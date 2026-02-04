@@ -5,7 +5,7 @@ import Schema from "@/components/Schema";
 export const metadata: Metadata = {
   title: "AI Visibility Calculator",
   description:
-    "Test how well your content ranks in AI search results with our advanced 5-point analysis.",
+    "Test how well your content ranks in AI search results with our 5-point analysis. Understand how AI recommends your products and improve your visibility.",
   alternates: {
     canonical: "/tools/ai-visibility-calculator",
   },

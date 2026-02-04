@@ -1,7 +1,7 @@
 ---
 title: "Topic Generation"
 date: "2026-01-12"
-description: "Discover 'Knowledge Gaps' that offer high Opportunity."
+description: "Discover 'Knowledge Gaps' in your specific niche that offer the highest opportunity for ranking in AI Quick Answers and capturing new organic traffic sources."
 category: "research-tools"
 order: 2
 ---

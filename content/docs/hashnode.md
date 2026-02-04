@@ -1,6 +1,6 @@
 ---
 title: "Hashnode Integration"
-description: "Sync articles to your custom domain on Hashnode."
+description: "Sync your articles to your custom domain on Hashnode automatically. Build your developer blog with ease and keep your content perfectly synchronized always."
 category: "platforms"
 order: 2
 ---

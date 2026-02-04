@@ -1,7 +1,7 @@
 ---
 title: "Quick Start Guide"
 date: "2026-01-08"
-description: "From Zero to Authority. Publish your first GEO-optimized article in 5 minutes."
+description: "Go from zero to authority in minutes. This guide walks you through setting up your account, connecting your first integration, and publishing your first post."
 category: "getting-started"
 order: 2
 ---

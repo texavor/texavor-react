@@ -1,7 +1,7 @@
 ---
 title: "The Editor"
 date: "2026-01-12"
-description: "A distraction-free writing environment with a built-in critic."
+description: "Experience a distraction-free writing environment with a built-in critic. Get real-time feedback on your clarity, tone, and SEO structure as you type."
 category: "creation-suite"
 order: 1
 ---

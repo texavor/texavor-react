@@ -1,6 +1,6 @@
 ---
 title: "Dev.to Integration"
-description: "Sync your tech blog to the largest developer community."
+description: "Sync your tech blog to the largest developer community instantly. Expand your reach on Dev.to while maintaining your personal blog as the canonical source."
 category: "platforms"
 order: 1
 ---
