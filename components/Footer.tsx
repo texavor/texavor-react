@@ -11,9 +11,12 @@ export default function Footer() {
     <footer className="w-full bg-gray-50 pt-20 pb-12 relative overflow-hidden">
       {/* Large Watermark Text */}
       <div className="absolute bottom-26 md:bottom-0 left-1/2 -translate-x-1/2 w-full text-center pointer-events-none select-none z-[1]">
-        <h1 className="text-[23vw] md:text-[18vw] font-bold text-foreground/5 font-poppins tracking-tighter leading-none">
+        <div
+          role="presentation"
+          className="text-[23vw] md:text-[18vw] font-bold text-foreground/5 font-poppins tracking-tighter leading-none"
+        >
           Texavor
-        </h1>
+        </div>
       </div>
 
       {/* Bottom Fade Gradient */}

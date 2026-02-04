@@ -165,9 +165,9 @@ export default function BlogThumbnailGenerator() {
               {/* Main Content */}
               <div className="max-w-[800px] text-center z-10 flex flex-col items-center gap-8 px-12">
                 {/* Title */}
-                <h1 className="text-white font-['Poppins'] font-semibold text-5xl leading-tight tracking-tight drop-shadow-md">
+                <div className="text-white font-['Poppins'] font-semibold text-5xl leading-tight tracking-tight drop-shadow-md">
                   {title}
-                </h1>
+                </div>
 
                 {/* Logos */}
                 {images.length > 0 && (

@@ -77,9 +77,9 @@ const SocialCard = ({ card }: { card: any }) => {
             {card.icon}
           </div>
 
-          <h1 className="text-9xl font-extrabold text-white tracking-tight leading-none drop-shadow-lg mb-6">
+          <div className="text-9xl font-extrabold text-white tracking-tight leading-none drop-shadow-lg mb-6">
             {card.title}
-          </h1>
+          </div>
 
           <p className="text-5xl text-green-50 font-semibold leading-tight max-w-5xl opacity-100 drop-shadow-sm">
             {card.description}

@@ -75,7 +75,11 @@ export default async function DocPage({
     );
   }
 
-  const parsedHtml = marked.parse(docData.content || "") as string;
+  const rawHtml = marked.parse(docData.content || "") as string;
+  // Shift heading levels: h1 -> h2, h2 -> h3, etc.
+  const parsedHtml = rawHtml
+    .replace(/<h([1-5])/g, (m, c) => `<h${parseInt(c) + 1}`)
+    .replace(/<\/h([1-5])>/g, (m, c) => `</h${parseInt(c) + 1}>`);
   const categorizedDocs = getDocsByCategory();
 
   // Detect if this is a How-To guide
