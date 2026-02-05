@@ -91,16 +91,16 @@ export default function ClusterTable({ cluster }: ClusterTableProps) {
       <Table>
         <TableHeader className="bg-slate-100/80 dark:bg-zinc-800/50">
           <TableRow className="bg-primary hover:bg-primary border-b border-border/10">
-            <TableHead className="w-[40%] text-xs uppercase tracking-wider font-semibold text-gray-100">
+            <TableHead className="w-[40%] text-xs uppercase tracking-wider font-semibold text-black font-bold">
               Keyword
             </TableHead>
-            <TableHead className="text-xs uppercase tracking-wider font-semibold text-gray-100">
+            <TableHead className="text-xs uppercase tracking-wider font-semibold text-black font-bold">
               Intent
             </TableHead>
-            <TableHead className="text-xs uppercase tracking-wider font-semibold text-gray-100">
+            <TableHead className="text-xs uppercase tracking-wider font-semibold text-black font-bold">
               Difficulty
             </TableHead>
-            <TableHead className="text-right text-xs uppercase tracking-wider font-semibold text-gray-100">
+            <TableHead className="text-right text-xs uppercase tracking-wider font-semibold text-black font-bold">
               Volume
             </TableHead>
             <TableHead className="w-[50px]"></TableHead>

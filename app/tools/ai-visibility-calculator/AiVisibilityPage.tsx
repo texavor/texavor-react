@@ -272,7 +272,7 @@ export default function AiScorePage() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="h-12 px-8 min-w-[140px] font-semibold text-lg bg-[#104127] hover:bg-[#0c311d] text-white shadow-lg hover:shadow-xl transition-all"
+                  className="h-12 px-8 min-w-[140px] font-semibold text-lg bg-primary hover:bg-primary/90 text-white dark:text-zinc-950 shadow-lg hover:shadow-xl transition-all rounded-xl"
                   disabled={loading || isWaitingForToken}
                 >
                   {isWaitingForToken ? (
@@ -303,10 +303,15 @@ export default function AiScorePage() {
         </Card>
 
         {error && (
-          <Alert variant="destructive" className="mb-8 max-w-3xl mx-auto">
-            <AlertCircle className="h-4 w-4" />
-            <AlertTitle>Error</AlertTitle>
-            <AlertDescription>{error}</AlertDescription>
+          <Alert
+            variant="destructive"
+            className="mb-8 max-w-3xl mx-auto dark:bg-red-500/10 dark:border-red-500/20 dark:text-red-400"
+          >
+            <AlertCircle className="h-4 w-4 dark:text-red-400" />
+            <AlertTitle className="dark:text-red-400">Error</AlertTitle>
+            <AlertDescription className="dark:text-red-300">
+              {error}
+            </AlertDescription>
           </Alert>
         )}
 
@@ -614,18 +619,18 @@ export default function AiScorePage() {
                       >
                         {/* Content with Tooltip */}
                         <div className="flex-1 min-w-0 relative">
-                          <p className="text-sm font-medium text-black break-words whitespace-normal leading-tight cursor-help">
+                          <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100 break-words whitespace-normal leading-tight cursor-help">
                             {prompt}
                           </p>
-                          <p className="text-xs text-gray-500">
+                          <p className="text-xs text-zinc-500 dark:text-zinc-400">
                             AI Generated Prompt
                           </p>
 
                           {/* Custom Tooltip */}
                           <div className="absolute bottom-full left-0 mb-2 w-max max-w-[250px] hidden group-hover:block z-50">
-                            <div className="bg-white text-black text-xs rounded-lg py-2 px-3 shadow-xl">
+                            <div className="bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-xs rounded-lg py-2 px-3 shadow-xl border border-border/50">
                               {prompt}
-                              <div className="absolute top-full left-4 -mt-1 border-4 border-transparent border-t-slate-900"></div>
+                              <div className="absolute top-full left-4 -mt-1 border-4 border-transparent border-t-white dark:border-t-zinc-800"></div>
                             </div>
                           </div>
                         </div>
@@ -634,7 +639,7 @@ export default function AiScorePage() {
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="h-8 w-8 text-gray-700 hover:text-gray-700 hover:bg-primary/10 rounded-full transition-colors"
+                          className="h-8 w-8 text-zinc-500 dark:text-zinc-400 hover:text-primary dark:hover:text-primary hover:bg-primary/10 rounded-full transition-colors"
                           onClick={() => copyToClipboard(prompt)}
                         >
                           <Copy className="w-4 h-4" />
@@ -664,21 +669,21 @@ export default function AiScorePage() {
                       >
                         {/* Content with Tooltip */}
                         <div className="flex-1 min-w-0 relative">
-                          <p className="text-sm font-medium text-black break-words whitespace-normal leading-tight cursor-help">
+                          <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100 break-words whitespace-normal leading-tight cursor-help">
                             {idea?.term}
                           </p>
                           {idea?.vol &&
                             idea.vol.toLowerCase() !== "unknown" && (
-                              <p className="text-xs text-gray-500 font-mono mt-0.5">
+                              <p className="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
                                 {idea.vol}
                               </p>
                             )}
 
                           {/* Custom Tooltip */}
                           <div className="absolute bottom-full left-0 mb-2 w-max max-w-[250px] hidden group-hover:block z-50">
-                            <div className="bg-white text-black text-xs rounded-lg py-2 px-3 shadow-xl">
+                            <div className="bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-xs rounded-lg py-2 px-3 shadow-xl border border-border/50">
                               {idea?.term}
-                              <div className="absolute top-full left-4 -mt-1 border-4 border-transparent border-t-slate-900"></div>
+                              <div className="absolute top-full left-4 -mt-1 border-4 border-transparent border-t-white dark:border-t-zinc-800"></div>
                             </div>
                           </div>
                         </div>
@@ -687,7 +692,7 @@ export default function AiScorePage() {
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="h-8 w-8 text-gray-700 hover:text-gray-700 hover:bg-primary/10 rounded-full transition-colors"
+                          className="h-8 w-8 text-zinc-500 dark:text-zinc-400 hover:text-primary dark:hover:text-primary hover:bg-primary/10 rounded-full transition-colors"
                           onClick={() => copyToClipboard(idea?.term)}
                         >
                           <Copy className="w-4 h-4" />
