@@ -4,7 +4,6 @@ import "./globals.css";
 import LandingNav from "@/components/LandingNav";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
-import { ThemeProvider } from "next-themes";
 import ReactQueryProvider from "./ReactQueryProvider";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Script from "next/script";
