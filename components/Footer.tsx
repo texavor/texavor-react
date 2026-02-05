@@ -155,7 +155,7 @@ export default function Footer() {
 
             {/* Resources */}
             <div>
-              <h4 className="font-semibold text-gray-900 font-poppins mb-6">
+              <h4 className="font-semibold text-gray-900 dark:text-white font-poppins mb-6">
                 Resources
               </h4>
               <ul className="space-y-4 text-sm text-gray-500 font-inter">
