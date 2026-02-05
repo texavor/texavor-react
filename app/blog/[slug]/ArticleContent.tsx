@@ -197,7 +197,12 @@ export const ArticleContent = memo(function ArticleContent({
   return (
     <article
       ref={articleRef}
-      className="prose lg:prose-lg max-w-none font-inter prose-code:font-semibold text-[#2B2B2B] break-words w-full"
+      className="prose lg:prose-lg dark:prose-invert max-w-none font-inter 
+      prose-headings:font-poppins dark:prose-headings:text-white 
+      prose-p:text-gray-700 dark:prose-p:text-zinc-300 
+      prose-strong:text-gray-900 dark:prose-strong:text-white 
+      prose-li:text-gray-700 dark:prose-li:text-zinc-300
+      prose-code:font-semibold break-words w-full"
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );
