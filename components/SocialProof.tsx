@@ -34,7 +34,7 @@ export default function SocialProof() {
   ];
 
   return (
-    <section className="w-full py-16 border-y border-border/40 bg-white/50 backdrop-blur-sm">
+    <section className="w-full py-16 border-y border-border/40 bg-background/50 backdrop-blur-sm">
       <div className="container mx-auto px-4 max-w-7xl">
         <p className="text-center text-sm font-semibold text-muted-foreground mb-10 font-inter uppercase tracking-wider">
           Trusted by high-growth technical teams
@@ -74,7 +74,7 @@ export default function SocialProof() {
                 >
                   {logo.name.charAt(0)}
                 </div>
-                <span className="font-bold text-lg font-poppins text-gray-800 group-hover:text-black transition-colors">
+                <span className="font-bold text-lg font-poppins text-muted-foreground group-hover:text-foreground transition-colors">
                   {logo.name}
                 </span>
               </div>

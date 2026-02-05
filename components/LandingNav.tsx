@@ -70,10 +70,10 @@ export default function LandingNav() {
               src="/texavor.png"
               alt="EasyWrite"
               fill
-              className="object-contain"
+              className="object-contain dark:brightness-0 dark:invert transition-all"
             />
           </div>
-          <span className="text-secondary-foreground font-bold text-xl font-poppins tracking-tight">
+          <span className="text-foreground font-bold text-xl font-poppins tracking-tight">
             Texavor
           </span>
         </Link>
@@ -88,7 +88,7 @@ export default function LandingNav() {
                 className={cn(
                   "text-sm font-medium transition-colors font-poppins flex items-center gap-1.5",
                   ["free-tools", "website-auditor"].includes(item.id)
-                    ? "text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200/60 hover:border-emerald-300 hover:bg-emerald-100/80 hover:shadow-sm"
+                    ? "text-emerald-700 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-500/10 px-3 py-1.5 rounded-full border border-emerald-200/60 dark:border-emerald-500/20 hover:border-emerald-300 dark:hover:border-emerald-500/40 hover:bg-emerald-100/80 dark:hover:bg-emerald-500/20 hover:shadow-sm"
                     : "text-foreground/70 hover:text-foreground",
                 )}
               >
@@ -117,7 +117,7 @@ export default function LandingNav() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 -mr-2 text-gray-600 hover:text-gray-900 transition-colors"
+            className="md:hidden p-2 -mr-2 text-muted-foreground hover:text-foreground transition-colors"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
@@ -167,8 +167,8 @@ export default function LandingNav() {
                       className={cn(
                         "block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200",
                         ["free-tools", "website-auditor"].includes(item.id)
-                          ? "bg-emerald-50 text-emerald-800 border border-emerald-100"
-                          : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
+                          ? "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-800 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-500/20"
+                          : "text-muted-foreground hover:bg-muted hover:text-foreground",
                       )}
                     >
                       <div className="flex items-center gap-2">
@@ -185,7 +185,7 @@ export default function LandingNav() {
                   ) : (
                     <button
                       onClick={() => scrollToSection(item.id)}
-                      className="block w-full text-left px-4 py-3 rounded-xl text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200"
+                      className="block w-full text-left px-4 py-3 rounded-xl text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-all duration-200"
                     >
                       {item.label}
                     </button>
@@ -193,13 +193,13 @@ export default function LandingNav() {
                 </div>
               ))}
 
-              <div className="h-px bg-gray-100 my-2" />
+              <div className="h-px bg-border my-2" />
 
               <Link
                 href={`${process.env.NEXT_PUBLIC_APP_URL || ""}/login`}
                 target="_blank"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-4 py-3 rounded-xl text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200 sm:hidden"
+                className="block px-4 py-3 rounded-xl text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-all duration-200 sm:hidden"
               >
                 Login
               </Link>

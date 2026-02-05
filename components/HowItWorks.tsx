@@ -29,11 +29,11 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section className="w-full py-24 md:py-32 relative overflow-hidden bg-white">
+    <section className="w-full py-24 md:py-32 relative overflow-hidden bg-white dark:bg-background">
       <div className="container mx-auto px-4 max-w-6xl relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-50 border border-gray-200 rounded-full text-xs font-medium text-primary mb-6 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white dark:bg-background border border-border rounded-full text-xs font-medium text-primary mb-6 shadow-sm">
             <Zap className="w-3 h-3 fill-primary" />
             How It Works
           </div>
@@ -50,10 +50,10 @@ export default function HowItWorks() {
           {steps.map((step, i) => (
             <div
               key={i}
-              className="bg-[#f9f4f0] rounded-3xl p-6 shadow-none transition-all duration-300 border-none"
+              className="bg-gray-50/50 dark:bg-card rounded-3xl p-6 shadow-none transition-all duration-300 border border-border/50"
             >
               {/* Image Preview Area */}
-              <div className="relative bg-[#f9f4f0] rounded-2xl mb-6 h-[320px] border-none overflow-hidden">
+              <div className="relative bg-gray-100/50 dark:bg-background/50 rounded-2xl mb-6 h-[320px] border-none overflow-hidden">
                 <div className="relative w-full h-full">
                   <Image
                     src={step.image}
@@ -63,7 +63,7 @@ export default function HowItWorks() {
                   />
                 </div>
                 {/* Bottom fade effect */}
-                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#f9f4f0] via-[#f9f4f0]/10 to-transparent pointer-events-none" />
+                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-gray-50/50 dark:from-card via-transparent to-transparent pointer-events-none" />
               </div>
 
               {/* Step Number */}
@@ -72,12 +72,12 @@ export default function HowItWorks() {
               </div>
 
               {/* Title */}
-              <h3 className="text-xl font-bold text-gray-900 mb-3 font-poppins">
+              <h3 className="text-xl font-bold text-foreground mb-3 font-poppins">
                 {step.title}
               </h3>
 
               {/* Description */}
-              <p className="text-sm text-gray-600 leading-relaxed font-inter">
+              <p className="text-sm text-muted-foreground leading-relaxed font-inter">
                 {step.description}
               </p>
             </div>

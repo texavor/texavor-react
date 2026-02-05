@@ -44,7 +44,7 @@ const SimpleBarChart = () => {
 
       {/* Progress badge */}
       {bars.findIndex((b) => b.active) >= 0 && (
-        <div className="absolute top-4 right-4 bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-lg">
+        <div className="absolute top-4 right-4 bg-primary text-white dark:bg-zinc-200 dark:text-zinc-900 px-4 py-2 rounded-lg text-sm font-semibold shadow-lg">
           65% Progress
         </div>
       )}
@@ -124,27 +124,32 @@ const CalendarView = () => {
     {
       day: 15,
       title: "The 4 Best ReactJS UI Fra...",
-      color: "bg-yellow-100 text-yellow-800 border-yellow-200",
+      color:
+        "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-500/10 dark:text-yellow-400 dark:border-yellow-500/20",
     },
     {
       day: 15,
       title: "Free Awesome Notion Te...",
-      color: "bg-yellow-100 text-yellow-800 border-yellow-200",
+      color:
+        "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-500/10 dark:text-yellow-400 dark:border-yellow-500/20",
     },
     {
       day: 15,
       title: "A Guide to Coding Stand...",
-      color: "bg-yellow-100 text-yellow-800 border-yellow-200",
+      color:
+        "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-500/10 dark:text-yellow-400 dark:border-yellow-500/20",
     },
     {
       day: 16,
       title: "Optimizing for AI-Powere...",
-      color: "bg-yellow-100 text-yellow-800 border-yellow-200",
+      color:
+        "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-500/10 dark:text-yellow-400 dark:border-yellow-500/20",
     },
     {
       day: 2417,
       title: "Why Developers Struggle...",
-      color: "bg-green-100 text-green-800 border-green-200",
+      color:
+        "bg-green-100 text-green-800 border-green-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20",
     },
   ];
 
@@ -163,7 +168,7 @@ const CalendarView = () => {
               .map((article, i) => (
                 <div
                   key={i}
-                  className={`text-[10px] px-2 py-1.5 rounded-md border ${article.color} dark:bg-primary/20 dark:text-primary-foreground dark:border-primary/30 font-medium truncate`}
+                  className={`text-[10px] px-2 py-1.5 rounded-md border ${article.color} font-medium truncate`}
                 >
                   {article.title}
                 </div>
@@ -184,7 +189,7 @@ const CalendarView = () => {
               .map((article, i) => (
                 <div
                   key={i}
-                  className={`text-[10px] px-2 py-1.5 rounded-md border ${article.color} dark:bg-primary/20 dark:text-primary-foreground dark:border-primary/30 font-medium truncate`}
+                  className={`text-[10px] px-2 py-1.5 rounded-md border ${article.color} font-medium truncate`}
                 >
                   {article.title}
                 </div>
@@ -201,7 +206,7 @@ const CalendarView = () => {
               .map((article, i) => (
                 <div
                   key={i}
-                  className={`text-[10px] px-2 py-1.5 rounded-md border ${article.color} dark:bg-primary/20 dark:text-primary-foreground dark:border-primary/30 font-medium truncate`}
+                  className={`text-[10px] px-2 py-1.5 rounded-md border ${article.color} font-medium truncate`}
                 >
                   {article.title}
                 </div>
@@ -304,7 +309,7 @@ const KeywordResearch = () => {
         </span>
         <button
           aria-label="View all keywords"
-          className="px-3 py-1.5 bg-primary text-white text-xs font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+          className="px-3 py-1.5 bg-primary text-white dark:bg-zinc-200 dark:text-zinc-900 text-xs font-semibold rounded-lg hover:bg-primary/90 dark:hover:bg-zinc-300 transition-colors shadow-sm"
         >
           View All
         </button>
@@ -321,14 +326,16 @@ const TopicGeneration = () => {
       description:
         "Based on analysis of top 10 SERP results. Recommended word count: 1800. Key entities to include: 'Zero-Click Searches', 'AI Overviews'.",
       badge: "High Potential",
-      badgeColor: "bg-green-100 text-green-700 border-green-200",
+      badgeColor:
+        "bg-green-100 text-green-700 border-green-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20",
     },
     {
       title: "Content Gap: Missing 'Pricing' Comparisons",
       description:
         "Competitors rank for 'Texavor vs others' but your site lacks a direct comparison page. High intent opportunity.",
       badge: "Gap Analysis",
-      badgeColor: "bg-blue-100 text-blue-700 border-blue-200",
+      badgeColor:
+        "bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-500/10 dark:text-blue-400 dark:border-blue-500/20",
     },
   ];
 
@@ -349,7 +356,7 @@ const TopicGeneration = () => {
               </p>
               <div className="flex items-center gap-2">
                 <span
-                  className={`inline-flex px-2 py-0.5 rounded-md text-[10px] font-semibold border ${topic.badgeColor} dark:bg-primary/20 dark:text-primary-foreground dark:border-primary/30`}
+                  className={`inline-flex px-2 py-0.5 rounded-md text-[10px] font-semibold border ${topic.badgeColor}`}
                 >
                   {topic.badge}
                 </span>
@@ -357,7 +364,7 @@ const TopicGeneration = () => {
             </div>
             <button
               aria-label="Add topic"
-              className="flex-shrink-0 w-8 h-8 rounded-full bg-primary hover:bg-primary/90 text-white flex items-center justify-center transition-all hover:scale-110 shadow-sm"
+              className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white dark:bg-zinc-200 dark:text-zinc-900 hover:bg-primary/90 dark:hover:bg-zinc-300 flex items-center justify-center transition-all hover:scale-110 shadow-sm"
             >
               <svg
                 className="w-4 h-4"
@@ -427,7 +434,7 @@ const OutlineGeneration = () => {
             </div>
             <button
               aria-label="Remove section"
-              className="text-muted-foreground/40 hover:text-destructive transition-colors"
+              className="text-muted-foreground/50 hover:text-red-500 transition-colors"
             >
               <svg
                 className="w-4 h-4"
@@ -506,7 +513,7 @@ const CompetitorAnalysis = () => {
       {/* Profile Header */}
       <div className="bg-background border border-border rounded-xl p-4">
         <div className="flex items-start gap-4 mb-4">
-          <div className="w-16 h-16 bg-black rounded-lg flex items-center justify-center text-white font-bold text-2xl flex-shrink-0">
+          <div className="w-16 h-16 bg-black dark:bg-zinc-800 rounded-lg flex items-center justify-center text-white font-bold text-2xl flex-shrink-0 border border-border">
             DEV
           </div>
           <div className="flex-1 min-w-0">
@@ -574,7 +581,7 @@ const CompetitorAnalysis = () => {
           </div>
           <button
             aria-label="Run Analysis"
-            className="hidden md:block px-3 py-1.5 bg-primary text-white text-xs font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+            className="hidden md:block px-3 py-1.5 bg-primary text-white dark:bg-zinc-200 dark:text-zinc-900 text-xs font-semibold rounded-lg hover:bg-primary/90 dark:hover:bg-zinc-300 transition-colors shadow-sm"
           >
             Run Analysis
           </button>
@@ -583,7 +590,7 @@ const CompetitorAnalysis = () => {
         {/* Mobile Action Button */}
         <button
           aria-label="Run Analysis"
-          className="md:hidden w-full py-2 mb-4 bg-primary text-white text-xs font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+          className="md:hidden w-full py-2 mb-4 bg-primary text-white dark:bg-zinc-200 dark:text-zinc-900 text-xs font-semibold rounded-lg hover:bg-primary/90 dark:hover:bg-zinc-300 transition-colors shadow-sm"
         >
           Run Analysis
         </button>
@@ -666,7 +673,11 @@ const PlatformIntegration = () => {
                 src={platform.logo}
                 alt={platform.name}
                 fill
-                className="object-contain"
+                className={`object-contain transition-all ${
+                  platform.name === "Medium"
+                    ? "dark:brightness-0 dark:invert"
+                    : ""
+                }`}
               />
             </div>
             <div className="flex-1 min-w-0">
@@ -705,11 +716,7 @@ const PlatformIntegration = () => {
             aria-label={
               platform.connected ? "Manage integration" : "Connect integration"
             }
-            className={`w-full py-2 rounded-lg text-sm font-semibold transition-colors ${
-              platform.connected
-                ? "bg-primary text-white hover:bg-primary/90"
-                : "bg-primary text-white hover:bg-primary/90"
-            }`}
+            className="w-full py-2 rounded-lg text-sm font-semibold transition-colors bg-primary text-white dark:bg-zinc-200 dark:text-zinc-900 hover:bg-primary/90 dark:hover:bg-zinc-300 shadow-sm"
           >
             {platform.connected ? "Manage" : "Connect"}
           </button>
@@ -881,15 +888,15 @@ const AuthorManagement = () => {
   const getRoleBadgeColor = (role: string) => {
     switch (role) {
       case "Admin":
-        return "bg-green-100 text-green-700 border-green-200";
+        return "bg-green-100 text-green-700 border-green-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20";
       case "Editor":
-        return "bg-purple-100 text-purple-700 border-purple-200";
+        return "bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-500/10 dark:text-purple-400 dark:border-purple-500/20";
       case "Viewer":
-        return "bg-blue-100 text-blue-700 border-blue-200";
+        return "bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-500/10 dark:text-blue-400 dark:border-blue-500/20";
       case "Writer":
-        return "bg-orange-100 text-orange-700 border-orange-200";
+        return "bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-500/10 dark:text-orange-400 dark:border-orange-500/20";
       default:
-        return "bg-gray-100 text-gray-700 border-gray-200";
+        return "bg-gray-100 text-gray-700 border-gray-200 dark:bg-muted dark:text-muted-foreground";
     }
   };
 
@@ -916,7 +923,7 @@ const AuthorManagement = () => {
           </div>
         </div>
 
-        <div className="divide-y divide-gray-100">
+        <div className="divide-y divide-border/50">
           {members.map((member, i) => (
             <div
               key={i}
@@ -1090,7 +1097,7 @@ export default function Features() {
                     {feature.large && (
                       <div className="bg-background/80 dark:bg-card/80 backdrop-blur-sm rounded-2xl p-6 border border-border">
                         <div className="mb-4">
-                          <p className="text-xs text-gray-500 font-medium mb-1">
+                          <p className="text-xs text-muted-foreground font-medium mb-1">
                             Project
                           </p>
                           <p className="text-sm font-semibold">

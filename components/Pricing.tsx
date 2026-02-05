@@ -77,7 +77,7 @@ export default function Pricing() {
                 key={key}
                 className={`relative rounded-3xl p-8 transition-all duration-300 ${
                   isRecommended
-                    ? "bg-background border-2 border-primary shadow-2xl md:scale-110 z-10"
+                    ? "bg-background border-2 border-primary shadow-2xl dark:shadow-primary/10 md:scale-110 z-10"
                     : "bg-background border border-border shadow-sm hover:shadow-md"
                 }`}
               >
@@ -156,15 +156,11 @@ export default function Pricing() {
                                 : "bg-muted text-muted-foreground"
                             }`}
                           >
-                            <Check
-                              className={`w-3 h-3 ${
-                                isRecommended
-                                  ? "text-primary"
-                                  : "text-muted-foreground font-bold"
-                              }`}
-                            />
+                            <Check className="w-3 h-3" />
                           </div>
-                          <span className="text-sm font-inter text-muted-foreground">
+                          <span
+                            className={`text-sm font-inter text-muted-foreground`}
+                          >
                             {feature}
                           </span>
                         </li>

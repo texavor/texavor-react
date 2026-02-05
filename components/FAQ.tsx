@@ -49,10 +49,10 @@ export default function FAQ() {
   const faqs = faqData;
 
   return (
-    <section id="faq" className="w-full py-24 md:py-32 bg-gray-50">
+    <section id="faq" className="w-full py-24 md:py-32 bg-muted/30">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-16 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-gray-200 rounded-full text-xs font-medium text-primary mb-6 shadow-xs">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-background border border-border rounded-full text-xs font-medium text-primary mb-6 shadow-sm">
             <HelpCircle className="w-3 h-3" />
             FAQ
           </div>
@@ -68,9 +68,9 @@ export default function FAQ() {
           {faqs.map((faq, index) => (
             <details
               key={index}
-              className="group bg-white rounded-2xl border border-gray-100 shadow-xs hover:shadow-sm transition-all duration-300 open:ring-1 open:ring-primary/5"
+              className="group bg-card rounded-2xl border border-border shadow-sm hover:shadow-md transition-all duration-300 open:ring-1 open:ring-primary/5"
             >
-              <summary className="flex items-center justify-between w-full px-6 py-5 text-left font-semibold text-gray-900 hover:text-primary transition-colors font-poppins text-sm cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+              <summary className="flex items-center justify-between w-full px-6 py-5 text-left font-semibold text-foreground hover:text-primary transition-colors font-poppins text-sm cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                 <span className="flex-1">{faq.question}</span>
                 {/* Custom Toggle Icon */}
                 <div className="flex-shrink-0 ml-4 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center transition-all duration-300 group-open:bg-primary/20">
@@ -84,20 +84,20 @@ export default function FAQ() {
                   />
                 </div>
               </summary>
-              <div className="px-6 pb-5 text-gray-600 font-inter text-sm leading-relaxed animate-in slide-in-from-top-2 fade-in duration-200">
+              <div className="px-6 pb-5 text-muted-foreground font-inter text-sm leading-relaxed animate-in slide-in-from-top-2 fade-in duration-200">
                 {faq.answer}
               </div>
             </details>
           ))}
 
           {/* Contact Us Card */}
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-xs p-6 flex items-center justify-between">
-            <span className="font-semibold text-gray-900 font-poppins text-sm">
+          <div className="bg-card rounded-2xl border border-border shadow-sm p-6 flex items-center justify-between">
+            <span className="font-semibold text-foreground font-poppins text-sm">
               Can't find what you're looking for?
             </span>
             <a
               href="mailto:hello@texavor.com"
-              className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-900 text-xs font-semibold rounded-lg transition-colors"
+              className="px-4 py-2 bg-muted hover:bg-muted/80 text-foreground text-xs font-semibold rounded-lg transition-colors"
             >
               Contact Us
             </a>

@@ -9,7 +9,7 @@ export default function Hero() {
   return (
     <section className="w-full pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-b from-background to-muted/20 relative overflow-hidden">
       {/* Background Decor */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-primary/5 blur-[120px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-primary/5 dark:bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none -z-10" />
 
       <div className="container mx-auto px-4 max-w-7xl relative z-10 flex flex-col items-center text-center">
         {/* Badge */}
@@ -62,9 +62,9 @@ export default function Hero() {
 
         {/* Background Glows */}
         <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-full max-w-7xl h-full -z-10 pointer-events-none">
-          <div className="absolute top-40 left-[10%] w-[30rem] h-[30rem] bg-green-400/5 rounded-full blur-[100px] animate-blob" />
-          <div className="absolute top-20 right-[10%] w-[35rem] h-[35rem] bg-emerald-400/5 rounded-full blur-[120px] animate-blob animation-delay-2000" />
-          <div className="absolute top-[40%] left-[30%] w-[40rem] h-[40rem] bg-primary/5 rounded-full blur-[100px] animate-blob animation-delay-4000" />
+          <div className="absolute top-40 left-[10%] w-[30rem] h-[30rem] bg-green-400/5 dark:bg-green-500/10 rounded-full blur-[100px] animate-blob" />
+          <div className="absolute top-20 right-[10%] w-[35rem] h-[35rem] bg-emerald-400/5 dark:bg-emerald-600/15 rounded-full blur-[120px] animate-blob animation-delay-2000" />
+          <div className="absolute top-[40%] left-[30%] w-[40rem] h-[40rem] bg-primary/5 dark:bg-primary/10 rounded-full blur-[100px] animate-blob animation-delay-4000" />
         </div>
 
         {/* Hero Visual */}

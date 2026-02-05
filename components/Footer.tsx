@@ -32,14 +32,14 @@ export default function Footer() {
                   src="/texavor.png"
                   alt="EasyWrite"
                   fill
-                  className="object-contain"
+                  className="object-contain dark:brightness-0 dark:invert transition-all"
                 />
               </div>
-              <span className="text-2xl font-bold font-poppins text-gray-900">
+              <span className="text-2xl font-bold font-poppins text-foreground">
                 Texavor
               </span>
             </Link>
-            <p className="text-gray-500 font-inter text-sm leading-relaxed">
+            <p className="text-muted-foreground font-inter text-sm leading-relaxed">
               Texavor helps teams work smarter, stay aligned, and get things
               done with specialized content creation workflows.
             </p>
@@ -49,10 +49,10 @@ export default function Footer() {
           <div className="flex flex-wrap gap-12 md:gap-24">
             {/* Product */}
             <div>
-              <h4 className="font-semibold text-gray-900 font-poppins mb-6">
+              <h4 className="font-semibold text-foreground font-poppins mb-6">
                 Product
               </h4>
-              <ul className="space-y-4 text-sm text-gray-500 font-inter">
+              <ul className="space-y-4 text-sm text-muted-foreground font-inter">
                 <li>
                   <Link
                     href="/#features"
@@ -90,10 +90,10 @@ export default function Footer() {
 
             {/* Resources */}
             <div>
-              <h4 className="font-semibold text-gray-900 font-poppins mb-6">
+              <h4 className="font-semibold text-foreground font-poppins mb-6">
                 Resources
               </h4>
-              <ul className="space-y-4 text-sm text-gray-500 font-inter">
+              <ul className="space-y-4 text-sm text-muted-foreground font-inter">
                 <li>
                   <Link
                     href="/docs/introduction"
@@ -131,10 +131,10 @@ export default function Footer() {
 
             {/* Company */}
             {/* <div>
-              <h4 className="font-semibold text-gray-900 font-poppins mb-6">
+              <h4 className="font-semibold text-foreground font-poppins mb-6">
                 Company
               </h4>
-              <ul className="space-y-4 text-sm text-gray-500 font-inter">
+              <ul className="space-y-4 text-sm text-muted-foreground font-inter">
                 <li>
                   <Link
                     href="#"
@@ -172,7 +172,7 @@ export default function Footer() {
                   href="https://x.com/texavor"
                   target="_blank"
                   aria-label="Follow us on X"
-                  className="text-gray-600 hover:text-primary transition-colors"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -189,25 +189,25 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-transparent">
-          <p className="text-xs text-gray-500 font-inter">
+          <p className="text-xs text-muted-foreground font-inter">
             &copy; {currentYear} Texavor. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <Link
               href="/terms-and-conditions"
-              className="text-xs text-gray-500 hover:text-primary transition-colors font-inter"
+              className="text-xs text-muted-foreground hover:text-primary transition-colors font-inter"
             >
               Terms of Service
             </Link>
             <Link
               href="/privacy-policy"
-              className="text-xs text-gray-500 hover:text-primary transition-colors font-inter"
+              className="text-xs text-muted-foreground hover:text-primary transition-colors font-inter"
             >
               Privacy Policy
             </Link>
             <Link
               href="/cookies"
-              className="text-xs text-gray-500 hover:text-primary transition-colors font-inter"
+              className="text-xs text-muted-foreground hover:text-primary transition-colors font-inter"
             >
               Cookie policy
             </Link>

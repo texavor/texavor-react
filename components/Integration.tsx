@@ -59,12 +59,12 @@ export default function Integration() {
   return (
     <section
       id="integrations"
-      className="w-full py-24 md:py-32 relative overflow-hidden bg-gray-50"
+      className="w-full py-24 md:py-32 relative overflow-hidden bg-muted/30"
     >
       <div className="container mx-auto px-4 max-w-5xl relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-20 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-primary/20 rounded-full text-xs font-medium text-primary mb-6 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-background border border-border rounded-full text-xs font-medium text-primary mb-6 shadow-sm">
             <Zap className="w-3 h-3 fill-primary" />
             Integrations
           </div>
@@ -102,13 +102,17 @@ export default function Integration() {
                 }}
               >
                 <div className="relative group">
-                  <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-2xl shadow-[0_10px_50px_rgba(16,65,39,0.25)] hover:shadow-[0_15px_60px_rgba(16,65,39,0.35)] transition-all duration-300 hover:scale-110 flex items-center justify-center p-0 overflow-hidden border border-gray-100/50">
+                  <div className="w-16 h-16 md:w-20 md:h-20 bg-background dark:bg-card rounded-2xl shadow-[0_10px_50px_rgba(16,65,39,0.15)] dark:shadow-[0_10px_50px_rgba(16,185,129,0.1)] hover:shadow-[0_15px_60px_rgba(16,65,39,0.25)] transition-all duration-300 hover:scale-110 flex items-center justify-center p-0 overflow-hidden border border-border">
                     <Image
                       src={integration.image}
                       alt={integration.name}
                       width={80}
                       height={80}
-                      className="w-full h-full object-cover"
+                      className={`w-full h-full object-cover transition-all ${
+                        integration.name === "Medium"
+                          ? "dark:brightness-0 dark:invert"
+                          : ""
+                      }`}
                     />
                   </div>
                 </div>

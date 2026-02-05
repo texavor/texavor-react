@@ -43,11 +43,11 @@ export default function Testimonials() {
   ];
 
   return (
-    <section id="testimonials" className="w-full py-24 md:py-32 bg-gray-50">
+    <section id="testimonials" className="w-full py-24 md:py-32 bg-muted/30">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-gray-200 rounded-full text-xs font-medium text-primary mb-6 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-background border border-border rounded-full text-xs font-medium text-primary mb-6 shadow-sm">
             <MessageSquare className="w-3 h-3" />
             Success Stories
           </div>
@@ -64,23 +64,23 @@ export default function Testimonials() {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100"
+              className="bg-card rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-border"
             >
               {/* Quote */}
-              <p className="text-gray-700 leading-relaxed font-inter mb-6 text-sm">
+              <p className="text-muted-foreground leading-relaxed font-inter mb-6 text-sm">
                 {testimonial.quote}
               </p>
 
               {/* Author */}
               <div className="flex items-center gap-3">
-                <div className="relative w-10 h-10 rounded-full overflow-hidden bg-gray-200 flex-shrink-0 flex items-center justify-center text-gray-700 font-bold text-sm">
+                <div className="relative w-10 h-10 rounded-full overflow-hidden bg-muted flex-shrink-0 flex items-center justify-center text-muted-foreground font-bold text-sm">
                   {testimonial.name.charAt(0)}
                 </div>
                 <div>
-                  <p className="font-bold text-sm text-gray-900 font-poppins">
+                  <p className="font-bold text-sm text-foreground font-poppins">
                     {testimonial.name}
                   </p>
-                  <p className="text-xs text-gray-500 font-inter">
+                  <p className="text-xs text-muted-foreground font-inter">
                     {testimonial.role}
                   </p>
                 </div>
