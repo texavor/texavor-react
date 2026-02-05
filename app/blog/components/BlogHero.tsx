@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function BlogHero() {
   return (
-    <section className="relative w-full py-20 md:py-32 overflow-hidden bg-white">
+    <section className="relative w-full py-20 md:py-32 overflow-hidden bg-white dark:bg-zinc-950">
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent -z-10" />
 
@@ -18,12 +18,12 @@ export default function BlogHero() {
           <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium font-inter mb-4">
             The Texavor Blog
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold font-poppins text-gray-900 tracking-tight leading-tight">
+          <h1 className="text-4xl md:text-6xl font-bold font-poppins text-gray-900 dark:text-white tracking-tight leading-tight">
             Insights for <br className="hidden md:block" />
             <span className="text-primary relative inline-block">
               Content Creators
               <svg
-                className="absolute w-full h-3 -bottom-1 left-0 text-primary/20 -z-10"
+                className="absolute w-full h-4 -bottom-2 left-0 text-primary/40 pointer-events-none"
                 viewBox="0 0 100 10"
                 preserveAspectRatio="none"
               >
@@ -36,7 +36,7 @@ export default function BlogHero() {
               </svg>
             </span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 font-inter leading-relaxed max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 dark:text-zinc-400 font-inter leading-relaxed max-w-2xl mx-auto">
             Master AI-powered content strategy, SEO optimization, and audience
             growth—whether you're a marketer, writer, or entrepreneur.
           </p>

@@ -20,9 +20,9 @@ export const InjectedRelatedArticles: React.FC<
   }
 
   return (
-    <div className="border-t-[1px] border-b-[1px] border-gray-600 pb-10 w-full">
+    <div className="border-t-[1px] border-b-[1px] border-gray-600 dark:border-white/10 pb-10 w-full">
       <h3
-        className="font-poppins text-xl font-medium text-gray-800"
+        className="font-poppins text-xl font-medium text-gray-800 dark:text-white"
         style={{ margin: "16px 0px" }}
       >
         You might also like...
@@ -35,7 +35,7 @@ export const InjectedRelatedArticles: React.FC<
           passHref
         >
           <div
-            className="bg-[#EEDED3] rounded-xl overflow-hidden w-full md:flex gap-4"
+            className="bg-[#EEDED3] dark:bg-zinc-800 rounded-xl overflow-hidden w-full md:flex gap-4"
             style={{ margin: "0px" }}
           >
             <div className="overflow-hidden md:w-[50%]">
@@ -49,13 +49,13 @@ export const InjectedRelatedArticles: React.FC<
             </div>
             <div className="md:w-[50%] mt-4 px-2 pb-4 md:p-0">
               <p
-                className="font-poppins text-2xl no-underline font-medium text-gray-900 md:pr-4"
+                className="font-poppins text-2xl no-underline font-medium text-gray-900 dark:text-white md:pr-4"
                 style={{ margin: "0px" }}
               >
                 {article.title}
               </p>
               <p
-                className="font-inter text-sm no-underline font-medium text-gray-700 pt-2 md:pr-4"
+                className="font-inter text-sm no-underline font-medium text-gray-700 dark:text-zinc-400 pt-2 md:pr-4"
                 style={{ margin: "0px" }}
               >
                 {/* @ts-ignore */}

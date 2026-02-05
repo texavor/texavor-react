@@ -13,8 +13,24 @@
 .hljs {
   display: block;
   overflow-x: auto;
-  padding: 0.5em;
+  padding: 1.25rem;
   background: #282a36;
+  color: #f8f8f2;
+  border-radius: 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Standard Dracula background for light theme */
+.hljs {
+  background: #282a36;
+}
+
+/* Refined dark background with more depth for dark theme */
+.dark .hljs {
+  background: linear-gradient(to bottom right, #1e1e2e, #0f172a); /* Lighter charcoal to deep navy/zinc tint */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .hljs-built_in,
@@ -78,4 +94,8 @@
 
 .hljs-emphasis {
   font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
 }

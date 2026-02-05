@@ -50,7 +50,7 @@ export default function BlogClientWrapper({
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-white mt-6 lg:mt-0">
+      <div className="min-h-screen bg-white dark:bg-zinc-950 mt-6 lg:mt-0">
         {/* Hero Section */}
         <BlogHero />
         {/* Article Grid */}
@@ -65,7 +65,7 @@ export default function BlogClientWrapper({
                   className="object-contain"
                 />
               </div>
-              <p className="text-xl text-gray-500 font-inter font-medium">
+              <p className="text-xl text-gray-500 dark:text-zinc-500 font-inter font-medium">
                 No articles found matching your criteria.
               </p>
             </div>

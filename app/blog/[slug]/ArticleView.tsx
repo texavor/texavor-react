@@ -120,13 +120,13 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
               )}
             </div>
 
-            <h1 className="font-poppins heading1 mt-6 text-3xl font-medium">
+            <h1 className="font-poppins heading1 mt-6 text-3xl font-medium dark:text-white">
               {articleData.title}
             </h1>
             <div className="flex flex-wrap">
               {articleData?.tags?.map((item, index) => (
                 <span
-                  className="font-inter text-sm italic font-light underline mr-2 decoration-lime-200 decoration-2"
+                  className="font-inter text-sm italic font-light underline mr-2 decoration-lime-200 dark:decoration-lime-500 decoration-2 dark:text-zinc-400"
                   key={index}
                 >
                   #{item}
@@ -145,11 +145,11 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                 />
               </div>
               <div>
-                <p className="font-inter text-base">
+                <p className="font-inter text-base text-gray-900 dark:text-white">
                   {articleData?.easywrite_author?.name ||
                     articleData?.easywrite_author?.username}
                 </p>
-                <p className="font-inter text-sm text-gray-400">
+                <p className="font-inter text-sm text-gray-400 dark:text-zinc-500">
                   Updated on{` `}
                   {format(
                     new Date(articleData.updated_at || new Date()),
@@ -159,7 +159,7 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
               </div>
             </div>
 
-            <hr className="border-gray-300 mt-6 mb-8" />
+            <hr className="border-gray-300 dark:border-white/10 mt-6 mb-8" />
             {headings.length > 0 && <TableOfContents headings={headings} />}
             {articleData?.canonical_url &&
               extractDomain(articleData?.canonical_url) !== "texavor.com" && (
@@ -168,7 +168,7 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                   <Link
                     href={articleData?.canonical_url}
                     target="_blank"
-                    className="font-inter italic text-base text-blue-300"
+                    className="font-inter italic text-base text-blue-600 dark:text-blue-400 hover:underline"
                   >
                     {extractDomain(articleData?.canonical_url)}
                   </Link>
@@ -199,14 +199,14 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
 
           <div className="mb-12 mt-8 lg:mt-0 lg:sticky lg:top-28 self-start h-fit">
             <div className="lg:max-w-[260px]">
-              <div className="bg-primary/5 rounded-2xl border-none shadow-none backdrop-blur-sm p-6">
-                <div className="relative w-full rounded-xl overflow-hidden mb-4 shadow-none border border-primary/10 bg-white">
+              <div className="bg-primary/5 dark:bg-zinc-900/50 rounded-2xl border-none shadow-none backdrop-blur-sm p-6">
+                <div className="relative w-full rounded-xl overflow-hidden mb-4 shadow-none border border-primary/10 dark:border-white/10 bg-white dark:bg-zinc-950">
                   <SidebarVisual />
                 </div>
-                <h4 className="font-poppins text-lg font-bold text-gray-900 mb-2">
+                <h4 className="font-poppins text-lg font-bold text-gray-900 dark:text-white mb-2">
                   Get Cited by AI
                 </h4>
-                <p className="font-inter text-sm text-gray-700 mb-6 leading-relaxed">
+                <p className="font-inter text-sm text-gray-700 dark:text-zinc-400 mb-6 leading-relaxed">
                   Texavor turns raw insights into{" "}
                   <span className="font-semibold">data-backed</span>, Answer
                   Engine Optimized articles. Stop guessing and start ranking in
@@ -214,7 +214,7 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                 </p>
                 <Link
                   href="/"
-                  className="block w-full text-center font-poppins bg-[#104127] text-white font-medium py-3 px-4 rounded-xl hover:bg-[#0A2918] transition-all duration-200 text-sm shadow-lg shadow-primary/20"
+                  className="block w-full text-center font-poppins bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 text-sm shadow-lg shadow-primary/20 hover:shadow-xl hover:-translate-y-0.5"
                 >
                   Try Texavor Free 🚀
                 </Link>
@@ -224,8 +224,8 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
         </div>
 
         {articleData?.relatedArticles?.length > 2 && (
-          <div className="mt-10 lg:mt-[80px] border-t-[1px] border-gray-400 pt-4 md:transform">
-            <p className="font-poppins text-[24px] font-semibold text-gray-800 mb-4 font-inter">
+          <div className="mt-10 lg:mt-[80px] border-t-[1px] border-gray-400 dark:border-white/10 pt-4 md:transform">
+            <p className="font-poppins text-[24px] font-semibold text-gray-800 dark:text-white mb-4 font-inter">
               Related Articles
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6 pt-4">
@@ -237,7 +237,7 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                     href={`/${relatedArticle?.slug}`}
                     passHref
                   >
-                    <div className="bg-[#EEDED3] rounded-2xl overflow-hidden h-full">
+                    <div className="bg-[#EEDED3] dark:bg-zinc-900 rounded-2xl overflow-hidden h-full">
                       <div className="relative overflow-hidden h-[150px] lg:h-[200px]">
                         <Image
                           src={relatedArticle?.image}
@@ -247,7 +247,7 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                       </div>
-                      <p className="font-poppins text-[24px] text-black font-medium px-2 pb-2">
+                      <p className="font-poppins text-[24px] text-black dark:text-white font-medium px-2 pb-2">
                         {relatedArticle?.title}
                       </p>
                     </div>
