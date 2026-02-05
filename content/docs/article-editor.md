@@ -32,7 +32,7 @@ Click **Analyze Article** to run the full comprehensive scan. This is not just a
 ### The Metrics
 
 - **Readability Score (0-100):** Measures sentence complexity. Aim for >60 for general audiences.
-- **SEO Score (0-100):** A composite score checking:
+- **Optimization Score (0-100):** A composite score checking:
   - _Title Keyword:_ Is the primary keyword in H1?
   - _Header Variants:_ Are H2/H3s structured correctly?
   - _Semantic Matches:_ Are you using LSI keywords (synonyms)?

@@ -50,13 +50,9 @@ Eliminate the busywork of publishing.
 
 ## Who is Texavor For?
 
-### All Domains & Industries
+### Creators & Founders
 
-Whether you're in Tech, Finance, Health, or Creative Arts, Texavor helps you build authority in your specific niche regardless of the domain.
-
-### Personal Use & Creators
-
-Perfect for individual bloggers and creators who want to own their content distribution and grow a personal brand without enterprise complexity.
+Perfect for individual bloggers and founders who want to own their content distribution and grow a personal brand without enterprise complexity.
 
 ### Technical Teams
 

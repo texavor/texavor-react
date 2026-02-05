@@ -6,7 +6,7 @@ category: "platform"
 order: 2
 ---
 
-**Texavor is not a CMS. It is an Authority Engine.**
+**Texavor is the Research-First CMS & Authority Engine.**
 
 This guide explains how to navigate the interface.
 
