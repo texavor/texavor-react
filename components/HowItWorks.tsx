@@ -29,12 +29,12 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section className="w-full py-24 md:py-32 relative overflow-hidden bg-white">
+    <section className="w-full py-24 md:py-32 relative overflow-hidden bg-white dark:bg-zinc-950">
       <div className="container mx-auto px-4 max-w-6xl relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-50 border border-gray-200 rounded-full text-xs font-medium text-primary mb-6 shadow-sm">
-            <Zap className="w-3 h-3 fill-primary" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-white/10 rounded-full text-xs font-medium text-primary dark:text-emerald-400 mb-6 shadow-sm">
+            <Zap className="w-3 h-3 fill-primary dark:fill-emerald-400" />
             How It Works
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground font-poppins mb-6 tracking-tight">
@@ -50,10 +50,10 @@ export default function HowItWorks() {
           {steps.map((step, i) => (
             <div
               key={i}
-              className="bg-[#f9f4f0] rounded-3xl p-6 shadow-none transition-all duration-300 border-none"
+              className="bg-[#f9f4f0] dark:bg-zinc-900 rounded-3xl p-6 shadow-none transition-all duration-300 border-none"
             >
               {/* Image Preview Area */}
-              <div className="relative bg-[#f9f4f0] rounded-2xl mb-6 h-[320px] border-none overflow-hidden">
+              <div className="relative bg-[#f9f4f0] dark:bg-zinc-800 rounded-2xl mb-6 h-[320px] border-none overflow-hidden">
                 <div className="relative w-full h-full">
                   <Image
                     src={step.image}
@@ -63,21 +63,21 @@ export default function HowItWorks() {
                   />
                 </div>
                 {/* Bottom fade effect */}
-                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#f9f4f0] via-[#f9f4f0]/10 to-transparent pointer-events-none" />
+                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#f9f4f0] dark:from-zinc-800 via-[#f9f4f0]/10 dark:via-zinc-800/10 to-transparent pointer-events-none" />
               </div>
 
               {/* Step Number */}
-              <div className="text-xs font-semibold text-primary mb-2">
+              <div className="text-xs font-semibold text-primary dark:text-emerald-400 mb-2">
                 {step.number}
               </div>
 
               {/* Title */}
-              <h3 className="text-xl font-bold text-gray-900 mb-3 font-poppins">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 font-poppins">
                 {step.title}
               </h3>
 
               {/* Description */}
-              <p className="text-sm text-gray-600 leading-relaxed font-inter">
+              <p className="text-sm text-gray-600 dark:text-zinc-400 leading-relaxed font-inter">
                 {step.description}
               </p>
             </div>

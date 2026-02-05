@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
+import { ThemeToggle } from "./ThemeToggle";
+
 const NAV_ITEMS = [
   { label: "Home", id: "home", href: "/" },
   { label: "Blog", id: "blog", href: "/blog" },
@@ -57,9 +59,9 @@ export default function LandingNav() {
     <div className="flex flex-col items-center w-full fixed top-6 z-50 px-4 pointer-events-none">
       <nav
         className={cn(
-          "w-full max-w-5xl rounded-full bg-white shadow-xl shadow-black/5 transition-all duration-300 flex items-center justify-between py-2 sm:py-3 px-6 pointer-events-auto border border-black/5 relative z-50",
+          "w-full max-w-5xl rounded-full bg-white dark:bg-zinc-900/90 shadow-xl shadow-black/5 dark:shadow-white/5 transition-all duration-300 flex items-center justify-between py-2 sm:py-3 px-6 pointer-events-auto border border-black/5 dark:border-white/10 relative z-50",
           isScrolled &&
-            "py-2 bg-white/70 backdrop-blur-md supports-[backdrop-filter]:bg-white/60",
+            "py-2 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-md supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-zinc-900/60",
         )}
       >
         {/* Logo */}
@@ -72,7 +74,7 @@ export default function LandingNav() {
               className="object-contain"
             />
           </div>
-          <span className="text-secondary-foreground font-bold text-xl font-poppins tracking-tight">
+          <span className="text-secondary-foreground dark:text-white font-bold text-xl font-poppins tracking-tight">
             Texavor
           </span>
         </Link>
@@ -87,8 +89,8 @@ export default function LandingNav() {
                 className={cn(
                   "text-sm font-medium transition-colors font-poppins flex items-center gap-1.5",
                   ["free-tools", "website-auditor"].includes(item.id)
-                    ? "text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200/60 hover:border-emerald-300 hover:bg-emerald-100/80 hover:shadow-sm"
-                    : "text-foreground/70 hover:text-foreground",
+                    ? "text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30 px-3 py-1.5 rounded-full border border-emerald-200/60 dark:border-emerald-800/60 hover:border-emerald-300 dark:hover:border-emerald-700 hover:bg-emerald-100/80 dark:hover:bg-emerald-900/40 hover:shadow-sm"
+                    : "text-foreground/70 dark:text-zinc-400 hover:text-foreground dark:hover:text-white",
                 )}
               >
                 {["free-tools", "website-auditor"].includes(item.id) && (
@@ -103,7 +105,7 @@ export default function LandingNav() {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors font-poppins"
+                className="text-sm font-medium text-foreground/70 dark:text-zinc-400 hover:text-foreground dark:hover:text-white transition-colors font-poppins"
               >
                 {item.label}
               </button>
@@ -112,11 +114,13 @@ export default function LandingNav() {
         </div>
 
         {/* Right Side Actions */}
-        <div className="flex items-center gap-3 md:gap-4 shrink-0">
+        <div className="flex items-center gap-2 md:gap-4 shrink-0">
+          <ThemeToggle />
+
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 -mr-2 text-gray-600 hover:text-gray-900 transition-colors"
+            className="md:hidden p-2 text-gray-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white transition-colors"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
@@ -129,14 +133,14 @@ export default function LandingNav() {
           <Link
             href={`${process.env.NEXT_PUBLIC_APP_URL || ""}/login`}
             target="_blank"
-            className="hidden sm:inline-block text-sm font-medium text-foreground/70 hover:text-foreground transition-colors font-poppins"
+            className="hidden sm:inline-block text-sm font-medium text-foreground/70 dark:text-zinc-400 hover:text-foreground dark:hover:text-white transition-colors font-poppins"
           >
             Login
           </Link>
           <Button
             asChild
             size="sm"
-            className="rounded-full bg-primary hover:bg-primary/90 text-white font-medium shadow-lg hover:shadow-xl px-4 sm:px-6 h-10 font-poppins transition-all"
+            className="rounded-full bg-primary hover:bg-primary/90 text-white dark:text-zinc-950 font-medium shadow-lg hover:shadow-xl px-4 sm:px-6 h-10 font-poppins transition-all"
           >
             <Link href={process.env.NEXT_PUBLIC_APP_URL || "/"} target="_blank">
               Get Started
@@ -155,7 +159,7 @@ export default function LandingNav() {
             transition={{ duration: 0.2, ease: "easeOut" }}
             className="w-full max-w-[95%] md:hidden pointer-events-auto mt-2"
           >
-            <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-200/50 overflow-hidden flex flex-col p-4 space-y-2">
+            <div className="bg-white/90 dark:bg-zinc-900/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-200/50 dark:border-white/10 overflow-hidden flex flex-col p-4 space-y-2">
               {NAV_ITEMS.map((item) => (
                 <div key={item.id}>
                   {item.href ? (
@@ -165,8 +169,8 @@ export default function LandingNav() {
                       className={cn(
                         "block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200",
                         ["free-tools", "website-auditor"].includes(item.id)
-                          ? "bg-emerald-50 text-emerald-800 border border-emerald-100"
-                          : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
+                          ? "bg-emerald-50 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-800/50"
+                          : "text-gray-600 dark:text-zinc-400 hover:bg-gray-50 dark:hover:bg-zinc-800/50 hover:text-gray-900 dark:hover:text-white",
                       )}
                     >
                       <div className="flex items-center gap-2">
@@ -183,7 +187,7 @@ export default function LandingNav() {
                   ) : (
                     <button
                       onClick={() => scrollToSection(item.id)}
-                      className="block w-full text-left px-4 py-3 rounded-xl text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200"
+                      className="block w-full text-left px-4 py-3 rounded-xl text-base font-medium text-gray-600 dark:text-zinc-400 hover:bg-gray-50 dark:hover:bg-zinc-800/50 hover:text-gray-900 dark:hover:text-white transition-all duration-200"
                     >
                       {item.label}
                     </button>
@@ -191,13 +195,13 @@ export default function LandingNav() {
                 </div>
               ))}
 
-              <div className="h-px bg-gray-100 my-2" />
+              <div className="h-px bg-gray-100 dark:bg-white/10 my-2" />
 
               <Link
                 href={`${process.env.NEXT_PUBLIC_APP_URL || ""}/login`}
                 target="_blank"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-4 py-3 rounded-xl text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200 sm:hidden"
+                className="block px-4 py-3 rounded-xl text-base font-medium text-gray-600 dark:text-zinc-400 hover:bg-gray-50 dark:hover:bg-zinc-800/50 hover:text-gray-900 dark:hover:text-white transition-all duration-200 sm:hidden"
               >
                 Login
               </Link>

@@ -24,7 +24,7 @@ const SimpleBarChart = () => {
   return (
     <div className="relative w-full h-[200px] flex items-end justify-between gap-2 px-4">
       {/* Dashed line */}
-      <div className="absolute top-1/3 left-0 right-0 border-t-2 border-dashed border-gray-200" />
+      <div className="absolute top-1/3 left-0 right-0 border-t-2 border-dashed border-gray-200 dark:border-white/5" />
 
       {bars.map((bar, i) => (
         <div
@@ -35,7 +35,7 @@ const SimpleBarChart = () => {
             className={`w-full rounded-t-lg transition-all ${
               bar.active
                 ? "bg-gradient-to-b from-primary to-primary/90 shadow-lg"
-                : "bg-gradient-to-b from-gray-200 to-gray-300"
+                : "bg-gradient-to-b from-gray-200 to-gray-300 dark:from-zinc-800 dark:to-zinc-700"
             }`}
             style={{ height: `${bar.height}%` }}
           />
@@ -92,18 +92,27 @@ const ProgressStats = () => {
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
       {stats.map((stat, i) => (
-        <div key={i} className="bg-white rounded-xl border-none p-4">
+        <div
+          key={i}
+          className="bg-white dark:bg-zinc-900 rounded-xl border-none p-4"
+        >
           <div className="flex items-start justify-between mb-3">
             <div
-              className={`w-10 h-10 ${stat.bgColor} rounded-lg flex items-center justify-center text-xl`}
+              className={`w-10 h-10 ${stat.bgColor} dark:bg-zinc-800 rounded-lg flex items-center justify-center text-xl`}
             >
               {stat.icon}
             </div>
           </div>
-          <div className="text-xs text-gray-500 mb-1">{stat.label}</div>
+          <div className="text-xs text-gray-500 dark:text-zinc-400 mb-1">
+            {stat.label}
+          </div>
           <div className="flex items-end gap-2">
-            <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
-            <div className="text-xs text-gray-400 mb-1">≈ {stat.change}%</div>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">
+              {stat.value}
+            </div>
+            <div className="text-xs text-gray-400 dark:text-zinc-500 mb-1">
+              ≈ {stat.change}%
+            </div>
           </div>
         </div>
       ))}
@@ -142,12 +151,14 @@ const CalendarView = () => {
   ];
 
   return (
-    <div className="w-full bg-white rounded-xl border-none overflow-hidden">
+    <div className="w-full bg-white dark:bg-zinc-900 rounded-xl border-none overflow-hidden">
       {/* Calendar Grid */}
-      <div className="grid grid-cols-3 border-none divide-x divide-gray-200">
+      <div className="grid grid-cols-3 border-none divide-x divide-gray-200 dark:divide-white/5">
         {/* Day 15 */}
-        <div className="p-3 min-h-[220px] bg-gray-50/30">
-          <div className="text-sm font-semibold text-gray-700 mb-2">15</div>
+        <div className="p-3 min-h-[220px] bg-gray-50/30 dark:bg-white/5">
+          <div className="text-sm font-semibold text-gray-700 dark:text-zinc-300 mb-2">
+            15
+          </div>
           <div className="space-y-2">
             {articles
               .filter((a) => a.day === 15)
@@ -231,11 +242,11 @@ const KeywordResearch = () => {
   };
 
   return (
-    <div className="w-full bg-white rounded-xl border-none overflow-hidden">
+    <div className="w-full bg-white dark:bg-zinc-900 rounded-xl border-none overflow-hidden">
       <div className="overflow-x-auto">
         <div className="min-w-[500px]">
           {/* Table Header */}
-          <div className="grid grid-cols-12 gap-2 px-4 py-3 bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-600">
+          <div className="grid grid-cols-12 gap-2 px-4 py-3 bg-gray-50 dark:bg-zinc-800/50 border-b border-gray-200 dark:border-white/5 text-xs font-semibold text-gray-600 dark:text-zinc-400">
             <div className="col-span-5">Keyword</div>
             <div className="col-span-2 text-center">Volume</div>
             <div className="col-span-2 text-center">CPC</div>
@@ -248,19 +259,19 @@ const KeywordResearch = () => {
             {keywords.map((kw, i) => (
               <div
                 key={i}
-                className="grid grid-cols-12 gap-2 px-4 py-3 hover:bg-gray-50/50 transition-colors items-center"
+                className="grid grid-cols-12 gap-2 px-4 py-3 hover:bg-gray-50/50 dark:hover:bg-white/5 transition-colors items-center"
               >
-                <div className="col-span-5 text-sm text-gray-800 font-medium truncate">
+                <div className="col-span-5 text-sm text-gray-800 dark:text-zinc-200 font-medium truncate">
                   {kw.keyword}
                 </div>
-                <div className="col-span-2 text-center text-sm text-gray-600">
+                <div className="col-span-2 text-center text-sm text-gray-600 dark:text-zinc-400">
                   {kw.volume.toLocaleString()}
                 </div>
                 <div className="col-span-2 text-center text-sm text-blue-600 font-semibold">
                   {kw.cpc}
                 </div>
                 <div className="col-span-2 flex items-center justify-center">
-                  <div className="w-full max-w-[80px] h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="w-full max-w-[80px] h-2 bg-gray-200 dark:bg-zinc-800 rounded-full overflow-hidden">
                     <div
                       className="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"
                       style={{ width: `${kw.competition}%` }}
@@ -283,8 +294,8 @@ const KeywordResearch = () => {
       </div>
 
       {/* Footer Action */}
-      <div className="px-4 py-3 bg-gray-50 border-t border-gray-200 flex items-center justify-between">
-        <span className="text-xs text-gray-500">
+      <div className="px-4 py-3 bg-gray-50 dark:bg-zinc-800/80 border-t border-gray-200 dark:border-white/5 flex items-center justify-between">
+        <span className="text-xs text-gray-500 dark:text-zinc-400">
           Showing 5 of 1,247 keywords
         </span>
         <button
@@ -306,14 +317,16 @@ const TopicGeneration = () => {
       description:
         "Based on analysis of top 10 SERP results. Recommended word count: 1800. Key entities to include: 'Zero-Click Searches', 'AI Overviews'.",
       badge: "High Potential",
-      badgeColor: "bg-green-100 text-green-700 border-green-200",
+      badgeColor:
+        "bg-green-100 dark:bg-emerald-950/50 text-green-700 dark:text-emerald-400 border-green-200 dark:border-emerald-800/50",
     },
     {
       title: "Content Gap: Missing 'Pricing' Comparisons",
       description:
         "Competitors rank for 'Texavor vs others' but your site lacks a direct comparison page. High intent opportunity.",
       badge: "Gap Analysis",
-      badgeColor: "bg-blue-100 text-blue-700 border-blue-200",
+      badgeColor:
+        "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800/50",
     },
   ];
 
@@ -322,14 +335,14 @@ const TopicGeneration = () => {
       {topics.map((topic, i) => (
         <div
           key={i}
-          className="bg-white rounded-xl border-none p-4  transition-all duration-200 group"
+          className="bg-white dark:bg-zinc-900 rounded-xl border-none p-4  transition-all duration-200 group"
         >
           <div className="flex items-start justify-between gap-3">
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+              <div className="text-sm font-bold text-gray-900 dark:text-white mb-2 line-clamp-2 group-hover:text-primary transition-colors">
                 {topic.title}
               </div>
-              <p className="text-xs text-gray-600 line-clamp-2 mb-3">
+              <p className="text-xs text-gray-600 dark:text-zinc-400 line-clamp-2 mb-3">
                 {topic.description}
               </p>
               <div className="flex items-center gap-2">
@@ -389,12 +402,12 @@ const OutlineGeneration = () => {
       {sections.map((section, i) => (
         <div
           key={i}
-          className="bg-white rounded-xl border-none p-4 hover:shadow-sm transition-all"
+          className="bg-white dark:bg-zinc-900 rounded-xl border-none p-4 hover:shadow-sm transition-all"
         >
           <div className="flex items-start gap-3 mb-3">
             <div className="mt-1">
               <svg
-                className="w-4 h-4 text-gray-400"
+                className="w-4 h-4 text-gray-400 dark:text-zinc-500"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -407,7 +420,7 @@ const OutlineGeneration = () => {
                 />
               </svg>
             </div>
-            <div className="text-sm font-bold text-gray-900 flex-1">
+            <div className="text-sm font-bold text-gray-900 dark:text-white flex-1">
               {section.title}
             </div>
             <button
@@ -434,7 +447,7 @@ const OutlineGeneration = () => {
             {section.keyPoints.map((point, j) => (
               <div
                 key={j}
-                className="flex items-start gap-2 text-xs text-gray-700"
+                className="flex items-start gap-2 text-xs text-gray-700 dark:text-zinc-300"
               >
                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 flex-shrink-0" />
                 <span>{point}</span>
@@ -489,14 +502,16 @@ const CompetitorAnalysis = () => {
   return (
     <div className="w-full space-y-4">
       {/* Profile Header */}
-      <div className="bg-white rounded-xl border-none p-4">
+      <div className="bg-white dark:bg-zinc-900 rounded-xl border-none p-4">
         <div className="flex items-start gap-4 mb-4">
-          <div className="w-16 h-16 bg-black rounded-lg flex items-center justify-center text-white font-bold text-2xl flex-shrink-0">
+          <div className="w-16 h-16 bg-black dark:bg-white rounded-lg flex items-center justify-center text-white dark:text-black font-bold text-2xl flex-shrink-0">
             DEV
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
-              <h4 className="text-base font-bold text-gray-900">Jacob Brown</h4>
+              <h4 className="text-base font-bold text-gray-900 dark:text-white">
+                Jacob Brown
+              </h4>
               <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center">
                 <svg
                   className="w-3 h-3 text-white"
@@ -510,11 +525,13 @@ const CompetitorAnalysis = () => {
                   />
                 </svg>
               </div>
-              <span className="px-2 py-0.5 bg-green-100 text-green-700 text-[10px] font-semibold rounded-full">
+              <span className="px-2 py-0.5 bg-green-100 dark:bg-emerald-950/50 text-green-700 dark:text-emerald-400 text-[10px] font-semibold rounded-full">
                 Completed
               </span>
             </div>
-            <p className="text-xs text-gray-500">No description available.</p>
+            <p className="text-xs text-gray-500 dark:text-zinc-400">
+              No description available.
+            </p>
             <div className="flex items-center gap-3 mt-2 text-xs text-gray-600">
               <span className="flex items-center gap-1">
                 <svg
@@ -571,29 +588,37 @@ const CompetitorAnalysis = () => {
 
         {/* Score Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          <div className="bg-green-50 rounded-lg p-3 border border-green-100">
-            <div className="text-[10px] text-green-700 font-medium mb-1">
+          <div className="bg-green-50 dark:bg-emerald-950/30 rounded-lg p-3 border border-green-100 dark:border-emerald-800/50">
+            <div className="text-[10px] text-green-700 dark:text-emerald-400 font-medium mb-1">
               Content Score
             </div>
-            <div className="text-2xl font-bold text-green-900">100.0</div>
+            <div className="text-2xl font-bold text-green-900 dark:text-white">
+              100.0
+            </div>
           </div>
-          <div className="bg-orange-50 rounded-lg p-3 border border-orange-100">
-            <div className="text-[10px] text-orange-700 font-medium mb-1">
+          <div className="bg-orange-50 dark:bg-orange-950/30 rounded-lg p-3 border border-orange-100 dark:border-orange-800/50">
+            <div className="text-[10px] text-orange-700 dark:text-orange-400 font-medium mb-1">
               SEO Score
             </div>
-            <div className="text-2xl font-bold text-orange-900">50.0</div>
+            <div className="text-2xl font-bold text-orange-900 dark:text-white">
+              50.0
+            </div>
           </div>
-          <div className="bg-blue-50 rounded-lg p-3 border border-blue-100">
-            <div className="text-[10px] text-blue-700 font-medium mb-1">
+          <div className="bg-blue-50 dark:bg-blue-950/30 rounded-lg p-3 border border-blue-100 dark:border-blue-800/50">
+            <div className="text-[10px] text-blue-700 dark:text-blue-400 font-medium mb-1">
               Overall Score
             </div>
-            <div className="text-2xl font-bold text-blue-900">75.0</div>
+            <div className="text-2xl font-bold text-blue-900 dark:text-white">
+              75.0
+            </div>
           </div>
-          <div className="bg-green-50 rounded-lg p-3 border border-green-100">
-            <div className="text-[10px] text-green-700 font-medium mb-1">
+          <div className="bg-green-50 dark:bg-emerald-950/30 rounded-lg p-3 border border-green-100 dark:border-emerald-800/50">
+            <div className="text-[10px] text-green-700 dark:text-emerald-400 font-medium mb-1">
               New Articles
             </div>
-            <div className="text-2xl font-bold text-green-900">10</div>
+            <div className="text-2xl font-bold text-green-900 dark:text-white">
+              10
+            </div>
           </div>
         </div>
       </div>
@@ -629,8 +654,8 @@ const PlatformIntegration = () => {
           key={i}
           className={`rounded-xl p-4 border transition-all ${
             platform.connected
-              ? "bg-green-50/50 border-none"
-              : "bg-white border-none"
+              ? "bg-green-50/50 dark:bg-emerald-950/20 border-none"
+              : "bg-white dark:bg-zinc-900 border-none"
           }`}
         >
           <div className="flex items-start gap-3 mb-3">
@@ -639,16 +664,20 @@ const PlatformIntegration = () => {
                 src={platform.logo}
                 alt={platform.name}
                 fill
-                className="object-contain"
+                className={`object-contain ${
+                  platform.name === "Medium"
+                    ? "dark:invert dark:brightness-200"
+                    : ""
+                }`}
               />
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">
-                <h5 className="text-sm font-bold text-gray-900">
+                <h5 className="text-sm font-bold text-gray-900 dark:text-white">
                   {platform.name}
                 </h5>
                 {platform.connected && (
-                  <div className="flex items-center gap-1 px-2 py-0.5 bg-green-100 text-green-700 rounded-full">
+                  <div className="flex items-center gap-1 px-2 py-0.5 bg-green-100 dark:bg-emerald-950/50 text-green-700 dark:text-emerald-400 rounded-full">
                     <svg
                       className="w-3 h-3"
                       fill="currentColor"
@@ -670,7 +699,7 @@ const PlatformIntegration = () => {
             </div>
           </div>
 
-          <p className="text-xs text-gray-600 mb-4 leading-relaxed">
+          <p className="text-xs text-gray-600 dark:text-zinc-400 mb-4 leading-relaxed">
             {platform.description}
           </p>
 
@@ -723,7 +752,7 @@ const ThumbnailGeneration = () => {
         {styles.map((style, i) => (
           <div
             key={i}
-            className="bg-white rounded-xl border-none overflow-hidden"
+            className="bg-white dark:bg-zinc-900 rounded-xl border-none overflow-hidden"
           >
             {/* Thumbnail Preview */}
             <div
@@ -756,15 +785,15 @@ const ThumbnailGeneration = () => {
             {/* Style Info */}
             <div className="p-4">
               <div className="flex items-start justify-between mb-2">
-                <div className="text-sm font-bold text-gray-900">
+                <div className="text-sm font-bold text-gray-900 dark:text-white">
                   {style.name}
                 </div>
-                <span className="px-2 py-0.5 bg-orange-100 text-orange-700 text-[9px] font-semibold rounded-full flex items-center gap-1">
+                <span className="px-2 py-0.5 bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-400 text-[9px] font-semibold rounded-full flex items-center gap-1">
                   🔥 {style.badge}
                 </span>
               </div>
 
-              <p className="text-xs text-gray-600 mb-3 line-clamp-2">
+              <p className="text-xs text-gray-600 dark:text-zinc-400 mb-3 line-clamp-2">
                 {style.description}
               </p>
 
@@ -773,7 +802,7 @@ const ThumbnailGeneration = () => {
                 {style.colors.map((color, j) => (
                   <div
                     key={j}
-                    className={`w-6 h-6 rounded ${color} border border-gray-200`}
+                    className={`w-6 h-6 rounded ${color} border border-gray-200 dark:border-white/10`}
                   />
                 ))}
               </div>
@@ -784,7 +813,7 @@ const ThumbnailGeneration = () => {
                 className={`w-full py-2 rounded-lg text-sm font-semibold transition-colors ${
                   style.selected
                     ? "bg-green-600 text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    : "bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-zinc-300 hover:bg-gray-200 dark:hover:bg-zinc-700"
                 }`}
               >
                 {style.selected ? (
@@ -854,15 +883,15 @@ const AuthorManagement = () => {
   const getRoleBadgeColor = (role: string) => {
     switch (role) {
       case "Admin":
-        return "bg-green-100 text-green-700 border-green-200";
+        return "bg-green-100 dark:bg-emerald-950/50 text-green-700 dark:text-emerald-400 border-green-200 dark:border-emerald-800/50";
       case "Editor":
-        return "bg-purple-100 text-purple-700 border-purple-200";
+        return "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-400 border-purple-200 dark:border-purple-800/50";
       case "Viewer":
-        return "bg-blue-100 text-blue-700 border-blue-200";
+        return "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800/50";
       case "Writer":
-        return "bg-orange-100 text-orange-700 border-orange-200";
+        return "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-400 border-orange-200 dark:border-orange-800/50";
       default:
-        return "bg-gray-100 text-gray-700 border-gray-200";
+        return "bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-zinc-400 border-gray-200 dark:border-white/10";
     }
   };
 
@@ -871,18 +900,18 @@ const AuthorManagement = () => {
       {/* Header */}
 
       {/* Team Members Table */}
-      <div className="bg-white rounded-xl border-none overflow-hidden">
-        <div className="px-4 py-2 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
-          <div className="text-xs font-semibold text-gray-700">
+      <div className="bg-white dark:bg-zinc-900 rounded-xl border-none overflow-hidden">
+        <div className="px-4 py-2 bg-gray-50 dark:bg-zinc-800 border-b border-gray-200 dark:border-white/5 flex justify-between items-center">
+          <div className="text-xs font-semibold text-gray-700 dark:text-zinc-300">
             Author Profiles
           </div>
-          <span className="text-[10px] text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">
+          <span className="text-[10px] text-green-600 dark:text-emerald-400 bg-green-50 dark:bg-emerald-950/50 px-2 py-0.5 rounded-full border border-green-100 dark:border-emerald-800/50">
             ● All Synced
           </span>
         </div>
 
-        <div className="bg-gray-50/50 border-b border-gray-200">
-          <div className="grid grid-cols-12 gap-4 px-4 py-2 text-[10px] font-semibold text-gray-600">
+        <div className="bg-gray-50/50 dark:bg-zinc-800/50 border-b border-gray-200 dark:border-white/5">
+          <div className="grid grid-cols-12 gap-4 px-4 py-2 text-[10px] font-semibold text-gray-600 dark:text-zinc-400">
             <div className="col-span-6">Author</div>
             <div className="col-span-3">Role</div>
             <div className="col-span-3 text-right">Sync Source</div>
@@ -893,19 +922,21 @@ const AuthorManagement = () => {
           {members.map((member, i) => (
             <div
               key={i}
-              className="grid grid-cols-12 gap-4 px-4 py-3 hover:bg-gray-50/50 transition-colors items-center"
+              className="grid grid-cols-12 gap-4 px-4 py-3 hover:bg-gray-50/50 dark:hover:bg-white/5 transition-colors items-center"
             >
               <div className="col-span-6 flex items-center gap-3">
-                <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 font-semibold text-xs border border-gray-200 flex-shrink-0">
+                <div className="w-8 h-8 bg-gray-100 dark:bg-zinc-800 rounded-full flex items-center justify-center text-gray-600 dark:text-zinc-400 font-semibold text-xs border border-gray-200 dark:border-white/10 flex-shrink-0">
                   {member.initial}
                 </div>
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
-                    <p className="text-sm font-semibold text-gray-900">
+                    <p className="text-sm font-semibold text-gray-900 dark:text-white">
                       {member.name}
                     </p>
                     {member.you && (
-                      <span className="text-[10px] text-gray-500">(You)</span>
+                      <span className="text-[10px] text-gray-500 dark:text-zinc-500">
+                        (You)
+                      </span>
                     )}
                   </div>
                   <p className="text-xs text-gray-500 truncate">
@@ -996,13 +1027,13 @@ export default function Features() {
   return (
     <section
       id="features"
-      className="w-full py-24 md:py-32 relative overflow-hidden bg-white"
+      className="w-full py-24 md:py-32 relative overflow-hidden bg-white dark:bg-zinc-950"
     >
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-primary/20 rounded-full text-xs font-medium text-primary mb-6 shadow-sm">
-            <Zap className="w-3 h-3 fill-primary" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white dark:bg-zinc-900 border border-primary/20 dark:border-white/10 rounded-full text-xs font-medium text-primary dark:text-emerald-400 mb-6 shadow-sm">
+            <Zap className="w-3 h-3 fill-primary dark:fill-emerald-400" />
             The Content Engine
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground font-poppins mb-6 tracking-tight">
@@ -1023,11 +1054,11 @@ export default function Features() {
                   feature.large ? "md:col-span-2 lg:col-span-2" : "col-span-1"
                 } h-full`}
             >
-              <Card className="border-[1px] border-gray-100 rounded-[32px] p-3 h-full">
+              <Card className="border-[1px] border-gray-100 dark:border-white/5 rounded-[32px] p-3 h-full bg-transparent">
                 <div
                   className="shadow-none h-full overflow-hidden
-                  bg-gradient-to-tr from-gray-50 to-[#f9f4f0]
-                  p-4 rounded-3xl border-[1px] border-gray-100 cursor-pointer"
+                  bg-gradient-to-tr from-gray-50 to-[#f9f4f0] dark:from-zinc-900/50 dark:to-zinc-900/20
+                  p-4 rounded-3xl border-[1px] border-gray-100 dark:border-white/5 cursor-pointer"
                 >
                   <div
                     className={`${
@@ -1042,8 +1073,8 @@ export default function Features() {
                         {feature.component ? (
                           feature.component
                         ) : (
-                          <div className="min-h-[180px] flex items-center justify-center bg-white/60 backdrop-blur-sm border border-white/40 rounded-2xl p-6">
-                            <p className="text-sm text-gray-400 font-inter">
+                          <div className="min-h-[180px] flex items-center justify-center bg-white/60 dark:bg-zinc-800/60 backdrop-blur-sm border border-white/40 dark:border-white/10 rounded-2xl p-6">
+                            <p className="text-sm text-gray-400 dark:text-zinc-500 font-inter">
                               Visual placeholder - {feature.title}
                             </p>
                           </div>
@@ -1059,12 +1090,12 @@ export default function Features() {
                     </div>
 
                     {feature.large && (
-                      <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-white/40">
+                      <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm rounded-2xl p-6 border border-white/40 dark:border-white/10">
                         <div className="mb-4">
-                          <p className="text-xs text-gray-500 font-medium mb-1">
+                          <p className="text-xs text-gray-500 dark:text-zinc-500 font-medium mb-1">
                             Project
                           </p>
-                          <p className="text-sm font-semibold">
+                          <p className="text-sm font-semibold dark:text-white">
                             Surajondev Marketing Campaign
                           </p>
                         </div>

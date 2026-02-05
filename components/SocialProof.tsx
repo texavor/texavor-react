@@ -34,23 +34,23 @@ export default function SocialProof() {
   ];
 
   return (
-    <section className="w-full py-16 border-y border-border/40 bg-white/50 backdrop-blur-sm">
+    <section className="w-full py-16 border-y border-border/40 bg-white/50 dark:bg-zinc-950/50 backdrop-blur-sm">
       <div className="container mx-auto px-4 max-w-7xl">
         <p className="text-center text-sm font-semibold text-muted-foreground mb-10 font-inter uppercase tracking-wider">
           Trusted by high-growth technical teams
         </p>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 divide-x divide-border/40">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 divide-x divide-border/40 dark:divide-white/10">
           {stats.map((stat, index) => (
             <div
               key={index}
               className="text-center px-4 animate-fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <p className="text-4xl md:text-5xl font-bold text-primary font-poppins mb-2">
+              <p className="text-4xl md:text-5xl font-bold text-primary dark:text-emerald-400 font-poppins mb-2">
                 {stat.value}
               </p>
-              <p className="text-sm font-bold text-foreground font-inter">
+              <p className="text-sm font-bold text-foreground dark:text-white font-inter">
                 {stat.label}
               </p>
               <p className="text-xs text-muted-foreground mt-1 font-inter">
@@ -61,7 +61,7 @@ export default function SocialProof() {
         </div>
 
         {/* Company Logos */}
-        <div className="pt-8 border-t border-border/40">
+        <div className="pt-8 border-t border-border/40 dark:border-white/10">
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
             {/* Simplified Logo Placeholders */}
             {logos.map((logo, index) => (
@@ -74,7 +74,7 @@ export default function SocialProof() {
                 >
                   {logo.name.charAt(0)}
                 </div>
-                <span className="font-bold text-lg font-poppins text-gray-800 group-hover:text-black transition-colors">
+                <span className="font-bold text-lg font-poppins text-gray-800 dark:text-zinc-300 group-hover:text-black dark:group-hover:text-white transition-colors">
                   {logo.name}
                 </span>
               </div>
