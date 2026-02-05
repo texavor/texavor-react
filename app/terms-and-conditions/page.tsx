@@ -31,12 +31,12 @@ const TermsAndConditions = () => {
       <Schema script={schema} />
       <main className="flex min-h-screen flex-col items-center justify-between p-4 md:p-32 w-full md:max-w-[1200px] mx-auto">
         <div className="w-full">
-          <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 font-poppins text-gray-900 tracking-tight">
+          <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 font-poppins text-zinc-900 dark:text-zinc-100 tracking-tight">
             Terms and Conditions
           </h1>
-          <div className="space-y-8 font-inter text-gray-600 leading-relaxed max-w-4xl mx-auto">
+          <div className="space-y-8 font-inter text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-4xl mx-auto">
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+              <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-4 font-poppins">
                 1. Introduction
               </h2>
               <p>
@@ -49,7 +49,7 @@ const TermsAndConditions = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+              <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-4 font-poppins">
                 2. Services Description
               </h2>
               <p>
@@ -63,7 +63,7 @@ const TermsAndConditions = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+              <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-4 font-poppins">
                 3. User Accounts & Security
               </h2>
               <p>
@@ -76,7 +76,7 @@ const TermsAndConditions = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+              <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-4 font-poppins">
                 4. Intellectual Property & Content Ownership
               </h2>
               <p>
@@ -92,7 +92,7 @@ const TermsAndConditions = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+              <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-4 font-poppins">
                 5. Subscription & Billing
               </h2>
               <ul className="list-disc pl-5 space-y-2">
@@ -115,7 +115,7 @@ const TermsAndConditions = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+              <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-4 font-poppins">
                 6. Acceptable Use Policy
               </h2>
               <p>
@@ -127,7 +127,7 @@ const TermsAndConditions = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+              <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-4 font-poppins">
                 7. Limitation of Liability
               </h2>
               <p>
@@ -139,7 +139,7 @@ const TermsAndConditions = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+              <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-4 font-poppins">
                 8. Contact Us
               </h2>
               <p>
