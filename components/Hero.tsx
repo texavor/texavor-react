@@ -53,7 +53,7 @@ export default function Hero() {
           <Button
             asChild
             size="lg"
-            className="h-12 px-8 rounded-lg bg-primary hover:bg-primary/90 text-white font-semibold shadow-lg shadow-primary/20 transition-all hover:shadow-xl font-poppins text-base min-w-[160px]"
+            className="h-12 px-8 rounded-lg bg-primary hover:bg-primary/90 text-black font-semibold shadow-lg shadow-primary/20 transition-all hover:shadow-xl font-poppins text-base min-w-[160px]"
             aria-label="Test Your Website"
           >
             <Link href="/tools/website-auditor">Test Your Website (Free)</Link>
