@@ -127,8 +127,8 @@
 
 /* View Transitions Sweep Effect */
 ::view-transition-group(root) {
-    animation-duration: 0.6s;
-    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    animation-duration: 0.75s;
+    animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 ::view-transition-new(root) {
@@ -138,6 +138,7 @@
 
 ::view-transition-old(root) {
     animation: none;
+    opacity: 1;
     mix-blend-mode: normal;
 }
 
