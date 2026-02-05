@@ -257,9 +257,19 @@ export default function FaqSchemaPage() {
               onValueChange={(v) => setActiveTab(v as any)}
               className="w-full"
             >
-              <TabsList className="grid w-full grid-cols-2 mb-6">
-                <TabsTrigger value="manual">Manual Input</TabsTrigger>
-                <TabsTrigger value="auto">Import from URL</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2 mb-6 bg-zinc-100 dark:bg-zinc-800/50 p-1 rounded-xl h-12">
+                <TabsTrigger
+                  value="manual"
+                  className="data-[state=active]:!bg-primary data-[state=active]:!text-black transition-all rounded-lg"
+                >
+                  Manual Input
+                </TabsTrigger>
+                <TabsTrigger
+                  value="auto"
+                  className="data-[state=active]:!bg-primary data-[state=active]:!text-black transition-all rounded-lg"
+                >
+                  Import from URL
+                </TabsTrigger>
               </TabsList>
 
               <TabsContent value="manual" className="space-y-4">
@@ -355,14 +365,14 @@ export default function FaqSchemaPage() {
                                 }
                                 onBlur={field.handleBlur}
                                 placeholder="https://example.com/faq"
-                                className="flex-1 bg-white dark:bg-zinc-950/50"
+                                className="flex-1 bg-white dark:bg-zinc-950/50 h-12"
                               />
                               <Button
                                 type="submit"
                                 disabled={
                                   extractMutation.isPending || isWaitingForToken
                                 }
-                                className="bg-[#104127] hover:bg-[#0c311d] text-white shadow-md transition-all w-32 shrink-0 self-start"
+                                className="bg-primary hover:bg-primary/90 text-zinc-950 shadow-md transition-all w-32 shrink-0 self-start rounded-xl h-12"
                               >
                                 {isWaitingForToken ? (
                                   <>
@@ -397,9 +407,9 @@ export default function FaqSchemaPage() {
                           </div>
                         )}
                       />
-                      <Alert className="bg-[#104127] border-none text-white">
-                        <Globe className="w-4 h-4 text-emerald-400" />
-                        <AlertDescription className="text-gray-200">
+                      <Alert className="bg-primary/5 dark:bg-zinc-900 border border-primary/10 dark:border-white/10 text-foreground">
+                        <Globe className="w-4 h-4 text-primary" />
+                        <AlertDescription className="text-muted-foreground">
                           This checks the URL for common FAQ patterns (H2/H3 +
                           Paragraphs) and converts them into schema
                           automatically.
@@ -436,7 +446,7 @@ export default function FaqSchemaPage() {
                         key={i}
                         className="px-4 border-b last:border-0 border-border/40"
                       >
-                        <AccordionTrigger className="hover:no-underline hover:text-blue-600 text-left">
+                        <AccordionTrigger className="hover:no-underline hover:text-primary text-left">
                           {item.name}
                         </AccordionTrigger>
                         <AccordionContent className="text-muted-foreground">
@@ -536,7 +546,7 @@ export default function FaqSchemaPage() {
                   )
                 }
                 disabled={!generatedSchema}
-                className="bg-[#104127] hover:bg-[#0c311d] text-white shadow-lg transition-all"
+                className="bg-primary hover:bg-primary/90 text-zinc-950 shadow-lg transition-all rounded-xl"
               >
                 <Copy className="w-4 h-4 mr-2" />
                 Copy Code

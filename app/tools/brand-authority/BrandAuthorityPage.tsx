@@ -283,7 +283,7 @@ export default function BrandAuthorityPage() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="h-12 w-48 font-semibold text-lg bg-[#104127] hover:bg-[#0c311d] text-white shadow-lg hover:shadow-xl transition-all shrink-0"
+                  className="h-12 w-48 font-semibold text-lg bg-primary hover:bg-primary/90 text-white dark:text-zinc-950 shadow-lg hover:shadow-xl transition-all shrink-0 rounded-xl"
                   disabled={checkMutation.isPending || isWaitingForToken}
                 >
                   {isWaitingForToken ? (

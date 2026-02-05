@@ -244,7 +244,7 @@ export default function AEOSchemaValidatorClient() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="h-12 px-8 min-w-[140px] font-semibold text-lg bg-[#104127] hover:bg-[#0c311d] text-white shadow-lg hover:shadow-xl transition-all"
+                  className="h-12 px-8 min-w-[140px] font-semibold text-lg bg-primary hover:bg-primary/90 text-white dark:text-zinc-950 shadow-lg hover:shadow-xl transition-all rounded-xl"
                   disabled={loading || isWaitingForToken}
                 >
                   {isWaitingForToken ? (
@@ -274,10 +274,15 @@ export default function AEOSchemaValidatorClient() {
         </Card>
 
         {error && (
-          <Alert variant="destructive" className="mb-8 max-w-3xl mx-auto">
-            <AlertTriangle className="h-4 w-4" />
-            <AlertTitle>Error</AlertTitle>
-            <AlertDescription>{error}</AlertDescription>
+          <Alert
+            variant="destructive"
+            className="mb-8 max-w-3xl mx-auto dark:bg-red-500/10 dark:border-red-500/20 dark:text-red-400"
+          >
+            <AlertTriangle className="h-4 w-4 dark:text-red-400" />
+            <AlertTitle className="dark:text-red-400">Error</AlertTitle>
+            <AlertDescription className="dark:text-red-300">
+              {error}
+            </AlertDescription>
           </Alert>
         )}
 
