@@ -16,23 +16,23 @@ export const faqData = [
   {
     question: "Do you offer solutions for large organizations?",
     answer:
-      "Absolutely. Our Enterprise plan includes SSO, dedicated support, custom integrations, and unlimited workspaces. Contact sales for a demo.",
+      "Absolutely. Our Business plan includes dedicated support, custom integrations, and unlimited workspaces. Contact sales for a demo.",
   },
   {
     question: "Is there a limit to how many members I can invite?",
     answer:
       "Our Starter plan supports up to 5 members, while Pro supports up to 20. The Business and Enterprise plans offer unlimited team seats.",
   },
-  {
-    question: "Can I migrate data from another tool into Texavor?",
-    answer:
-      "Yes, we offer one-click imports from Notion, WordPress, and CSV files. Our support team can also assist with custom migrations.",
-  },
-  {
-    question: "Can I customize Texavor with my own branding?",
-    answer:
-      "Yes, Pro and Enterprise plans allow you to add your company logo, custom domain, and brand colors to your public pages and reports.",
-  },
+  // {
+  //   question: "Can I migrate data from another tool into Texavor?",
+  //   answer:
+  //     "Yes, we offer one-click imports from Notion, WordPress, and CSV files. Our support team can also assist with custom migrations.",
+  // },
+  // {
+  //   question: "Can I customize Texavor with my own branding?",
+  //   answer:
+  //     "Yes, Pro and Enterprise plans allow you to add your company logo, custom domain, and brand colors to your public pages and reports.",
+  // },
   {
     question: "Do all members need to pay?",
     answer:
