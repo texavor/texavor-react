@@ -32,7 +32,7 @@ export default function Footer() {
                   src="/texavor.png"
                   alt="EasyWrite"
                   fill
-                  className="object-contain"
+                  className="object-contain dark:brightness-0 dark:invert"
                 />
               </div>
               <span className="text-2xl font-bold font-poppins text-gray-900 dark:text-white">

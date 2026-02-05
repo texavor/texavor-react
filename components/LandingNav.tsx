@@ -71,7 +71,7 @@ export default function LandingNav() {
               src="/texavor.png"
               alt="EasyWrite"
               fill
-              className="object-contain"
+              className="object-contain dark:brightness-0 dark:invert"
             />
           </div>
           <span className="text-secondary-foreground dark:text-white font-bold text-xl font-poppins tracking-tight">
