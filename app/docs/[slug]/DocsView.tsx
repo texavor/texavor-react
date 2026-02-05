@@ -60,6 +60,17 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
     };
   }, [handleScroll]);
 
+  // Scroll active nav item into view
+  useEffect(() => {
+    const activeItem = document.getElementById("active-docs-nav-item");
+    if (activeItem) {
+      activeItem.scrollIntoView({
+        block: "center",
+        behavior: "smooth",
+      });
+    }
+  }, [docData.slug]);
+
   const toggleCategory = (categorySlug: string) => {
     setCollapsedCategories((prev) => {
       const newSet = new Set(prev);
@@ -166,6 +177,11 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
                           {category.items.map((doc) => (
                             <Link
                               key={doc.slug}
+                              id={
+                                doc.slug === docData.slug
+                                  ? "active-docs-nav-item"
+                                  : undefined
+                              }
                               href={`/docs/${doc.slug}`}
                               className={`block px-3 py-2 rounded-lg text-sm transition-colors font-inter ${
                                 doc.slug === docData.slug
