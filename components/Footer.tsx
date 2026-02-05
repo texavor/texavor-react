@@ -88,20 +88,12 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Resources */}
+            {/* Tools */}
             <div>
               <h4 className="font-semibold text-gray-900 dark:text-white font-poppins mb-6">
-                Resources
+                Tools
               </h4>
               <ul className="space-y-4 text-sm text-gray-500 dark:text-zinc-400 font-inter">
-                <li>
-                  <Link
-                    href="/docs/introduction"
-                    className="hover:text-primary dark:hover:text-emerald-400 transition-colors"
-                  >
-                    Documentation
-                  </Link>
-                </li>
                 <li>
                   <Link
                     href="/tools/ai-visibility-calculator"
@@ -120,10 +112,75 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
+                    href="/tools/brand-authority"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Brand Authority
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/tools/content-audit"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Content Audit
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/tools/faq-schema-generator"
+                    className="hover:text-primary transition-colors"
+                  >
+                    FAQ Schema
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/tools/topical-authority"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Topical Authority
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/tools/aeo-schema-validator"
+                    className="hover:text-primary transition-colors"
+                  >
+                    AEO Schema
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Resources */}
+            <div>
+              <h4 className="font-semibold text-gray-900 font-poppins mb-6">
+                Resources
+              </h4>
+              <ul className="space-y-4 text-sm text-gray-500 font-inter">
+                <li>
+                  <Link
+                    href="/docs/introduction"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Documentation
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     href="/blog"
                     className="hover:text-primary transition-colors"
                   >
                     Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/faq"
+                    className="hover:text-primary transition-colors"
+                  >
+                    FAQ
                   </Link>
                 </li>
               </ul>
