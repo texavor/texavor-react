@@ -31,12 +31,12 @@ const PrivacyPolicy = () => {
       <Schema script={schema} />
       <main className="flex min-h-screen flex-col items-center justify-between p-4 md:p-32 w-full md:max-w-[1200px] mx-auto">
         <div className="w-full">
-          <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 font-poppins text-gray-900 tracking-tight">
+          <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 font-poppins text-foreground tracking-tight">
             Privacy Policy
           </h1>
-          <div className="space-y-8 font-inter text-gray-600 leading-relaxed max-w-4xl mx-auto">
+          <div className="space-y-8 font-inter text-muted-foreground leading-relaxed max-w-4xl mx-auto">
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+              <h2 className="text-2xl font-bold text-foreground mb-4 font-poppins">
                 1. Introduction
               </h2>
               <p>
@@ -49,7 +49,7 @@ const PrivacyPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+              <h2 className="text-2xl font-bold text-foreground mb-4 font-poppins">
                 2. Information We Collect
               </h2>
               <ul className="list-disc pl-5 space-y-2">
@@ -79,7 +79,7 @@ const PrivacyPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+              <h2 className="text-2xl font-bold text-foreground mb-4 font-poppins">
                 3. How We Use Your Information
               </h2>
               <ul className="list-disc pl-5 space-y-2">
@@ -97,7 +97,7 @@ const PrivacyPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+              <h2 className="text-2xl font-bold text-foreground mb-4 font-poppins">
                 4. Data Sharing & Third Parties
               </h2>
               <p>
@@ -111,7 +111,7 @@ const PrivacyPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+              <h2 className="text-2xl font-bold text-foreground mb-4 font-poppins">
                 5. Data Security
               </h2>
               <p>
@@ -123,7 +123,7 @@ const PrivacyPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+              <h2 className="text-2xl font-bold text-foreground mb-4 font-poppins">
                 6. Your Rights
               </h2>
               <p>
@@ -134,7 +134,7 @@ const PrivacyPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+              <h2 className="text-2xl font-bold text-foreground mb-4 font-poppins">
                 7. Contact Us
               </h2>
               <p>

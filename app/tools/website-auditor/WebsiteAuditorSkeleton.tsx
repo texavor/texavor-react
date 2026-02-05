@@ -12,7 +12,7 @@ export default function WebsiteAuditorSkeleton() {
             {[1, 2].map((i) => (
               <Card
                 key={i}
-                className="border border-border/50 shadow-sm bg-white dark:bg-zinc-900"
+                className="border border-border/50 shadow-sm bg-card"
               >
                 <CardContent className="p-4 space-y-3 flex flex-col justify-between h-[120px]">
                   <Skeleton className="h-4 w-24 rounded-full" />
@@ -24,7 +24,7 @@ export default function WebsiteAuditorSkeleton() {
           </div>
 
           {/* Checks List */}
-          <Card className="border border-border/50 shadow-none rounded-2xl bg-primary/5 dark:bg-zinc-900 overflow-hidden">
+          <Card className="border border-border/50 shadow-none rounded-2xl bg-primary/5 dark:bg-card overflow-hidden">
             <CardHeader className="pb-4">
               <Skeleton className="h-8 w-48 mb-2" />
               <Skeleton className="h-4 w-64" />
@@ -34,7 +34,7 @@ export default function WebsiteAuditorSkeleton() {
                 {[1, 2, 3, 4, 5].map((i) => (
                   <div
                     key={i}
-                    className="flex items-start gap-3 p-3 bg-white/40 rounded-lg border border-gray-100/50"
+                    className="flex items-start gap-3 p-3 bg-muted/30 rounded-lg border border-border"
                   >
                     <Skeleton className="h-6 w-6 rounded-full shrink-0" />
                     <div className="flex-1 space-y-2 pt-1">

@@ -7,6 +7,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { ThemeToggle } from "./ThemeToggle";
 
 const NAV_ITEMS = [
   { label: "Home", id: "home", href: "/" },
@@ -57,9 +58,9 @@ export default function LandingNav() {
     <div className="flex flex-col items-center w-full fixed top-6 z-50 px-4 pointer-events-none">
       <nav
         className={cn(
-          "w-full max-w-5xl rounded-full bg-white shadow-xl shadow-black/5 transition-all duration-300 flex items-center justify-between py-2 sm:py-3 px-6 pointer-events-auto border border-black/5 relative z-50",
+          "w-full max-w-5xl rounded-full bg-background shadow-xl shadow-black/5 dark:shadow-white/5 transition-all duration-300 flex items-center justify-between py-2 sm:py-3 px-6 pointer-events-auto border border-border relative z-50",
           isScrolled &&
-            "py-2 bg-white/70 backdrop-blur-md supports-[backdrop-filter]:bg-white/60",
+            "py-2 bg-background/70 backdrop-blur-md supports-[backdrop-filter]:bg-background/60",
         )}
       >
         {/* Logo */}
@@ -136,12 +137,13 @@ export default function LandingNav() {
           <Button
             asChild
             size="sm"
-            className="rounded-full bg-primary hover:bg-primary/90 text-white font-medium shadow-lg hover:shadow-xl px-4 sm:px-6 h-10 font-poppins transition-all"
+            className="rounded-full bg-primary hover:bg-primary/90 text-white dark:text-primary-foreground font-medium shadow-lg hover:shadow-xl px-4 sm:px-6 h-10 font-poppins transition-all"
           >
             <Link href={process.env.NEXT_PUBLIC_APP_URL || "/"} target="_blank">
               Get Started
             </Link>
           </Button>
+          <ThemeToggle />
         </div>
       </nav>
 
@@ -155,7 +157,7 @@ export default function LandingNav() {
             transition={{ duration: 0.2, ease: "easeOut" }}
             className="w-full max-w-[95%] md:hidden pointer-events-auto mt-2"
           >
-            <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-200/50 overflow-hidden flex flex-col p-4 space-y-2">
+            <div className="bg-background/90 backdrop-blur-xl rounded-2xl shadow-xl border border-border overflow-hidden flex flex-col p-4 space-y-2">
               {NAV_ITEMS.map((item) => (
                 <div key={item.id}>
                   {item.href ? (

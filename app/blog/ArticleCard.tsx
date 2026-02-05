@@ -23,7 +23,7 @@ const ArticleCard = ({
 }: ArticleCardProps) => {
   return (
     <Link href={`/blog/${slug}`} className="group block h-full">
-      <div className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
+      <div className="bg-card rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
         {/* Image Container */}
         <div className="relative aspect-[16/9] w-full overflow-hidden">
           <Image
@@ -43,24 +43,24 @@ const ArticleCard = ({
               {tag?.slice(0, 2).map((item) => (
                 <span
                   key={item}
-                  className="bg-primary/5 text-primary text-xs font-semibold px-2.5 py-1 rounded-full font-inter"
+                  className="bg-primary/10 text-primary text-xs font-semibold px-2.5 py-1 rounded-full font-inter"
                 >
                   {item}
                 </span>
               ))}
             </div>
-            <span className="text-xs text-gray-500 font-inter">
+            <span className="text-xs text-muted-foreground font-inter">
               {format(new Date(date || new Date()), "MMM dd, yyyy")}
             </span>
           </div>
 
           {/* Title */}
-          <h3 className="text-xl font-bold text-gray-900 mb-3 font-poppins line-clamp-2 group-hover:text-primary transition-colors">
+          <h3 className="text-xl font-bold text-foreground mb-3 font-poppins line-clamp-2 group-hover:text-primary transition-colors">
             {title}
           </h3>
 
           {/* Description */}
-          <p className="text-gray-600 text-sm font-inter line-clamp-3 mb-6 flex-grow leading-relaxed">
+          <p className="text-muted-foreground text-sm font-inter line-clamp-3 mb-6 flex-grow leading-relaxed">
             {description}
           </p>
 

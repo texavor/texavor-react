@@ -103,7 +103,7 @@ export const ArticleContent = memo(function ArticleContent({
         const button = document.createElement("button");
         button.innerText = "Copy";
         button.className =
-          "copy-button absolute top-2 right-2 px-2 py-1 text-sm rounded-md bg-gray-700 text-gray-200 hover:bg-gray-600";
+          "copy-button absolute top-2 right-2 px-2 py-1 text-sm rounded-md bg-muted text-muted-foreground hover:bg-muted/80 border border-border transition-colors";
 
         // --- 3. Add event listener to copy code ---
         button.addEventListener("click", () => {
@@ -197,7 +197,7 @@ export const ArticleContent = memo(function ArticleContent({
   return (
     <article
       ref={articleRef}
-      className="prose lg:prose-lg max-w-none font-inter prose-code:font-semibold text-[#2B2B2B] break-words w-full"
+      className="prose lg:prose-lg max-w-none font-inter prose-code:font-semibold theme-article text-foreground break-words w-full"
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );

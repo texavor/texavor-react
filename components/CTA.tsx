@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export default function CTA() {
   return (
-    <section className="w-full py-24 px-4 bg-white flex justify-center">
-      <div className="w-full max-w-6xl relative overflow-hidden bg-primary rounded-[40px] px-6 py-20 text-center shadow-xl">
+    <section className="w-full py-24 px-4 bg-background flex justify-center">
+      <div className="w-full max-w-6xl relative overflow-hidden bg-primary rounded-[40px] px-6 py-20 text-center shadow-xl border border-primary/20">
         {/* Background Texture/Gradient */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent opacity-50 pointer-events-none" />
 

@@ -215,7 +215,7 @@ export default function AiScorePage() {
   };
 
   return (
-    <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
+    <div className="min-h-screen bg-background font-sans mt-32">
       <div className="container max-w-7xl px-4 mx-auto pb-20">
         {/* Header - Restored Gradient & Size */}
         <div className="text-center mb-12 space-y-4">
@@ -229,7 +229,7 @@ export default function AiScorePage() {
         </div>
 
         {/* Search Input Card - Restored Separated Style */}
-        <Card className="mb-16 bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
+        <Card className="mb-16 bg-primary/5 dark:bg-card shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
           <CardContent className="px-4 py-1">
             <form
               onSubmit={(e) => {
@@ -256,7 +256,7 @@ export default function AiScorePage() {
                           onBlur={field.handleBlur}
                           onChange={(e) => field.handleChange(e.target.value)}
                           placeholder="e.g. how to bake sourdough"
-                          className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
+                          className="h-12 pl-10 text-lg bg-muted/30 dark:bg-background/50 border-input"
                         />
                         {field.state.meta.errors ? (
                           <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
@@ -318,8 +318,8 @@ export default function AiScorePage() {
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto opacity-90">
             {/* Feature 1: Keyword Research */}
             <div className="relative group">
-              <div className="absolute inset-0 bg-emerald-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
+              <div className="absolute inset-0 bg-emerald-500/10 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
+              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-card overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
                 <CardHeader className="pb-2">
                   <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center mb-3">
                     <Search className="w-5 h-5 text-blue-600" />
@@ -335,7 +335,7 @@ export default function AiScorePage() {
                   <div className="mt-4 px-6">
                     <div className="flex items-center justify-between mb-4">
                       <div>
-                        <p className="text-2xl font-bold text-slate-800">
+                        <p className="text-2xl font-bold text-foreground">
                           9.9M
                         </p>
                         <div className="flex items-center gap-1 text-xs text-muted-foreground">
@@ -346,7 +346,7 @@ export default function AiScorePage() {
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className="text-2xl font-bold text-slate-800">88</p>
+                        <p className="text-2xl font-bold text-foreground">88</p>
                         <div className="flex items-center justify-end gap-1 text-xs text-muted-foreground">
                           <span className="text-yellow-500 font-medium">
                             MED
@@ -396,8 +396,8 @@ export default function AiScorePage() {
 
             {/* Feature 2: AI Radar */}
             <div className="relative group mt-8 md:mt-0">
-              <div className="absolute inset-0 bg-purple-100/50 rounded-3xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform rotate-1 group-hover:rotate-2 transition-transform duration-500">
+              <div className="absolute inset-0 bg-purple-500/10 rounded-3xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500"></div>
+              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-card overflow-hidden transform rotate-1 group-hover:rotate-2 transition-transform duration-500">
                 <CardHeader className="pb-2">
                   <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center mb-3">
                     <Sparkles className="w-5 h-5 text-purple-600" />
@@ -498,7 +498,7 @@ export default function AiScorePage() {
                 <Card className="border border-border/50 shadow-none rounded-2xl bg-primary/5 dark:bg-zinc-900 overflow-hidden">
                   <div className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
                   <CardHeader className="pb-2 pt-5">
-                    <CardTitle className="text-lg font-semibold flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400">
+                    <CardTitle className="text-lg font-semibold flex items-center gap-2 font-poppins text-muted-foreground">
                       AI Field Strategy
                     </CardTitle>
                   </CardHeader>
@@ -598,7 +598,7 @@ export default function AiScorePage() {
               {/* Prompt Ideas (Widget 4) */}
               <Card className="border border-border/50 shadow-none rounded-xl bg-primary/5 dark:bg-zinc-900 h-full">
                 <CardHeader className="pb-3 ">
-                  <CardTitle className="text-lg font-semibold flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400">
+                  <CardTitle className="text-lg font-semibold flex items-center gap-2 font-poppins text-muted-foreground">
                     AI Prompt Ideas
                   </CardTitle>
                   <CardDescription className="text-inter text-gray-500">
@@ -610,7 +610,7 @@ export default function AiScorePage() {
                     {result?.prompt_ideas?.map((prompt, i) => (
                       <li
                         key={i}
-                        className="flex items-center min-h-[4rem] h-auto gap-3 p-3 rounded-2xl bg-gray-50 dark:bg-zinc-800/50 border border-border/50 hover:border-primary/20 hover:bg-white dark:hover:bg-zinc-800 transition-all group relative"
+                        className="flex items-center min-h-[4rem] h-auto gap-3 p-3 rounded-2xl bg-muted/30 dark:bg-muted/50 border border-border/50 hover:border-primary/20 hover:bg-card dark:hover:bg-muted transition-all group relative"
                       >
                         {/* Content with Tooltip */}
                         <div className="flex-1 min-w-0 relative">
@@ -623,7 +623,7 @@ export default function AiScorePage() {
 
                           {/* Custom Tooltip */}
                           <div className="absolute bottom-full left-0 mb-2 w-max max-w-[250px] hidden group-hover:block z-50">
-                            <div className="bg-white text-black text-xs rounded-lg py-2 px-3 shadow-xl">
+                            <div className="bg-card text-foreground text-xs rounded-lg py-2 px-3 shadow-xl border border-border">
                               {prompt}
                               <div className="absolute top-full left-4 -mt-1 border-4 border-transparent border-t-slate-900"></div>
                             </div>
@@ -648,7 +648,7 @@ export default function AiScorePage() {
               {/* Keyword Ideas (Widget 5) */}
               <Card className="border border-border/50 shadow-none rounded-xl bg-primary/5 dark:bg-zinc-900 h-full">
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-lg font-semibold flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400">
+                  <CardTitle className="text-lg font-semibold flex items-center gap-2 font-poppins text-muted-foreground">
                     Keyword Ideas
                   </CardTitle>
                   <CardDescription>
@@ -660,7 +660,7 @@ export default function AiScorePage() {
                     {result?.keyword_ideas?.map((idea, i) => (
                       <li
                         key={i}
-                        className="flex items-center min-h-[4rem] h-auto gap-3 p-3 rounded-2xl bg-gray-50 dark:bg-zinc-800/50 border border-border/50 hover:border-primary/20 hover:bg-white dark:hover:bg-zinc-800 transition-all group relative"
+                        className="flex items-center min-h-[4rem] h-auto gap-3 p-3 rounded-2xl bg-muted/30 dark:bg-muted/50 border border-border/50 hover:border-primary/20 hover:bg-card dark:hover:bg-muted transition-all group relative"
                       >
                         {/* Content with Tooltip */}
                         <div className="flex-1 min-w-0 relative">
@@ -687,7 +687,7 @@ export default function AiScorePage() {
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="h-8 w-8 text-gray-700 hover:text-gray-700 hover:bg-primary/10 rounded-full transition-colors"
+                          className="h-8 w-8 text-foreground hover:text-foreground hover:bg-primary/10 rounded-full transition-colors"
                           onClick={() => copyToClipboard(idea?.term)}
                         >
                           <Copy className="w-4 h-4" />

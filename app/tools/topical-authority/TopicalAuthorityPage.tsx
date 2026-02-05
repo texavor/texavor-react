@@ -154,7 +154,7 @@ export default function TopicalAuthorityPage() {
     : null;
 
   return (
-    <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
+    <div className="min-h-screen bg-background font-sans mt-32">
       <div className="container max-w-7xl px-4 mx-auto pb-20">
         {/* Header */}
         <div className="text-center mb-12 space-y-4">
@@ -168,7 +168,7 @@ export default function TopicalAuthorityPage() {
         </div>
 
         {/* Input Card */}
-        <Card className="mb-16 bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
+        <Card className="mb-16 bg-primary/5 dark:bg-card shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
           <CardContent className="px-4 py-1">
             <form
               onSubmit={(e) => {
@@ -195,7 +195,7 @@ export default function TopicalAuthorityPage() {
                           onBlur={field.handleBlur}
                           onChange={(e) => field.handleChange(e.target.value)}
                           placeholder="e.g. technical seo"
-                          className="h-12 pl-10 text-lg bg-white dark:bg-zinc-950/50 border-input"
+                          className="h-12 pl-10 text-lg bg-muted/30 dark:bg-background/50 border-input"
                         />
                         {field.state.meta.errors ? (
                           <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
@@ -255,8 +255,8 @@ export default function TopicalAuthorityPage() {
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto opacity-90">
             {/* Feature 1: Cluster Visualization */}
             <div className="relative group">
-              <div className="absolute inset-0 bg-emerald-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50 overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
+              <div className="absolute inset-0 bg-emerald-500/10 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
+              <Card className="relative h-full bg-primary/5 dark:bg-card shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50 overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
                 <CardHeader className="pb-2">
                   <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center mb-3">
                     <Network className="w-5 h-5 text-blue-600" />
@@ -380,7 +380,7 @@ export default function TopicalAuthorityPage() {
                   type="secondary"
                   icon={<Network className="w-4 h-4" />}
                 />
-                <Card className="sm:col-span-2 bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none rounded-2xl p-6 ring-1 ring-border/50 flex flex-col md:flex-row items-center gap-6">
+                <Card className="sm:col-span-2 bg-primary/5 dark:bg-card shadow-lg shadow-green-900/5 border-none rounded-2xl p-6 ring-1 ring-border/50 flex flex-col md:flex-row items-center gap-6">
                   <div className="flex-1 space-y-2">
                     <h3 className="text-lg font-semibold flex items-center gap-2">
                       <AlertTriangle className="w-5 h-5 text-orange-500" />
@@ -396,7 +396,7 @@ export default function TopicalAuthorityPage() {
                         </span>
                       ))}
                       {result.content_gaps.length === 0 && (
-                        <span className="text-sm text-slate-500">
+                        <span className="text-sm text-muted-foreground">
                           No major gaps found. Great job!
                         </span>
                       )}
@@ -408,7 +408,7 @@ export default function TopicalAuthorityPage() {
 
             {/* Main Tabs Interface */}
             <Tabs defaultValue="visual" className="w-full">
-              <TabsList className="grid w-full grid-cols-3 mb-8 bg-slate-100 dark:bg-zinc-800 p-1 rounded-xl h-12">
+              <TabsList className="grid w-full grid-cols-3 mb-8 bg-muted dark:bg-card p-1 rounded-xl h-12">
                 <TabsTrigger
                   value="visual"
                   className="rounded-lg text-base font-medium"
@@ -433,7 +433,7 @@ export default function TopicalAuthorityPage() {
                 value="visual"
                 className="space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300"
               >
-                <Card className="bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50 rounded-xl overflow-hidden p-1">
+                <Card className="bg-primary/5 dark:bg-card shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50 rounded-xl overflow-hidden p-1">
                   <TopicVisualGraph
                     initialNodes={result.visual_graph.nodes}
                     initialEdges={result.visual_graph.edges}
@@ -456,7 +456,7 @@ export default function TopicalAuthorityPage() {
                 value="gaps"
                 className="space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300"
               >
-                <Card className="bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50">
+                <Card className="bg-primary/5 dark:bg-card shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50">
                   <CardHeader>
                     <CardTitle className="text-orange-700 dark:text-orange-400">
                       Missing Pillars
@@ -467,7 +467,7 @@ export default function TopicalAuthorityPage() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
+                    <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
                       {result.content_gaps.map((gap, i) => (
                         <li key={i}>{gap}</li>
                       ))}

@@ -31,12 +31,12 @@ const CookiePolicy = () => {
       <Schema script={schema} />
       <main className="flex min-h-screen flex-col items-center justify-between p-4 md:p-32 w-full md:max-w-[1200px] mx-auto">
         <div className="w-full">
-          <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 font-poppins text-gray-900 tracking-tight">
+          <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 font-poppins text-foreground tracking-tight">
             Cookie Policy
           </h1>
-          <div className="space-y-8 font-inter text-gray-600 leading-relaxed max-w-4xl mx-auto">
+          <div className="space-y-8 font-inter text-muted-foreground leading-relaxed max-w-4xl mx-auto">
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+              <h2 className="text-2xl font-bold text-foreground mb-4 font-poppins">
                 1. What Are Cookies?
               </h2>
               <p>
@@ -50,7 +50,7 @@ const CookiePolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+              <h2 className="text-2xl font-bold text-foreground mb-4 font-poppins">
                 2. How We Use Cookies
               </h2>
               <p className="mb-4">
@@ -80,7 +80,7 @@ const CookiePolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+              <h2 className="text-2xl font-bold text-foreground mb-4 font-poppins">
                 3. Third-Party Cookies
               </h2>
               <p>
@@ -100,7 +100,7 @@ const CookiePolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+              <h2 className="text-2xl font-bold text-foreground mb-4 font-poppins">
                 4. Managing Cookies
               </h2>
               <p>
@@ -130,7 +130,7 @@ const CookiePolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+              <h2 className="text-2xl font-bold text-foreground mb-4 font-poppins">
                 5. Updates to This Policy
               </h2>
               <p>
@@ -142,7 +142,7 @@ const CookiePolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 font-poppins">
+              <h2 className="text-2xl font-bold text-foreground mb-4 font-poppins">
                 6. Contact Us
               </h2>
               <p>

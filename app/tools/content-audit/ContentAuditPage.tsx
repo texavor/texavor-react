@@ -188,7 +188,7 @@ export default function ContentAuditPage() {
     // The redundancy check mainly handles "Good" + "Good" cases.
 
     return (
-      <div className="flex flex-col sm:flex-row justify-between sm:items-center items-start gap-2 p-3 rounded-lg bg-white dark:bg-zinc-800 border border-border/50 shadow-none">
+      <div className="flex flex-col sm:flex-row justify-between sm:items-center items-start gap-2 p-3 rounded-lg bg-card dark:bg-muted/50 border border-border/50 shadow-none">
         <div className="flex items-center gap-3 w-full sm:w-auto">
           <StatusIcon
             status={
@@ -234,7 +234,7 @@ export default function ContentAuditPage() {
   };
 
   return (
-    <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
+    <div className="min-h-screen bg-background font-sans mt-32">
       <div className="container max-w-7xl px-4 mx-auto pb-20">
         {/* Header */}
         <div className="text-center mb-12 space-y-4">
@@ -248,7 +248,7 @@ export default function ContentAuditPage() {
         </div>
 
         {/* Input Card */}
-        <Card className="mb-16 bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
+        <Card className="mb-16 bg-primary/5 dark:bg-card shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
           <CardContent className="px-4 py-1">
             <form
               onSubmit={(e) => {
@@ -275,7 +275,7 @@ export default function ContentAuditPage() {
                           onBlur={field.handleBlur}
                           onChange={(e) => field.handleChange(e.target.value)}
                           placeholder="https://example.com/blog/article"
-                          className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
+                          className="h-12 pl-10 text-lg bg-muted/30 dark:bg-background/50 border-input"
                         />
                         {field.state.meta.errors ? (
                           <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
@@ -337,8 +337,8 @@ export default function ContentAuditPage() {
           <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto opacity-90">
             {/* Feature 1: Technical Scan */}
             <div className="relative group">
-              <div className="absolute inset-0 bg-emerald-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
+              <div className="absolute inset-0 bg-emerald-500/10 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
+              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-card overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
                 <CardHeader className="pb-2">
                   <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center mb-3">
                     <Zap className="w-5 h-5 text-emerald-600" />
@@ -353,17 +353,17 @@ export default function ContentAuditPage() {
                 <CardContent className="flex items-center justify-center p-6">
                   <div className="space-y-2 w-full max-w-[150px] opacity-60">
                     <div className="flex items-center gap-2">
-                      <div className="h-2 w-full bg-emerald-100 rounded-full overflow-hidden">
+                      <div className="h-2 w-full bg-emerald-500/10 rounded-full overflow-hidden">
                         <div className="h-full w-[80%] bg-emerald-500"></div>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="h-2 w-full bg-emerald-100 rounded-full overflow-hidden">
+                      <div className="h-2 w-full bg-emerald-500/10 rounded-full overflow-hidden">
                         <div className="h-full w-[60%] bg-emerald-500"></div>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="h-2 w-full bg-emerald-100 rounded-full overflow-hidden">
+                      <div className="h-2 w-full bg-emerald-500/10 rounded-full overflow-hidden">
                         <div className="h-full w-[90%] bg-emerald-500"></div>
                       </div>
                     </div>
@@ -388,7 +388,7 @@ export default function ContentAuditPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="flex items-center justify-center p-6">
-                  <div className="space-y-2 w-full max-w-[120px] opacity-60 p-3 border border-blue-100 rounded bg-white dark:bg-zinc-950">
+                  <div className="space-y-2 w-full max-w-[120px] opacity-60 p-3 border border-border rounded bg-card dark:bg-background/50">
                     <div className="h-2 w-full bg-blue-100 rounded"></div>
                     <div className="h-2 w-[80%] bg-blue-100 rounded"></div>
                     <div className="h-2 w-[90%] bg-blue-100 rounded"></div>
@@ -399,8 +399,8 @@ export default function ContentAuditPage() {
 
             {/* Feature 3: Structure Analysis */}
             <div className="relative group mt-8 md:mt-0">
-              <div className="absolute inset-0 bg-purple-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
+              <div className="absolute inset-0 bg-purple-500/10 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
+              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-card overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
                 <CardHeader className="pb-2">
                   <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center mb-3">
                     <LinkIcon className="w-5 h-5 text-purple-600" />
@@ -513,8 +513,8 @@ export default function ContentAuditPage() {
                   icon={<FileText className="w-4 h-4" />}
                   subtext={result.analysis.content_quality.content_status}
                 />
-                <Card className="sm:col-span-2 bg-primary/5 shadow-none dark:bg-zinc-900 border border-border/50 rounded-xl p-6 flex flex-col justify-center">
-                  <h3 className="text-lg font-medium flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400 mb-4">
+                <Card className="sm:col-span-2 bg-primary/5 shadow-none dark:bg-card border border-border/50 rounded-xl p-6 flex flex-col justify-center">
+                  <h3 className="text-lg font-medium flex items-center gap-2 font-poppins text-muted-foreground mb-4">
                     <AlertTriangle className="w-5 h-5 text-amber-500" />
                     Improvement Opportunities
                   </h3>
@@ -581,9 +581,9 @@ export default function ContentAuditPage() {
             {/* Analysis Detail Grids */}
             <div className="grid md:grid-cols-2 gap-6">
               {/* On-Page & Technical */}
-              <Card className="border border-border/50 shadow-none bg-primary/5 dark:bg-zinc-900">
+              <Card className="border border-border/50 shadow-none bg-primary/5 dark:bg-card">
                 <CardHeader>
-                  <CardTitle className="text-lg font-medium flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400">
+                  <CardTitle className="text-lg font-medium flex items-center gap-2 font-poppins text-muted-foreground">
                     <Layout className="w-5 h-5 text-blue-500" />
                     On-Page & Technical
                   </CardTitle>
@@ -624,9 +624,9 @@ export default function ContentAuditPage() {
               </Card>
 
               {/* Quality & Structure */}
-              <Card className="border border-border/50 shadow-none bg-primary/5 dark:bg-zinc-900">
+              <Card className="border border-border/50 shadow-none bg-primary/5 dark:bg-card">
                 <CardHeader>
-                  <CardTitle className="text-lg font-medium flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400">
+                  <CardTitle className="text-lg font-medium flex items-center gap-2 font-poppins text-muted-foreground">
                     <FileText className="w-5 h-5 text-emerald-500" />
                     Quality & Structure
                   </CardTitle>
@@ -672,9 +672,9 @@ export default function ContentAuditPage() {
             {/* Header Structure (New Section) */}
             {result.analysis.structure.header_structure &&
               result.analysis.structure.header_structure.length > 0 && (
-                <Card className="border border-border/50 shadow-none bg-primary/5 dark:bg-zinc-900">
+                <Card className="border border-border/50 shadow-none bg-primary/5 dark:bg-card">
                   <CardHeader>
-                    <CardTitle className="text-lg font-medium flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400">
+                    <CardTitle className="text-lg font-medium flex items-center gap-2 font-poppins text-muted-foreground">
                       <Layout className="w-5 h-5 text-purple-500" />
                       Header Structure
                     </CardTitle>
@@ -689,7 +689,7 @@ export default function ContentAuditPage() {
                           <div
                             key={index}
                             className={cn(
-                              "p-3 rounded-lg bg-white border border-gray-100 dark:border-zinc-800 text-sm flex items-start gap-4 transition-colors",
+                              "p-3 rounded-lg bg-card border border-border text-sm flex items-start gap-4 transition-colors",
                             )}
                           >
                             <span
@@ -697,12 +697,12 @@ export default function ContentAuditPage() {
                                 "font-mono font-bold uppercase text-xs px-2 py-1 rounded shrink-0",
                                 header.tag === "h1"
                                   ? "bg-purple-100 text-purple-700"
-                                  : "bg-black/10 text-black",
+                                  : "bg-muted text-foreground",
                               )}
                             >
                               {header.tag}
                             </span>
-                            <span className="text-black font-medium leading-relaxed">
+                            <span className="text-foreground font-medium leading-relaxed">
                               {header.text}
                             </span>
                           </div>

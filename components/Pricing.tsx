@@ -11,11 +11,14 @@ export default function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false); // Monthly is default
 
   return (
-    <section id="pricing" className="w-full py-24 md:py-32 bg-white relative">
+    <section
+      id="pricing"
+      className="w-full py-24 md:py-32 bg-background relative overflow-hidden"
+    >
       <div className="container mx-auto px-4 max-w-6xl relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12 animate-fade-in flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-50 border border-gray-200 rounded-full text-xs font-medium text-primary mb-6 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-muted/50 border border-border rounded-full text-xs font-medium text-primary mb-6 shadow-sm">
             <CreditCard className="w-3 h-3" />
             Pricing Plans
           </div>
@@ -27,7 +30,7 @@ export default function Pricing() {
           </p>
 
           <div className="flex items-center justify-center gap-2 mb-8">
-            <span className="px-4 py-1.5 rounded-full bg-emerald-100/50 text-emerald-700 text-sm font-semibold border border-emerald-200 flex items-center gap-2">
+            <span className="px-4 py-1.5 rounded-full bg-emerald-100/50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 text-sm font-semibold border border-emerald-200 dark:border-emerald-900/30 flex items-center gap-2">
               ✨ Start with a 14-day free trial
             </span>
           </div>
@@ -39,16 +42,16 @@ export default function Pricing() {
               className="w-full max-w-[400px] flex flex-col items-center"
               onValueChange={(value) => setIsAnnual(value === "annual")}
             >
-              <TabsList className="grid w-full grid-cols-2 rounded-full h-12 p-1 bg-gray-100">
+              <TabsList className="grid w-full grid-cols-2 rounded-full h-12 p-1 bg-muted border border-border">
                 <TabsTrigger
                   value="monthly"
-                  className="rounded-full data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm text-sm font-medium transition-all"
+                  className="rounded-full data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-sm text-sm font-medium transition-all"
                 >
                   Monthly
                 </TabsTrigger>
                 <TabsTrigger
                   value="annual"
-                  className="rounded-full data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm text-sm font-medium transition-all"
+                  className="rounded-full data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-sm text-sm font-medium transition-all"
                 >
                   Annual
                 </TabsTrigger>
@@ -74,8 +77,8 @@ export default function Pricing() {
                 key={key}
                 className={`relative rounded-3xl p-8 transition-all duration-300 ${
                   isRecommended
-                    ? "bg-white border-2 border-primary shadow-2xl md:scale-110 z-10"
-                    : "bg-white border border-gray-100 shadow-sm hover:shadow-md"
+                    ? "bg-background border-2 border-primary shadow-2xl md:scale-110 z-10"
+                    : "bg-background border border-border shadow-sm hover:shadow-md"
                 }`}
               >
                 {/* Recommended Badge */}
@@ -91,10 +94,10 @@ export default function Pricing() {
                 <div className={isRecommended ? "mt-4" : ""}>
                   {/* Plan Name */}
                   <div className="mb-6">
-                    <h3 className="text-xl font-bold font-poppins mb-2 text-gray-900">
+                    <h3 className="text-xl font-bold font-poppins mb-2 text-foreground">
                       {tier.name}
                     </h3>
-                    <p className="text-sm font-inter text-gray-500 min-h-[40px]">
+                    <p className="text-sm font-inter text-muted-foreground min-h-[40px]">
                       {tier.description}
                     </p>
                   </div>
@@ -102,10 +105,10 @@ export default function Pricing() {
                   {/* Price */}
                   <div className="mb-6">
                     <div className="flex items-baseline gap-1">
-                      <span className="text-4xl font-bold font-poppins text-gray-900">
+                      <span className="text-4xl font-bold font-poppins text-foreground">
                         ${period.price}
                       </span>
-                      <span className="text-sm font-medium text-gray-500">
+                      <span className="text-sm font-medium text-muted-foreground">
                         per month
                       </span>
                     </div>
@@ -121,8 +124,8 @@ export default function Pricing() {
                     asChild
                     className={`w-full py-6 rounded-xl font-semibold mb-8 transition-all shadow-none ${
                       isRecommended
-                        ? "bg-primary text-white hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5"
-                        : "bg-gray-100 text-gray-900 hover:bg-gray-200"
+                        ? "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5"
+                        : "bg-muted text-foreground hover:bg-muted/80"
                     }`}
                   >
                     <Link
@@ -137,7 +140,7 @@ export default function Pricing() {
 
                   {/* Features */}
                   <div className="space-y-4">
-                    <p className="text-xs font-semibold text-gray-900 uppercase tracking-wide">
+                    <p className="text-xs font-semibold text-foreground uppercase tracking-wide">
                       What's included in {tier.name.toLowerCase()} plan:
                     </p>
                     <ul className="space-y-3">
@@ -150,18 +153,18 @@ export default function Pricing() {
                             className={`rounded-full p-0.5 mt-0.5 ${
                               isRecommended
                                 ? "bg-primary/10 text-primary"
-                                : "bg-gray-100 text-gray-500"
+                                : "bg-muted text-muted-foreground"
                             }`}
                           >
                             <Check
                               className={`w-3 h-3 ${
                                 isRecommended
                                   ? "text-primary"
-                                  : "text-gray-600 font-bold"
+                                  : "text-muted-foreground font-bold"
                               }`}
                             />
                           </div>
-                          <span className="text-sm font-inter text-gray-600">
+                          <span className="text-sm font-inter text-muted-foreground">
                             {feature}
                           </span>
                         </li>

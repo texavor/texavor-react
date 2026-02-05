@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export default function BrandAuthoritySkeleton() {
   return (
-    <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
+    <div className="min-h-screen bg-background font-sans mt-32">
       <div className="container max-w-7xl px-4 mx-auto pb-20">
         <div className="text-center mb-12 space-y-4">
           <Skeleton className="h-12 w-3/4 max-w-2xl mx-auto" />
@@ -13,7 +13,7 @@ export default function BrandAuthoritySkeleton() {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Left Column: Input */}
           <div className="lg:col-span-2 space-y-6">
-            <Card className="border-border/50 shadow-sm bg-white dark:bg-zinc-900">
+            <Card className="border-border/50 bg-card shadow-sm">
               <CardHeader>
                 <Skeleton className="h-6 w-1/3" />
               </CardHeader>
@@ -26,7 +26,7 @@ export default function BrandAuthoritySkeleton() {
 
           {/* Right Column: Score */}
           <div className="space-y-6">
-            <Card className="border-border/50 bg-white dark:bg-zinc-900 h-64">
+            <Card className="border-border/50 bg-card h-64">
               <CardHeader>
                 <Skeleton className="h-6 w-1/2 mx-auto" />
               </CardHeader>
@@ -34,7 +34,7 @@ export default function BrandAuthoritySkeleton() {
                 <Skeleton className="h-40 w-40 rounded-full" />
               </CardContent>
             </Card>
-            <Card className="border-border/50 bg-white dark:bg-zinc-900">
+            <Card className="border-border/50 bg-card">
               <CardContent className="p-4 space-y-4">
                 <Skeleton className="h-8 w-full" />
                 <Skeleton className="h-8 w-full" />

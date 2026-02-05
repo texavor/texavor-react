@@ -91,23 +91,23 @@ const AuditList = ({ checks }: { checks: AuditResult["checks"] }) => (
     {Object.entries(checks).map(([key, check]) => (
       <div
         key={key}
-        className="flex items-start gap-3 p-3 bg-white dark:bg-zinc-800/50 rounded-lg border border-gray-100 dark:border-zinc-800"
+        className="flex items-start gap-3 p-3 bg-card dark:bg-muted/50 rounded-lg border border-border"
       >
         <div className="mt-0.5">
           <StatusIcon status={check.status} />
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between">
-            <span className="font-semibold text-sm capitalize text-black dark:text-gray-100">
+            <span className="font-semibold text-sm capitalize text-foreground">
               {key.replace("_", " ")}
             </span>
             {check.value && (
-              <span className="text-xs font-bold bg-primary/5 dark:bg-zinc-800 px-2 py-0.5 rounded text-gray-700 dark:text-gray-300">
+              <span className="text-xs font-bold bg-primary/5 dark:bg-muted px-2 py-0.5 rounded text-muted-foreground">
                 {check.value}
               </span>
             )}
           </div>
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 leading-snug">
+          <p className="text-xs text-muted-foreground mt-0.5 leading-snug">
             {check.message}
           </p>
         </div>
@@ -207,7 +207,7 @@ export default function WebsiteAuditorPage() {
     : null;
 
   return (
-    <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
+    <div className="min-h-screen bg-background font-sans mt-32">
       <div className="container max-w-7xl px-4 mx-auto pb-20">
         {/* Header */}
         <div className="text-center mb-12 space-y-4">
@@ -221,7 +221,7 @@ export default function WebsiteAuditorPage() {
         </div>
 
         {/* Search Input Card */}
-        <Card className="mb-16 bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
+        <Card className="mb-16 bg-primary/5 dark:bg-card shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
           <CardContent className="px-4 py-1">
             <form
               onSubmit={(e) => {
@@ -248,7 +248,7 @@ export default function WebsiteAuditorPage() {
                           onBlur={field.handleBlur}
                           onChange={(e) => field.handleChange(e.target.value)}
                           placeholder="https://texavor.com"
-                          className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
+                          className="h-12 pl-10 text-lg bg-muted/30 dark:bg-background/50 border-input"
                         />
                         {field.state.meta.errors ? (
                           <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
@@ -307,8 +307,8 @@ export default function WebsiteAuditorPage() {
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto opacity-90">
             {/* Feature 1: Traffic Light Checks */}
             <div className="relative group">
-              <div className="absolute inset-0 bg-emerald-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
+              <div className="absolute inset-0 bg-emerald-500/10 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
+              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-card overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
                 <CardHeader className="pb-2">
                   <div className="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center mb-3">
                     <CheckCircle className="w-5 h-5 text-green-600" />
@@ -322,15 +322,15 @@ export default function WebsiteAuditorPage() {
                 </CardHeader>
                 <CardContent className="pb-6">
                   <div className="space-y-3 mt-2">
-                    <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg opacity-80">
+                    <div className="flex items-center gap-3 p-2 bg-muted/50 rounded-lg opacity-80">
                       <CheckCircle className="w-4 h-4 text-green-500" />
                       <div className="h-2 bg-primary/5 rounded w-24"></div>
                     </div>
-                    <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg opacity-60">
+                    <div className="flex items-center gap-3 p-2 bg-muted/50 rounded-lg opacity-60">
                       <AlertTriangle className="w-4 h-4 text-yellow-500" />
                       <div className="h-2 bg-primary/5 rounded w-32"></div>
                     </div>
-                    <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg opacity-40">
+                    <div className="flex items-center gap-3 p-2 bg-muted/50 rounded-lg opacity-40">
                       <XCircle className="w-4 h-4 text-red-500" />
                       <div className="h-2 bg-primary/5 rounded w-20"></div>
                     </div>
@@ -454,7 +454,7 @@ export default function WebsiteAuditorPage() {
                 </div>
 
                 {/* Checks List */}
-                <Card className="border border-border/50 shadow-none rounded-2xl bg-primary/5 dark:bg-zinc-900 overflow-hidden">
+                <Card className="border border-border/50 shadow-none rounded-2xl bg-primary/5 dark:bg-card overflow-hidden">
                   <CardHeader className="pb-4">
                     <CardTitle className="text-2xl flex items-center gap-2 font-poppins">
                       Technical Deep Dive
@@ -522,7 +522,7 @@ export default function WebsiteAuditorPage() {
             </div>
 
             <div className="flex justify-center mt-8">
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-muted-foreground">
                 Analysis based on {result.samples_analyzed} sample pages.
               </p>
             </div>

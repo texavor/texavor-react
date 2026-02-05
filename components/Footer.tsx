@@ -8,7 +8,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-gray-50 pt-20 pb-12 relative overflow-hidden">
+    <footer className="w-full bg-background pt-20 pb-12 relative overflow-hidden">
       {/* Large Watermark Text */}
       <div className="absolute bottom-26 md:bottom-0 left-1/2 -translate-x-1/2 w-full text-center pointer-events-none select-none z-[1]">
         <div
@@ -20,7 +20,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Fade Gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-50 to-transparent z-0 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-0 pointer-events-none" />
 
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
         <div className="flex flex-col md:flex-row justify-between gap-12 mb-24">

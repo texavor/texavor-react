@@ -188,7 +188,7 @@ export default function AEOSchemaValidatorClient() {
     : null;
 
   return (
-    <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
+    <div className="min-h-screen bg-background font-sans mt-32">
       <div className="container max-w-7xl px-4 mx-auto pb-20">
         {/* Header */}
         <div className="text-center mb-12 space-y-4">
@@ -202,7 +202,7 @@ export default function AEOSchemaValidatorClient() {
         </div>
 
         {/* Search Input Card */}
-        <Card className="mb-16 bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
+        <Card className="mb-16 bg-primary/5 dark:bg-card shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
           <CardContent className="px-4 py-1">
             <form
               onSubmit={(e) => {
@@ -229,7 +229,7 @@ export default function AEOSchemaValidatorClient() {
                           onBlur={field.handleBlur}
                           onChange={(e) => field.handleChange(e.target.value)}
                           placeholder="https://texavor.com/blog/what-is-aeo"
-                          className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
+                          className="h-12 pl-10 text-lg bg-muted/30 dark:bg-background/50 border-input"
                         />
                         {field.state.meta.errors ? (
                           <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
@@ -289,8 +289,8 @@ export default function AEOSchemaValidatorClient() {
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto opacity-90">
             {/* Feature 1: AEO Health Checks */}
             <div className="relative group">
-              <div className="absolute inset-0 bg-emerald-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
+              <div className="absolute inset-0 bg-emerald-500/10 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
+              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-card overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
                 <CardHeader className="pb-2">
                   <div className="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center mb-3">
                     <Sparkles className="w-5 h-5 text-green-600" />
@@ -305,15 +305,15 @@ export default function AEOSchemaValidatorClient() {
                 </CardHeader>
                 <CardContent className="pb-6">
                   <div className="space-y-3 mt-2">
-                    <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg opacity-80">
+                    <div className="flex items-center gap-3 p-2 bg-muted/50 rounded-lg opacity-80">
                       <Check className="w-4 h-4 text-green-500" />
                       <div className="h-2 bg-primary/5 rounded w-32"></div>
                     </div>
-                    <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg opacity-60">
+                    <div className="flex items-center gap-3 p-2 bg-muted/50 rounded-lg opacity-60">
                       <Check className="w-4 h-4 text-green-500" />
                       <div className="h-2 bg-primary/5 rounded w-28"></div>
                     </div>
-                    <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg opacity-40">
+                    <div className="flex items-center gap-3 p-2 bg-muted/50 rounded-lg opacity-40">
                       <AlertTriangle className="w-4 h-4 text-yellow-500" />
                       <div className="h-2 bg-primary/5 rounded w-24"></div>
                     </div>
@@ -324,8 +324,8 @@ export default function AEOSchemaValidatorClient() {
 
             {/* Feature 2: Schema Detection */}
             <div className="relative group mt-8 md:mt-0">
-              <div className="absolute inset-0 bg-purple-100/50 rounded-3xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform rotate-1 group-hover:rotate-2 transition-transform duration-500">
+              <div className="absolute inset-0 bg-purple-500/10 rounded-3xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500"></div>
+              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-card overflow-hidden transform rotate-1 group-hover:rotate-2 transition-transform duration-500">
                 <CardHeader className="pb-2">
                   <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center mb-3">
                     <Code className="w-5 h-5 text-purple-600" />
@@ -379,8 +379,8 @@ export default function AEOSchemaValidatorClient() {
 
             {/* Opportunities */}
             {result.opportunities && result.opportunities.length > 0 && (
-              <Card className="bg-primary/5 shadow-none dark:bg-zinc-900 border border-border/50 rounded-xl p-6">
-                <h3 className="text-lg font-medium flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400 mb-4">
+              <Card className="bg-primary/5 shadow-none dark:bg-card border border-border/50 rounded-xl p-6">
+                <h3 className="text-lg font-medium flex items-center gap-2 font-poppins text-muted-foreground mb-4">
                   <Lightbulb className="w-5 h-5 text-amber-500" />
                   Optimization Opportunities
                 </h3>
@@ -389,7 +389,7 @@ export default function AEOSchemaValidatorClient() {
                     {result.opportunities.map((opp, i) => (
                       <li
                         key={i}
-                        className="flex items-start gap-3 text-sm font-medium text-foreground bg-white dark:bg-black/20 p-3 rounded-lg border border-border/50"
+                        className="flex items-start gap-3 text-sm font-medium text-foreground bg-card dark:bg-muted/50 p-3 rounded-lg border border-border/50"
                       >
                         <AlertTriangle className="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" />
                         <span>{opp}</span>

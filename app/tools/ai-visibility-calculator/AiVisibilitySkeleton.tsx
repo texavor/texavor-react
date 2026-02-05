@@ -13,7 +13,7 @@ export default function AiVisibilitySkeleton() {
             {[1, 2, 3].map((i) => (
               <Card
                 key={i}
-                className="border border-border/50 shadow-sm bg-white dark:bg-zinc-900"
+                className="border border-border/50 shadow-sm bg-card"
               >
                 <CardContent className="p-4 space-y-3">
                   <div className="flex justify-between items-start">
@@ -30,7 +30,7 @@ export default function AiVisibilitySkeleton() {
           </div>
 
           {/* AI Summary (Widget 3) */}
-          <Card className="border border-border/50 shadow-none rounded-2xl bg-primary/5 dark:bg-zinc-900 overflow-hidden">
+          <Card className="border border-border/50 shadow-none rounded-2xl bg-primary/5 dark:bg-card overflow-hidden">
             <div className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-50"></div>
             <CardHeader className="pb-2 pt-5">
               <Skeleton className="h-8 w-48 rounded-lg" />
@@ -70,7 +70,7 @@ export default function AiVisibilitySkeleton() {
         {[1, 2].map((card) => (
           <Card
             key={card}
-            className="border border-border/50 shadow-none rounded-xl bg-primary/5 dark:bg-zinc-900 h-full"
+            className="border border-border/50 shadow-none rounded-xl bg-primary/5 dark:bg-card h-full"
           >
             <CardHeader className="pb-3">
               <Skeleton className="h-8 w-40 mb-2" />
@@ -81,7 +81,7 @@ export default function AiVisibilitySkeleton() {
                 {[1, 2, 3, 4].map((i) => (
                   <div
                     key={i}
-                    className="flex items-center h-16 gap-3 p-3 rounded-2xl bg-white/50 border border-gray-100"
+                    className="flex items-center h-16 gap-3 p-3 rounded-2xl bg-muted/50 border border-border"
                   >
                     <Skeleton className="h-4 w-3/4" />
                     <Skeleton className="h-8 w-8 rounded-full ml-auto" />

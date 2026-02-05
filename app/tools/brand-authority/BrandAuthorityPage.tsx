@@ -216,7 +216,7 @@ export default function BrandAuthorityPage() {
   };
 
   return (
-    <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
+    <div className="min-h-screen bg-background font-sans mt-32">
       <div className="container max-w-7xl px-4 mx-auto pb-20">
         <div className="text-center mb-12 space-y-4">
           <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary to-green-600 bg-clip-text text-transparent pb-2 font-poppins">
@@ -240,7 +240,7 @@ export default function BrandAuthorityPage() {
           </div>
         )}
         {/* Input Card */}
-        <Card className="mb-16 bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
+        <Card className="mb-16 bg-primary/5 dark:bg-card shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
           <CardContent className="px-6 py-2">
             <form
               onSubmit={(e) => {
@@ -268,7 +268,7 @@ export default function BrandAuthorityPage() {
                           value={field.state.value}
                           onChange={(e) => field.handleChange(e.target.value)}
                           onBlur={field.handleBlur}
-                          className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
+                          className="h-12 pl-10 text-lg bg-muted/30 dark:bg-background/50 border-input"
                         />
                         {field.state.meta.errors ? (
                           <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
@@ -318,7 +318,7 @@ export default function BrandAuthorityPage() {
             {/* Feature 1: Authority Score */}
             <div className="relative group">
               <div className="absolute inset-0 bg-emerald-100/50 dark:bg-emerald-900/20 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border border-border/20 shadow-sm rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500 hover:shadow-md">
+              <Card className="relative h-full border border-border/20 shadow-sm rounded-2xl bg-card overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500 hover:shadow-md">
                 <CardHeader className="pb-2">
                   <div className="w-10 h-10 rounded-full bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center mb-3">
                     <ShieldCheck className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
@@ -364,7 +364,7 @@ export default function BrandAuthorityPage() {
             {/* Feature 2: Traffic Trends */}
             <div className="relative group mt-8 md:mt-0">
               <div className="absolute inset-0 bg-blue-100/50 dark:bg-blue-900/20 rounded-3xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border border-border/20 shadow-sm rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform rotate-1 group-hover:rotate-2 transition-transform duration-500 hover:shadow-md">
+              <Card className="relative h-full border border-border/20 shadow-sm rounded-2xl bg-card overflow-hidden transform rotate-1 group-hover:rotate-2 transition-transform duration-500 hover:shadow-md">
                 <CardHeader className="pb-2">
                   <div className="w-10 h-10 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center mb-3">
                     <BarChart className="w-5 h-5 text-blue-600 dark:text-blue-400" />
@@ -380,7 +380,7 @@ export default function BrandAuthorityPage() {
                   <div className="mt-4 px-6">
                     <div className="flex items-center justify-between mb-4">
                       <div>
-                        <p className="text-2xl font-bold text-slate-800 dark:text-slate-100">
+                        <p className="text-2xl font-bold text-foreground">
                           12.5K
                         </p>
                         <div className="flex items-center gap-1 text-xs text-muted-foreground">

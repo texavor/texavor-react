@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 import ReactQueryProvider from "./ReactQueryProvider";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -55,12 +56,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${inter.variable} antialiased`}>
-        <ReactQueryProvider>
-          <LandingNav />
-          {children}
-          <Footer />
-          <Toaster />
-        </ReactQueryProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ReactQueryProvider>
+            <LandingNav />
+            {children}
+            <Footer />
+            <Toaster />
+          </ReactQueryProvider>
+        </ThemeProvider>
       </body>
       <Script
         src="https://cloud.umami.is/script.js"

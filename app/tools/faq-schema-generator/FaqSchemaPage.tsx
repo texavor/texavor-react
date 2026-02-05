@@ -236,7 +236,7 @@ export default function FaqSchemaPage() {
   };
 
   return (
-    <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
+    <div className="min-h-screen bg-background font-sans mt-32">
       <div className="container max-w-7xl px-4 mx-auto pb-20">
         {/* Header */}
         <div className="text-center mb-12 space-y-4">
@@ -263,7 +263,7 @@ export default function FaqSchemaPage() {
               </TabsList>
 
               <TabsContent value="manual" className="space-y-4">
-                <Card className="bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50">
+                <Card className="bg-primary/5 dark:bg-card shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50">
                   <CardHeader>
                     <CardTitle>Questions & Answers</CardTitle>
                     <CardDescription>
@@ -274,7 +274,7 @@ export default function FaqSchemaPage() {
                     {qaPairs.map((pair, index) => (
                       <div
                         key={index}
-                        className="relative p-4 rounded-xl bg-white dark:bg-zinc-950/50 border border-border/50 space-y-3 group"
+                        className="relative p-4 rounded-xl bg-card dark:bg-muted/50 border border-border/50 space-y-3 group"
                       >
                         <div className="flex justify-between items-start gap-4">
                           <div className="space-y-2 w-full">
@@ -325,7 +325,7 @@ export default function FaqSchemaPage() {
               </TabsContent>
 
               <TabsContent value="auto" className="space-y-4">
-                <Card className="bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50">
+                <Card className="bg-primary/5 dark:bg-card shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50">
                   <CardHeader>
                     <CardTitle>Extract from URL</CardTitle>
                     <CardDescription>
@@ -355,7 +355,7 @@ export default function FaqSchemaPage() {
                                 }
                                 onBlur={field.handleBlur}
                                 placeholder="https://example.com/faq"
-                                className="flex-1 bg-white dark:bg-zinc-950/50"
+                                className="flex-1 bg-card dark:bg-background/50"
                               />
                               <Button
                                 type="submit"
@@ -415,8 +415,8 @@ export default function FaqSchemaPage() {
           {/* Right Column: Preview & Output */}
           <div className="space-y-6 sticky top-8">
             {/* Preview Card */}
-            <Card className="bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50 overflow-hidden">
-              <CardHeader className="bg-slate-50/50 dark:bg-zinc-950/50 border-b-2 border-[#104127] py-3">
+            <Card className="bg-primary/5 dark:bg-card shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50 overflow-hidden">
+              <CardHeader className="bg-muted/30 dark:bg-background/50 border-b-2 border-[#104127] py-3">
                 <CardTitle className="text-sm font-medium uppercase tracking-wider text-muted-foreground flex items-center gap-2">
                   <Image
                     src="/icons/google.png"
