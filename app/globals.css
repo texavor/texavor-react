@@ -83,37 +83,37 @@
 }
 
 .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.488 0.243 264.376);
-    --chart-2: oklch(0.696 0.17 162.48);
-    --chart-3: oklch(0.769 0.188 70.08);
-    --chart-4: oklch(0.627 0.265 303.9);
-    --chart-5: oklch(0.645 0.246 16.439);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
+    --background: hsl(148, 20%, 4%);
+    --foreground: hsl(148, 10%, 98%);
+    --card: hsl(148, 20%, 7%);
+    --card-foreground: hsl(148, 10%, 98%);
+    --popover: hsl(148, 20%, 7%);
+    --popover-foreground: hsl(148, 10%, 98%);
+    --primary: hsl(148, 60%, 45%);
+    --primary-foreground: hsl(148, 20%, 4%);
+    --secondary: hsl(148, 15%, 12%);
+    --secondary-foreground: hsl(148, 10%, 98%);
+    --muted: hsl(148, 15%, 12%);
+    --muted-foreground: hsl(148, 10%, 65%);
+    --accent: hsl(148, 15%, 12%);
+    --accent-foreground: hsl(148, 10%, 98%);
+    --destructive: oklch(0.396 0.141 25.723);
+    --border: hsl(148, 15%, 15%);
+    --input: hsl(148, 15%, 15%);
+    --ring: hsl(148, 60%, 45%);
+    --chart-1: hsl(148, 60%, 45%);
+    --chart-2: hsl(148, 40%, 35%);
+    --chart-3: hsl(148, 30%, 25%);
+    --chart-4: hsl(148, 20%, 15%);
+    --chart-5: hsl(148, 10%, 10%);
+    --sidebar: hsl(148, 20%, 5%);
+    --sidebar-foreground: hsl(148, 10%, 98%);
+    --sidebar-primary: hsl(148, 60%, 45%);
+    --sidebar-primary-foreground: hsl(148, 20%, 4%);
+    --sidebar-accent: hsl(148, 15%, 12%);
+    --sidebar-accent-foreground: hsl(148, 10%, 98%);
+    --sidebar-border: hsl(148, 15%, 15%);
+    --sidebar-ring: hsl(148, 60%, 45%);
 }
 
 @layer base {
@@ -122,6 +122,31 @@
     }
     body {
         @apply bg-background text-foreground;
+    }
+}
+
+/* View Transitions Sweep Effect */
+::view-transition-group(root) {
+    animation-duration: 0.6s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-new(root) {
+    animation-name: sweep-from-top;
+    mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
+@keyframes sweep-from-top {
+    from {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+    to {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     }
 }
 
@@ -158,8 +183,8 @@
 /* Tiptap Placeholder Styles */
 /* Forcefully remove backticks and style prose inline code ONLY (exclude code blocks) */
 .prose :where(code):not(:where([class~="not-prose"] *)):not(:where(pre *)) {
-    background-color: rgb(244 244 245); /* zinc-100 */
-    color: rgb(39 39 42); /* zinc-800 */
+    background-color: var(--muted);
+    color: var(--foreground);
     border-radius: 0.25rem;
     padding-left: 0.375rem;
     padding-right: 0.375rem;

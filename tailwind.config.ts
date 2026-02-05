@@ -69,26 +69,26 @@ module.exports = {
       typography: (theme: any) => ({
         DEFAULT: {
           css: {
-            color: theme("colors.zinc.700"),
+            color: "hsl(var(--foreground))",
             maxWidth: "none",
             h1: {
-              color: theme("colors.zinc.900"),
+              color: "hsl(var(--foreground))",
             },
             h2: {
-              color: theme("colors.zinc.900"),
+              color: "hsl(var(--foreground))",
             },
             h3: {
-              color: theme("colors.zinc.900"),
+              color: "hsl(var(--foreground))",
             },
             h4: {
-              color: theme("colors.zinc.900"),
+              color: "hsl(var(--foreground))",
             },
             strong: {
-              color: theme("colors.zinc.900"),
+              color: "hsl(var(--foreground))",
             },
             blockquote: {
-              color: theme("colors.zinc.900"),
-              borderLeftColor: theme("colors.zinc.200"),
+              color: "hsl(var(--foreground))",
+              borderLeftColor: "hsl(var(--border))",
             },
             a: {
               color: theme("colors.green.600"),
@@ -98,7 +98,7 @@ module.exports = {
               },
             },
             code: {
-              color: theme("colors.zinc.800"),
+              color: "hsl(var(--foreground))",
               // backgroundColor: theme("colors.zinc.100"),
               borderRadius: theme("borderRadius.md"),
               paddingLeft: theme("padding[1.5]"),
@@ -115,7 +115,7 @@ module.exports = {
               content: "none",
             },
             th: {
-              color: theme("colors.zinc.900"),
+              color: "hsl(var(--foreground))",
             },
           },
         },

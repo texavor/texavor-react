@@ -4,6 +4,7 @@ import "./globals.css";
 import LandingNav from "@/components/LandingNav";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "next-themes";
 import ReactQueryProvider from "./ReactQueryProvider";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
@@ -53,14 +54,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${poppins.variable} ${inter.variable} antialiased`}>
-        <ReactQueryProvider>
-          <LandingNav />
-          {children}
-          <Footer />
-          <Toaster />
-        </ReactQueryProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+        >
+          <ReactQueryProvider>
+            <LandingNav />
+            {children}
+            <Footer />
+            <Toaster />
+          </ReactQueryProvider>
+        </ThemeProvider>
       </body>
       <Script
         src="https://cloud.umami.is/script.js"
