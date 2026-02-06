@@ -8,6 +8,7 @@ import ReactQueryProvider from "./ReactQueryProvider";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
+import CrispChat from "@/components/CrispChat";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -58,6 +59,7 @@ export default function RootLayout({
       <body className={`${poppins.variable} ${inter.variable} antialiased`}>
         <ReactQueryProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <CrispChat />
             <LandingNav />
             {children}
             <Footer />
