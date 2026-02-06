@@ -30,6 +30,7 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [isTocLoaded, setIsTocLoaded] = useState(false);
   const articleContentRef = useRef<HTMLDivElement>(null);
+  const sidebarRef = useRef<HTMLDivElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [collapsedCategories, setCollapsedCategories] = useState<Set<string>>(
     new Set(),
@@ -60,12 +61,15 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
     };
   }, [handleScroll]);
 
-  // Scroll active nav item into view
+  // Scroll active nav item into view within sidebar only
   useEffect(() => {
     const activeItem = document.getElementById("active-docs-nav-item");
-    if (activeItem) {
+    const sidebar = sidebarRef.current;
+
+    if (activeItem && sidebar) {
+      // Use scrollIntoView with 'nearest' to avoid scrolling the entire page
       activeItem.scrollIntoView({
-        block: "center",
+        block: "nearest",
         behavior: "smooth",
       });
     }
@@ -151,7 +155,10 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
         <div className="flex flex-col lg:flex-row gap-8 xl:gap-12 mb-6">
           {/* Left Sidebar - Desktop */}
           <aside className="hidden lg:block lg:w-72 flex-shrink-0">
-            <div className="sticky top-30 max-h-[calc(100vh-140px)] overflow-y-auto no-scrollbar bg-primary/5 dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-xl p-4">
+            <div
+              ref={sidebarRef}
+              className="sticky top-30 max-h-[calc(100vh-140px)] overflow-y-auto no-scrollbar bg-primary/5 dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-xl p-4"
+            >
               <nav className="flex flex-col gap-2">
                 {allDocs.map((category) => {
                   const isCollapsed = collapsedCategories.has(category.slug);
