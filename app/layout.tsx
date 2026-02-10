@@ -73,6 +73,21 @@ export default function RootLayout({
         strategy="afterInteractive"
       />
       <Analytics />
+      <script
+        async
+        src="https://www.api.texavor.com/api/v1/pixel?id=tid_35e5c1c2d9fb712821686996"
+      />
+
+      <noscript>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://www.api.texavor.com/api/v1/pixel?id=tid_35e5c1c2d9fb712821686996"
+          width="1"
+          height="1"
+          style={{ display: "none" }}
+          alt=""
+        />
+      </noscript>
     </html>
   );
 }
