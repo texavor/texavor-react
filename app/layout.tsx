@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import CrispChat from "@/components/CrispChat";
+import AiTracker from "./AiTracker";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -66,28 +67,30 @@ export default function RootLayout({
             <Toaster />
           </ThemeProvider>
         </ReactQueryProvider>
-      </body>
-      <Script
-        src="https://cloud.umami.is/script.js"
-        data-website-id="cd47a42b-95db-4fae-a72e-1b6737411074"
-        strategy="afterInteractive"
-      />
-      <Analytics />
-      <script
-        async
-        src="https://www.api.texavor.com/api/v1/pixel?id=tid_35e5c1c2d9fb712821686996"
-      />
 
-      <noscript>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="https://www.api.texavor.com/api/v1/pixel?id=tid_35e5c1c2d9fb712821686996"
-          width="1"
-          height="1"
-          style={{ display: "none" }}
-          alt=""
+        {/* Scripts */}
+        <Script
+          src="https://cloud.umami.is/script.js"
+          data-website-id="cd47a42b-95db-4fae-a72e-1b6737411074"
+          strategy="afterInteractive"
         />
-      </noscript>
+        <Analytics />
+
+        {/* AI Tracker Component - Captures Full URL */}
+        <AiTracker trackingId="tid_35e5c1c2d9fb712821686996" />
+
+        {/* Fallback for non-JS bots (still good to have) */}
+        <noscript>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://www.api.texavor.com/api/v1/pixel?id=tid_35e5c1c2d9fb712821686996"
+            width="1"
+            height="1"
+            style={{ display: "none" }}
+            alt=""
+          />
+        </noscript>
+      </body>
     </html>
   );
 }
