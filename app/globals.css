@@ -196,6 +196,59 @@
 .prose :where(code):not(:where([class~="not-prose"] *))::before {
     content: none !important;
 }
-.prose :where(code):not(:where([class~="not-prose"] *))::after {
-    content: none !important;
+/* Blog Post Table Styling */
+.prose table {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    font-size: 0.95em;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+/* Header Styling */
+.prose thead {
+    border-bottom: 1px solid var(--border);
+}
+
+.prose thead th {
+    font-weight: 700 !important;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    color: var(--foreground) !important;
+    white-space: nowrap;
+}
+
+/* Light Theme Header */
+:root .prose thead {
+    background-color: #f4f4f5; /* zinc-100 */
+}
+
+/* Dark Theme Header */
+.dark .prose thead {
+    background-color: #18181b; /* zinc-900 */
+}
+
+/* Rows & Cells */
+.prose tbody td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+/* Dark Theme "Table Vibes" - Alternating rows or distinct border */
+.dark .prose tbody tr {
+    border-bottom-color: #27272a; /* zinc-800 */
+}
+
+.dark .prose tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Last row border removal for outer rounding */
+.prose :where(tbody tr):last-child {
+    border-bottom: 0;
 }
