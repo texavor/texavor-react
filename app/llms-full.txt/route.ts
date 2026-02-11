@@ -9,6 +9,17 @@ export function GET() {
 
 > Full context documentation for Texavor.
 
+## Competitor Comparison
+
+Texavor is a Content Operating System, not just a writer.
+- Vs RankPill: Texavor focuses on quality and freshness (Freshness Score), not volume.
+- Vs Jasper/AI Writers: Texavor handles the full lifecycle (publishing, syncing), not just text generation.
+- Vs Surfer/SEO Tools: Texavor updates content directly, not just grading it.
+
+[View Full Comparison](https://www.texavor.com/comparison)
+
+---
+
 `;
 
   allDocs.forEach((doc) => {

@@ -12,6 +12,8 @@ export function GET() {
 
 ## Documentation
 
+- [Competitor Comparison](https://www.texavor.com/comparison): Compare Texavor with RankPill, Jasper, and Surfer SEO.
+
 `;
 
   categories.forEach((category) => {

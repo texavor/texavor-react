@@ -63,6 +63,14 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
+                    href="/comparison"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Compare
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     href="/#integrations"
                     className="hover:text-primary transition-colors"
                   >

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import PageTransition from "@/components/PageTransition";
 
 export const metadata: Metadata = {
@@ -24,6 +25,9 @@ const Testimonials = dynamic(() => import("@/components/Testimonials"));
 const Pricing = dynamic(() => import("@/components/Pricing"));
 const FAQ = dynamic(() => import("@/components/FAQ"));
 const CTA = dynamic(() => import("@/components/CTA"));
+
+import { ComparisonTable } from "@/components/ComparisonTable";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   // Dynamically compile FAQ schema from FAQ component data
@@ -268,6 +272,39 @@ export default function Home() {
         <Integration />
         <HowItWorks />
         {/* <Testimonials /> */}
+
+        {/* Comparison Section */}
+        <section className="w-full py-24 bg-zinc-50 dark:bg-zinc-950 relative overflow-hidden">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
+          <div className="container px-4 mx-auto max-w-7xl relative z-10">
+            <div className="text-center mb-16 space-y-6">
+              <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800/50 mb-4">
+                <span className="text-sm font-medium text-emerald-800 dark:text-emerald-400">
+                  Compare
+                </span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold text-primary dark:text-white font-poppins">
+                Don't settle for a <span className="text-zinc-500">tool</span>.
+                <br />
+                Build with an{" "}
+                <span className="text-emerald-600 dark:text-emerald-500">
+                  Operating System
+                </span>
+                .
+              </h2>
+            </div>
+            <ComparisonTable />
+            <div className="mt-12 text-center">
+              <Link
+                href="/comparison"
+                className="inline-flex items-center gap-2 text-primary dark:text-emerald-400 hover:text-primary/80 dark:hover:text-emerald-300 font-medium transition-colors"
+              >
+                See Full Comparison <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
         <Pricing />
         <FAQ />
         <CTA />
