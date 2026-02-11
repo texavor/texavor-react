@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
 import LandingNav from "@/components/LandingNav";
@@ -77,7 +78,9 @@ export default function RootLayout({
         <Analytics />
 
         {/* AI Tracker Component - Captures Full URL */}
-        <AiTracker trackingId="tid_35e5c1c2d9fb712821686996" />
+        <Suspense fallback={null}>
+          <AiTracker trackingId="tid_35e5c1c2d9fb712821686996" />
+        </Suspense>
 
         {/* Fallback for non-JS bots (still good to have) */}
         <noscript>
