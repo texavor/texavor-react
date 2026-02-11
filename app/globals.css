@@ -196,6 +196,10 @@
 .prose :where(code):not(:where([class~="not-prose"] *))::before {
     content: none !important;
 }
+.prose :where(code):not(:where([class~="not-prose"] *))::after {
+    content: none !important;
+}
+
 /* Blog Post Table Styling */
 .prose table {
     margin-top: 2em;
