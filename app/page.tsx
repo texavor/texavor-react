@@ -222,7 +222,7 @@ export default function Home() {
             "@id": "https://www.texavor.com/tools",
             name: "Free Tools",
             url: "https://www.texavor.com/tools",
-            description: "Free SEO and AEO tools",
+            description: "Free SEO and GEO tools",
           },
           {
             "@type": "WebPage",
@@ -236,7 +236,7 @@ export default function Home() {
             "@id": "https://www.texavor.com/blog",
             name: "Blog",
             url: "https://www.texavor.com/blog",
-            description: "Insights on AI content creation and AEO",
+            description: "Insights on AI content creation and GEO",
           },
         ],
       },

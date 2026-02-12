@@ -227,7 +227,7 @@ const KeywordResearch = () => {
       difficulty: 38,
     },
     {
-      keyword: "AEO intent research",
+      keyword: "GEO intent research",
       volume: 980,
       cpc: "$2.10",
       competition: 45,
@@ -975,7 +975,7 @@ export default function Features() {
       component: <CalendarView />,
     },
     {
-      title: "Deep Research & AEO Intent",
+      title: "Deep Research & GEO Intent",
       description:
         "How do you rank in AI? Start with data. Analyze intent and competition before you write.",
       component: <KeywordResearch />,
@@ -988,7 +988,7 @@ export default function Features() {
     {
       title: "Write for Answers, Not Clicks.",
       description:
-        "Chatbots don't want 2,000-word fluff pieces. Our AEO Outline Generator structures content with 'Answer Nodes' that LLMs love to ingest.",
+        "Chatbots don't want 2,000-word fluff pieces. Our GEO Outline Generator structures content with 'Answer Nodes' that LLMs love to ingest.",
       component: <OutlineGeneration />,
     },
     {

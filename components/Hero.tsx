@@ -23,14 +23,14 @@ export default function Hero() {
         {/* Headline */}
         <h1 className="text-5xl md:text-6xl lg:text-[72px] font-bold text-foreground font-poppins leading-[1.1] tracking-tight max-w-5xl mx-auto mb-6 animate-fade-slide-up">
           The Research-First CMS <br className="hidden md:block" />
-          for the AEO Era.
+          for the GEO Era.
         </h1>
 
         {/* Subheadline */}
         <p className="text-lg md:text-xl text-muted-foreground font-inter leading-relaxed max-w-3xl mx-auto mb-10 animate-fade-slide-up [animation-delay:100ms]">
           Texavor is the complete platform for managing articles and{" "}
           <span className="text-foreground font-medium">
-            Answer Engine Optimization (AEO)
+            Generative Engine Optimization (GEO)
           </span>
           . Monitor visibility, fix content decay, and rank in ChatGPT,
           Perplexity, and Claude.
