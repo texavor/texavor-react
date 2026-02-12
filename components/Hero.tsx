@@ -46,7 +46,7 @@ export default function Hero() {
             aria-label="Start Free Trial"
           >
             <Link href={`${process.env.NEXT_PUBLIC_APP_URL}`} target="_blank">
-              Start Free Trial
+              Start Free
             </Link>
           </Button>
 
