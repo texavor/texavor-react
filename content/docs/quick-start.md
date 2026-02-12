@@ -60,7 +60,7 @@ Use the **Research** tools to find what your audience is asking.
 Ready to write?
 
 1.  **Create Article:** Click "New Draft".
-2.  **Generate AEO Outline:** Toggle "AEO Mode" to get a structure optimized for Featured Snippets and AI Answers.
+2.  **Generate GEO Outline:** Toggle "GEO Mode" to get a structure optimized for Featured Snippets and AI Answers.
 3.  **Write:** Use the editor to draft your content.
 4.  **Publish:** Publish directly to your connected platforms in one click.
 

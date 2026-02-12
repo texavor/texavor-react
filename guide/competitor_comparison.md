@@ -43,7 +43,7 @@ Most competitors are either **Writers** (generators) or **Optimizers** (SEO tool
 
 - **Texavor Wins On:**
   - **Content Freshness ("The Moat"):** Texavor actively monitors _published_ articles for decay (outdated libraries, broken links, old stats) and alerts you. SEO tools generally require manual re-auditing.
-  - **Answer Engine Optimization (AEO):** Specific tools for Brand Authority and FAQ Schema generation designed for the new era of AI Search (Perplexity, SearchGPT), not just traditional Google Blue Links.
+  - **Generative Engine Optimization (GEO):** Specific tools for Brand Authority and FAQ Schema generation designed for the new era of AI Search (Perplexity, SearchGPT), not just traditional Google Blue Links.
   - **Actionability:** texavor allows you to fix and update the content directly, whereas SEO tools just give you a "score" and make you go elsewhere to edit.
 
 ### 3. Texavor vs. CMS/Publishing Tools (Ghost, WordPress, Substack)

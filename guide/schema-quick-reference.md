@@ -119,7 +119,7 @@ npm run build
 
 ## 📊 Schema Impact Matrix
 
-| Schema       | SEO        | AEO        | Dynamic | Priority   |
+| Schema       | SEO        | GEO        | Dynamic | Priority   |
 | ------------ | ---------- | ---------- | ------- | ---------- |
 | WebSite      | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ❌      | 🏆 PRIMARY |
 | FAQPage      | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ✅      | 🥈 HIGH    |
@@ -299,7 +299,7 @@ Your schema is:
 - ✅ Comprehensive (6 types)
 - ✅ Dynamic (FAQ auto-updates)
 - ✅ SEO-optimized
-- ✅ AEO-ready
+- ✅ GEO-ready
 - ✅ Production-ready
 
 **Just deploy and watch your search presence improve!** 🎯

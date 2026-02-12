@@ -3,7 +3,7 @@ import Link from "next/link";
 import PageTransition from "@/components/PageTransition";
 
 export const metadata: Metadata = {
-  title: "Texavor - AEO & Content Optimization Platform for Developers",
+  title: "Texavor - GEO & Content Optimization Platform for Developers",
   description:
     "Generate high-impact, E-E-A-T optimized technical articles. Monitor Share of Voice on ChatGPT, Perplexity & Claude. Fix content decay before you lose rank.",
   alternates: {
@@ -52,7 +52,7 @@ export default function Home() {
         url: "https://www.texavor.com",
         name: "Texavor",
         description:
-          "AI-powered content creation and optimization platform for Answer Engine Optimization (AEO) and SEO.",
+          "AI-powered content creation and optimization platform for Generative Engine Optimization (GEO) and SEO.",
         publisher: {
           "@id": "https://www.texavor.com/#person",
         },
@@ -60,7 +60,7 @@ export default function Home() {
         about: [
           {
             "@type": "Thing",
-            name: "Answer Engine Optimization",
+            name: "Generative Engine Optimization",
             sameAs: "https://en.wikipedia.org/wiki/Search_engine_optimization",
           },
           {
@@ -88,7 +88,7 @@ export default function Home() {
         name: "Suraj Vishwakarma",
         url: "https://www.texavor.com",
         description:
-          "Founder of Texavor, expert in AI visibility optimization and Answer Engine Optimization (AEO)",
+          "Founder of Texavor, expert in AI visibility optimization and Generative Engine Optimization (GEO)",
         jobTitle: "Founder & CEO",
         worksFor: {
           "@type": "Organization",
@@ -102,7 +102,7 @@ export default function Home() {
           "https://github.com/texavor",
         ],
         knowsAbout: [
-          "Answer Engine Optimization",
+          "Generative Engine Optimization",
           "AI Visibility Tracking",
           "Content Optimization",
           "SEO",
@@ -131,7 +131,7 @@ export default function Home() {
         },
         featureList: [
           "AI Visibility Tracking",
-          "Answer Engine Optimization (AEO)",
+          "Generative Engine Optimization (GEO)",
           "Content Generation",
           "SEO Optimization",
           "Multi-platform Publishing",
@@ -165,7 +165,7 @@ export default function Home() {
         about: [
           {
             "@type": "Thing",
-            name: "Answer Engine Optimization",
+            name: "Generative Engine Optimization",
           },
           {
             "@type": "Thing",
@@ -246,7 +246,7 @@ export default function Home() {
         "@type": "WebPage",
         "@id": "https://www.texavor.com/#webpage",
         url: "https://www.texavor.com",
-        name: "Texavor - Best AI Visibility Optimization / AEO Tool",
+        name: "Texavor - Best AI Visibility Optimization / GEO Tool",
         description:
           "Texavor helps you track and optimize your company's visibility across ChatGPT, Perplexity, and other AI/LLMs. Get mentioned in AI with Texavor.",
         author: {

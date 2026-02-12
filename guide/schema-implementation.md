@@ -2,7 +2,7 @@
 
 ## Overview
 
-We've implemented a **comprehensive structured data schema** for the Texavor landing page that matches the rich snippet quality of top AEO tools like PromptMonitor. This implementation dynamically compiles FAQ data at runtime and includes 6 different schema types for maximum SEO/AEO visibility.
+We've implemented a **comprehensive structured data schema** for the Texavor landing page that matches the rich snippet quality of top GEO tools like PromptMonitor. This implementation dynamically compiles FAQ data at runtime and includes 6 different schema types for maximum SEO/GEO visibility.
 
 ---
 
@@ -165,7 +165,7 @@ The schema will automatically update on the next build. No need to touch `page.t
 - ✅ Breadcrumb navigation
 - ✅ Knowledge panel eligibility
 
-### **Answer Engine Optimization (AEO)**
+### **Generative Engine Optimization (GEO)**
 
 - ✅ Better understanding by ChatGPT, Perplexity, Claude
 - ✅ Structured Q&A format for AI responses
@@ -366,7 +366,7 @@ You now have a **world-class schema implementation** that:
 2. ✅ Dynamically compiles FAQ data at runtime
 3. ✅ Includes 6 comprehensive schema types
 4. ✅ Provides rich snippets in search results
-5. ✅ Optimizes for both SEO and AEO
+5. ✅ Optimizes for both SEO and GEO
 6. ✅ Automatically updates when FAQ changes
 
 **Any changes to `FAQ.tsx` will automatically update the schema on the next build!** 🚀

@@ -100,7 +100,7 @@ graph TD
   },
   "featureList": [
     "AI Visibility Tracking",
-    "Answer Engine Optimization (AEO)",
+    "Generative Engine Optimization (GEO)",
     "Content Generation",
     "SEO Optimization",
     "Multi-platform Publishing",
@@ -172,7 +172,7 @@ graph TD
 {
   "@type": "WebPage",
   "@id": "#webpage",
-  "name": "Texavor - Best AI Visibility Optimization / AEO Tool",
+  "name": "Texavor - Best AI Visibility Optimization / GEO Tool",
   "description": "Texavor helps you track and optimize...",
   "isPartOf": { "@id": "#website" },
   "about": { "@id": "#organization" },
@@ -280,7 +280,7 @@ flowchart LR
 
 ## Schema Priority & Impact
 
-| Schema Type             | Priority   | SEO Impact | AEO Impact | Dynamic |
+| Schema Type             | Priority   | SEO Impact | GEO Impact | Dynamic |
 | ----------------------- | ---------- | ---------- | ---------- | ------- |
 | **WebSite**             | 🏆 PRIMARY | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ❌      |
 | **FAQPage**             | 🥈 HIGH    | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ✅ YES  |
@@ -297,7 +297,7 @@ flowchart LR
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│ 🌐 Texavor - Best AI Visibility Optimization / AEO Tool │
+│ 🌐 Texavor - Best AI Visibility Optimization / GEO Tool │
 │ ★★★★★ 4.8 (127 reviews)                                 │
 │ https://www.texavor.com › Home                          │
 │                                                          │
@@ -330,7 +330,7 @@ across ChatGPT, Perplexity, and other AI/LLMs.
 
 Key features include:
 • AI Visibility Tracking
-• Answer Engine Optimization (AEO)
+• Generative Engine Optimization (GEO)
 • Content Generation
 • SEO Optimization
 • Multi-platform Publishing

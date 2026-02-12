@@ -36,4 +36,4 @@ If a competitor has a high LLM Share of Voice:
 - They cover "Question keywords" comprehensively.
 
 **How to beat them:**
-Use the **AI Visibility Engine** to find the specific questions they _haven't_ answered, and write AEO-optimized content to steal that citation space.
+Use the **AI Visibility Engine** to find the specific questions they _haven't_ answered, and write GEO-optimized content to steal that citation space.

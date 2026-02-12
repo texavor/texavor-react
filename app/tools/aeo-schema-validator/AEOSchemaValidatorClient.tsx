@@ -193,11 +193,11 @@ export default function AEOSchemaValidatorClient() {
         {/* Header */}
         <div className="text-center mb-12 space-y-4">
           <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary to-green-600 bg-clip-text text-transparent pb-2 font-poppins">
-            AEO Schema Validator
+            GEO Schema Validator
           </h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-inter">
             Is your content ready for AI search? Analyze your Schema Markup for
-            Answer Engine Optimization (AEO) readiness.
+            Generative Engine Optimization (GEO) readiness.
           </p>
         </div>
 
@@ -301,10 +301,10 @@ export default function AEOSchemaValidatorClient() {
                     <Sparkles className="w-5 h-5 text-green-600" />
                   </div>
                   <CardTitle className="text-xl font-poppins">
-                    AEO Health Analysis
+                    GEO Health Analysis
                   </CardTitle>
                   <CardDescription className="font-inter">
-                    Comprehensive checks for AI search readiness and answer
+                    Comprehensive checks for AI search readiness and generative
                     engine optimization.
                   </CardDescription>
                 </CardHeader>

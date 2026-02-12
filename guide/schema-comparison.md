@@ -103,7 +103,7 @@ export default function Home() {
         url: "https://www.texavor.com",
         name: "Texavor",
         description:
-          "AI-powered content creation and optimization platform for Answer Engine Optimization (AEO) and SEO.",
+          "AI-powered content creation and optimization platform for Generative Engine Optimization (GEO) and SEO.",
         publisher: {
           "@id": "https://www.texavor.com/#organization",
         },
@@ -170,7 +170,7 @@ export default function Home() {
         },
         featureList: [
           "AI Visibility Tracking",
-          "Answer Engine Optimization (AEO)",
+          "Generative Engine Optimization (GEO)",
           "Content Generation",
           "SEO Optimization",
           "Multi-platform Publishing",
@@ -210,7 +210,7 @@ export default function Home() {
         "@type": "WebPage",
         "@id": "https://www.texavor.com/#webpage",
         url: "https://www.texavor.com",
-        name: "Texavor - Best AI Visibility Optimization / AEO Tool",
+        name: "Texavor - Best AI Visibility Optimization / GEO Tool",
         description:
           "Texavor helps you track and optimize your company's visibility across ChatGPT, Perplexity, and other AI/LLMs. Get mentioned in AI with Texavor.",
         isPartOf: {
@@ -302,7 +302,7 @@ export default function Home() {
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│ 🌐 Texavor - Best AI Visibility Optimization / AEO Tool │
+│ 🌐 Texavor - Best AI Visibility Optimization / GEO Tool │
 │ ★★★★★ 4.8 (127 reviews)                                 │
 │ https://www.texavor.com › Home                          │
 │                                                          │
@@ -314,7 +314,7 @@ export default function Home() {
 │                                                          │
 │ ✨ Features:                                            │
 │ • AI Visibility Tracking                                │
-│ • Answer Engine Optimization (AEO)                      │
+│ • Generative Engine Optimization (GEO)                      │
 │ • Content Generation                                    │
 │ • SEO Optimization                                      │
 │ [+3 more features]                                      │
@@ -377,7 +377,7 @@ across ChatGPT, Perplexity, and other AI/LLMs.
 
 Key Features:
 • AI Visibility Tracking
-• Answer Engine Optimization (AEO)
+• Generative Engine Optimization (GEO)
 • Content Generation
 • SEO Optimization
 • Multi-platform Publishing

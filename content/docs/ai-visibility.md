@@ -49,7 +49,7 @@ Stop chasing high-volume, low-intent keywords.
 1.  **Step 1:** Filter for **Questions** (Why/How/What).
 2.  **Step 2:** Sort by **AI Visibility Score** (High to Low).
 3.  **Step 3:** Select a term with _Medium Volume_ but _High Visibility Potential_.
-4.  **Step 4:** Click **"Create AEO Outline"** to target that specific question.
+4.  **Step 4:** Click **"Create GEO Outline"** to target that specific question.
 
 ## Legacy Metrics (Classic SEO)
 

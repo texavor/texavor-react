@@ -27,7 +27,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: {
     template: "%s",
-    default: "Texavor - AEO & Content Optimization Platform for Developers",
+    default: "Texavor - GEO & Content Optimization Platform for Writers, Marketers & Developers",
   },
   description:
     "Generate high-impact, E-E-A-T optimized technical articles. Monitor Share of Voice on ChatGPT, Perplexity & Claude. Fix content decay before you lose rank.",
@@ -35,14 +35,14 @@ export const metadata: Metadata = {
     google: "E4iB-NQGsBin8Lyn7z9uYrmUZR0YwVl4_FhB4bWaKzo",
   },
   openGraph: {
-    title: "Texavor - AEO & Content Optimization Platform for Developers",
+    title: "Texavor - GEO & Content Optimization Platform for Writers, Marketers & Developers",
     description:
       "Generate high-impact, E-E-A-T optimized technical articles. Monitor Share of Voice on ChatGPT, Perplexity & Claude. Fix content decay before you lose rank.",
     // images: "/easywriteOpenGraph.png",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Texavor - AEO & Content Optimization Platform for Developers",
+    title: "Texavor - GEO & Content Optimization Platform for Writers, Marketers & Developers",
     description:
       "Generate high-impact, E-E-A-T optimized technical articles. Monitor Share of Voice on ChatGPT, Perplexity & Claude. Fix content decay before you lose rank.",
     // images: "/easywriteOpenGraph.png",

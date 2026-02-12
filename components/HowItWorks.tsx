@@ -7,7 +7,7 @@ export default function HowItWorks() {
   const steps = [
     {
       number: "Step 1",
-      title: "Analyze AEO Intent & Competitor Gaps",
+      title: "Analyze GEO Intent & Competitor Gaps",
       description:
         "Understand exactly what questions your audience is asking AI. Research competitor visibility in Perplexity and Google SGE.",
       image: "/screenshots/step1.png", // You'll add this image

@@ -26,7 +26,7 @@ Where content is born.
 
 - **Article:** The master writing interface. Manage drafts and published content.
 - **Topic Generation:** Use AI to brainstorm high-impact content ideas.
-- **Outline Generator:** Build structurally sound, AEO-optimized outlines.
+- **Outline Generator:** Build structurally sound, GEO-optimized outlines.
 - **Thumbnail Styles:** Configure visual styles for automated asset generation.
 - **Saved:** Access your bookmarked outlines, topics, and drafts.
 

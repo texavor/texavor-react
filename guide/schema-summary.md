@@ -25,7 +25,7 @@ You now have a **PromptMonitor-level schema implementation** with dynamic FAQ co
 graph LR
     A[Edit FAQ.tsx] -->|Auto-sync| B[Schema Updates]
     B --> C[Rich Snippets]
-    C --> D[Better SEO/AEO]
+    C --> D[Better SEO/GEO]
 
     style A fill:#FFE082
     style B fill:#81C784
@@ -95,7 +95,7 @@ AI-powered content creation and optimization platform.
 ### After
 
 ```
-🌐 Texavor - Best AI Visibility Optimization / AEO Tool
+🌐 Texavor - Best AI Visibility Optimization / GEO Tool
 ★★★★★ 4.8 (127 reviews)
 https://www.texavor.com › Home
 
@@ -347,7 +347,7 @@ All guides are in the `guide/` folder:
 - ✅ Dynamic FAQ compilation
 - ✅ PromptMonitor-level quality
 - ✅ SEO-optimized
-- ✅ AEO-ready
+- ✅ GEO-ready
 - ✅ Production-ready
 - ✅ Zero maintenance overhead
 

@@ -44,7 +44,7 @@ Move from "Keyword Stuffing" to "Topic Authority".
 
 Eliminate the busywork of publishing.
 
-- **AEO Outlines:** Generate outlines specifically structured for Answer Engine Optimization (Direct Answers, FAQ Schema).
+- **GEO Outlines:** Generate outlines specifically structured for Generative Engine Optimization (Direct Answers, FAQ Schema).
 - **Cross-Posting:** Publish to your own blog, Dev.to, and Medium simultaneously with canonical links handled automatically.
 - **Asset Generation:** Auto-generate code-styled thumbnails that developers click.
 

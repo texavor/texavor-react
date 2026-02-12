@@ -1,13 +1,13 @@
-# Frontend Guide: AEO Schema Validator (Tool 6)
+# Frontend Guide: GEO Schema Validator (Tool 6)
 
 ## 1. SEO Strategy
 
-Targeting the emerging market of "Answer Engine Optimization" and "AI Search Optimization".
+Targeting the emerging market of "Generative Engine Optimization" and "AI Search Optimization".
 
-- **Primary Keyword:** "AEO Schema Validator"
-- **Secondary Keywords:** "Optimize for ChatGPT", "Answer Engine Optimization Tools", "Voice Search Schema Check"
-- **Meta Title:** Free AEO Schema Validator | Optimize for ChatGPT & SGE
-- **Meta Description:** Is your content ready for AI search? Analyze your Schema Markup for Answer Engine Optimization (AEO) readiness. Test for Voice, Entities, and JSON-LD health.
+- **Primary Keyword:** "GEO Schema Validator"
+- **Secondary Keywords:** "Optimize for ChatGPT", "Generative Engine Optimization Tools", "Voice Search Schema Check"
+- **Meta Title:** Free GEO Schema Validator | Optimize for ChatGPT & SGE
+- **Meta Description:** Is your content ready for AI search? Analyze your Schema Markup for Generative Engine Optimization (GEO) readiness. Test for Voice, Entities, and JSON-LD health.
 
 ## 2. API Integration
 
@@ -75,7 +75,7 @@ Self-referential schema to describe the tool itself as a SoftwareApplication.
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Texavor AEO Validator",
+  "name": "Texavor GEO Validator",
   "applicationCategory": "SEOApplication",
   "offers": {
     "@type": "Offer",
