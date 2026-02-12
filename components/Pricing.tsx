@@ -39,7 +39,7 @@ export default function Pricing() {
           <div className="mb-2">
             <Tabs
               defaultValue="monthly"
-              className="w-full max-w-[400px] flex flex-col items-center"
+              className="w-full w-[300px] flex flex-col items-center"
               onValueChange={(value) => setIsAnnual(value === "annual")}
             >
               <TabsList className="grid w-full grid-cols-2 rounded-full h-12 p-1 bg-gray-100 dark:bg-zinc-800">
