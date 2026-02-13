@@ -153,11 +153,7 @@ export default async function ArticlePage(props: {
     );
   }
 
-  const rawHtml = marked.parse(articleData?.content || "") as string;
-  // Shift heading levels: h1 -> h2, h2 -> h3, etc. to avoid duplicate h1s
-  const parsedHtml = rawHtml
-    .replace(/<h([1-5])/g, (m, c) => `<h${parseInt(c) + 1}`)
-    .replace(/<\/h([1-5])>/g, (m, c) => `</h${parseInt(c) + 1}>`);
+  const parsedHtml = marked.parse(articleData?.content || "") as string;
 
   // Extract FAQs from content (looking for Q&A patterns)
   const extractFAQs = (content: string) => {
