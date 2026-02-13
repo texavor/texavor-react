@@ -3,18 +3,28 @@ import { cn } from "@/lib/utils";
 
 interface ScoreDisplayProps {
   score: number;
-  grade: string;
+  grade?: string;
   type?: "primary" | "secondary";
   className?: string;
 }
 
 const ScoreDisplay = ({
   score,
-  grade,
+  grade: providedGrade,
   type = "secondary",
   className,
 }: ScoreDisplayProps) => {
   const isPrimary = type === "primary";
+
+  // Calculate grade from score if not provided
+  let grade = providedGrade;
+  if (!grade) {
+    if (score >= 90) grade = "A";
+    else if (score >= 80) grade = "B";
+    else if (score >= 70) grade = "C";
+    else if (score >= 60) grade = "D";
+    else grade = "F";
+  }
 
   // Determine color based on score
   let color = "text-red-500";
