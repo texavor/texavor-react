@@ -79,6 +79,22 @@ const tools = [
     icon: Sparkles,
     gradient: "from-emerald-500/20 to-teal-500/5",
   },
+  {
+    title: "GEO Heading Structure Checker",
+    description:
+      "Validate HTML heading hierarchy (H1-H6). Fix skipped levels and missing H1s to improve GEO & accessibility.",
+    href: "/tools/geo-heading-structure-checker",
+    icon: LayoutDashboard,
+    gradient: "from-green-500/20 to-emerald-500/5",
+  },
+  {
+    title: "Citation Authority Checker",
+    description:
+      "Audit external links, score citation authority (.edu/.gov), detect weak claims, and boost E-E-A-T compliance.",
+    href: "/tools/citation-authority-checker",
+    icon: FileCode,
+    gradient: "from-blue-500/20 to-cyan-500/5",
+  },
 ];
 
 export const metadata = {
