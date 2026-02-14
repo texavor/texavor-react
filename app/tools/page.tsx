@@ -18,6 +18,8 @@ import {
   ArrowRight,
   MonitorCheck,
   Search,
+  Code2,
+  Clock,
 } from "lucide-react";
 import { MoveUpRight } from "lucide-react";
 import Schema from "@/components/Schema";
@@ -95,6 +97,38 @@ const tools = [
     icon: FileCode,
     gradient: "from-blue-500/20 to-cyan-500/5",
   },
+  {
+    title: "Schema Markup Validator",
+    description:
+      "Validate structured data (JSON-LD, Microdata) for Google Search Console errors. Test Article, Product, FAQ, and more.",
+    href: "/tools/schema-validator",
+    icon: Code2,
+    gradient: "from-violet-500/20 to-purple-500/5",
+  },
+  {
+    title: "Alt Text Checker",
+    description:
+      "Audit images for WCAG compliance and Google Lens optimization. Find missing alt text, duplicates, and get AI suggestions.",
+    href: "/tools/alt-text-checker",
+    icon: Search,
+    gradient: "from-blue-500/20 to-cyan-500/5",
+  },
+  {
+    title: "Content Freshness Checker",
+    description:
+      "Detect content decay, find outdated statistics and get update recommendations. Check publish dates and freshness signals.",
+    href: "/tools/content-freshness-checker",
+    icon: Clock,
+    gradient: "from-blue-500/20 to-purple-500/5",
+  },
+  {
+    title: "Entity Density Analyzer",
+    description:
+      "Analyze entity salience and optimize for semantic SEO. Detect knowledge graph opportunities and get schema markup tips.",
+    href: "/tools/entity-density-analyzer",
+    icon: Network,
+    gradient: "from-indigo-500/20 to-purple-500/5",
+  },
 ];
 
 export const metadata = {
@@ -160,13 +194,13 @@ export default function ToolsPage() {
           <div className="inline-flex items-center justify-center px-4 py-1.5 mb-4 rounded-full bg-primary/5 border border-primary/10">
             <span className="text-sm font-medium text-primary flex items-center gap-2">
               <Sparkles className="w-4 h-4" />
-              Free SEO Utility Belt
+              Free GEO & AEO Utility Belt
             </span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-foreground font-poppins">
             Free{" "}
             <span className="text-primary bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-500">
-              AEO and SEO Tools
+              GEO and AEO Tools
             </span>
           </h1>
           <p className="text-muted-foreground text-xl max-w-2xl mx-auto font-inter leading-relaxed">
