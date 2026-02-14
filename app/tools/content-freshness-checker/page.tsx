@@ -1,60 +1,77 @@
 import type { Metadata } from "next";
 import ContentFreshnessClient from "./ContentFreshnessClient";
+import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
-  title: "Free Content Freshness Checker - Detect Content Decay | Texavor",
+  title:
+    "Free Content Freshness Checker | AI Ranking & Decay Auditor | Texavor",
   description:
-    "Analyze content freshness, find outdated statistics, and get update recommendations. Check publish dates, schema markup, and decay signals instantly. Free tool.",
-  keywords: [
-    "content decay tool",
-    "content freshness checker",
-    "seo freshness checker",
-    "find outdated content",
-    "check publish date",
-    "content audit tool",
-    "detect stale content",
-    "content decay analyzer",
-  ],
-  openGraph: {
-    title: "Free Content Freshness Checker - Detect Content Decay",
-    description:
-      "Analyze content freshness, find outdated statistics, and get update recommendations instantly.",
-    type: "website",
-    url: "https://www.texavor.com/tools/content-freshness-checker",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Free Content Freshness Checker - Detect Content Decay",
-    description:
-      "Analyze content freshness and find outdated statistics instantly.",
-  },
+    "Audit your content freshness for the AI era. Detect content decay, analyze update frequency, and improve your GEO (Generative Engine Optimization) relevance in AI search.",
   alternates: {
-    canonical: "https://www.texavor.com/tools/content-freshness-checker",
+    canonical: "/tools/content-freshness-checker",
   },
 };
 
-export default function ContentFreshnessCheckerPage() {
+export default function ContentFreshnessPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.texavor.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Tools",
+        item: "https://www.texavor.com/tools",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Content Freshness Checker",
+        item: "https://www.texavor.com/tools/content-freshness-checker",
+      },
+    ],
+  };
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "Content Freshness Checker",
-    description:
-      "Detect content decay signals and identify pages needing updates for SEO freshness",
+    "@id": "https://www.texavor.com/tools/content-freshness-checker",
     url: "https://www.texavor.com/tools/content-freshness-checker",
-    applicationCategory: "SEOApplication",
+    name: "Content Freshness Checker - GEO Decay Tool",
+    description:
+      "Identify content decay and freshness signals to maintain visibility in generative engines and AI search results.",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    browserRequirements: "Requires JavaScript. Requires HTML5.",
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+    author: {
+      "@type": "Person",
+      name: "Suraj Vishwakarma",
+      url: "https://www.texavor.com",
+    },
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": "https://www.texavor.com",
+      url: "https://www.texavor.com",
+      name: "Texavor",
     },
   };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <Schema script={jsonLd} />
+      <Schema script={breadcrumbSchema} />
       <ContentFreshnessClient />
     </>
   );

@@ -31,7 +31,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   // Dynamically compile FAQ schema from FAQ component data
-  const faqSchema = Array.isArray(faqData)
+  const faqSchemaRows = Array.isArray(faqData)
     ? faqData.map((faq) => ({
         "@type": "Question",
         name: faq.question,
@@ -42,9 +42,32 @@ export default function Home() {
       }))
     : [];
 
-  const schema = {
+  const mainSchema = {
     "@context": "https://schema.org",
     "@graph": [
+      // PRIMARY: Organization Schema for Knowledge Graph
+      {
+        "@type": "Organization",
+        "@id": "https://www.texavor.com/#organization",
+        name: "Texavor",
+        url: "https://www.texavor.com",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://www.texavor.com/texavor.png",
+        },
+        sameAs: [
+          "https://x.com/texavor",
+          "https://www.linkedin.com/company/texavor",
+          "https://github.com/texavor",
+        ],
+        contactPoint: {
+          "@type": "ContactPoint",
+          telephone: "",
+          contactType: "customer service",
+          email: "contact@texavor.com",
+        },
+      },
+
       // PRIMARY: WebSite Schema
       {
         "@type": "WebSite",
@@ -54,7 +77,7 @@ export default function Home() {
         description:
           "AI-powered content creation and optimization platform for Generative Engine Optimization (GEO) and SEO.",
         publisher: {
-          "@id": "https://www.texavor.com/#person",
+          "@id": "https://www.texavor.com/#organization",
         },
         // Knowledge Graph connections
         about: [
@@ -81,7 +104,7 @@ export default function Home() {
         },
       },
 
-      // Person Schema for E-E-A-T (Expertise, Experience, Authoritativeness, Trust)
+      // Person Schema for E-E-A-T
       {
         "@type": "Person",
         "@id": "https://www.texavor.com/#person",
@@ -91,9 +114,7 @@ export default function Home() {
           "Founder of Texavor, expert in AI visibility optimization and Generative Engine Optimization (GEO)",
         jobTitle: "Founder & CEO",
         worksFor: {
-          "@type": "Organization",
-          name: "Texavor",
-          url: "https://www.texavor.com",
+          "@id": "https://www.texavor.com/#organization",
         },
         // Social profiles for Knowledge Graph
         sameAs: [
@@ -106,17 +127,16 @@ export default function Home() {
           "AI Visibility Tracking",
           "Content Optimization",
           "SEO",
-          "Generative Engine Optimization",
         ],
       },
 
-      // Enhanced SoftwareApplication Schema
+      // SoftwareApplication Schema
       {
         "@type": "SoftwareApplication",
-        "@id": "https://www.texavor.com/#features",
+        "@id": "https://www.texavor.com/#software",
         name: "Texavor",
         description:
-          "Generate high-impact, E-E-A-T optimized technical articles. Monitor Share of Voice on ChatGPT, Perplexity & Claude. Fix content decay before you lose rank.",
+          "Generate high-impact, E-E-A-T optimized technical articles. Monitor Share of Voice on ChatGPT, Perplexity & Claude.",
         applicationCategory: "BusinessApplication",
         applicationSubCategory: "ContentOptimizationApplication",
         operatingSystem: "Web",
@@ -125,96 +145,42 @@ export default function Home() {
           "@type": "Offer",
           price: "0",
           priceCurrency: "USD",
-          priceValidUntil: "2026-12-31",
-          availability: "https://schema.org/InStock",
-          description: "Free trial available. Paid plans start from $29/month.",
         },
-        featureList: [
-          "AI Visibility Tracking",
-          "Generative Engine Optimization (GEO)",
-          "Content Generation",
-          "SEO Optimization",
-          "Multi-platform Publishing",
-          "Analytics Dashboard",
-          "Team Collaboration",
-        ],
-        screenshot: "https://www.texavor.com/texavor.png",
-        softwareVersion: "2.0",
         author: {
           "@id": "https://www.texavor.com/#person",
         },
-        // Mentions of related technologies/platforms
-        mentions: [
-          {
-            "@type": "SoftwareApplication",
-            name: "ChatGPT",
-            sameAs: "https://en.wikipedia.org/wiki/ChatGPT",
-          },
-          {
-            "@type": "SoftwareApplication",
-            name: "Perplexity AI",
-            url: "https://www.perplexity.ai",
-          },
-          {
-            "@type": "Thing",
-            name: "Large Language Models",
-            sameAs: "https://en.wikipedia.org/wiki/Large_language_model",
-          },
-        ],
-        // What the software is about
-        about: [
-          {
-            "@type": "Thing",
-            name: "Generative Engine Optimization",
-          },
-          {
-            "@type": "Thing",
-            name: "AI Visibility",
-          },
-          {
-            "@type": "Thing",
-            name: "Content Optimization",
-          },
-        ],
+      },
+      // FAQPage Schema
+      {
+        "@type": "FAQPage",
+        "@id": "https://www.texavor.com/#faq",
+        mainEntity: faqSchemaRows,
       },
 
-      // FAQPage Schema - Only if FAQs exist
-      ...(faqSchema.length > 0
-        ? [
-            {
-              "@type": "FAQPage",
-              "@id": "https://www.texavor.com/#faq",
-              mainEntity: faqSchema,
-            },
-          ]
-        : []),
-
-      // SiteNavigationElement - Helps Google understand key pages for sitelinks
+      // SiteNavigationElement
       {
         "@type": "SiteNavigationElement",
         "@id": "https://www.texavor.com/#navigation",
-        name: "Main Navigation",
-        url: "https://www.texavor.com",
         hasPart: [
           {
             "@type": "WebPage",
-            "@id": "https://www.app.texavor.com/login",
+            "@id": "https://www.texavor.com/login",
             name: "Login",
             url: "https://www.app.texavor.com/login",
             description: "Sign in to your Texavor account",
           },
           {
             "@type": "WebPage",
-            "@id": "https://www.app.texavor.com/register",
+            "@id": "https://www.texavor.com/register",
             name: "Register",
             url: "https://www.app.texavor.com/register",
             description: "Create a new Texavor account",
           },
           {
             "@type": "WebPage",
-            "@id": "https://www.texavor.com#pricing",
+            "@id": "https://www.texavor.com/#pricing",
             name: "Pricing",
-            url: "https://www.texavor.com#pricing",
+            url: "https://www.texavor.com/#pricing",
             description: "View Texavor pricing plans and features",
           },
           {
@@ -264,7 +230,7 @@ export default function Home() {
 
   return (
     <PageTransition>
-      <Schema script={schema} />
+      <Schema script={mainSchema} />
       <main className="flex min-h-screen flex-col items-center w-full pt-0">
         <Hero />
         {/* <SocialProof /> */}

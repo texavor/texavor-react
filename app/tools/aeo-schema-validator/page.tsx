@@ -3,21 +3,47 @@ import AEOSchemaValidatorClient from "./AEOSchemaValidatorClient";
 import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
-  title: "GEO Schema Validator | AI Search Readiness Checker | Texavor",
+  title:
+    "GEO Schema Validator | AI Search Readiness & Entity Content Audit | Texavor",
   description:
-    "Validate your Schema Markup for Generative Engine Optimization (GEO) and AI Search readiness. Analyze your content for AI search engines and get optimization recommendations.",
+    "Validate your Schema Markup for the Generative Engine era. Audit your content for LLM understanding, entity density, and GEO (Generative Engine Optimization) readiness.",
   alternates: {
     canonical: "/tools/aeo-schema-validator",
   },
 };
 
 export default function Page() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.texavor.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Tools",
+        item: "https://www.texavor.com/tools",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "GEO Schema Validator",
+        item: "https://www.texavor.com/tools/aeo-schema-validator",
+      },
+    ],
+  };
+
   const schema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "@id": "https://www.texavor.com/tools/aeo-schema-validator",
     url: "https://www.texavor.com/tools/aeo-schema-validator",
-    name: "GEO Schema Validator - Free AI Search Readiness Tool",
+    name: "GEO Schema Validator - AI Readiness Tool",
     description:
       "Validate your Schema Markup for Generative Engine Optimization (GEO) and AI Search readiness. Analyze your content for AI search engines and get optimization recommendations.",
     applicationCategory: "BusinessApplication",
@@ -45,6 +71,7 @@ export default function Page() {
   return (
     <>
       <Schema script={schema} />
+      <Schema script={breadcrumbSchema} />
       <AEOSchemaValidatorClient />
     </>
   );

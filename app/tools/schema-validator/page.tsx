@@ -1,60 +1,77 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import SchemaValidatorClient from "./SchemaValidatorClient";
-import { Code2 } from "lucide-react";
+import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
-  title: "Free Schema Markup Validator + AEO Audit | Texavor",
+  title:
+    "Free JSON-LD Schema Validator | AI Search Readiness Auditor | Texavor",
   description:
-    "Validate JSON-LD schema, check syntax errors, and get AEO optimization tips. Test Article, FAQPage, HowTo schemas instantly. Free tool for SEO.",
-  keywords: [
-    "schema markup validator",
-    "json-ld validator",
-    "schema validator free",
-    "test schema markup",
-    "validate structured data",
-    "check schema org",
-    "how to validate json-ld schema",
-    "free schema markup checker",
-  ],
-  openGraph: {
-    title: "Free Schema Markup Validator + AEO Audit | Texavor",
-    description:
-      "Validate JSON-LD schema, check syntax errors, and get AEO optimization tips. Test Article, FAQPage, HowTo schemas instantly.",
-    type: "website",
-    url: "https://www.texavor.com/tools/schema-validator",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Free Schema Markup Validator + AEO Audit | Texavor",
-    description:
-      "Validate JSON-LD schema, check syntax errors, and get AEO optimization tips. Test Article, FAQPage, HowTo schemas instantly.",
-  },
+    "Validate your Schema Markup for Google and AI search engines. Audit JSON-LD snippets for technical correctness and GEO (Generative Engine Optimization) readiness.",
   alternates: {
-    canonical: "https://www.texavor.com/tools/schema-validator",
+    canonical: "/tools/schema-validator",
   },
 };
 
 export default function SchemaValidatorPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.texavor.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Tools",
+        item: "https://www.texavor.com/tools",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Schema Validator",
+        item: "https://www.texavor.com/tools/schema-validator",
+      },
+    ],
+  };
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "Schema Markup Validator",
-    applicationCategory: "DeveloperApplication",
+    "@id": "https://www.texavor.com/tools/schema-validator",
+    url: "https://www.texavor.com/tools/schema-validator",
+    name: "Advanced Schema Validator - GEO Readiness Tool",
+    description:
+      "Validate JSON-LD schema markup for enhanced search results and generative engine optimization readiness.",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    browserRequirements: "Requires JavaScript. Requires HTML5.",
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
     },
-    description:
-      "Free tool to validate JSON-LD schema markup, check syntax errors, and get AEO optimization recommendations for Article, FAQPage, HowTo schemas.",
+    author: {
+      "@type": "Person",
+      name: "Suraj Vishwakarma",
+      url: "https://www.texavor.com",
+    },
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": "https://www.texavor.com",
+      url: "https://www.texavor.com",
+      name: "Texavor",
+    },
   };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <Schema script={jsonLd} />
+      <Schema script={breadcrumbSchema} />
       <SchemaValidatorClient />
     </>
   );

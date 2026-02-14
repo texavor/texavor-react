@@ -3,21 +3,47 @@ import AiVisibilityPage from "./AiVisibilityPage";
 import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
-  title: "AI Visibility Calculator",
+  title:
+    "Free AI Visibility Calculator | GEO & SGE Search Ranking Checker | Texavor",
   description:
-    "Test how well your content ranks in AI search results with our 5-point analysis. Understand how AI recommends your products and improve your visibility.",
+    "Test how well your content ranks in AI search results (ChatGPT, Perplexity, Google SGE) with our 5-point analysis. Improve your visibility in generative engines through GEO.",
   alternates: {
     canonical: "/tools/ai-visibility-calculator",
   },
 };
 
 export default function Page() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.texavor.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Tools",
+        item: "https://www.texavor.com/tools",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "AI Visibility Calculator",
+        item: "https://www.texavor.com/tools/ai-visibility-calculator",
+      },
+    ],
+  };
+
   const schema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "@id": "https://www.texavor.com/tools/ai-visibility-calculator",
     url: "https://www.texavor.com/tools/ai-visibility-calculator",
-    name: "AI Visibility Calculator - Free AEO Tool",
+    name: "AI Visibility Calculator - Free GEO Tool",
     description:
       "Analyze keyword rankings in AI Overviews (SGE) and optimize for Large Language Models. Test how well your content ranks in AI search results with our advanced 5-point analysis.",
     applicationCategory: "BusinessApplication",
@@ -45,6 +71,7 @@ export default function Page() {
   return (
     <>
       <Schema script={schema} />
+      <Schema script={breadcrumbSchema} />
       <AiVisibilityPage />
     </>
   );
