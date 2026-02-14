@@ -1,5 +1,5 @@
 import { getDocsByCategory } from "@/lib/docs";
-import { Metadata } from "next";
+import { tools } from "@/lib/tools-config";
 
 export const dynamic = "force-static";
 
@@ -25,6 +25,12 @@ export function GET() {
     });
     content += "\n";
   });
+
+  content += `## Free Semantic & GEO Tools\n\n`;
+  tools.forEach((tool) => {
+    content += `- [${tool.title}](https://www.texavor.com${tool.href}): ${tool.description}\n`;
+  });
+  content += "\n";
 
   content += `## Full Documentation
 

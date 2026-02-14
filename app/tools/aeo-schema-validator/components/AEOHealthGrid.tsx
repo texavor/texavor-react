@@ -47,10 +47,10 @@ const AEOHealthGrid = ({ checks }: AEOHealthGridProps) => {
 
       {/* 3. AEO Specific Types */}
       <MetricCard
-        label="AEO Optimization"
+        label="GEO Optimization"
         value={checks.aeo_type_found ? "Optimized" : "Basic"}
         icon={<Search className="w-5 h-5 text-emerald-500" />}
-        subtext={checks.aeo_type_found ? "FAQ/HowTo Found" : "No AEO Types"}
+        subtext={checks.aeo_type_found ? "FAQ/HowTo Found" : "No GEO Types"}
         type="secondary"
       />
 

@@ -5,7 +5,7 @@ import Schema from "@/components/Schema";
 export const metadata = {
   title: "FAQ | Texavor",
   description:
-    "Frequently asked questions about Texavor, AEO, content optimization, and more.",
+    "Frequently asked questions about Texavor, GEO, content optimization, and more.",
   alternates: {
     canonical: "/faq",
   },
@@ -41,7 +41,7 @@ export default function FAQPage() {
         name: "Suraj Vishwakarma",
         url: "https://www.texavor.com",
         description:
-          "Founder of Texavor, expert in AI visibility optimization and Answer Engine Optimization (AEO)",
+          "Founder of Texavor, expert in AI visibility optimization and Generative Engine Optimization (GEO)",
         jobTitle: "Founder & CEO",
         worksFor: {
           "@type": "Organization",
@@ -60,7 +60,7 @@ export default function FAQPage() {
         url: "https://www.texavor.com/faq",
         name: "FAQ - Texavor",
         description:
-          "Frequently asked questions about Texavor, AEO, content optimization, and more.",
+          "Frequently asked questions about Texavor, GEO, content optimization, and more.",
         isPartOf: { "@id": "https://www.texavor.com/#website" },
         about: { "@id": "https://www.texavor.com/#person" },
       },

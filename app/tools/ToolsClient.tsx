@@ -25,141 +25,12 @@ import {
   Clock,
   MessageSquareText,
   LayoutDashboard,
-  MoveUpRight,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Schema from "@/components/Schema";
 
-const categories = [
-  { name: "All Tools", slug: "all" },
-  { name: "AI Visibility & AEO", slug: "ai-aeo" },
-  { name: "Authority & E-E-A-T", slug: "authority" },
-  { name: "Content Optimization", slug: "content" },
-  { name: "Technical & Schema", slug: "technical" },
-];
-
-const tools = [
-  {
-    title: "Domain Authority Checker",
-    description:
-      "Check your Domain Authority (DA), Backlinks, and Organic Traffic estimates instantly.",
-    href: "/tools/brand-authority",
-    icon: Globe,
-    category: "authority",
-  },
-  {
-    title: "AI Visibility Calculator",
-    description:
-      "Analyze keyword rankings in AI Overviews (SGE) and optimize for Large Language Models.",
-    href: "/tools/ai-visibility-calculator",
-    icon: Sparkles,
-    category: "ai-aeo",
-  },
-  {
-    title: "Website AI Auditor",
-    description:
-      "Technical audit for the AI era. Check Robots.txt, Sitemap, and Schema health.",
-    href: "/tools/website-auditor",
-    icon: MonitorCheck,
-    category: "technical",
-  },
-  {
-    title: "FAQ Schema Generator",
-    description:
-      "Boost CTR instantly by generating valid JSON-LD FAQ Schema markup.",
-    href: "/tools/faq-schema-generator",
-    icon: FileCode,
-    category: "technical",
-  },
-  {
-    title: "Topical Authority Map",
-    description:
-      "Visualize contextual relationships and build semantic authority for your niche.",
-    href: "/tools/topical-authority",
-    icon: Network,
-    category: "ai-aeo",
-  },
-  {
-    title: "Content Quality Audit",
-    description:
-      "Analyze your content depth, keyword usage, and optimization score.",
-    href: "/tools/content-audit",
-    icon: FileText,
-    category: "content",
-  },
-  {
-    title: "AEO Schema Validator",
-    description:
-      "Validate your Schema Markup for Answer Engine Optimization (AEO) and AI Search readiness.",
-    href: "/tools/aeo-schema-validator",
-    icon: Sparkles,
-    category: "technical",
-  },
-  {
-    title: "GEO Heading Structure Checker",
-    description:
-      "Validate HTML heading hierarchy (H1-H6). Fix skipped levels and missing H1s to improve GEO & accessibility.",
-    href: "/tools/geo-heading-structure-checker",
-    icon: LayoutDashboard,
-    category: "content",
-  },
-  {
-    title: "Citation Authority Checker",
-    description:
-      "Audit external links, score citation authority (.edu/.gov), detect weak claims, and boost E-E-A-T compliance.",
-    href: "/tools/citation-authority-checker",
-    icon: FileCode,
-    category: "authority",
-  },
-  {
-    title: "Schema Markup Validator",
-    description:
-      "Validate structured data (JSON-LD, Microdata) for Google Search Console errors. Test Article, Product, FAQ, and more.",
-    href: "/tools/schema-validator",
-    icon: Code2,
-    category: "technical",
-  },
-  {
-    title: "Alt Text Checker",
-    description:
-      "Audit images for WCAG compliance and Google Lens optimization. Find missing alt text, duplicates, and get AI suggestions.",
-    href: "/tools/alt-text-checker",
-    icon: Search,
-    category: "content",
-  },
-  {
-    title: "Content Freshness Checker",
-    description:
-      "Detect content decay, find outdated statistics and get update recommendations. Check publish dates and freshness signals.",
-    href: "/tools/content-freshness-checker",
-    icon: Clock,
-    category: "content",
-  },
-  {
-    title: "Entity Density Analyzer",
-    description:
-      "Analyze entity salience and optimize for semantic SEO. Detect knowledge graph opportunities and get schema markup tips.",
-    href: "/tools/entity-density-analyzer",
-    icon: Network,
-    category: "ai-aeo",
-  },
-  {
-    title: "Citation Opportunities Finder",
-    description:
-      "Identify where citations should be added to improve E-E-A-T and content credibility.",
-    href: "/tools/citation-opportunities",
-    icon: FileText,
-    category: "authority",
-  },
-  {
-    title: "Direct Answer Optimizer",
-    description:
-      "Win the featured snippet and rank for Position Zero. Optimize structure for direct answers and AI search snippets.",
-    href: "/tools/featured-snippet-optimizer",
-    icon: MessageSquareText,
-    category: "ai-aeo",
-  },
-];
+import { categories, tools, getIconByName } from "@/lib/tools-config";
+import { MoveUpRight } from "lucide-react";
 
 export default function ToolsClient() {
   const searchParams = useSearchParams();
@@ -186,9 +57,9 @@ export default function ToolsClient() {
     "@type": "CollectionPage",
     "@id": "https://www.texavor.com/tools",
     url: "https://www.texavor.com/tools",
-    name: "Free AEO and SEO Tools - Texavor",
+    name: "Free GEO Tools - Texavor",
     description:
-      "Professional-grade free SEO and AEO tools including Domain Authority Checker, AI Visibility Calculator, Website Auditor, FAQ Schema Generator, and more.",
+      "Professional-grade free SEO and GEO tools including Domain Authority Checker, AI Visibility Calculator, Website Auditor, FAQ Schema Generator, and more.",
     numberOfItems: tools.length,
     itemListElement: tools.map((tool, index) => ({
       "@type": "ListItem",
@@ -217,13 +88,13 @@ export default function ToolsClient() {
           <div className="inline-flex items-center justify-center px-4 py-1.5 mb-4 rounded-full bg-primary/5 border border-primary/10">
             <span className="text-sm font-medium text-primary flex items-center gap-2">
               <Sparkles className="w-4 h-4" />
-              Professional GEO & AEO Utility Belt
+              Professional GEO Utility Belt
             </span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-foreground font-poppins">
             Free{" "}
             <span className="text-primary bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-500">
-              GEO and AEO Tools
+              GEO Tools
             </span>
           </h1>
           <p className="text-muted-foreground text-xl max-w-2xl mx-auto font-inter leading-relaxed">
@@ -249,7 +120,7 @@ export default function ToolsClient() {
               {currentCategory === cat.slug && (
                 <motion.div
                   layoutId="activeCategory"
-                  className="absolute inset-0 bg-[#104127] -z-10"
+                  className="absolute inset-0 bg-[#104127] -z-10 rounded-full"
                   initial={false}
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
@@ -261,61 +132,64 @@ export default function ToolsClient() {
         {/* Tools Grid */}
         <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
-            {filteredTools.map((tool) => (
-              <motion.div
-                key={tool.href}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Link href={tool.href} className="group h-full block">
-                  <Card className="h-full border-none shadow-lg bg-[#104127] text-white rounded-2xl relative overflow-hidden flex flex-col transition-all duration-300">
-                    <div
-                      className="absolute inset-0 opacity-100 pointer-events-none"
-                      style={{
-                        background:
-                          "radial-gradient(circle at 10% 90%, #1a5d3a 0%, transparent 60%), linear-gradient(to top right, #104127 0%, #0d3520 100%)",
-                      }}
-                    />
+            {filteredTools.map((tool) => {
+              const IconComponent = getIconByName(tool.iconName);
+              return (
+                <motion.div
+                  key={tool.href}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Link href={tool.href} className="group h-full block">
+                    <Card className="h-full border-none shadow-lg bg-[#104127] text-white rounded-2xl relative overflow-hidden flex flex-col transition-all duration-300">
+                      <div
+                        className="absolute inset-0 opacity-100 pointer-events-none"
+                        style={{
+                          background:
+                            "radial-gradient(circle at 10% 90%, #1a5d3a 0%, transparent 60%), linear-gradient(to top right, #104127 0%, #0d3520 100%)",
+                        }}
+                      />
 
-                    <CardHeader className="pb-2 relative z-10">
-                      <div className="flex justify-between items-start mb-4">
-                        <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center shadow-sm border border-white/20 transition-transform group-hover:scale-110 duration-300">
-                          <tool.icon className="w-6 h-6 text-emerald-100" />
+                      <CardHeader className="pb-2 relative z-10">
+                        <div className="flex justify-between items-start mb-4">
+                          <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center shadow-sm border border-white/20 transition-transform group-hover:scale-110 duration-300">
+                            <IconComponent className="w-6 h-6 text-emerald-100" />
+                          </div>
+                          <div className="p-2 rounded-full bg-white text-[#104127] opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1 hover:bg-emerald-50">
+                            <MoveUpRight className="w-4 h-4" />
+                          </div>
                         </div>
-                        <div className="p-2 rounded-full bg-white text-[#104127] opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1 hover:bg-emerald-50">
-                          <MoveUpRight className="w-4 h-4" />
+                        <div className="space-y-1">
+                          <span className="text-[10px] font-black text-emerald-400 uppercase tracking-[0.2em]">
+                            {
+                              categories
+                                .find((c) => c.slug === tool.category)
+                                ?.name.split(" & ")[0]
+                            }
+                          </span>
+                          <CardTitle className="text-xl font-bold font-poppins text-white">
+                            {tool.title}
+                          </CardTitle>
                         </div>
-                      </div>
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-black text-emerald-400 uppercase tracking-[0.2em]">
-                          {
-                            categories
-                              .find((c) => c.slug === tool.category)
-                              ?.name.split(" & ")[0]
-                          }
+                      </CardHeader>
+                      <CardContent className="relative z-10">
+                        <CardDescription className="text-base font-inter line-clamp-3 text-emerald-100/80">
+                          {tool.description}
+                        </CardDescription>
+                      </CardContent>
+                      <CardFooter className="relative z-10 pt-0 mt-auto">
+                        <span className="text-sm font-semibold text-white flex items-center gap-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                          Launch Tool <ArrowRight className="w-4 h-4" />
                         </span>
-                        <CardTitle className="text-xl font-bold font-poppins text-white">
-                          {tool.title}
-                        </CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="relative z-10">
-                      <CardDescription className="text-base font-inter line-clamp-3 text-emerald-100/80">
-                        {tool.description}
-                      </CardDescription>
-                    </CardContent>
-                    <CardFooter className="relative z-10 pt-0 mt-auto">
-                      <span className="text-sm font-semibold text-white flex items-center gap-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                        Launch Tool <ArrowRight className="w-4 h-4" />
-                      </span>
-                    </CardFooter>
-                  </Card>
-                </Link>
-              </motion.div>
-            ))}
+                      </CardFooter>
+                    </Card>
+                  </Link>
+                </motion.div>
+              );
+            })}
           </AnimatePresence>
         </motion.div>
 

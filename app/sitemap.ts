@@ -1,8 +1,7 @@
-// app/sitemap.ts
 import { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/posts";
-
 import { getAllDocs } from "@/lib/docs";
+import { tools } from "@/lib/tools-config";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
@@ -19,49 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
-      url: "https://www.texavor.com/tools/ai-visibility-calculator",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://www.texavor.com/tools/website-auditor",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
       url: "https://www.texavor.com/tools",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://www.texavor.com/tools/brand-authority",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://www.texavor.com/tools/content-audit",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://www.texavor.com/tools/faq-schema-generator",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://www.texavor.com/tools/topical-authority",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://www.texavor.com/tools/aeo-schema-validator",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
@@ -110,6 +67,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  const toolPages: MetadataRoute.Sitemap = tools.map((tool) => ({
+    url: `https://www.texavor.com${tool.href}`,
+    lastModified: new Date(),
+    changeFrequency: tool.changeFrequency || "weekly",
+    priority: tool.priority || 0.9,
+  }));
+
   const posts = await getAllPosts();
   const postPages: MetadataRoute.Sitemap = posts.map((post: any) => ({
     url: `https://www.texavor.com/blog/${post?.slug}`,
@@ -126,5 +90,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...postPages, ...docPages];
+  return [...staticPages, ...toolPages, ...postPages, ...docPages];
 }

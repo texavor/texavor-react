@@ -8,7 +8,7 @@ export const alt = "Texavor - AI Search Optimization";
 export default async function Image() {
   return generateOgImage({
     title: "Texavor",
-    description: "Optimize for AI Search (AEO) & ChatGPT",
+    description: "Optimize for AI Search (GEO) & ChatGPT",
     icon: (
       <svg
         width="64"

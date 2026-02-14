@@ -1,7 +1,7 @@
 # Tool Guide: Schema Markup Validator
 
 **Target Audience**: SEO Specialists, Web Developers, Content Marketers.
-**Goal**: Validate JSON-LD schema markup and get AEO optimization recommendations.
+**Goal**: Validate JSON-LD schema markup and get GEO optimization recommendations.
 
 ---
 
@@ -175,14 +175,14 @@ const SchemaTypeBadges = ({ types }: { types: string[] }) => (
 );
 ```
 
-#### AEO Checks Table
+#### GEO Checks Table
 
 ```tsx
 const AeoChecksTable = ({ checks }: { checks: Record<string, any> }) => {
   const checkItems = [
     { key: "schema_found", label: "Schema Present" },
     { key: "syntax_valid", label: "Valid JSON Syntax" },
-    { key: "aeo_type_found", label: "AEO-Friendly Type" },
+    { key: "aeo_type_found", label: "GEO-Friendly Type" },
     { key: "entity_linking", label: "Entity Linking" },
     { key: "voice_ready", label: "Voice Search Ready" },
     { key: "identity_verified", label: "Organization/Author" },
@@ -249,8 +249,8 @@ const OpportunitiesList = ({ opportunities }: { opportunities: string[] }) => (
 
 ### Meta Tags
 
-- **Title**: `Free Schema Markup Validator + AEO Audit | Texavor`
-- **Description**: `Validate JSON-LD schema, check syntax errors, and get AEO optimization tips. Test Article, FAQPage, HowTo schemas instantly. Free tool for SEO.`
+- **Title**: `Free Schema Markup Validator + GEO Audit | Texavor`
+- **Description**: `Validate JSON-LD schema, check syntax errors, and get GEO optimization tips. Test Article, FAQPage, HowTo schemas instantly. Free tool for SEO.`
 
 ### URL
 
@@ -270,7 +270,7 @@ const OpportunitiesList = ({ opportunities }: { opportunities: string[] }) => (
 | `aeo_checks`                   | object   | Detailed validation results                                      |
 | `aeo_checks.schema_found`      | boolean  | At least one schema present                                      |
 | `aeo_checks.syntax_valid`      | boolean  | All schemas are valid JSON                                       |
-| `aeo_checks.aeo_type_found`    | boolean  | Has FAQPage, HowTo, or Article type                              |
+| `aeo_checks.aeo_type_found`    | boolean  | Has FAQPage, HowTo, or Article type (GEO-Friendly)               |
 | `aeo_checks.entity_linking`    | string   | Strength of entity connections ("Strong (3 props)" or "Missing") |
 | `aeo_checks.voice_ready`       | boolean  | Has 'speakable' property for voice search                        |
 | `aeo_checks.identity_verified` | boolean  | Has Organization or Person schema                                |
@@ -288,7 +288,7 @@ const OpportunitiesList = ({ opportunities }: { opportunities: string[] }) => (
 
 ### vs Schema.org Validator
 
-- ✅ **AEO scoring algorithm** (not just pass/fail)
+- ✅ **GEO scoring algorithm** (not just pass/fail)
 - ✅ **Actionable opportunities** (what to add next)
 - ✅ **Free, no signup required**
 

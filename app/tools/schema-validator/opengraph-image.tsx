@@ -45,7 +45,7 @@ export default async function Image() {
           maxWidth: "80%",
         }}
       >
-        Validate JSON-LD &amp; Get AEO Insights
+        Validate JSON-LD &amp; Get GEO Insights
       </div>
 
       {/* Branding */}

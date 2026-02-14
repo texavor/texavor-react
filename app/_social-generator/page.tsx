@@ -104,14 +104,14 @@ export default function SocialGeneratorPage() {
   const cards = [
     {
       title: "Texavor",
-      subtitle: "Optimize for AI Search (AEO) & ChatGPT",
+      subtitle: "Optimize for AI Search (GEO) & ChatGPT",
       description:
         "Boost your brand's visibility in ChatGPT, Perplexity, and Gemini.",
       icon: <Activity className="w-12 h-12 text-green-400" />,
       type: "Home",
     },
     {
-      title: "Free AEO Tools",
+      title: "Free GEO Tools",
       subtitle: "AI Visibility, Audits & Schema",
       description:
         "Analyze your AI visibility, audit content for LLMs, and generate schema.",
@@ -136,9 +136,9 @@ export default function SocialGeneratorPage() {
     },
     {
       title: "Texavor Blog",
-      subtitle: "AEO Insights & Guides",
+      subtitle: "GEO Insights & Guides",
       description:
-        "Expert guides on Answer Engine Optimization and ranking in AI overviews.",
+        "Expert guides on Generative Engine Optimization and ranking in AI overviews.",
       icon: <FileText className="w-12 h-12 text-green-400" />,
       type: "Blog",
     },
@@ -166,12 +166,12 @@ export default function SocialGeneratorPage() {
       type: "Topical Authority",
     },
     {
-      title: "AEO Schema Validator",
+      title: "GEO Schema Validator",
       subtitle: "Validate Your Markup",
       description:
-        "Validate your structured data for Answer Engines. Ensure you have the right markup.",
+        "Validate your structured data for Generative Engines. Ensure you have the right markup.",
       icon: <CheckCircle2 className="w-12 h-12 text-green-400" />,
-      type: "AEO Schema Validator",
+      type: "GEO Schema Validator",
     },
   ];
 

@@ -105,7 +105,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
             opacity: 0.9,
           }}
         >
-          Optimize your visibility in AI Search (AEO)
+          Optimize your visibility in AI Search (GEO)
         </div>
       </div>
 

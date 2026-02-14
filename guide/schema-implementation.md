@@ -112,7 +112,7 @@ WebPage (#webpage)
 ### **Example Search Result**
 
 ```
-Texavor - Best AI Visibility Optimization / AEO Tool
+Texavor - Best AI Visibility Optimization / GEO Tool
 ★★★★★ 4.8 (127 reviews)
 https://www.texavor.com
 
@@ -154,7 +154,7 @@ The schema will automatically update on the next build. No need to touch `page.t
 
 ---
 
-## 📈 SEO/AEO Benefits
+## 📈 SEO/GEO Benefits
 
 ### **Traditional SEO**
 
@@ -362,7 +362,7 @@ The `@graph` array allows multiple related entities to be described in a single 
 
 You now have a **world-class schema implementation** that:
 
-1. ✅ Matches top AEO tools like PromptMonitor
+1. ✅ Matches top GEO tools like PromptMonitor
 2. ✅ Dynamically compiles FAQ data at runtime
 3. ✅ Includes 6 comprehensive schema types
 4. ✅ Provides rich snippets in search results

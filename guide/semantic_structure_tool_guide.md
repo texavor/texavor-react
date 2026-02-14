@@ -30,7 +30,7 @@ _Use these sections on the landings page to rank for the keywords._
 
 ### H1: Free SEO Heading Structure Validator
 
-**Intro**: "Search engines and Screen Readers rely on a logical heading hierarchy to understand your content. Skipped levels (like jumping from H2 to H4) confuse AI crawlers and hurt your Answer Engine Optimization (AEO)."
+**Intro**: "Search engines and Screen Readers rely on a logical heading hierarchy to understand your content. Skipped levels (like jumping from H2 to H4) confuse AI crawlers and hurt your Generative Engine Optimization (GEO)."
 
 ### Features List (Benefits)
 

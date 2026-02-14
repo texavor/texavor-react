@@ -18,7 +18,7 @@ export default function AeoChecksTable({ checks }: AeoChecksTableProps) {
   const checkItems = [
     { key: "schema_found" as const, label: "Schema Present" },
     { key: "syntax_valid" as const, label: "Valid JSON Syntax" },
-    { key: "aeo_type_found" as const, label: "AEO-Friendly Type" },
+    { key: "aeo_type_found" as const, label: "GEO-Friendly Type" },
     { key: "entity_linking" as const, label: "Entity Linking" },
     { key: "voice_ready" as const, label: "Voice Search Ready" },
     { key: "identity_verified" as const, label: "Organization/Author" },

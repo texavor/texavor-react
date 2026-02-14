@@ -4,12 +4,12 @@ import { FileText } from "lucide-react";
 export const runtime = "nodejs";
 export { size, contentType };
 
-export const alt = "Texavor Blog - AEO Insights";
+export const alt = "Texavor Blog - GEO Insights";
 
 export default async function Image() {
   return generateOgImage({
     title: "Texavor Blog",
-    description: "AEO Insights & Guides",
+    description: "GEO Insights & Guides",
     icon: <FileText size={64} color="#4ade80" />,
   });
 }

@@ -1,6 +1,6 @@
 # Tool Guide: Direct Answer Optimizer (Featured Snippet Tool)
 
-**Target Audience**: Content Marketers, SEO Specialists, Answer Engine Optimizers.
+**Target Audience**: Content Marketers, SEO Specialists, Generative Engine Optimizers.
 **Goal**: Help content rank for "Position Zero" (Featured Snippets) and AI-driven direct answers.
 
 ---
@@ -30,13 +30,13 @@ POST /api/v1/public/tools/direct_answer
   "grade": "A",
   "opportunities": [
     {
-      "header": "What is Answer Engine Optimization?",
+      "header": "What is Generative Engine Optimization?",
       "issue": "Answer is too long (85 words). Aim for 40-60 words for AI snippets.",
       "severity": "high",
       "suggestion": "Condense the definition into 2-3 concise sentences immediately following the header."
     },
     {
-      "header": "How to optimize for AEO?",
+      "header": "How to optimize for GEO?",
       "issue": "No structured list detected immediately following this 'How-to' question.",
       "severity": "medium",
       "suggestion": "Use a numbered list (ol) or bullet points (ul) for step-by-step instructions."
@@ -44,8 +44,8 @@ POST /api/v1/public/tools/direct_answer
   ],
   "good_examples": [
     {
-      "header": "Who uses AEO?",
-      "answer": "Digital marketers, SEO specialists, and content creators use AEO to ensure their content is discoverable by AI engines like ChatGPT and Perplexity...",
+      "header": "Who uses GEO?",
+      "answer": "Digital marketers, SEO specialists, and content creators use GEO to ensure their content is discoverable by AI engines like ChatGPT and Perplexity...",
       "status": "Perfect Length (48 words)",
       "type": "paragraph"
     }

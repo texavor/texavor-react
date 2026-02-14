@@ -267,11 +267,11 @@ export default function ComparisonPage() {
                   </div>
                   <div>
                     <strong className="text-zinc-900 dark:text-white block">
-                      Answer Engine Optimization (AEO)
+                      Generative Engine Optimization (GEO)
                     </strong>
                     <span className="text-zinc-600 dark:text-zinc-400 text-sm">
                       Specific tools for Brand Authority and FAQ Schema designed
-                      for AI Search (Perplexity), not just Google.
+                      for AI Search (Perplexity, ChatGPT), not just Google.
                     </span>
                   </div>
                 </li>

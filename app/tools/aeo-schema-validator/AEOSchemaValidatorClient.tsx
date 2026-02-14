@@ -292,7 +292,7 @@ export default function AEOSchemaValidatorClient() {
         {/* Empty State Feature Preview */}
         {!result && !loading && (
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto opacity-90">
-            {/* Feature 1: AEO Health Checks */}
+            {/* Feature 1: GEO Health Checks */}
             <div className="relative group">
               <div className="absolute inset-0 bg-emerald-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
               <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">

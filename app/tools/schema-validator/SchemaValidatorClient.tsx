@@ -159,7 +159,7 @@ export default function SchemaValidatorClient() {
             Schema Markup Validator
           </h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-inter">
-            Validate JSON-LD schema markup, check syntax errors, and get AEO
+            Validate JSON-LD schema markup, check syntax errors, and get GEO
             optimization recommendations for Article, FAQPage, HowTo schemas.
           </p>
         </div>
@@ -281,10 +281,10 @@ export default function SchemaValidatorClient() {
                     <CheckCircle2 className="w-5 h-5 text-indigo-600" />
                   </div>
                   <h3 className="text-xl font-semibold text-foreground font-poppins">
-                    AEO Analysis
+                    GEO Analysis
                   </h3>
                   <p className="text-sm text-muted-foreground font-inter">
-                    Get detailed AEO compliance checks including entity linking,
+                    Get detailed GEO compliance checks including entity linking,
                     voice readiness, and syntax validation.
                   </p>
                 </CardHeader>
@@ -372,7 +372,7 @@ export default function SchemaValidatorClient() {
                     {stats?.checks_passed || 0}
                   </div>
                   <div className="text-sm font-medium font-inter text-slate-500 dark:text-slate-400">
-                    AEO Checks Passed
+                    GEO Checks Passed
                   </div>
                 </div>
               </div>
@@ -416,7 +416,7 @@ export default function SchemaValidatorClient() {
               <Card className="bg-secondary shadow-none border-none">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold text-foreground font-poppins mb-4">
-                    AEO Validation Checks
+                    GEO Validation Checks
                   </h3>
                   <AeoChecksTable checks={result.aeo_checks} />
                 </CardContent>

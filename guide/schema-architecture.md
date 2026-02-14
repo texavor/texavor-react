@@ -52,7 +52,7 @@ graph TD
 
 **Purpose:** Root entity that represents the entire website  
 **SEO Impact:** Enables sitelinks search box in Google  
-**AEO Impact:** Helps AI understand site structure
+**GEO Impact:** Helps AI understand site structure
 
 ---
 
@@ -75,7 +75,7 @@ graph TD
 
 **Purpose:** Company identity and contact information  
 **SEO Impact:** Knowledge panel eligibility  
-**AEO Impact:** AI can cite contact info and social profiles
+**GEO Impact:** AI can cite contact info and social profiles
 
 ---
 
@@ -112,7 +112,7 @@ graph TD
 
 **Purpose:** Product details with features and pricing  
 **SEO Impact:** Star ratings in search results  
-**AEO Impact:** AI can recommend product with features and pricing
+**GEO Impact:** AI can recommend product with features and pricing
 
 ---
 
@@ -135,7 +135,7 @@ graph TD
 
 **Purpose:** Navigation hierarchy  
 **SEO Impact:** Breadcrumb display in search results  
-**AEO Impact:** Helps AI understand site structure
+**GEO Impact:** Helps AI understand site structure
 
 ---
 
@@ -161,7 +161,7 @@ graph TD
 
 **Purpose:** FAQ content for rich snippets  
 **SEO Impact:** FAQ accordion in search results  
-**AEO Impact:** AI can answer user questions directly  
+**GEO Impact:** AI can answer user questions directly  
 **🔄 Dynamic:** Auto-updates from FAQ.tsx
 
 ---
@@ -182,7 +182,7 @@ graph TD
 
 **Purpose:** Homepage metadata and relationships  
 **SEO Impact:** Page title and description in search  
-**AEO Impact:** Helps AI understand page context
+**GEO Impact:** Helps AI understand page context
 
 ---
 

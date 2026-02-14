@@ -155,7 +155,7 @@ export default function Footer() {
                     href="/tools/aeo-schema-validator"
                     className="hover:text-primary transition-colors"
                   >
-                    AEO Schema
+                    GEO Schema
                   </Link>
                 </li>
               </ul>

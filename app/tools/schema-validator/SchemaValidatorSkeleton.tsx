@@ -49,7 +49,7 @@ export default function SchemaValidatorSkeleton() {
         </CardContent>
       </Card>
 
-      {/* AEO Checks Table Skeleton */}
+      {/* GEO Checks Table Skeleton */}
       <Card className="bg-secondary shadow-none border-none">
         <CardContent className="p-6">
           <Skeleton className="h-6 w-40 mb-4" />

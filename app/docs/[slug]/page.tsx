@@ -39,7 +39,7 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: docData?.title || "Texavor Documentation",
-      description: docData?.description || "Optimize for AI Search (AEO)",
+      description: docData?.description || "Optimize for AI Search (GEO)",
     },
     alternates: {
       canonical: `/docs/${slug}`,

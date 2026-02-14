@@ -5,9 +5,9 @@ import { Metadata } from "next";
 import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
-  title: "Texavor Blog | Insights on AEO & AI Content Strategy",
+  title: "Texavor Blog | Insights on GEO & AI Content Strategy",
   description:
-    "Insights and guides on AI content creation, Answer Engine Optimization (AEO), and SEO strategies for the AI era.",
+    "Insights and guides on AI content creation, Generative Engine Optimization (GEO), and SEO strategies for the AI era.",
   alternates: {
     canonical: "/blog",
   },
@@ -36,7 +36,7 @@ export default async function Blog() {
     url: "https://www.texavor.com/blog",
     name: "Texavor Blog",
     description:
-      "Insights and guides on AI content creation, Answer Engine Optimization (AEO), and SEO strategies for the AI era.",
+      "Insights and guides on AI content creation, Generative Engine Optimization (GEO), and SEO strategies for the AI era.",
     author: {
       "@type": "Person",
       name: "Suraj Vishwakarma",
