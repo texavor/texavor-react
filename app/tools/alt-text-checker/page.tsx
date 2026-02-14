@@ -1,61 +1,77 @@
 import type { Metadata } from "next";
 import VisualSearchClient from "./VisualSearchClient";
+import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
   title:
-    "Free Alt Text Checker - Audit Images for SEO & Accessibility | Texavor",
+    "Free Alt Text Checker | GEO Visual Search & Accessibility Audit | Texavor",
   description:
-    "Instantly audit alt text for WCAG compliance and Google Lens optimization. Find missing alt text, duplicates, and get AI-powered suggestions. Free tool.",
-  keywords: [
-    "alt text checker",
-    "alt text validator",
-    "image accessibility checker",
-    "check alt text online",
-    "google lens optimization",
-    "visual search seo",
-    "wcag compliance checker",
-    "image seo audit",
-  ],
-  openGraph: {
-    title: "Free Alt Text Checker - Audit Images for SEO & Accessibility",
-    description:
-      "Instantly audit alt text for WCAG compliance and Google Lens optimization. Find missing alt text, duplicates, and get AI-powered suggestions.",
-    type: "website",
-    url: "https://www.texavor.com/tools/alt-text-checker",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Free Alt Text Checker - Audit Images for SEO & Accessibility",
-    description:
-      "Instantly audit alt text for WCAG compliance and Google Lens optimization.",
-  },
+    "Instantly audit image alt text for WCAG compliance and AI Lens optimization. Improve image metadata for better GEO (Generative Engine Optimization) in visual search results.",
   alternates: {
-    canonical: "https://www.texavor.com/tools/alt-text-checker",
+    canonical: "/tools/alt-text-checker",
   },
 };
 
 export default function AltTextCheckerPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.texavor.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Tools",
+        item: "https://www.texavor.com/tools",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Alt Text Checker",
+        item: "https://www.texavor.com/tools/alt-text-checker",
+      },
+    ],
+  };
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "Alt Text Checker",
-    description:
-      "Audit image alt text for WCAG compliance and Google Lens visual search optimization",
+    "@id": "https://www.texavor.com/tools/alt-text-checker",
     url: "https://www.texavor.com/tools/alt-text-checker",
-    applicationCategory: "SEOApplication",
+    name: "Alt Text Checker - GEO Visual Tool",
+    description:
+      "Audit image alt text for WCAG compliance and AI visual search optimization for generative engines.",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    browserRequirements: "Requires JavaScript. Requires HTML5.",
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+    author: {
+      "@type": "Person",
+      name: "Suraj Vishwakarma",
+      url: "https://www.texavor.com",
+    },
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": "https://www.texavor.com",
+      url: "https://www.texavor.com",
+      name: "Texavor",
     },
   };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <Schema script={jsonLd} />
+      <Schema script={breadcrumbSchema} />
       <VisualSearchClient />
     </>
   );

@@ -1,33 +1,14 @@
 import type { Metadata } from "next";
 import DirectAnswerClient from "./DirectAnswerClient";
+import Schema from "@/components/Schema"; // Assuming a Schema component for structured data
 
 export const metadata: Metadata = {
-  title: "Free Featured Snippet Optimizer - Position Zero Tool | Texavor",
+  title:
+    "Free Featured Snippet Optimizer | Win Position Zero in AI Search | Texavor",
   description:
-    "Optimize your content for Position Zero and AI-driven direct answers. Detect featured snippet opportunities, analyze answer structure, and validate schema markup.",
-  keywords: [
-    "featured snippet optimizer",
-    "position zero tool",
-    "direct answer checker",
-    "ai answer optimization",
-    "generative engine direct answers",
-    "seo snippet checker",
-  ],
-  openGraph: {
-    title: "Free Featured Snippet Optimizer - Rank for Position Zero",
-    description:
-      "Detect featured snippet opportunities and optimize your content for direct answers.",
-    type: "website",
-    url: "https://www.texavor.com/tools/featured-snippet-optimizer",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Free Featured Snippet Optimizer - Rank for Position Zero",
-    description:
-      "Optimize content structure for direct answers and AI snippets.",
-  },
+    "Optimize your content for Position Zero and AI direct answers. Detect featured snippet opportunities, analyze answer structure, and improve your GEO (Generative Engine Optimization) performance.",
   alternates: {
-    canonical: "https://www.texavor.com/tools/featured-snippet-optimizer",
+    canonical: "/tools/featured-snippet-optimizer",
   },
 };
 

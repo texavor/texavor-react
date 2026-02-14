@@ -1,59 +1,77 @@
 import type { Metadata } from "next";
 import CitationOpportunitiesClient from "./CitationOpportunitiesClient";
+import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
-  title: "Free Citation Opportunity Finder - Improve E-E-A-T | Texavor",
+  title:
+    "Free Citation Opportunity Finder | Improve E-E-A-T & AI Trust | Texavor",
   description:
-    "Find uncited claims, statistics, and expert advice that need sources. Improve E-E-A-T and credibility with citation suggestions. Free tool.",
-  keywords: [
-    "citation opportunities",
-    "where to add citations",
-    "uncited claims checker",
-    "e-e-a-t checker",
-    "content credibility tool",
-    "fact check helper",
-    "find claims that need sources",
-    "improve content citations seo",
-  ],
-  openGraph: {
-    title: "Free Citation Opportunity Finder - Improve E-E-A-T",
-    description:
-      "Find uncited claims and improve your content's credibility instantly.",
-    type: "website",
-    url: "https://www.texavor.com/tools/citation-opportunities",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Free Citation Opportunity Finder - Improve E-E-A-T",
-    description: "Find uncited claims and improve content credibility.",
-  },
+    "Audit your content for uncited claims and expert advice. Improve E-E-A-T signals and establish authority in AI search engines through better citation coverage.",
   alternates: {
-    canonical: "https://www.texavor.com/tools/citation-opportunities",
+    canonical: "/tools/citation-opportunities",
   },
 };
 
 export default function CitationOpportunitiesPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.texavor.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Tools",
+        item: "https://www.texavor.com/tools",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Citation Opportunity Finder",
+        item: "https://www.texavor.com/tools/citation-opportunities",
+      },
+    ],
+  };
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "Citation Opportunities Finder",
-    description:
-      "Identify where citations should be added to improve E-E-A-T and content credibility",
+    "@id": "https://www.texavor.com/tools/citation-opportunities",
     url: "https://www.texavor.com/tools/citation-opportunities",
-    applicationCategory: "SEOApplication",
+    name: "Citation Opportunities Finder - GEO Trust Tool",
+    description:
+      "Identify where citations should be added to improve E-E-A-T and content credibility for generative engine optimization.",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    browserRequirements: "Requires JavaScript. Requires HTML5.",
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+    author: {
+      "@type": "Person",
+      name: "Suraj Vishwakarma",
+      url: "https://www.texavor.com",
+    },
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": "https://www.texavor.com",
+      url: "https://www.texavor.com",
+      name: "Texavor",
     },
   };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <Schema script={jsonLd} />
+      <Schema script={breadcrumbSchema} />
       <CitationOpportunitiesClient />
     </>
   );

@@ -4,23 +4,48 @@ import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
   title:
-    "Free Brand Authority Checker | Test Your Social & Schema Signals | Texavor",
+    "Free Brand Authority Checker | AI Search Readiness & E-E-A-T Audit | Texavor",
   description:
-    "Calculate your Brand Authority Score instantly. We analyze your Social Links, Knowledge Graph Schema, and SSL Security to verify your E-E-A-T signals.",
+    "Audit your Brand Authority for the AI era. We analyze your Social Links, Knowledge Graph Schema, and E-E-A-T signals to verify your readiness for AI search engines like Perplexity and ChatGPT.",
   alternates: {
     canonical: "/tools/brand-authority",
   },
 };
 
 export default function Page() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.texavor.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Tools",
+        item: "https://www.texavor.com/tools",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Brand Authority Checker",
+        item: "https://www.texavor.com/tools/brand-authority",
+      },
+    ],
+  };
+
   const schema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "@id": "https://www.texavor.com/tools/brand-authority",
     url: "https://www.texavor.com/tools/brand-authority",
-    name: "Domain Authority Checker - Free SEO Tool",
+    name: "Brand Authority Checker - E-E-A-T & GEO Audit Tool",
     description:
-      "Check your Domain Authority (DA), Backlinks, and Organic Traffic estimates instantly. Calculate your Brand Authority Score with analysis of Social Links, Knowledge Graph Schema, and SSL Security.",
+      "Calculate your Brand Authority Score instantly. Analyze Social Links, Knowledge Graph Schema, and AI visibility signals for better Generative Engine Optimization.",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     browserRequirements: "Requires JavaScript. Requires HTML5.",
@@ -46,6 +71,7 @@ export default function Page() {
   return (
     <>
       <Schema script={schema} />
+      <Schema script={breadcrumbSchema} />
       <BrandAuthorityPage />
     </>
   );
