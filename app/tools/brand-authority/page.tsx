@@ -3,8 +3,7 @@ import BrandAuthorityPage from "./BrandAuthorityPage";
 import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
-  title:
-    "Free Brand Authority Checker | AI Search Readiness & E-E-A-T Audit | Texavor",
+  title: "Free Brand Authority Checker | AI & E-E-A-T Audit | Texavor",
   description:
     "Audit your Brand Authority for the AI era. We analyze your Social Links, Knowledge Graph Schema, and E-E-A-T signals to verify your readiness for AI search engines like Perplexity and ChatGPT.",
   alternates: {
