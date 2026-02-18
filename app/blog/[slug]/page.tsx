@@ -156,32 +156,85 @@ export default async function ArticlePage(props: {
   const parsedHtml = marked.parse(articleData?.content || "") as string;
 
   // Extract FAQs from content (looking for Q&A patterns)
+  // Extract FAQs from content (looking for Q&A patterns)
   const extractFAQs = (content: string) => {
     const faqs: Array<{ question: string; answer: string }> = [];
 
-    // Pattern 1: ## Question? followed by answer
-    const qaPattern =
-      /^##\s+(.+\?)\s*[\r\n]+[\r\n]+(.+?)(?=[\r\n]+##|[\r\n]+---|[\r\n]+[\r\n]+##|$)/gim;
-    let matches = [...content.matchAll(qaPattern)];
+    // 1. Identify the FAQ section
+    // Match:
+    // - ## FAQ / FAQs / FAQ's
+    // - ## Frequently Asked Questions (with potential typos like "Frequenty", "Quesiton")
+    // - ## People also asked / People also ask
+    // - Surround with markdown bold **...** option
+    const faqHeaderRegex =
+      /^##\s+(?:(?:\*\*|)(?:FAQs?|Freq[a-z]*\s+Asked\s+Que[a-z]*|People\s+also\s+ask(?:ed)?s?)(?:\*\*|))/im;
+    const match = content.match(faqHeaderRegex);
 
-    matches.forEach((match) => {
-      faqs.push({
-        question: match[1].trim(),
-        answer: match[2].trim().substring(0, 500), // Limit answer length
+    if (match) {
+      const startIndex = match.index! + match[0].length;
+
+      // Find the next H2 to determine the end of the FAQ section
+      const remainingContent = content.substring(startIndex);
+      const nextHeadingIndex = remainingContent.search(/^##\s+/m);
+
+      const faqSectionText =
+        nextHeadingIndex === -1
+          ? remainingContent
+          : remainingContent.substring(0, nextHeadingIndex);
+
+      // 2. Parse questions (1. Question...)
+      const questionRegex = /(?:^|\n)\s*\d+\.\s+(.*?)(?:\r?\n|$)/g;
+
+      let qMatch;
+      let lastIndex = 0;
+      let lastQuestion = null;
+
+      // Loop through matches
+      while ((qMatch = questionRegex.exec(faqSectionText)) !== null) {
+        if (lastQuestion) {
+          const answer = faqSectionText
+            .substring(lastIndex, qMatch.index)
+            .trim();
+          faqs.push({ question: lastQuestion, answer });
+        }
+
+        lastQuestion = qMatch[1].trim();
+        lastIndex = questionRegex.lastIndex;
+      }
+
+      // Capture the last answer
+      if (lastQuestion) {
+        const answer = faqSectionText.substring(lastIndex).trim();
+        faqs.push({ question: lastQuestion, answer });
+      }
+    }
+
+    // Fallback logic for legacy patterns (if no numbered list found in FAQ section)
+    if (faqs.length === 0) {
+      // Pattern 1: ## Question?
+      const qaPattern =
+        /^##\s+(.+\?)\s*[\r\n]+[\r\n]+(.+?)(?=[\r\n]+##|[\r\n]+---|[\r\n]+[\r\n]+##|$)/gim;
+      let matches = [...content.matchAll(qaPattern)];
+
+      matches.forEach((match) => {
+        faqs.push({
+          question: match[1].trim(),
+          answer: match[2].trim().substring(0, 500), // Limit answer length
+        });
       });
-    });
 
-    // Pattern 2: **Q:** or **Question:** format
-    const boldQAPattern =
-      /\*\*(?:Q|Question):\*\*\s*(.+?)[\r\n]+\*\*(?:A|Answer):\*\*\s*(.+?)(?=[\r\n]+\*\*(?:Q|Question):|$)/gi;
-    matches = [...content.matchAll(boldQAPattern)];
+      // Pattern 2: **Q:** or **Question:** format
+      const boldQAPattern =
+        /\*\*(?:Q|Question):\*\*\s*(.+?)[\r\n]+\*\*(?:A|Answer):\*\*\s*(.+?)(?=[\r\n]+\*\*(?:Q|Question):|$)/gi;
+      matches = [...content.matchAll(boldQAPattern)];
 
-    matches.forEach((match) => {
-      faqs.push({
-        question: match[1].trim(),
-        answer: match[2].trim().substring(0, 500),
+      matches.forEach((match) => {
+        faqs.push({
+          question: match[1].trim(),
+          answer: match[2].trim().substring(0, 500),
+        });
       });
-    });
+    }
 
     return faqs;
   };
