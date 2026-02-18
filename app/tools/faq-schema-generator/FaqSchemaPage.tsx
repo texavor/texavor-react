@@ -260,13 +260,13 @@ export default function FaqSchemaPage() {
               <TabsList className="grid w-full grid-cols-2 mb-6 bg-zinc-100 dark:bg-zinc-800/50 p-1 rounded-xl h-12">
                 <TabsTrigger
                   value="manual"
-                  className="data-[state=active]:!bg-primary data-[state=active]:!text-black transition-all rounded-lg"
+                  className="data-[state=active]:!bg-primary data-[state=active]:!text-primary-foreground transition-all rounded-lg"
                 >
                   Manual Input
                 </TabsTrigger>
                 <TabsTrigger
                   value="auto"
-                  className="data-[state=active]:!bg-primary data-[state=active]:!text-black transition-all rounded-lg"
+                  className="data-[state=active]:!bg-primary data-[state=active]:!text-primary-foreground transition-all rounded-lg"
                 >
                   Import from URL
                 </TabsTrigger>
@@ -372,7 +372,7 @@ export default function FaqSchemaPage() {
                                 disabled={
                                   extractMutation.isPending || isWaitingForToken
                                 }
-                                className="bg-primary hover:bg-primary/90 text-zinc-950 shadow-md transition-all w-32 shrink-0 self-start rounded-xl h-12"
+                                className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-md transition-all w-32 shrink-0 self-start rounded-xl h-12"
                               >
                                 {isWaitingForToken ? (
                                   <>
@@ -546,7 +546,7 @@ export default function FaqSchemaPage() {
                   )
                 }
                 disabled={!generatedSchema}
-                className="bg-primary hover:bg-primary/90 text-zinc-950 shadow-lg transition-all rounded-xl"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg transition-all rounded-xl"
               >
                 <Copy className="w-4 h-4 mr-2" />
                 Copy Code
