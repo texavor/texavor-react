@@ -129,9 +129,11 @@ export default function Pricing() {
                     }`}
                   >
                     <Link
-                      href={`${process.env.NEXT_PUBLIC_APP_URL}/register`}
+                      href={`${process.env.NEXT_PUBLIC_APP_URL}/register?plan=${tier.name.toLowerCase()}`}
                       className="flex items-center justify-center gap-2"
                       target="_blank"
+                      data-umami-event="pricing_get_plan_click"
+                      data-umami-event-plan={tier.name}
                     >
                       {`Get ${tier.name}`}
                       <ArrowRight className="w-4 h-4" />

@@ -12,6 +12,8 @@ import { Analytics } from "@vercel/analytics/next";
 import CrispChat from "@/components/CrispChat";
 import AiTracker from "./AiTracker";
 
+import UmamiEngagement from "@/components/UmamiEngagement";
+
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
   variable: "--font-poppins",
@@ -80,6 +82,7 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
         <Analytics />
+        <UmamiEngagement />
 
         {/* AI Tracker Component - Captures Full URL */}
         <Suspense fallback={null}>

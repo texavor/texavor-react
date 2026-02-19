@@ -29,7 +29,10 @@ export default function CTA() {
             size="lg"
             className="bg-white dark:bg-emerald-400 text-primary dark:text-zinc-950 hover:bg-gray-100 dark:hover:bg-emerald-300 text-lg px-8 py-6 rounded-xl font-bold shadow-lg transition-transform hover:scale-105"
           >
-            <Link href={`${process.env.NEXT_PUBLIC_APP_URL}/register`}>
+            <Link
+              href={`${process.env.NEXT_PUBLIC_APP_URL}/register`}
+              data-umami-event="bottom_cta_get_started_click"
+            >
               Get Started
             </Link>
           </Button>

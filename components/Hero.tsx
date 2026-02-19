@@ -45,7 +45,11 @@ export default function Hero() {
             className="h-12 px-6 rounded-lg bg-white dark:bg-zinc-900 border-gray-200 dark:border-white/10 text-foreground font-semibold shadow-sm hover:bg-gray-50 dark:hover:bg-zinc-800 hover:text-foreground font-poppins text-base min-w-[160px]"
             aria-label="Start Free Trial"
           >
-            <Link href={`${process.env.NEXT_PUBLIC_APP_URL}`} target="_blank">
+            <Link
+              href={`${process.env.NEXT_PUBLIC_APP_URL}`}
+              target="_blank"
+              data-umami-event="hero_start_trial_click"
+            >
               Start Free
             </Link>
           </Button>
@@ -56,7 +60,12 @@ export default function Hero() {
             className="h-12 px-8 rounded-lg bg-primary hover:bg-primary/90 text-white dark:text-black font-semibold shadow-lg shadow-primary/20 transition-all hover:shadow-xl font-poppins text-base min-w-[160px]"
             aria-label="Test Your Website"
           >
-            <Link href="/tools/website-auditor">Test Your Website (Free)</Link>
+            <Link
+              href="/tools/website-auditor"
+              data-umami-event="hero_website_audit_click"
+            >
+              Test Your Website (Free)
+            </Link>
           </Button>
         </div>
 
