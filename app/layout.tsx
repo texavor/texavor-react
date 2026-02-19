@@ -27,7 +27,8 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: {
     template: "%s",
-    default: "Texavor - GEO & Content Optimization Platform for Writers, Marketers & Developers",
+    default:
+      "Texavor - GEO & Content Optimization Platform for Writers, Marketers & Developers",
   },
   description:
     "Generate high-impact, E-E-A-T optimized technical articles. Monitor Share of Voice on ChatGPT, Perplexity & Claude. Fix content decay before you lose rank.",
@@ -35,14 +36,16 @@ export const metadata: Metadata = {
     google: "E4iB-NQGsBin8Lyn7z9uYrmUZR0YwVl4_FhB4bWaKzo",
   },
   openGraph: {
-    title: "Texavor - GEO & Content Optimization Platform for Writers, Marketers & Developers",
+    title:
+      "Texavor - GEO & Content Optimization Platform for Writers, Marketers & Developers",
     description:
       "Generate high-impact, E-E-A-T optimized technical articles. Monitor Share of Voice on ChatGPT, Perplexity & Claude. Fix content decay before you lose rank.",
     // images: "/easywriteOpenGraph.png",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Texavor - GEO & Content Optimization Platform for Writers, Marketers & Developers",
+    title:
+      "Texavor - GEO & Content Optimization Platform for Writers, Marketers & Developers",
     description:
       "Generate high-impact, E-E-A-T optimized technical articles. Monitor Share of Voice on ChatGPT, Perplexity & Claude. Fix content decay before you lose rank.",
     // images: "/easywriteOpenGraph.png",
@@ -69,10 +72,11 @@ export default function RootLayout({
           </ThemeProvider>
         </ReactQueryProvider>
 
-        {/* Scripts */}
         <Script
-          src="https://cloud.umami.is/script.js"
+          src="/stats/script.js"
           data-website-id="cd47a42b-95db-4fae-a72e-1b6737411074"
+          data-host-url="/stats"
+          data-domains="texavor.com,www.texavor.com"
           strategy="afterInteractive"
         />
         <Analytics />
