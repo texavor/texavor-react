@@ -52,7 +52,7 @@ export default function UmamiEngagement() {
       depths.forEach((depth) => {
         if (scrollPercent >= depth && !trackedDepths.current.has(depth)) {
           trackedDepths.current.add(depth);
-          window.umami.track("scroll_depth", { depth: `${depth}%` });
+          window.umami?.track("scroll_depth", { depth: `${depth}%` });
         }
       });
     };
