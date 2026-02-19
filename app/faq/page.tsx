@@ -1,5 +1,6 @@
 import PageTransition from "@/components/PageTransition";
-import FAQ, { faqData } from "@/components/FAQ";
+import FAQ from "@/components/FAQ";
+import { faqData } from "@/lib/faq-data";
 import Schema from "@/components/Schema";
 
 export const metadata = {
