@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title:
     "GEO Schema Validator | AI Search Readiness & Entity Content Audit | Texavor",
   description:
-    "Validate your Schema Markup for the Generative Engine era. Audit your content for LLM understanding, entity density, and GEO (Generative Engine Optimization) readiness.",
+    "Validate your Schema Markup for the Generative Engine era. Audit content for LLM understanding, entity density, and GEO readiness to rank in AI search results.",
   alternates: {
     canonical: "/tools/aeo-schema-validator",
   },

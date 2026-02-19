@@ -7,7 +7,7 @@ import Schema from "@/components/Schema";
 export const metadata: Metadata = {
   title: "Texavor Blog | Insights on GEO & AI Content Strategy",
   description:
-    "Insights and guides on AI content creation, Generative Engine Optimization (GEO), and SEO strategies for the AI era.",
+    "Explore expert insights and guides on AI content creation, Generative Engine Optimization (GEO), and advanced SEO strategies tailored for the new AI search era.",
   alternates: {
     canonical: "/blog",
   },

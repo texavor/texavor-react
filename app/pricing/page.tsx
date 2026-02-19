@@ -5,7 +5,7 @@ import Schema from "@/components/Schema";
 export const metadata = {
   title: "Pricing | Texavor",
   description:
-    "Simple, transparent pricing for AI content optimization. Choose the plan that fits your team's needs.",
+    "Simple, transparent pricing for AI content optimization. Choose the flexible plan that fits your team's needs. Start optimizing for ChatGPT and Perplexity today.",
   alternates: {
     canonical: "/pricing",
   },

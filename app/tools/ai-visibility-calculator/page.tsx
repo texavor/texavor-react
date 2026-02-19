@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title:
     "Free AI Visibility Calculator | GEO & SGE Search Ranking Checker | Texavor",
   description:
-    "Test how well your content ranks in AI search results (ChatGPT, Perplexity, Google SGE) with our 5-point analysis. Improve your visibility in generative engines through GEO.",
+    "Test how well your content ranks in AI search results like ChatGPT and Perplexity. Improve visibility in generative engines with our advanced 5-point analysis.",
   alternates: {
     canonical: "/tools/ai-visibility-calculator",
   },

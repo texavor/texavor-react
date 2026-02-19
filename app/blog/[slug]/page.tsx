@@ -108,16 +108,22 @@ export async function generateMetadata(props: {
   const articleData = await getArticleData(params.slug);
   return {
     title: articleData?.title || "Article Not Found",
-    description: articleData?.description || "Read this interesting article",
+    description:
+      articleData?.description ||
+      "Read this comprehensive article on Generative Engine Optimization and AI strategy. Learn how to optimize your content for the new era of AI search engines.",
     openGraph: {
       title: articleData?.title || "Article Not Found",
-      description: articleData?.description || "Read this interesting article",
+      description:
+        articleData?.description ||
+        "Read this comprehensive article on Generative Engine Optimization and AI strategy. Learn how to optimize your content for the new era of AI search engines.",
       images: articleData?.image ? [{ url: articleData.image }] : [],
     },
     twitter: {
       card: "summary_large_image",
       title: articleData?.title || "Article Not Found",
-      description: articleData?.description || "Read this interesting article",
+      description:
+        articleData?.description ||
+        "Read this comprehensive article on Generative Engine Optimization and AI strategy. Learn how to optimize your content for the new era of AI search engines.",
       images: articleData?.image ? [articleData.image] : [],
     },
     alternates: {

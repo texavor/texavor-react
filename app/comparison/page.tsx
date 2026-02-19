@@ -18,7 +18,7 @@ import { ComparisonTable } from "@/components/ComparisonTable";
 export const metadata: Metadata = {
   title: "Texavor vs The Market | Competitor Comparison",
   description:
-    "See how Texavor compares to RankPill, AI Writers (Jasper), and SEO Tools (Surfer). The only Content Operating System for technical teams.",
+    "Compare Texavor against RankPill, AI Writers like Jasper, and SEO Tools like Surfer. Discover why we are the only Content Operating System designed for dev teams.",
 };
 
 export default function ComparisonPage() {

@@ -5,7 +5,7 @@ import Schema from "@/components/Schema";
 export const metadata = {
   title: "FAQ | Texavor",
   description:
-    "Frequently asked questions about Texavor, GEO, content optimization, and more.",
+    "Find answers to frequently asked questions about Texavor, Generative Engine Optimization (GEO), content optimization features, and our AI-powered platform tools.",
   alternates: {
     canonical: "/faq",
   },
