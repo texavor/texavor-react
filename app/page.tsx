@@ -15,7 +15,7 @@ import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import dynamic from "next/dynamic";
 import Schema from "@/components/Schema";
-import { faqData } from "@/components/FAQ";
+import { faqData } from "@/lib/faq-data";
 
 const Integration = dynamic(() => import("@/components/Integration"));
 const SocialProof = dynamic(() => import("@/components/SocialProof"));
