@@ -23,6 +23,7 @@ const Integration = dynamic(() => import("@/components/Integration"));
 const SocialProof = dynamic(() => import("@/components/SocialProof"));
 const ProductPreview = dynamic(() => import("@/components/ProductPreview"));
 const HowItWorks = dynamic(() => import("@/components/HowItWorks"));
+const MarketData = dynamic(() => import("@/components/MarketData"));
 const Testimonials = dynamic(() => import("@/components/Testimonials"));
 const Pricing = dynamic(() => import("@/components/Pricing"));
 const FAQ = dynamic(() => import("@/components/FAQ"));
@@ -241,9 +242,10 @@ export default function Home() {
         <Integration />
         <HowItWorks />
         <Testimonials />
+        <MarketData />
 
         {/* Comparison Section */}
-        <section className="w-full py-24 md:py-32 bg-muted/40 tx-dot-bg border-b border-border relative overflow-hidden">
+        <section className="w-full py-24 md:py-32 bg-background tx-dot-bg border-b border-border relative overflow-hidden">
           <div className="container px-6 mx-auto max-w-7xl relative z-10">
             {/* Section Header */}
             <div className="flex flex-col items-start text-left mb-16 md:mb-20">

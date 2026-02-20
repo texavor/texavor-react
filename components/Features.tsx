@@ -427,7 +427,7 @@ export default function Features() {
   return (
     <section
       id="features"
-      className="w-full py-24 md:py-32 bg-background tx-dot-bg border-t border-border relative overflow-hidden"
+      className="w-full py-24 md:py-32 bg-muted/40 tx-dot-bg border-t border-border relative overflow-hidden"
     >
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
         <div className="max-w-3xl mb-16 animate-fade-slide-up">
