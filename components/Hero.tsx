@@ -1,108 +1,211 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Play, Sparkles } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState, useEffect } from "react";
+
+/* ─────────────────────────────────────────────────────────────
+   TODO [PRODUCTION]: Replace team count & article count with
+   real numbers from your analytics / database
+   ─────────────────────────────────────────────────────────────*/
+const TRUST_STATS = {
+  teams: 127,
+  articles: "14,300+",
+};
+
+/* AI engines for step ticker */
+const AI_ENGINES = [
+  { name: "ChatGPT", src: "/ai/chatgpt.png" },
+  { name: "Perplexity", src: "/ai/perplexity.png" },
+  { name: "Claude", src: "/ai/claude.jpg" },
+  { name: "Gemini", src: "/ai/gemini.jpg" },
+  { name: "Grok", src: "/ai/grok.jpg" },
+];
 
 export default function Hero() {
+  const [engineIndex, setEngineIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setEngineIndex((prev) => (prev + 1) % AI_ENGINES.length);
+    }, 2400);
+    return () => clearInterval(interval);
+  }, []);
+
+  const current = AI_ENGINES[engineIndex];
   return (
-    <section className="w-full pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-b from-white to-gray-50/50 dark:from-zinc-950 dark:to-zinc-900 relative overflow-hidden">
-      {/* Background Decor */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-primary/5 dark:bg-primary/10 blur-[120px] rounded-full pointer-events-none -z-10" />
-
-      <div className="container mx-auto px-4 max-w-7xl relative z-10 flex flex-col items-center text-center">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-zinc-900 border border-gray-200/60 dark:border-white/10 rounded-full text-sm font-medium text-slate-600 dark:text-zinc-400 mb-8 shadow-[0_2px_4px_rgba(0,0,0,0.02)] animate-fade-in font-inter hover:border-primary/20 transition-colors cursor-default">
-          <Sparkles className="w-3.5 h-3.5 text-primary fill-primary/20" />
-          <span className="text-slate-500 dark:text-zinc-500">New</span>
-          <span className="w-1 h-1 rounded-full bg-slate-300 dark:bg-zinc-700 mx-1" />
-          <span className="text-foreground">Content Decay Engine is live</span>
-        </div>
-
-        {/* Headline */}
-        <h1 className="text-5xl md:text-6xl lg:text-[72px] font-bold text-foreground font-poppins leading-[1.1] tracking-tight max-w-5xl mx-auto mb-6 animate-fade-slide-up">
-          The Research-First CMS <br className="hidden md:block" />
-          for the GEO Era.
-        </h1>
-
-        {/* Subheadline */}
-        <p className="text-lg md:text-xl text-muted-foreground font-inter leading-relaxed max-w-3xl mx-auto mb-10 animate-fade-slide-up [animation-delay:100ms]">
-          Texavor is the complete platform for managing articles and{" "}
-          <span className="text-foreground font-medium">
-            Generative Engine Optimization (GEO)
-          </span>
-          . Monitor visibility, fix content decay, and rank in ChatGPT,
-          Perplexity, and Claude.
-        </p>
-
-        {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 animate-fade-slide-up [animation-delay:200ms] mb-10">
-          <Button
-            asChild
-            variant="outline"
-            size="lg"
-            className="h-12 px-6 rounded-lg bg-white dark:bg-zinc-900 border-gray-200 dark:border-white/10 text-foreground font-semibold shadow-sm hover:bg-gray-50 dark:hover:bg-zinc-800 hover:text-foreground font-poppins text-base min-w-[160px]"
-            aria-label="Start Free Trial"
-          >
-            <Link
-              href={`${process.env.NEXT_PUBLIC_APP_URL}`}
-              target="_blank"
-              data-umami-event="hero_start_trial_click"
-            >
-              Start Free
-            </Link>
-          </Button>
-
-          <Button
-            asChild
-            size="lg"
-            className="h-12 px-8 rounded-lg bg-primary hover:bg-primary/90 text-white dark:text-black font-semibold shadow-lg shadow-primary/20 transition-all hover:shadow-xl font-poppins text-base min-w-[160px]"
-            aria-label="Test Your Website"
-          >
-            <Link
-              href="/tools/website-auditor"
-              data-umami-event="hero_website_audit_click"
-            >
-              Test Your Website (Free)
-            </Link>
-          </Button>
-        </div>
-
-        {/* Background Glows */}
-        <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-full max-w-7xl h-full -z-10 pointer-events-none">
-          <div className="absolute top-40 left-[10%] w-[30rem] h-[30rem] bg-green-400/10 rounded-full blur-[100px] animate-blob" />
-          <div className="absolute top-20 right-[10%] w-[35rem] h-[35rem] bg-emerald-400/10 rounded-full blur-[120px] animate-blob animation-delay-2000" />
-          <div className="absolute top-[40%] left-[30%] w-[40rem] h-[40rem] bg-primary/5 dark:bg-primary/10 rounded-full blur-[100px] animate-blob animation-delay-4000" />
-        </div>
-
-        {/* Hero Visual */}
-        <div className="relative w-full max-w-6xl mx-auto animate-fade-slide-up [animation-delay:300ms]">
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200/60 dark:border-white/10 bg-white dark:bg-zinc-950">
-            {/* Browser Header */}
-            <div className="h-10 bg-gray-50 dark:bg-zinc-900 border-b border-gray-100 dark:border-white/5 flex items-center px-4 gap-2">
-              <div className="flex gap-1.5">
-                <div className="w-2.5 h-2.5 rounded-full bg-gray-300 dark:bg-zinc-700" />
-                <div className="w-2.5 h-2.5 rounded-full bg-gray-300 dark:bg-zinc-700" />
-                <div className="w-2.5 h-2.5 rounded-full bg-gray-300 dark:bg-zinc-700" />
-              </div>
-              <div className="ml-4 bg-white dark:bg-zinc-950 border border-gray-200 dark:border-white/10 rounded-md px-3 py-0.5 text-[10px] text-gray-500 dark:text-zinc-400 font-medium font-inter flex items-center gap-1 min-w-[150px] justify-center">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                texavor.com
-              </div>
+    <section className="w-full pt-24 pb-16 md:pt-32 md:pb-24 bg-background tx-dot-bg relative overflow-hidden">
+      <div className="container mx-auto px-6 max-w-7xl">
+        {/* ── Split Layout: Left text / Right product ── */}
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* ── LEFT COLUMN ── */}
+          <div className="flex flex-col items-start text-left animate-fade-slide-up">
+            {/* Badge — conversational, no jargon */}
+            <div className="flex items-center gap-2.5 mb-8">
+              <span className="w-1 h-5 rounded-full bg-accent inline-block flex-shrink-0" />
+              <span className="text-xs font-semibold font-inter text-foreground/70 uppercase tracking-widest">
+                People are asking AI, not Google
+              </span>
             </div>
 
-            {/* Screenshot */}
-            <Image
-              src="/screenshots/hero.webp"
-              alt="Texavor Dashboard Interface"
-              width={1400}
-              height={900}
-              priority
-              quality={85}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
-              className="w-full h-auto block"
-            />
+            {/* H1 — human, creates a felt need */}
+            <h1 className="font-poppins font-bold text-foreground leading-[1.05] tracking-tight mb-5 text-4xl sm:text-5xl lg:text-[56px]">
+              Your next customer <br className="hidden sm:block" />
+              is asking AI.
+            </h1>
+
+            {/* Sub-headline — humanized, no jargon, no 'GEO' */}
+            <p className="text-base md:text-lg text-muted-foreground font-inter leading-relaxed mb-4 max-w-md">
+              Millions of people now skip Google and ask ChatGPT, Perplexity, or
+              Claude directly. Texavor helps your content show up in those
+              answers — and alerts you when it stops.
+            </p>
+
+            {/* AI ticker — shows which engines Texavor tracks */}
+            <div className="flex items-center gap-1.5 mb-10 flex-wrap">
+              <span className="text-xs font-inter text-muted-foreground">
+                Tracks your visibility in
+              </span>
+
+              {/* Height-clipped ticker — no fixed width, no absolute positioning */}
+              <div className="relative h-6 overflow-hidden flex-shrink-0">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={engineIndex}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -12 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="flex items-center gap-1.5"
+                  >
+                    <div className="w-5 h-5 rounded-full overflow-hidden border border-border bg-card flex-shrink-0">
+                      <Image
+                        src={current.src}
+                        alt={current.name}
+                        width={20}
+                        height={20}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <span className="text-sm font-semibold font-inter text-foreground whitespace-nowrap">
+                      {current.name}
+                    </span>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              <span className="text-xs font-inter text-muted-foreground">
+                & more
+              </span>
+            </div>
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row items-start gap-3 mb-8 animate-fade-slide-up [animation-delay:150ms]">
+              <Button
+                asChild
+                variant="brand"
+                size="lg"
+                className="rounded-md h-11 px-6"
+                aria-label="Start Free Trial"
+              >
+                <Link
+                  href={`${process.env.NEXT_PUBLIC_APP_URL}`}
+                  target="_blank"
+                  data-umami-event="hero_start_trial_click"
+                >
+                  Start Free Trial
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </Link>
+              </Button>
+
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="rounded-md h-11 px-6 border-border text-foreground font-medium"
+                aria-label="Test Your Website"
+              >
+                <Link
+                  href="/tools/website-auditor"
+                  data-umami-event="hero_website_audit_click"
+                >
+                  Test Your Website (Free)
+                </Link>
+              </Button>
+            </div>
+
+            {/* Trust signal — no avatars */}
+            {/* TODO [PRODUCTION]: Verify these numbers before going live */}
+            <div className="flex items-center gap-2.5 text-sm text-muted-foreground font-inter animate-fade-slide-up [animation-delay:250ms]">
+              <span className="text-amber-400 text-base tracking-tight">
+                ★★★★★
+              </span>
+              <span>
+                Trusted by{" "}
+                <strong className="text-foreground font-semibold">
+                  {TRUST_STATS.teams} teams
+                </strong>
+              </span>
+              <span className="w-1 h-1 rounded-full bg-border inline-block" />
+              <span>
+                <strong className="text-foreground font-semibold">
+                  {TRUST_STATS.articles}
+                </strong>{" "}
+                articles optimized
+              </span>
+            </div>
+          </div>
+
+          {/* ── RIGHT COLUMN — Product Screenshot ── */}
+          <div className="relative animate-fade-slide-up [animation-delay:200ms]">
+            {/* Ambient glow */}
+            <div className="absolute inset-4 -z-10 bg-primary/10 dark:bg-primary/15 blur-3xl rounded-full" />
+
+            {/* macOS window frame */}
+            <div className="relative rounded-xl overflow-hidden border border-border bg-card shadow-tx-lg">
+              {/* Chrome header */}
+              <div className="h-9 bg-muted border-b border-border flex items-center px-4 gap-2">
+                <div className="flex gap-1.5">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+                </div>
+                <div className="ml-3 bg-background border border-border rounded px-3 py-0.5 text-[10px] text-muted-foreground font-medium font-inter flex items-center gap-1.5 min-w-[160px] justify-center">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                  app.texavor.com
+                </div>
+              </div>
+
+              {/* Product screenshot */}
+              <Image
+                src="/screenshots/hero.webp"
+                alt="Texavor GEO Dashboard — AI Visibility Score and Content Decay tracking"
+                width={1400}
+                height={900}
+                priority
+                quality={85}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 700px"
+                className="w-full h-auto block"
+              />
+            </div>
+
+            {/* Floating stat badge */}
+            {/* TODO [PRODUCTION]: Replace 87 with real average score */}
+            <div className="absolute -bottom-4 -left-4 bg-card border border-border rounded-lg px-4 py-2.5 shadow-tx-md hidden md:flex items-center gap-2.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-primary flex-shrink-0" />
+              <span className="text-muted-foreground text-xs font-inter">
+                AI Visibility Score
+              </span>
+              <span className="font-bold font-poppins text-primary text-base">
+                87
+                <span className="text-xs font-normal text-muted-foreground">
+                  /100
+                </span>
+              </span>
+            </div>
           </div>
         </div>
       </div>
