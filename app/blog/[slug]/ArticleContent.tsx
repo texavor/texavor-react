@@ -4,6 +4,7 @@
 import React, { useEffect, useRef, memo } from "react";
 import { createRoot } from "react-dom/client";
 import { InjectedRelatedArticles } from "./InjectedRelatedArticles";
+import { MidArticleCTA } from "./MidArticleCTA";
 
 // Define the interface for a single related article
 interface RelatedArticle {
@@ -128,13 +129,8 @@ export const ArticleContent = memo(function ArticleContent({
       });
     }
 
-    console.log("✅ useEffect is running.");
-
     const articleElement = articleRef.current;
-    if (!articleElement) {
-      console.log("❌ Article ref is not available yet.");
-      return;
-    }
+    if (!articleElement) return;
 
     // --- Cleanup Previous Injections ---
     // This part is for when the component re-renders with new HTML
@@ -150,17 +146,29 @@ export const ArticleContent = memo(function ArticleContent({
 
     // Find all <h2> elements within the rendered article
     const h2Elements = articleElement.querySelectorAll("h2");
-    console.log(`🔎 Found ${h2Elements.length} h2 elements.`);
 
-    // Ensure you have related articles and at least two h2 elements
+    // Inject mid-article CTA independently — fires on any article with at least 1 h2
+    const injectCTA = (targetElement: Element) => {
+      if (!targetElement) return;
+      const container = document.createElement("div");
+      targetElement.parentNode?.insertBefore(container, targetElement);
+      const root = createRoot(container);
+      root.render(<MidArticleCTA />);
+      injectedRoots.current.push(root);
+    };
+
+    if (h2Elements.length >= 1) {
+      const midIndex = Math.max(1, Math.floor(h2Elements.length * 0.6));
+      const midH2 = h2Elements[midIndex] ?? h2Elements[h2Elements.length - 1];
+      if (midH2) injectCTA(midH2);
+    }
+
+    // Related articles injection — requires relatedArticles + at least 2 h2s
     if (
       !relatedArticles ||
       relatedArticles.length === 0 ||
       h2Elements.length < 2
     ) {
-      console.log(
-        "⚠️ Not enough h2 elements or no related articles to inject.",
-      );
       return;
     }
 
@@ -169,39 +177,34 @@ export const ArticleContent = memo(function ArticleContent({
     const lastH2 = h2Elements[h2Elements.length - 1];
 
     // Function to inject the React component
-    const inject = (targetElement: Element, position: string, article: any) => {
+    const inject = (targetElement: Element, article: any) => {
       if (!targetElement) return;
-
-      console.log(`💉 Injecting related articles before ${position} h2.`);
       const container = document.createElement("div");
       targetElement.parentNode?.insertBefore(container, targetElement);
-
       const root = createRoot(container);
       root.render(<InjectedRelatedArticles article={article} />);
-
-      // Store the root for cleanup
       injectedRoots.current.push(root);
     };
 
-    // Inject before the second <h2>
+    // Inject related articles before second h2
     if (secondH2) {
-      inject(secondH2, "second", relatedArticles?.[0]);
+      inject(secondH2, relatedArticles?.[0]);
     }
 
-    // Inject before the last <h2>, only if it's not the same as the second one
+    // Inject related articles before last h2 (if different from second)
     if (lastH2 && lastH2 !== secondH2) {
-      inject(lastH2, "last", relatedArticles?.[1]);
+      inject(lastH2, relatedArticles?.[1]);
     }
   }, [html, relatedArticles]);
 
   return (
     <article
       ref={articleRef}
-      className="prose lg:prose-lg dark:prose-invert max-w-none font-inter 
-      prose-headings:font-poppins dark:prose-headings:text-white 
-      prose-p:text-gray-700 dark:prose-p:text-zinc-300 
-      prose-strong:text-gray-900 dark:prose-strong:text-white 
-      prose-li:text-gray-700 dark:prose-li:text-zinc-300
+      className="prose lg:prose-lg dark:prose-invert max-w-none font-inter
+      prose-headings:font-poppins
+      prose-p:text-foreground/80 dark:prose-p:text-zinc-300
+      prose-strong:text-foreground dark:prose-strong:text-white
+      prose-li:text-foreground/80 dark:prose-li:text-zinc-300
       prose-code:font-semibold break-words w-full"
       dangerouslySetInnerHTML={{ __html: html }}
     />

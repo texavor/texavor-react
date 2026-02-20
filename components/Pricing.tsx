@@ -13,7 +13,7 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
-      className="w-full py-24 md:py-32 bg-muted/40 tx-dot-bg border-b border-border relative overflow-hidden"
+      className="w-full py-24 md:py-32 bg-muted/40 border-b border-border relative overflow-hidden"
     >
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
         {/* Left-Aligned Section Header */}
