@@ -44,20 +44,20 @@ export default function Pricing() {
               <TabsList className="grid w-full grid-cols-2 rounded-lg h-12 p-1.5 bg-background border border-border">
                 <TabsTrigger
                   value="monthly"
-                  className="rounded-md data-[state=active]:bg-[#1d533f] data-[state=active]:text-white text-sm font-bold font-inter transition-all text-muted-foreground"
+                  className="rounded-md data-[state=active]:bg-[#1d533f] dark:data-[state=active]:bg-emerald-600 data-[state=active]:text-white text-sm font-bold font-inter transition-all text-muted-foreground"
                 >
                   Monthly
                 </TabsTrigger>
                 <TabsTrigger
                   value="annual"
-                  className="rounded-md data-[state=active]:bg-[#1d533f] data-[state=active]:text-white text-sm font-bold font-inter transition-all text-muted-foreground"
+                  className="rounded-md data-[state=active]:bg-[#1d533f] dark:data-[state=active]:bg-emerald-600 data-[state=active]:text-white text-sm font-bold font-inter transition-all text-muted-foreground"
                 >
                   Annually
                 </TabsTrigger>
               </TabsList>
             </Tabs>
             <div
-              className={`mt-3 text-[11px] font-bold font-inter text-[#1d533f] uppercase tracking-widest bg-[#1d533f]/10 px-3 py-1 rounded transition-opacity duration-300 ${isAnnual ? "opacity-100" : "opacity-0"}`}
+              className={`mt-3 text-[11px] font-bold font-inter text-[#1d533f] dark:text-emerald-400 uppercase tracking-widest bg-[#1d533f]/10 dark:bg-emerald-400/10 px-3 py-1 rounded transition-opacity duration-300 ${isAnnual ? "opacity-100" : "opacity-0"}`}
             >
               Save 20% on Annual
             </div>
@@ -73,11 +73,11 @@ export default function Pricing() {
             return (
               <div
                 key={key}
-                className={`flex flex-col relative transition-all duration-300 bg-white rounded-xl ${isRecommended ? "" : "pt-[2px] mt-10 border border-border/60"}`}
+                className={`flex flex-col relative transition-all duration-300 bg-card rounded-xl ${isRecommended ? "" : "pt-[2px] mt-10 border border-border/60"}`}
               >
                 {/* Most Popular Hat */}
                 {isRecommended && (
-                  <div className="h-10 w-full bg-[#1d533f] text-white flex items-center justify-center text-[11px] font-bold uppercase tracking-widest rounded-t-xl transition-colors duration-300">
+                  <div className="h-10 w-full bg-[#1d533f] dark:bg-emerald-600 text-white flex items-center justify-center text-[11px] font-bold uppercase tracking-widest rounded-t-xl transition-colors duration-300">
                     Most Popular
                   </div>
                 )}
@@ -85,7 +85,7 @@ export default function Pricing() {
                 <div
                   className={`flex-1 p-6 md:p-8 flex flex-col transition-all duration-300 ${
                     isRecommended
-                      ? "border-x border-b border-[#1d533f] rounded-b-xl shadow-tx-md"
+                      ? "border-x border-b border-[#1d533f] dark:border-emerald-600 rounded-b-xl shadow-tx-md"
                       : ""
                   }`}
                 >
@@ -116,7 +116,7 @@ export default function Pricing() {
                     asChild
                     className={`w-full h-11 rounded font-bold font-inter mb-10 transition-all ${
                       isRecommended
-                        ? "bg-[#1d533f] text-white hover:bg-[#1d533f]/90"
+                        ? "bg-[#1d533f] dark:bg-emerald-600 text-white hover:bg-[#1d533f]/90 dark:hover:bg-emerald-600/90"
                         : "bg-muted/60 text-foreground hover:bg-muted"
                     }`}
                     variant={isRecommended ? "default" : "secondary"}
