@@ -13,6 +13,8 @@ export const metadata: Metadata = {
 
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
+import PlatformStatsStrip from "@/components/PlatformStatsStrip";
+import BeforeAfterProof from "@/components/BeforeAfterProof";
 import dynamic from "next/dynamic";
 import Schema from "@/components/Schema";
 
@@ -234,11 +236,12 @@ export default function Home() {
       <Schema script={mainSchema} />
       <main className="flex min-h-screen flex-col items-center w-full pt-0">
         <Hero />
-        {/* <SocialProof /> */}
+        <PlatformStatsStrip />
+        <BeforeAfterProof />
         <Features />
         <Integration />
         <HowItWorks />
-        {/* <Testimonials /> */}
+        <Testimonials />
 
         {/* Comparison Section */}
         <section className="w-full py-24 bg-zinc-50 dark:bg-zinc-950 relative overflow-hidden">

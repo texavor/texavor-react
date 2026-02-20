@@ -7,15 +7,6 @@ import { ArrowRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
-/* ─────────────────────────────────────────────────────────────
-   TODO [PRODUCTION]: Replace team count & article count with
-   real numbers from your analytics / database
-   ─────────────────────────────────────────────────────────────*/
-const TRUST_STATS = {
-  teams: 127,
-  articles: "14,300+",
-};
-
 /* AI engines for step ticker */
 const AI_ENGINES = [
   { name: "ChatGPT", src: "/ai/chatgpt.png" },
@@ -61,13 +52,13 @@ export default function Hero() {
             <p className="text-base md:text-lg text-muted-foreground font-inter leading-relaxed mb-4 max-w-md">
               Millions of people now skip Google and ask ChatGPT, Perplexity, or
               Claude directly. Texavor helps your content show up in those
-              answers — and alerts you when it stops.
+              answers — by building the entity depth and authority they trust.
             </p>
 
             {/* AI ticker — shows which engines Texavor tracks */}
             <div className="flex items-center gap-1.5 mb-10 flex-wrap">
               <span className="text-xs font-inter text-muted-foreground">
-                Tracks your visibility in
+                Optimize for visibility in
               </span>
 
               {/* Height-clipped ticker — no fixed width, no absolute positioning */}
@@ -137,25 +128,35 @@ export default function Hero() {
               </Button>
             </div>
 
-            {/* Trust signal — no avatars */}
-            {/* TODO [PRODUCTION]: Verify these numbers before going live */}
-            <div className="flex items-center gap-2.5 text-sm text-muted-foreground font-inter animate-fade-slide-up [animation-delay:250ms]">
-              <span className="text-amber-400 text-base tracking-tight">
-                ★★★★★
-              </span>
-              <span>
-                Trusted by{" "}
-                <strong className="text-foreground font-semibold">
-                  {TRUST_STATS.teams} teams
-                </strong>
-              </span>
-              <span className="w-1 h-1 rounded-full bg-border inline-block" />
-              <span>
-                <strong className="text-foreground font-semibold">
-                  {TRUST_STATS.articles}
-                </strong>{" "}
-                articles optimized
-              </span>
+            {/* ── Avatar stack trust signal ── Pravatar real photos
+                i.pravatar.cc is free, no auth required. ?img=N (1-70) is deterministic.
+                TODO [OPTIONAL]: Swap with real Texavor user headshots later.
+            */}
+            <div className="flex flex-col gap-1.5 animate-fade-slide-up [animation-delay:250ms]">
+              <div className="flex items-center">
+                {[11, 22, 33, 44, 55, 65].map((seed, i) => (
+                  <div
+                    key={seed}
+                    className={`w-9 h-9 rounded-full border-2 border-background overflow-hidden flex-shrink-0${i !== 0 ? " -ml-2.5" : ""}`}
+                  >
+                    <Image
+                      src={`https://i.pravatar.cc/72?img=${seed}`}
+                      alt={`Texavor user ${i + 1}`}
+                      width={36}
+                      height={36}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+              <p className="text-sm font-inter text-muted-foreground">
+                <span className="text-amber-400 mr-1">★★★★★</span>
+                Loved by{" "}
+                <span className="font-semibold text-foreground">
+                  content teams
+                </span>{" "}
+                worldwide
+              </p>
             </div>
           </div>
 
