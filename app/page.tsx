@@ -243,32 +243,38 @@ export default function Home() {
         <Testimonials />
 
         {/* Comparison Section */}
-        <section className="w-full py-24 bg-zinc-50 dark:bg-zinc-950 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
-          <div className="container px-4 mx-auto max-w-7xl relative z-10">
-            <div className="text-center mb-16 space-y-6">
-              <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800/50 mb-4">
-                <span className="text-sm font-medium text-emerald-800 dark:text-emerald-400">
-                  Compare
+        <section className="w-full py-24 md:py-32 bg-muted/40 tx-dot-bg border-b border-border relative overflow-hidden">
+          <div className="container px-6 mx-auto max-w-7xl relative z-10">
+            {/* Section Header */}
+            <div className="flex flex-col items-start text-left mb-16 md:mb-20">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-1 h-5 bg-accent" />
+                <span className="text-[11px] font-inter font-bold uppercase tracking-widest text-muted-foreground">
+                  MARKET COMPARISON
                 </span>
               </div>
-              <h2 className="text-3xl md:text-5xl font-bold text-primary dark:text-white font-poppins">
-                Don't settle for a <span className="text-zinc-500">tool</span>.
+              <h2 className="text-3xl md:text-5xl font-poppins font-bold text-foreground mb-6 tracking-tight leading-tight max-w-2xl">
+                Don't settle for a tool.
                 <br />
-                Build with an{" "}
-                <span className="text-emerald-600 dark:text-emerald-500">
-                  Operating System
-                </span>
-                .
+                Build with an Operating System.
               </h2>
+              <p className="text-lg font-inter text-muted-foreground max-w-2xl leading-relaxed">
+                See how Texavor stacks up against traditional AI writers and SEO
+                platforms.
+              </p>
             </div>
+
             <ComparisonTable />
-            <div className="mt-12 text-center">
+
+            <div className="mt-12 flex justify-start">
               <Link
                 href="/comparison"
-                className="inline-flex items-center gap-2 text-primary dark:text-emerald-400 hover:text-primary/80 dark:hover:text-emerald-300 font-medium transition-colors"
+                className="inline-flex items-center gap-2 text-accent hover:text-accent/80 font-bold font-inter transition-colors text-lg group"
               >
-                See Full Comparison <ArrowRight className="w-4 h-4" />
+                <span className="group-hover:underline underline-offset-4 decoration-2">
+                  See Full Comparison
+                </span>
+                <ArrowRight className="w-5 h-5 ml-1 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
           </div>
