@@ -11,7 +11,7 @@ import { ThemeToggle } from "./ThemeToggle";
 
 const NAV_ITEMS = [
   { label: "Features", id: "features", href: "/#features" },
-  { label: "Free Tools", id: "free-tools", href: "/tools" },
+  { label: "Tools", id: "free-tools", href: "/tools" },
   { label: "Blog", id: "blog", href: "/blog" },
   { label: "Docs", id: "docs", href: "/docs/introduction" },
 ];
