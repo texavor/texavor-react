@@ -88,7 +88,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${poppins.variable} ${inter.variable} ${geistMono.variable} antialiased tx-dot-bg`}
+        className={`${poppins.variable} ${inter.variable} ${geistMono.variable} antialiased`}
       >
         <ReactQueryProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>

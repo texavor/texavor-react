@@ -33,7 +33,7 @@ export default function MarketData() {
   return (
     <section
       ref={sectionRef}
-      className="w-full py-24 md:py-32 bg-muted/40 tx-dot-bg relative overflow-hidden border-t border-border"
+      className="w-full py-24 md:py-32 bg-muted/40 relative overflow-hidden border-t border-border"
     >
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
         {/* Section Header */}

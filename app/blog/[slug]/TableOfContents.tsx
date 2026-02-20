@@ -97,8 +97,8 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
               }}
               className={`transition-colors font-inter duration-300 ${
                 activeId === heading.id
-                  ? "text-primary font-bold scale-105 origin-left"
-                  : "text-gray-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white"
+                  ? "text-primary font-bold"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {heading.text}
@@ -111,8 +111,8 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
   };
 
   return (
-    <div className="bg-primary/5 dark:bg-zinc-900/50 p-6 rounded-2xl mb-8 backdrop-blur-sm border border-transparent dark:border-white/5">
-      <h2 className="font-poppins text-xl font-bold text-gray-900 dark:text-white mb-4">
+    <div className="bg-muted/40 p-6 rounded-xl mb-8 border border-border">
+      <h2 className="font-poppins text-base font-bold text-foreground mb-4">
         Table of Contents
       </h2>
       {renderHeadings(headings)}
