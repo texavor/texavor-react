@@ -10,12 +10,7 @@ export default function BlogHero({ articleCount }: BlogHeroProps) {
       <div className="container px-6 mx-auto max-w-7xl">
         <div className="max-w-3xl animate-fade-slide-up">
           {/* Eyebrow */}
-          <div className="flex items-center gap-2 mb-5">
-            <div className="w-1 h-5 bg-primary" />
-            <span className="text-[11px] font-inter font-bold uppercase tracking-widest text-muted-foreground">
-              THE BLOG
-            </span>
-          </div>
+          <p className="tx-eyebrow mb-5">THE BLOG</p>
 
           {/* Heading */}
           <h1 className="text-5xl md:text-6xl font-poppins font-bold text-foreground tracking-tight leading-[1.05] mb-6">

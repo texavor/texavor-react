@@ -1,17 +1,21 @@
+import React from "react";
 import {
-  Globe,
-  Sparkles,
-  MonitorCheck,
-  FileCode,
-  Network,
-  FileText,
-  LayoutDashboard,
-  Code2,
-  Search,
-  Clock,
-  MessageSquareText,
-  LucideIcon,
-} from "lucide-react";
+  IconDomainAuthority,
+  IconAIVisibility,
+  IconWebsiteAuditor,
+  IconFAQSchema,
+  IconTopicalAuthority,
+  IconContentQuality,
+  IconGEOSchema,
+  IconHeadingChecker,
+  IconCitationAuthority,
+  IconSchemaMarkup,
+  IconAltText,
+  IconFreshness,
+  IconEntityDensity,
+  IconCitationOpps,
+  IconDirectAnswer,
+} from "@/components/icons/ToolIcons";
 
 export interface ToolCategory {
   name: string;
@@ -196,19 +200,24 @@ export const tools: Tool[] = [
   },
 ];
 
-export const getIconByName = (name: string): LucideIcon => {
-  const icons: Record<string, LucideIcon> = {
-    Globe,
-    Sparkles,
-    MonitorCheck,
-    FileCode,
-    Network,
-    FileText,
-    LayoutDashboard,
-    Code2,
-    Search,
-    Clock,
-    MessageSquareText,
+export const getIconByTitle = (title: string): React.ElementType => {
+  const customMap: Record<string, React.ElementType> = {
+    "Domain Authority Checker": IconDomainAuthority,
+    "AI Visibility Calculator": IconAIVisibility,
+    "Website AI Auditor": IconWebsiteAuditor,
+    "FAQ Schema Generator": IconFAQSchema,
+    "Topical Authority Map": IconTopicalAuthority,
+    "Content Quality Audit": IconContentQuality,
+    "GEO Schema Validator": IconGEOSchema,
+    "GEO Heading Structure Checker": IconHeadingChecker,
+    "Citation Authority Checker": IconCitationAuthority,
+    "Schema Markup Validator": IconSchemaMarkup,
+    "Alt Text Checker": IconAltText,
+    "Content Freshness Checker": IconFreshness,
+    "Entity Density Analyzer": IconEntityDensity,
+    "Citation Opportunities Finder": IconCitationOpps,
+    "Direct Answer Optimizer": IconDirectAnswer,
   };
-  return icons[name] || Globe;
+
+  return customMap[title] || IconDomainAuthority;
 };
