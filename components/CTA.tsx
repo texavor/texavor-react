@@ -6,8 +6,8 @@ import { ArrowRight } from "lucide-react";
 
 export default function CTA() {
   return (
-    <section className="w-full py-24 md:py-32 bg-background flex justify-center px-6 border-t border-border">
-      <div className="w-full max-w-7xl bg-muted/30 border border-border shadow-tx-sm rounded-2xl px-6 py-20 md:py-24 text-center flex flex-col items-center relative overflow-hidden">
+    <section className="w-full py-24 md:py-32 bg-background tx-dot-bg flex justify-center px-6 border-border">
+      <div className="w-full max-w-5xl bg-muted/30 border border-border shadow-tx-sm rounded-2xl px-6 py-20 md:py-24 text-center flex flex-col items-center relative overflow-hidden">
         {/* Subtle decorative dot pattern purely inside the box */}
         <div className="absolute inset-0 tx-dot-bg opacity-30 pointer-events-none" />
 
