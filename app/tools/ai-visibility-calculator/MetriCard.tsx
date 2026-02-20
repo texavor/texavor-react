@@ -26,44 +26,42 @@ const MetricCard = ({
   return (
     <div
       className={cn(
-        "rounded-2xl p-6 relative overflow-hidden transition-all duration-300",
+        "rounded-lg p-6 relative overflow-hidden transition-all duration-300 border group bg-card",
         isPrimary
-          ? "bg-[#104127] text-white shadow-lg"
-          : "bg-primary/5 dark:bg-zinc-900 border border-border/50 text-foreground shadow-none",
+          ? "border-accent/30 shadow-[0_0_15px_rgba(251,191,36,0.05)]"
+          : "border-border shadow-none hover:border-primary/40 text-foreground",
         className,
       )}
     >
-      {/* Dynamic Background for Primary */}
-      {isPrimary && (
-        <div
-          className="absolute inset-0 opacity-100 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle at 10% 90%, #1a5d3a 0%, transparent 60%), linear-gradient(to top right, #104127 0%, #0d3520 100%)",
-          }}
-        />
-      )}
-
       <div className="relative z-10 flex flex-col h-full justify-between">
         <div className="flex justify-between items-start mb-4">
           <h3
             className={cn(
               "text-lg font-medium flex items-center gap-2 font-poppins",
-              isPrimary
-                ? "text-green-50"
-                : "text-slate-600 dark:text-slate-400",
+              isPrimary ? "text-foreground" : "text-muted-foreground",
               labelClassName,
             )}
           >
-            {icon}
+            {icon && (
+              <span
+                className={cn(
+                  "p-1.5 rounded-md flex items-center justify-center",
+                  isPrimary
+                    ? "bg-accent/10 text-accent"
+                    : "bg-primary/10 text-primary",
+                )}
+              >
+                {icon}
+              </span>
+            )}
             {label}
           </h3>
           <div
             className={cn(
-              "w-8 h-8 rounded-full flex items-center justify-center transition-transform hover:-translate-y-1 hover:translate-x-1",
+              "w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 transform group-hover:-translate-y-1 group-hover:translate-x-1",
               isPrimary
-                ? "bg-white text-[#104127]"
-                : "bg-white border border-border text-slate-800 dark:bg-zinc-800 dark:text-slate-200",
+                ? "bg-accent/10 text-accent group-hover:bg-accent group-hover:text-accent-foreground"
+                : "bg-background border border-border text-foreground group-hover:border-primary/50",
             )}
           >
             <MoveUpRight className="w-4 h-4" />
@@ -74,7 +72,7 @@ const MetricCard = ({
           <div
             className={cn(
               "text-5xl font-bold tracking-tight mb-2 font-inter",
-              isPrimary ? "text-white" : "text-slate-900 dark:text-white",
+              isPrimary ? "text-accent" : "text-foreground",
             )}
           >
             {value}
@@ -84,10 +82,11 @@ const MetricCard = ({
               className={cn(
                 "text-sm font-medium flex items-center gap-1.5 font-inter",
                 isPrimary
-                  ? "text-green-100"
-                  : "text-slate-500 dark:text-slate-400",
+                  ? "text-muted-foreground"
+                  : "text-muted-foreground/80",
               )}
             >
+              <Info className="w-4 h-4" />
               {subtext}
             </div>
           )}
