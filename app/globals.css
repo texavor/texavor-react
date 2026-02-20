@@ -1,8 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* @import "tw-animate-css"; */
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -47,163 +45,323 @@
     --font-inter: var(--font-inter), ui-sans-serif, system-ui;
 }
 
+/* ============================================================
+   TEXAVOR DESIGN SYSTEM — LIGHT MODE
+   Direction: Editorial Precision × Organic Depth
+   - Warm off-white background (not pure white)
+   - Deep forest ink primary (not bright green)
+   - Amber accent for visual tension
+   ============================================================ */
 :root {
-    --radius: 0.625rem;
-    --background: white;
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: #104127;
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.646 0.222 41.116);
-    --chart-2: oklch(0.6 0.118 184.704);
-    --chart-3: oklch(0.398 0.07 227.392);
-    --chart-4: oklch(0.828 0.189 84.429);
-    --chart-5: oklch(0.769 0.188 70.08);
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
+    --radius: 0.5rem;
+
+    /* Surfaces */
+    --background: hsl(45, 20%, 97%);          /* Warm off-white — not pure white */
+    --foreground: hsl(160, 25%, 8%);           /* Deep forest ink */
+    --card: hsl(45, 15%, 99%);                 /* Near-white card surface */
+    --card-foreground: hsl(160, 25%, 8%);
+    --popover: hsl(45, 15%, 99%);
+    --popover-foreground: hsl(160, 25%, 8%);
+
+    /* Brand */
+    --primary: hsl(160, 55%, 22%);             /* Deep forest green — not bright */
+    --primary-foreground: hsl(45, 20%, 97%);   /* Warm white on primary */
+
+    /* Amber Accent — visual tension against the green */
+    --accent: hsl(38, 80%, 55%);
+    --accent-foreground: hsl(160, 25%, 8%);
+
+    /* Neutrals */
+    --secondary: hsl(45, 10%, 94%);
+    --secondary-foreground: hsl(160, 20%, 15%);
+    --muted: hsl(45, 10%, 93%);
+    --muted-foreground: hsl(160, 10%, 42%);
+
+    /* Utility */
+    --destructive: hsl(0, 72%, 51%);
+    --border: hsl(45, 10%, 88%);
+    --input: hsl(45, 10%, 88%);
+    --ring: hsl(160, 55%, 22%);
+
+    /* Charts */
+    --chart-1: hsl(160, 55%, 35%);
+    --chart-2: hsl(38, 80%, 55%);
+    --chart-3: hsl(200, 60%, 45%);
+    --chart-4: hsl(280, 50%, 55%);
+    --chart-5: hsl(0, 65%, 55%);
+
+    /* Sidebar */
+    --sidebar: hsl(45, 15%, 99%);
+    --sidebar-foreground: hsl(160, 25%, 8%);
+    --sidebar-primary: hsl(160, 55%, 22%);
+    --sidebar-primary-foreground: hsl(45, 20%, 97%);
+    --sidebar-accent: hsl(45, 10%, 93%);
+    --sidebar-accent-foreground: hsl(160, 20%, 15%);
+    --sidebar-border: hsl(45, 10%, 88%);
+    --sidebar-ring: hsl(160, 55%, 22%);
+
+    /* ── Shadows ── */
+    --shadow-sm:   0 1px 3px hsl(160 25% 8% / 0.06), 0 1px 2px hsl(160 25% 8% / 0.04);
+    --shadow-md:   0 4px 12px hsl(160 25% 8% / 0.08), 0 2px 4px hsl(160 25% 8% / 0.04);
+    --shadow-lg:   0 12px 32px hsl(160 25% 8% / 0.10), 0 4px 8px hsl(160 25% 8% / 0.06);
+    --shadow-glow-primary: 0 0 24px hsl(160 55% 22% / 0.25);
+    --shadow-glow-accent:  0 0 24px hsl(38 80% 55% / 0.35);
 }
 
+/* ============================================================
+   DARK MODE
+   ============================================================ */
 .dark {
-    --background: hsl(148, 20%, 4%);
-    --foreground: hsl(148, 10%, 98%);
-    --card: hsl(148, 20%, 7%);
-    --card-foreground: hsl(148, 10%, 98%);
-    --popover: hsl(148, 20%, 7%);
-    --popover-foreground: hsl(148, 10%, 98%);
-    --primary: hsl(148, 60%, 45%);
-    --primary-foreground: hsl(148, 20%, 4%);
-    --secondary: hsl(148, 15%, 12%);
-    --secondary-foreground: hsl(148, 10%, 98%);
-    --muted: hsl(148, 15%, 12%);
-    --muted-foreground: hsl(148, 10%, 65%);
-    --accent: hsl(148, 15%, 12%);
-    --accent-foreground: hsl(148, 10%, 98%);
-    --destructive: oklch(0.396 0.141 25.723);
-    --border: hsl(148, 15%, 15%);
-    --input: hsl(148, 15%, 15%);
-    --ring: hsl(148, 60%, 45%);
-    --chart-1: hsl(148, 60%, 45%);
-    --chart-2: hsl(148, 40%, 35%);
-    --chart-3: hsl(148, 30%, 25%);
-    --chart-4: hsl(148, 20%, 15%);
-    --chart-5: hsl(148, 10%, 10%);
-    --sidebar: hsl(148, 20%, 5%);
-    --sidebar-foreground: hsl(148, 10%, 98%);
-    --sidebar-primary: hsl(148, 60%, 45%);
-    --sidebar-primary-foreground: hsl(148, 20%, 4%);
-    --sidebar-accent: hsl(148, 15%, 12%);
-    --sidebar-accent-foreground: hsl(148, 10%, 98%);
-    --sidebar-border: hsl(148, 15%, 15%);
-    --sidebar-ring: hsl(148, 60%, 45%);
+    /* Surfaces */
+    --background: hsl(160, 18%, 5%);           /* Very dark forest — not blue-black */
+    --foreground: hsl(45, 15%, 93%);            /* Warm near-white */
+    --card: hsl(160, 15%, 8%);
+    --card-foreground: hsl(45, 15%, 93%);
+    --popover: hsl(160, 15%, 8%);
+    --popover-foreground: hsl(45, 15%, 93%);
+
+    /* Brand */
+    --primary: hsl(148, 55%, 50%);             /* Brighter forest green for dark bg */
+    --primary-foreground: hsl(160, 18%, 5%);
+
+    /* Amber — stays vivid in dark */
+    --accent: hsl(38, 75%, 52%);
+    --accent-foreground: hsl(160, 18%, 5%);
+
+    /* Neutrals */
+    --secondary: hsl(160, 12%, 12%);
+    --secondary-foreground: hsl(45, 15%, 93%);
+    --muted: hsl(160, 12%, 12%);
+    --muted-foreground: hsl(148, 8%, 58%);
+
+    /* Utility */
+    --destructive: hsl(0, 60%, 45%);
+    --border: hsl(160, 12%, 16%);
+    --input: hsl(160, 12%, 16%);
+    --ring: hsl(148, 55%, 50%);
+
+    /* Charts */
+    --chart-1: hsl(148, 55%, 50%);
+    --chart-2: hsl(38, 75%, 52%);
+    --chart-3: hsl(200, 60%, 55%);
+    --chart-4: hsl(280, 50%, 60%);
+    --chart-5: hsl(0, 65%, 60%);
+
+    /* Sidebar */
+    --sidebar: hsl(160, 18%, 6%);
+    --sidebar-foreground: hsl(45, 15%, 93%);
+    --sidebar-primary: hsl(148, 55%, 50%);
+    --sidebar-primary-foreground: hsl(160, 18%, 5%);
+    --sidebar-accent: hsl(160, 12%, 12%);
+    --sidebar-accent-foreground: hsl(45, 15%, 93%);
+    --sidebar-border: hsl(160, 12%, 16%);
+    --sidebar-ring: hsl(148, 55%, 50%);
+
+    /* ── Shadows (dark) ── */
+    --shadow-sm:   0 1px 3px hsl(0 0% 0% / 0.3), 0 1px 2px hsl(0 0% 0% / 0.2);
+    --shadow-md:   0 4px 12px hsl(0 0% 0% / 0.4), 0 2px 4px hsl(0 0% 0% / 0.2);
+    --shadow-lg:   0 12px 32px hsl(0 0% 0% / 0.5), 0 4px 8px hsl(0 0% 0% / 0.3);
+    --shadow-glow-primary: 0 0 28px hsl(148 55% 50% / 0.30);
+    --shadow-glow-accent:  0 0 28px hsl(38 75% 52% / 0.40);
 }
 
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
 @layer base {
     * {
         @apply border-border outline-ring/50;
     }
     body {
         @apply bg-background text-foreground;
+        font-feature-settings: "rlig" 1, "calt" 1;
+    }
+    /* Smooth scrolling */
+    html {
+        scroll-behavior: smooth;
     }
 }
 
-/* View Transitions Sweep Effect */
+/* ============================================================
+   DESIGN SYSTEM UTILITIES
+   ============================================================ */
+
+/* Eyebrow label — the small tag above section headings */
+.tx-eyebrow {
+    @apply text-xs font-semibold uppercase tracking-widest font-inter;
+    color: var(--primary);
+}
+
+.dark .tx-eyebrow {
+    color: hsl(148, 55%, 50%);
+}
+
+/* Accent eyebrow — amber variant */
+.tx-eyebrow-accent {
+    @apply text-xs font-semibold uppercase tracking-widest font-inter;
+    color: var(--accent);
+}
+
+/* Brand gradient text */
+.tx-gradient-text {
+    background: linear-gradient(
+        135deg,
+        hsl(160, 55%, 22%) 0%,
+        hsl(148, 55%, 38%) 50%,
+        hsl(38, 80%, 55%) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.dark .tx-gradient-text {
+    background: linear-gradient(
+        135deg,
+        hsl(148, 55%, 60%) 0%,
+        hsl(148, 55%, 50%) 50%,
+        hsl(38, 75%, 55%) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Accent highlight — amber underline accent for inline emphasis */
+.tx-accent-text {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* Glow shadows via CSS variable */
+.tx-glow-primary {
+    box-shadow: var(--shadow-glow-primary);
+}
+.tx-glow-accent {
+    box-shadow: var(--shadow-glow-accent);
+}
+
+/* Standard section wrapper — use instead of ad-hoc py-* */
+.tx-section {
+    @apply py-20 md:py-28 px-4;
+}
+.tx-section-sm {
+    @apply py-14 md:py-20 px-4;
+}
+.tx-section-lg {
+    @apply py-28 md:py-36 px-4;
+}
+
+/* Container */
+.tx-container {
+    @apply mx-auto w-full max-w-7xl;
+}
+.tx-container-narrow {
+    @apply mx-auto w-full max-w-4xl;
+}
+
+/* Card styles */
+.tx-card {
+    @apply rounded-xl border bg-card p-6;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.tx-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+/* Subtle grid background pattern */
+.tx-grid-bg {
+    background-image:
+        linear-gradient(hsl(160 25% 8% / 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, hsl(160 25% 8% / 0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+.dark .tx-grid-bg {
+    background-image:
+        linear-gradient(hsl(45 15% 93% / 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, hsl(45 15% 93% / 0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fade-slide-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes scale-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-8px); }
+}
+
+@keyframes sweep-from-top {
+    from { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); }
+    to   { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
+
+.animate-fade-slide-up { animation: fade-slide-up 0.5s ease-out forwards; }
+.animate-fade-in       { animation: fade-in 0.4s ease-out forwards; }
+.animate-scale-in      { animation: scale-in 0.4s ease-out forwards; }
+.animate-float         { animation: float 4s ease-in-out infinite; }
+
+/* View Transitions */
 ::view-transition-group(root) {
     animation-duration: 0.75s;
     animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
 }
-
 ::view-transition-new(root) {
     animation-name: sweep-from-top;
     mix-blend-mode: normal;
 }
-
 ::view-transition-old(root) {
     animation: none;
     opacity: 1;
     mix-blend-mode: normal;
 }
 
-@keyframes sweep-from-top {
-    from {
-        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-    }
-    to {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    }
-}
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
 
-/* Hide scrollbar for Chrome, Safari, Edge */
-.no-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-
-/* Hide scrollbar for Firefox */
-.no-scrollbar {
-    scrollbar-width: none;
-}
-
-/* Hide scrollbar for IE/Edge Legacy */
-.no-scrollbar {
-    -ms-overflow-style: none;
-}
-
-@keyframes fade-slide-up {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-fade-slide-up {
-    animation: fade-slide-up 0.5s ease-out forwards;
-}
-
-/* Tiptap Placeholder Styles */
-/* Forcefully remove backticks and style prose inline code ONLY (exclude code blocks) */
+/* ============================================================
+   PROSE (Blog / Rich Text)
+   ============================================================ */
 .prose :where(code):not(:where([class~="not-prose"] *)):not(:where(pre *)) {
     background-color: var(--muted);
     color: var(--foreground);
     border-radius: 0.25rem;
-    padding-left: 0.375rem;
-    padding-right: 0.375rem;
-    padding-top: 0.125rem;
-    padding-bottom: 0.125rem;
+    padding: 0.125rem 0.375rem;
     font-weight: 600 !important;
 }
-.prose :where(code):not(:where([class~="not-prose"] *))::before {
-    content: none !important;
-}
+.prose :where(code):not(:where([class~="not-prose"] *))::before,
 .prose :where(code):not(:where([class~="not-prose"] *))::after {
     content: none !important;
 }
 
-/* Blog Post Table Styling */
+/* Blog Post Table */
 .prose table {
-    margin-top: 2em;
-    margin-bottom: 2em;
+    margin: 2em 0;
     font-size: 0.95em;
     width: 100%;
     border-collapse: separate;
@@ -212,12 +370,7 @@
     overflow: hidden;
     border: 1px solid var(--border);
 }
-
-/* Header Styling */
-.prose thead {
-    border-bottom: 1px solid var(--border);
-}
-
+.prose thead { border-bottom: 1px solid var(--border); }
 .prose thead th {
     font-weight: 700 !important;
     padding: 0.75rem 1rem;
@@ -225,34 +378,13 @@
     color: var(--foreground) !important;
     white-space: nowrap;
 }
-
-/* Light Theme Header */
-:root .prose thead {
-    background-color: #f4f4f5; /* zinc-100 */
-}
-
-/* Dark Theme Header */
-.dark .prose thead {
-    background-color: #18181b; /* zinc-900 */
-}
-
-/* Rows & Cells */
+:root .prose thead { background-color: hsl(45, 10%, 93%); }
+.dark .prose thead { background-color: hsl(160, 15%, 10%); }
 .prose tbody td {
     padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--border);
     vertical-align: top;
 }
-
-/* Dark Theme "Table Vibes" - Alternating rows or distinct border */
-.dark .prose tbody tr {
-    border-bottom-color: #27272a; /* zinc-800 */
-}
-
-.dark .prose tbody tr:last-child td {
-    border-bottom: none;
-}
-
-/* Last row border removal for outer rounding */
-.prose :where(tbody tr):last-child {
-    border-bottom: 0;
-}
+.dark .prose tbody tr { border-bottom-color: hsl(160, 12%, 16%); }
+.dark .prose tbody tr:last-child td { border-bottom: none; }
+.prose :where(tbody tr):last-child { border-bottom: 0; }
