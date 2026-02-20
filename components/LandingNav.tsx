@@ -7,17 +7,12 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-
 import { ThemeToggle } from "./ThemeToggle";
 
 const NAV_ITEMS = [
-  { label: "Home", id: "home", href: "/" },
+  { label: "Features", id: "features", href: "/#features" },
+  { label: "Free Tools", id: "free-tools", href: "/tools" },
   { label: "Blog", id: "blog", href: "/blog" },
-  {
-    label: "Free Tools",
-    id: "free-tools",
-    href: "/tools",
-  },
   { label: "Docs", id: "docs", href: "/docs/introduction" },
 ];
 
@@ -26,189 +21,166 @@ export default function LandingNav() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when screen resizes to desktop
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setIsMobileMenuOpen(false);
-      }
+      if (window.innerWidth >= 768) setIsMobileMenuOpen(false);
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      window.scrollTo({
-        behavior: "smooth",
-        top: element.offsetTop - 100,
-      });
-      setIsMobileMenuOpen(false);
-    }
-  };
-
   return (
-    <div className="flex flex-col items-center w-full fixed top-6 z-50 px-4 pointer-events-none">
-      <nav
-        className={cn(
-          "w-full max-w-5xl rounded-full bg-white dark:bg-zinc-900/90 shadow-xl shadow-black/5 dark:shadow-white/5 transition-all duration-300 flex items-center justify-between py-2 sm:py-3 px-6 pointer-events-auto border border-black/5 dark:border-white/10 relative z-50",
-          isScrolled &&
-            "py-2 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-md supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-zinc-900/60",
-        )}
-      >
+    <header
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300",
+        isScrolled
+          ? "bg-background/95 backdrop-blur-sm border-b border-border"
+          : "bg-background border-b border-transparent",
+      )}
+    >
+      <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group shrink-0">
-          <div className="relative w-8 h-8 overflow-hidden">
+        <Link href="/" className="flex items-center gap-2 shrink-0">
+          <div className="relative w-7 h-7 overflow-hidden">
             <Image
               src="/texavor.png"
-              alt="EasyWrite"
+              alt="Texavor"
               fill
               className="object-contain dark:brightness-0 dark:invert"
             />
           </div>
-          <span className="text-secondary-foreground dark:text-white font-bold text-xl font-poppins tracking-tight">
+          <span className="font-bold text-lg font-poppins tracking-tight text-foreground">
             Texavor
           </span>
         </Link>
 
-        {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center gap-8">
-          {NAV_ITEMS.map((item) =>
-            item.href ? (
-              <Link
-                key={item.id}
-                href={item.href}
-                className={cn(
-                  "text-sm font-medium transition-colors font-poppins flex items-center gap-1.5",
-                  ["free-tools", "website-auditor"].includes(item.id)
-                    ? "text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30 px-3 py-1.5 rounded-full border border-emerald-200/60 dark:border-emerald-800/60 hover:border-emerald-300 dark:hover:border-emerald-700 hover:bg-emerald-100/80 dark:hover:bg-emerald-900/40 hover:shadow-sm"
-                    : "text-foreground/70 dark:text-zinc-400 hover:text-foreground dark:hover:text-white",
-                )}
-              >
-                {["free-tools", "website-auditor"].includes(item.id) && (
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                  </span>
-                )}
-                {item.label}
-              </Link>
-            ) : (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="text-sm font-medium text-foreground/70 dark:text-zinc-400 hover:text-foreground dark:hover:text-white transition-colors font-poppins"
-              >
-                {item.label}
-              </button>
-            ),
-          )}
-        </div>
+        {/* Desktop Nav Links */}
+        <nav className="hidden md:flex items-center gap-7">
+          {NAV_ITEMS.map((item) => (
+            <Link
+              key={item.id}
+              href={item.href}
+              className={cn(
+                "text-sm font-medium font-inter transition-colors",
+                item.id === "free-tools"
+                  ? "text-primary hover:text-primary/80"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              {item.label}
+              {item.id === "free-tools" && (
+                <span className="ml-1.5 text-[10px] font-semibold uppercase tracking-wide text-accent align-super">
+                  Free
+                </span>
+              )}
+            </Link>
+          ))}
+        </nav>
 
-        {/* Right Side Actions */}
-        <div className="flex items-center gap-2 md:gap-4 shrink-0">
+        {/* Right Actions */}
+        <div className="flex items-center gap-3 shrink-0">
           <ThemeToggle />
-
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-gray-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
 
           <Link
             href={`${process.env.NEXT_PUBLIC_APP_URL || ""}/login`}
             target="_blank"
-            className="hidden sm:inline-block text-sm font-medium text-foreground/70 dark:text-zinc-400 hover:text-foreground dark:hover:text-white transition-colors font-poppins"
+            className="hidden sm:inline-block text-sm font-medium font-inter text-muted-foreground hover:text-foreground transition-colors"
           >
             Login
           </Link>
+
           <Button
             asChild
+            variant="brand"
             size="sm"
-            className="rounded-full bg-primary hover:bg-primary/90 text-white dark:text-zinc-950 font-medium shadow-lg hover:shadow-xl px-4 sm:px-6 h-10 font-poppins transition-all"
+            className="rounded-md px-4 h-9 hidden sm:inline-flex"
           >
             <Link href={process.env.NEXT_PUBLIC_APP_URL || "/"} target="_blank">
-              Get Started
+              Start Free →
             </Link>
           </Button>
-        </div>
-      </nav>
 
-      {/* Mobile Menu Dropdown */}
+          {/* Mobile Toggle */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-1.5 text-muted-foreground hover:text-foreground transition-colors"
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="w-full max-w-[95%] md:hidden pointer-events-auto mt-2"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
+            className="md:hidden border-t border-border bg-background"
           >
-            <div className="bg-white/90 dark:bg-zinc-900/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-200/50 dark:border-white/10 overflow-hidden flex flex-col p-4 space-y-2">
+            <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-1">
               {NAV_ITEMS.map((item) => (
-                <div key={item.id}>
-                  {item.href ? (
-                    <Link
-                      href={item.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className={cn(
-                        "block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200",
-                        ["free-tools", "website-auditor"].includes(item.id)
-                          ? "bg-emerald-50 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-800/50"
-                          : "text-gray-600 dark:text-zinc-400 hover:bg-gray-50 dark:hover:bg-zinc-800/50 hover:text-gray-900 dark:hover:text-white",
-                      )}
-                    >
-                      <div className="flex items-center gap-2">
-                        {["free-tools", "website-auditor"].includes(
-                          item.id,
-                        ) && (
-                          <span className="relative flex h-2 w-2">
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                          </span>
-                        )}
-                        {item.label}
-                      </div>
-                    </Link>
-                  ) : (
-                    <button
-                      onClick={() => scrollToSection(item.id)}
-                      className="block w-full text-left px-4 py-3 rounded-xl text-base font-medium text-gray-600 dark:text-zinc-400 hover:bg-gray-50 dark:hover:bg-zinc-800/50 hover:text-gray-900 dark:hover:text-white transition-all duration-200"
-                    >
-                      {item.label}
-                    </button>
+                <Link
+                  key={item.id}
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={cn(
+                    "px-3 py-2.5 rounded-md text-sm font-medium font-inter transition-colors",
+                    item.id === "free-tools"
+                      ? "text-primary hover:bg-primary/5"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/60",
                   )}
-                </div>
+                >
+                  {item.label}
+                  {item.id === "free-tools" && (
+                    <span className="ml-1.5 text-[10px] font-semibold uppercase tracking-wide text-accent">
+                      Free
+                    </span>
+                  )}
+                </Link>
               ))}
 
-              <div className="h-px bg-gray-100 dark:bg-white/10 my-2" />
+              <div className="h-px bg-border my-2" />
 
               <Link
                 href={`${process.env.NEXT_PUBLIC_APP_URL || ""}/login`}
                 target="_blank"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-4 py-3 rounded-xl text-base font-medium text-gray-600 dark:text-zinc-400 hover:bg-gray-50 dark:hover:bg-zinc-800/50 hover:text-gray-900 dark:hover:text-white transition-all duration-200 sm:hidden"
+                className="px-3 py-2.5 rounded-md text-sm font-medium font-inter text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors"
               >
                 Login
               </Link>
+
+              <Button
+                asChild
+                variant="brand"
+                size="sm"
+                className="rounded-md mt-1"
+              >
+                <Link
+                  href={process.env.NEXT_PUBLIC_APP_URL || "/"}
+                  target="_blank"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Start Free →
+                </Link>
+              </Button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </header>
   );
 }

@@ -285,6 +285,16 @@
     background-size: 48px 48px;
 }
 
+/* Dot texture — editorial depth without gradients (used for hero bg) */
+.tx-dot-bg {
+    background-image: radial-gradient(circle, hsl(160 25% 8% / 0.055) 1px, transparent 1px);
+    background-size: 22px 22px;
+}
+.dark .tx-dot-bg {
+    background-image: radial-gradient(circle, hsl(45 15% 93% / 0.06) 1px, transparent 1px);
+    background-size: 22px 22px;
+}
+
 /* ============================================================
    ANIMATIONS
    ============================================================ */
@@ -322,6 +332,15 @@
 .animate-fade-in       { animation: fade-in 0.4s ease-out forwards; }
 .animate-scale-in      { animation: scale-in 0.4s ease-out forwards; }
 .animate-float         { animation: float 4s ease-in-out infinite; }
+
+/* AI brand ticker — scrolls upward through 5 items (50% = half of 10 items) */
+@keyframes ticker-up {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+}
+.animate-ticker {
+    animation: ticker-up 6s linear infinite;
+}
 
 /* View Transitions */
 ::view-transition-group(root) {
