@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Zap } from "lucide-react";
 
 export default function Integration() {
   const integrations = [
@@ -59,20 +58,22 @@ export default function Integration() {
   return (
     <section
       id="integrations"
-      className="w-full py-24 md:py-32 relative overflow-hidden bg-gray-50 dark:bg-zinc-950/50"
+      className="w-full py-24 md:py-32 relative overflow-hidden bg-background tx-dot-bg border-y border-border"
     >
       <div className="container mx-auto px-4 max-w-5xl relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-12 md:mb-20 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white dark:bg-zinc-900 border border-primary/20 dark:border-white/10 rounded-full text-xs font-medium text-primary dark:text-emerald-400 mb-6 shadow-sm">
-            <Zap className="w-3 h-3 fill-primary dark:fill-emerald-400" />
-            Integrations
+        <div className="text-center mb-12 md:mb-20 animate-fade-in flex flex-col items-center">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-1 h-5 bg-accent" />
+            <span className="text-xs font-inter font-semibold uppercase tracking-widest text-muted-foreground">
+              Ecosystem
+            </span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground font-poppins mb-6 tracking-tight">
-            Publish Everywhere, <br />
+          <h2 className="text-3xl md:text-5xl font-poppins font-bold text-foreground mb-6 leading-tight">
+            Publish Everywhere, <br className="hidden md:block" />
             Manage From One Place
           </h2>
-          <p className="text-lg text-muted-foreground font-inter max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg font-inter text-muted-foreground max-w-2xl leading-relaxed">
             Seamlessly manage and schedule your articles across all major
             platforms from a single dashboard.
           </p>
@@ -80,11 +81,6 @@ export default function Integration() {
 
         {/* Floating Integration Icons */}
         <div className="relative min-h-[400px] md:h-[350px] flex flex-col md:block items-center justify-center">
-          {/* Central glow effect */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="w-[300px] h-[300px] bg-primary/5 dark:bg-primary/20 rounded-full blur-[100px]" />
-          </div>
-
           {/* Integration icons grid/floating */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:block gap-6 w-full md:w-auto">
             {integrations.map((integration, i) => (
@@ -102,7 +98,7 @@ export default function Integration() {
                 }}
               >
                 <div className="relative group">
-                  <div className="w-16 h-16 md:w-20 md:h-20 bg-white dark:bg-zinc-900 rounded-2xl shadow-[0_10px_50px_rgba(16,65,39,0.25)] dark:shadow-[0_10px_50px_rgba(0,0,0,0.5)] hover:shadow-[0_15px_60px_rgba(16,65,39,0.35)] dark:hover:shadow-[0_15px_60px_rgba(0,0,0,0.7)] transition-all duration-300 hover:scale-110 flex items-center justify-center p-0 overflow-hidden border border-gray-100/50 dark:border-white/10">
+                  <div className="w-16 h-16 md:w-20 md:h-20 bg-card rounded-2xl flex items-center justify-center p-0 overflow-hidden border border-border transition-all duration-300 hover:scale-110 hover:border-border/80 group">
                     <Image
                       src={integration.image}
                       alt={integration.name}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { Poppins, Inter } from "next/font/google";
+import { Poppins, Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import LandingNav from "@/components/LandingNav";
 import Footer from "@/components/Footer";
@@ -23,6 +23,30 @@ const poppins = Poppins({
 const inter = Inter({
   weight: ["400", "500", "600", "700"],
   variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+/**
+ * TEXAVOR TYPOGRAPHY SYSTEM — 3-font hierarchy
+ *
+ * font-poppins  →  Headings (h1–h4), hero text, section titles, card titles, eyebrows
+ * font-inter    →  All body copy, descriptions, labels, nav links, UI text
+ * font-mono     →  Data, stats, metrics, numbers, scores, code snippets
+ *                  (also available as font-data — same font, semantic alias)
+ *
+ * Tailwind classes:
+ *   font-poppins   uses var(--font-poppins)
+ *   font-inter     uses var(--font-inter)
+ *   font-mono      uses var(--font-geist-mono)
+ *   font-data      uses var(--font-geist-mono)  ← alias, prefer for stat numbers
+ *
+ * NEVER use font-poppins for body text.
+ * NEVER use font-inter for headings.
+ * NEVER use font-mono for anything other than numbers/data/code.
+ */
+const geistMono = Geist_Mono({
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -63,7 +87,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${poppins.variable} ${inter.variable} antialiased`}>
+      <body
+        className={`${poppins.variable} ${inter.variable} ${geistMono.variable} antialiased`}
+      >
         <ReactQueryProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <CrispChat />

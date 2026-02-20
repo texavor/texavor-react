@@ -1,117 +1,165 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Card } from "@/components/ui/card";
-import { Zap } from "lucide-react";
-import Image from "next/image";
-import { StaggerContainer, StaggerItem } from "@/components/ui/fade-in";
+import {
+  Zap,
+  FileText,
+  CheckCircle2,
+  PenTool,
+  Lightbulb,
+  TrendingUp,
+  BarChart,
+  Activity,
+  Globe,
+  Network,
+  AlertTriangle,
+} from "lucide-react";
 
-// Simple bar chart component matching reference design
-const SimpleBarChart = () => {
-  const bars = [
-    { height: 40, active: false },
-    { height: 75, active: false },
-    { height: 55, active: false },
-    { height: 30, active: false },
-    { height: 65, active: true },
-    { height: 90, active: false },
-    { height: 50, active: false },
-    { height: 70, active: false },
-    { height: 60, active: false },
-    { height: 80, active: false },
-  ];
+// --- Custom SVG Icons ---
 
-  return (
-    <div className="relative w-full h-[200px] flex items-end justify-between gap-2 px-4">
-      {/* Dashed line */}
-      <div className="absolute top-1/3 left-0 right-0 border-t-2 border-dashed border-gray-200 dark:border-white/5" />
+const SvgVisibility = ({ className = "" }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    className={className}
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M12 4C7 4 2.73 7.11 1 11.5C2.73 15.89 7 19 12 19C17 19 21.27 15.89 23 11.5C21.27 7.11 17 4 12 4Z" />
+    <circle cx="12" cy="11.5" r="3" />
+    <path
+      d="M12 4V2M12 21V19M4.5 4.5L6 6M19.5 18.5L18 17M19.5 4.5L18 6M4.5 18.5L6 17"
+      opacity="0.5"
+    />
+  </svg>
+);
 
-      {bars.map((bar, i) => (
-        <div
-          key={i}
-          className="flex-1 flex flex-col items-center justify-end h-full"
-        >
-          <div
-            className={`w-full rounded-t-lg transition-all ${
-              bar.active
-                ? "bg-gradient-to-b from-primary to-primary/90 shadow-lg"
-                : "bg-gradient-to-b from-gray-200 to-gray-300 dark:from-zinc-800 dark:to-zinc-700"
-            }`}
-            style={{ height: `${bar.height}%` }}
-          />
-        </div>
-      ))}
+const SvgStructure = ({ className = "" }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    className={className}
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <circle cx="12" cy="5" r="3" />
+    <circle cx="5" cy="19" r="3" />
+    <circle cx="19" cy="19" r="3" />
+    <path d="M10.5 7.5L6.5 16.5" />
+    <path d="M13.5 7.5L17.5 16.5" />
+    <path d="M7.5 19H16.5" strokeDasharray="2 3" />
+  </svg>
+);
 
-      {/* Progress badge */}
-      {bars.findIndex((b) => b.active) >= 0 && (
-        <div className="absolute top-4 right-4 bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-lg">
-          65% Progress
-        </div>
-      )}
-    </div>
-  );
-};
+const SvgResearch = ({ className = "" }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    className={className}
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <rect x="4" y="2" width="16" height="20" rx="2" />
+    <path d="M8 6H16" />
+    <path d="M8 10H16" />
+    <path d="M8 14H12" />
+    <circle cx="15" cy="15" r="3" />
+    <path d="M17 17L20 20" />
+  </svg>
+);
 
-// Progress Stats component
+const SvgMonitoring = ({ className = "" }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    className={className}
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M22 12V20C22 21.1 21.1 22 20 22H4C2.9 22 2 21.1 2 20V12" />
+    <path d="M22 7L14 15L10 11L2 19" />
+    <path d="M16 7H22V13" />
+    <line x1="2" y1="2" x2="22" y2="22" strokeDasharray="3 3" opacity="0.4" />
+  </svg>
+);
+
+// --- Component Injections from OldFeatures ---
+
 const ProgressStats = () => {
   const stats = [
     {
       label: "Total Articles",
       value: 118,
-      change: 20,
-      icon: "📄",
-      bgColor: "bg-blue-50",
-      iconColor: "text-blue-600",
+      change: "+20%",
+      icon: <FileText className="w-5 h-5 text-primary" />,
+      bgColor: "bg-primary/5",
+      trend: "up",
     },
     {
       label: "Published",
       value: 7,
-      change: 40,
-      icon: "✓",
-      bgColor: "bg-green-50",
-      iconColor: "text-green-600",
+      change: "+40%",
+      icon: <CheckCircle2 className="w-5 h-5 text-primary" />,
+      bgColor: "bg-primary/5",
+      trend: "up",
     },
     {
-      label: "Drafts",
-      value: 111,
-      change: 10,
-      icon: "📝",
-      bgColor: "bg-purple-50",
-      iconColor: "text-purple-600",
+      label: "Decaying",
+      value: 3,
+      change: "+2",
+      icon: <AlertTriangle className="w-5 h-5 text-destructive" />,
+      bgColor: "bg-destructive/5",
+      trend: "down",
     },
     {
       label: "Topic Ideas",
       value: 10,
-      change: 10,
-      icon: "💡",
-      bgColor: "bg-orange-50",
-      iconColor: "text-orange-600",
+      change: "+15%",
+      icon: <Lightbulb className="w-5 h-5 text-blue-600 dark:text-blue-400" />,
+      bgColor: "bg-blue-500/5",
+      trend: "up",
     },
   ];
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 w-full">
       {stats.map((stat, i) => (
         <div
           key={i}
-          className="bg-white dark:bg-zinc-900 rounded-xl border-none p-4"
+          className="bg-background rounded-2xl border border-border/50 p-5 hover:border-border transition-colors flex flex-col justify-between h-full"
         >
-          <div className="flex items-start justify-between mb-3">
+          <div className="flex items-start justify-between mb-8">
             <div
-              className={`w-10 h-10 ${stat.bgColor} dark:bg-zinc-800 rounded-lg flex items-center justify-center text-xl`}
+              className={`w-10 h-10 ${stat.bgColor} rounded-xl flex items-center justify-center`}
             >
               {stat.icon}
             </div>
+            <span
+              className={`text-[11px] font-inter font-bold px-2.5 py-1 rounded-full ${
+                stat.trend === "up"
+                  ? "text-primary bg-primary/10"
+                  : "text-orange-600 bg-orange-500/10 dark:text-orange-400"
+              }`}
+            >
+              {stat.change}
+            </span>
           </div>
-          <div className="text-xs text-gray-500 dark:text-zinc-400 mb-1">
-            {stat.label}
-          </div>
-          <div className="flex items-end gap-2">
-            <div className="text-2xl font-bold text-gray-900 dark:text-white">
-              {stat.value}
+          <div>
+            <div className="text-[10px] font-inter font-bold text-muted-foreground uppercase tracking-widest mb-1.5">
+              {stat.label}
             </div>
-            <div className="text-xs text-gray-400 dark:text-zinc-500 mb-1">
-              ≈ {stat.change}%
+            <div className="flex items-end gap-2">
+              <div className="text-3xl font-mono tabular-nums tracking-tight font-bold text-foreground">
+                {stat.value}
+              </div>
             </div>
           </div>
         </div>
@@ -120,196 +168,6 @@ const ProgressStats = () => {
   );
 };
 
-// Calendar view component for Article Management
-const CalendarView = () => {
-  const articles = [
-    {
-      day: 15,
-      title: "The 4 Best ReactJS UI Fra...",
-      color: "bg-yellow-100 text-yellow-800 border-yellow-200",
-    },
-    {
-      day: 15,
-      title: "Free Awesome Notion Te...",
-      color: "bg-yellow-100 text-yellow-800 border-yellow-200",
-    },
-    {
-      day: 15,
-      title: "A Guide to Coding Stand...",
-      color: "bg-yellow-100 text-yellow-800 border-yellow-200",
-    },
-    {
-      day: 16,
-      title: "Optimizing for AI-Powere...",
-      color: "bg-yellow-100 text-yellow-800 border-yellow-200",
-    },
-    {
-      day: 2417,
-      title: "Why Developers Struggle...",
-      color: "bg-green-100 text-green-800 border-green-200",
-    },
-  ];
-
-  return (
-    <div className="w-full bg-white dark:bg-zinc-900 rounded-xl border-none overflow-hidden">
-      {/* Calendar Grid */}
-      <div className="grid grid-cols-3 border-none divide-x divide-gray-200 dark:divide-white/5">
-        {/* Day 15 */}
-        <div className="p-3 min-h-[220px] bg-gray-50/30 dark:bg-white/5">
-          <div className="text-sm font-semibold text-gray-700 dark:text-zinc-300 mb-2">
-            15
-          </div>
-          <div className="space-y-2">
-            {articles
-              .filter((a) => a.day === 15)
-              .map((article, i) => (
-                <div
-                  key={i}
-                  className={`text-[10px] px-2 py-1.5 rounded-md border ${article.color} font-medium truncate`}
-                >
-                  {article.title}
-                </div>
-              ))}
-            <div className="text-[10px] text-gray-500 px-2">+104 more</div>
-          </div>
-        </div>
-        {/* Day 23 */}
-        <div className="p-3 min-h-[140px]">
-          <div className="text-sm font-semibold text-gray-700 mb-2">16</div>
-          <div className="space-y-2">
-            {articles
-              .filter((a) => a.day === 16)
-              .map((article, i) => (
-                <div
-                  key={i}
-                  className={`text-[10px] px-2 py-1.5 rounded-md border ${article.color} font-medium truncate`}
-                >
-                  {article.title}
-                </div>
-              ))}
-          </div>
-        </div>
-        <div className="p-3 min-h-[140px]">
-          <div className="text-sm font-semibold text-gray-700 mb-2">17</div>
-          <div className="space-y-2">
-            {articles
-              .filter((a) => a.day === 17)
-              .map((article, i) => (
-                <div
-                  key={i}
-                  className={`text-[10px] px-2 py-1.5 rounded-md border ${article.color} font-medium truncate`}
-                >
-                  {article.title}
-                </div>
-              ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Keyword Research component
-const KeywordResearch = () => {
-  const keywords = [
-    {
-      keyword: "AI visibility tracking",
-      volume: 2400,
-      cpc: "$3.20",
-      competition: 75,
-      difficulty: 45,
-    },
-    {
-      keyword: "GEO optimization tools",
-      volume: 1800,
-      cpc: "$2.80",
-      competition: 60,
-      difficulty: 38,
-    },
-    {
-      keyword: "GEO intent research",
-      volume: 980,
-      cpc: "$2.10",
-      competition: 45,
-      difficulty: 28,
-    },
-  ];
-
-  const getDifficultyColor = (difficulty: number) => {
-    if (difficulty < 30) return "bg-green-500";
-    if (difficulty < 50) return "bg-yellow-500";
-    return "bg-orange-500";
-  };
-
-  return (
-    <div className="w-full bg-white dark:bg-zinc-900 rounded-xl border-none overflow-hidden">
-      <div className="overflow-x-auto">
-        <div className="min-w-[500px]">
-          {/* Table Header */}
-          <div className="grid grid-cols-12 gap-2 px-4 py-3 bg-gray-50 dark:bg-zinc-800/50 border-b border-gray-200 dark:border-white/5 text-xs font-semibold text-gray-600 dark:text-zinc-400">
-            <div className="col-span-5">Keyword</div>
-            <div className="col-span-2 text-center">Volume</div>
-            <div className="col-span-2 text-center">CPC</div>
-            <div className="col-span-2 text-center">Competition</div>
-            <div className="col-span-1 text-center">Diff</div>
-          </div>
-
-          {/* Table Rows */}
-          <div className="divide-y divide-gray-100">
-            {keywords.map((kw, i) => (
-              <div
-                key={i}
-                className="grid grid-cols-12 gap-2 px-4 py-3 hover:bg-gray-50/50 dark:hover:bg-white/5 transition-colors items-center"
-              >
-                <div className="col-span-5 text-sm text-gray-800 dark:text-zinc-200 font-medium truncate">
-                  {kw.keyword}
-                </div>
-                <div className="col-span-2 text-center text-sm text-gray-600 dark:text-zinc-400">
-                  {kw.volume.toLocaleString()}
-                </div>
-                <div className="col-span-2 text-center text-sm text-blue-600 font-semibold">
-                  {kw.cpc}
-                </div>
-                <div className="col-span-2 flex items-center justify-center">
-                  <div className="w-full max-w-[80px] h-2 bg-gray-200 dark:bg-zinc-800 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"
-                      style={{ width: `${kw.competition}%` }}
-                    />
-                  </div>
-                </div>
-                <div className="col-span-1 flex justify-center">
-                  <div
-                    className={`w-7 h-7 rounded-full ${getDifficultyColor(
-                      kw.difficulty,
-                    )} text-white text-xs font-bold flex items-center justify-center`}
-                  >
-                    {kw.difficulty}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Footer Action */}
-      <div className="px-4 py-3 bg-gray-50 dark:bg-zinc-800/80 border-t border-gray-200 dark:border-white/5 flex items-center justify-between">
-        <span className="text-xs text-gray-500 dark:text-zinc-400">
-          Showing 5 of 1,247 keywords
-        </span>
-        <button
-          aria-label="View all keywords"
-          className="px-3 py-1.5 bg-primary text-white text-xs font-semibold rounded-lg hover:bg-primary/90 transition-colors"
-        >
-          View All
-        </button>
-      </div>
-    </div>
-  );
-};
-
-// Topic Generation component
 const TopicGeneration = () => {
   const topics = [
     {
@@ -318,7 +176,7 @@ const TopicGeneration = () => {
         "Based on analysis of top 10 SERP results. Recommended word count: 1800. Key entities to include: 'Zero-Click Searches', 'AI Overviews'.",
       badge: "High Potential",
       badgeColor:
-        "bg-green-100 dark:bg-emerald-950/50 text-green-700 dark:text-emerald-400 border-green-200 dark:border-emerald-800/50",
+        "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800/50",
     },
     {
       title: "Content Gap: Missing 'Pricing' Comparisons",
@@ -335,7 +193,7 @@ const TopicGeneration = () => {
       {topics.map((topic, i) => (
         <div
           key={i}
-          className="bg-white dark:bg-zinc-900 rounded-xl border-none p-4  transition-all duration-200 group"
+          className="bg-white dark:bg-zinc-900 rounded-xl border border-border shadow-sm p-4 transition-all duration-200 group"
         >
           <div className="flex items-start justify-between gap-3">
             <div className="flex-1 min-w-0">
@@ -378,7 +236,6 @@ const TopicGeneration = () => {
   );
 };
 
-// Outline Generation component
 const OutlineGeneration = () => {
   const sections = [
     {
@@ -402,7 +259,7 @@ const OutlineGeneration = () => {
       {sections.map((section, i) => (
         <div
           key={i}
-          className="bg-white dark:bg-zinc-900 rounded-xl border-none p-4 hover:shadow-sm transition-all"
+          className="bg-white dark:bg-zinc-900 rounded-xl border border-border shadow-sm p-4 transition-all"
         >
           <div className="flex items-start gap-3 mb-3">
             <div className="mt-1">
@@ -420,27 +277,9 @@ const OutlineGeneration = () => {
                 />
               </svg>
             </div>
-            <div className="text-sm font-bold text-gray-900 dark:text-white flex-1">
+            <div className="text-sm font-bold text-gray-900 dark:text-white flex-1 line-clamp-2">
               {section.title}
             </div>
-            <button
-              aria-label="Remove section"
-              className="text-gray-400 hover:text-red-500 transition-colors"
-            >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                />
-              </svg>
-            </button>
           </div>
 
           <div className="space-y-2 ml-7">
@@ -449,8 +288,8 @@ const OutlineGeneration = () => {
                 key={j}
                 className="flex items-start gap-2 text-xs text-gray-700 dark:text-zinc-300"
               >
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 flex-shrink-0" />
-                <span>{point}</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0" />
+                <span className="line-clamp-2">{point}</span>
               </div>
             ))}
             <button
@@ -479,635 +318,221 @@ const OutlineGeneration = () => {
   );
 };
 
-// Competitor Analysis component
 const CompetitorAnalysis = () => {
-  const articles = [
-    {
-      title: "A Five-Minute UI Feature That Became an...",
-      date: "12/17/2025",
-      tags: ["webdev", "javascript", "security"],
-    },
-    {
-      title: "Will WebAssembly Kill JavaScript? Let's Find",
-      date: "12/9/2025",
-      tags: ["webdev", "rust", "javascript"],
-    },
-    {
-      title: "Nobody Writes Clean Code. We All Just Prefe",
-      date: "12/1/2025",
-      tags: ["webdev", "programming", "productivity"],
-    },
-  ];
-
   return (
-    <div className="w-full space-y-4">
+    <div className="w-full space-y-4 z-10 relative px-4">
       {/* Profile Header */}
-      <div className="bg-white dark:bg-zinc-900 rounded-xl border-none p-4">
-        <div className="flex items-start gap-4 mb-4">
-          <div className="w-16 h-16 bg-black dark:bg-white rounded-lg flex items-center justify-center text-white dark:text-black font-bold text-2xl flex-shrink-0">
-            DEV
+      <div className="bg-background rounded-xl border border-border/50 p-5 shadow-sm">
+        <div className="flex items-start gap-4 mb-5">
+          <div className="w-14 h-14 bg-foreground rounded-lg flex items-center justify-center text-background font-bold text-xl flex-shrink-0 shadow-sm">
+            TX
           </div>
           <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-1">
-              <h4 className="text-base font-bold text-gray-900 dark:text-white">
-                Jacob Brown
+            <div className="flex items-center gap-2 mb-1.5">
+              <h4 className="text-base font-poppins font-bold text-foreground truncate">
+                Texavor Blog Analysis
               </h4>
-              <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center">
-                <svg
-                  className="w-3 h-3 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+              <div className="hidden sm:flex items-center gap-1.5 px-2 py-0.5 bg-primary/10 text-primary border border-primary/20 text-[9px] font-bold rounded uppercase tracking-wider">
+                <CheckCircle2 className="w-3 h-3" />
+                Live Sync
               </div>
-              <span className="px-2 py-0.5 bg-green-100 dark:bg-emerald-950/50 text-green-700 dark:text-emerald-400 text-[10px] font-semibold rounded-full">
-                Completed
-              </span>
             </div>
-            <p className="text-xs text-gray-500 dark:text-zinc-400">
-              No description available.
+            <p className="text-xs font-inter text-muted-foreground">
+              Analysis based on 24 recent GEO-optimized articles.
             </p>
-            <div className="flex items-center gap-3 mt-2 text-xs text-gray-600">
-              <span className="flex items-center gap-1">
-                <svg
-                  className="w-3 h-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
-                5 Analyses
-              </span>
-              <button
-                aria-label="Visit website"
-                className="flex items-center gap-1 text-primary hover:text-primary/80"
-              >
-                <svg
-                  className="w-3 h-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-                  />
-                </svg>
-                Visit Website
-              </button>
-            </div>
           </div>
           <button
             aria-label="Run Analysis"
-            className="hidden md:block px-3 py-1.5 bg-primary text-white text-xs font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+            className="hidden sm:flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground text-xs font-bold rounded-lg hover:bg-primary/90 transition-colors shadow-sm"
           >
-            Run Analysis
+            <Activity className="w-3.5 h-3.5" />
+            Scan Now
           </button>
+        </div>
+
+        {/* Score Cards */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="bg-muted/30 rounded-lg p-3.5 border border-border/50 hover:border-primary/30 transition-colors">
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-[10px] font-inter text-muted-foreground uppercase tracking-widest font-semibold">
+                AI Auth
+              </div>
+              <BarChart className="w-3.5 h-3.5 text-primary" />
+            </div>
+            <div className="text-3xl font-mono tabular-nums tracking-tight font-bold text-foreground">
+              94
+              <span className="text-sm font-inter text-muted-foreground/60">
+                /100
+              </span>
+            </div>
+          </div>
+
+          <div className="bg-muted/30 rounded-lg p-3.5 border border-border/50 hover:border-emerald-500/30 transition-colors">
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-[10px] font-inter text-muted-foreground uppercase tracking-widest font-semibold">
+                SEO Score
+              </div>
+              <Globe className="w-3.5 h-3.5 text-emerald-500" />
+            </div>
+            <div className="text-3xl font-mono tabular-nums tracking-tight font-bold text-foreground">
+              82
+              <span className="text-sm font-inter text-muted-foreground/60">
+                /100
+              </span>
+            </div>
+          </div>
+
+          <div className="bg-muted/30 rounded-lg p-3.5 border border-border/50 hover:border-amber-500/30 transition-colors">
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-[10px] font-inter text-muted-foreground uppercase tracking-widest font-semibold">
+                Entities
+              </div>
+              <Network className="w-3.5 h-3.5 text-amber-500" />
+            </div>
+            <div className="text-3xl font-mono tabular-nums tracking-tight font-bold text-foreground">
+              1,204
+            </div>
+          </div>
+
+          <div className="bg-muted/30 rounded-lg p-3.5 border border-border/50 hover:border-blue-500/30 transition-colors">
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-[10px] font-inter text-muted-foreground uppercase tracking-widest font-semibold">
+                Growth
+              </div>
+              <TrendingUp className="w-3.5 h-3.5 text-blue-500" />
+            </div>
+            <div className="text-3xl font-mono tabular-nums tracking-tight font-bold text-foreground text-primary">
+              +48
+              <span className="text-sm font-inter font-bold opacity-60">%</span>
+            </div>
+          </div>
         </div>
 
         {/* Mobile Action Button */}
         <button
           aria-label="Run Analysis"
-          className="md:hidden w-full py-2 mb-4 bg-primary text-white text-xs font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+          className="sm:hidden w-full mt-4 flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground text-xs font-bold rounded-lg hover:bg-primary/90 transition-colors shadow-sm"
         >
-          Run Analysis
+          <Activity className="w-3.5 h-3.5" />
+          Scan Now
         </button>
-
-        {/* Score Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          <div className="bg-green-50 dark:bg-emerald-950/30 rounded-lg p-3 border border-green-100 dark:border-emerald-800/50">
-            <div className="text-[10px] text-green-700 dark:text-emerald-400 font-medium mb-1">
-              Content Score
-            </div>
-            <div className="text-2xl font-bold text-green-900 dark:text-white">
-              100.0
-            </div>
-          </div>
-          <div className="bg-orange-50 dark:bg-orange-950/30 rounded-lg p-3 border border-orange-100 dark:border-orange-800/50">
-            <div className="text-[10px] text-orange-700 dark:text-orange-400 font-medium mb-1">
-              SEO Score
-            </div>
-            <div className="text-2xl font-bold text-orange-900 dark:text-white">
-              50.0
-            </div>
-          </div>
-          <div className="bg-blue-50 dark:bg-blue-950/30 rounded-lg p-3 border border-blue-100 dark:border-blue-800/50">
-            <div className="text-[10px] text-blue-700 dark:text-blue-400 font-medium mb-1">
-              Overall Score
-            </div>
-            <div className="text-2xl font-bold text-blue-900 dark:text-white">
-              75.0
-            </div>
-          </div>
-          <div className="bg-green-50 dark:bg-emerald-950/30 rounded-lg p-3 border border-green-100 dark:border-emerald-800/50">
-            <div className="text-[10px] text-green-700 dark:text-emerald-400 font-medium mb-1">
-              New Articles
-            </div>
-            <div className="text-2xl font-bold text-green-900 dark:text-white">
-              10
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
 };
 
-// Platform Integration component
-const PlatformIntegration = () => {
-  const platforms = [
-    {
-      name: "Medium",
-      type: "Rss Integration",
-      logo: "/integration/medium.png",
-      connected: true,
-      description:
-        "Connect your Medium account to automatically import and sync articles.",
-    },
-    {
-      name: "WordPress",
-      type: "Api Integration",
-      logo: "/integration/wordpress.png",
-      connected: false,
-      description:
-        "Connect your WordPress account to automatically import and sync articles.",
-    },
-  ];
-
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      {platforms.map((platform, i) => (
-        <div
-          key={i}
-          className={`rounded-xl p-4 border transition-all ${
-            platform.connected
-              ? "bg-green-50/50 dark:bg-emerald-950/20 border-none"
-              : "bg-white dark:bg-zinc-900 border-none"
-          }`}
-        >
-          <div className="flex items-start gap-3 mb-3">
-            <div className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 relative overflow-hidden">
-              <Image
-                src={platform.logo}
-                alt={platform.name}
-                fill
-                className={`object-contain ${
-                  platform.name === "Medium"
-                    ? "dark:invert dark:brightness-200"
-                    : ""
-                }`}
-              />
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 mb-1">
-                <h5 className="text-sm font-bold text-gray-900 dark:text-white">
-                  {platform.name}
-                </h5>
-                {platform.connected && (
-                  <div className="flex items-center gap-1 px-2 py-0.5 bg-green-100 dark:bg-emerald-950/50 text-green-700 dark:text-emerald-400 rounded-full">
-                    <svg
-                      className="w-3 h-3"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    <span className="text-[10px] font-semibold">Connected</span>
-                  </div>
-                )}
-              </div>
-              <p className="text-[10px] text-gray-500 font-medium">
-                {platform.type}
-              </p>
-            </div>
-          </div>
-
-          <p className="text-xs text-gray-600 dark:text-zinc-400 mb-4 leading-relaxed">
-            {platform.description}
-          </p>
-
-          <button
-            aria-label={
-              platform.connected ? "Manage integration" : "Connect integration"
-            }
-            className={`w-full py-2 rounded-lg text-sm font-semibold transition-colors ${
-              platform.connected
-                ? "bg-primary text-white hover:bg-primary/90"
-                : "bg-primary text-white hover:bg-primary/90"
-            }`}
-          >
-            {platform.connected ? "Manage" : "Connect"}
-          </button>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-// Thumbnail Generation component
-const ThumbnailGeneration = () => {
-  const styles = [
-    {
-      name: "Codeburst Spectrum",
-      description:
-        "A dynamic and asymmetric layout with cascading code snippets in the background, overlaid with bold typography that mixes...",
-      selected: true,
-      gradient: "from-cyan-500 via-blue-600 to-purple-700",
-      icon: "🔥",
-      badge: "Minimal",
-      colors: ["bg-cyan-400", "bg-gray-900", "bg-gray-700"],
-    },
-    {
-      name: "React Orbit",
-      description:
-        "A circular composition with a bold central title surrounded by orbiting React and JavaScript symbols. The design uses a clea...",
-      selected: false,
-      gradient: "from-gray-900 via-blue-900 to-black",
-      icon: "⚛️",
-      badge: "Minimal",
-      colors: ["bg-cyan-400", "bg-orange-500", "bg-gray-900", "bg-gray-800"],
-    },
-  ];
-
-  return (
-    <div className="w-full space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {styles.map((style, i) => (
-          <div
-            key={i}
-            className="bg-white dark:bg-zinc-900 rounded-xl border-none overflow-hidden"
-          >
-            {/* Thumbnail Preview */}
-            <div
-              className={`relative h-32 bg-gradient-to-br ${style.gradient} flex items-center justify-center`}
-            >
-              {style.selected && (
-                <div className="absolute top-2 right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                  <svg
-                    className="w-4 h-4 text-white"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
-              )}
-              <div className="text-center px-4">
-                <div className="text-2xl mb-2">{style.icon}</div>
-                <div className="text-white font-bold text-sm">
-                  React Article Title
-                </div>
-                <p className="text-white/70 text-[10px] mt-1">ARTICLE STYLE</p>
-              </div>
-            </div>
-
-            {/* Style Info */}
-            <div className="p-4">
-              <div className="flex items-start justify-between mb-2">
-                <div className="text-sm font-bold text-gray-900 dark:text-white">
-                  {style.name}
-                </div>
-                <span className="px-2 py-0.5 bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-400 text-[9px] font-semibold rounded-full flex items-center gap-1">
-                  🔥 {style.badge}
-                </span>
-              </div>
-
-              <p className="text-xs text-gray-600 dark:text-zinc-400 mb-3 line-clamp-2">
-                {style.description}
-              </p>
-
-              {/* Color Palette */}
-              <div className="flex items-center gap-2 mb-3">
-                {style.colors.map((color, j) => (
-                  <div
-                    key={j}
-                    className={`w-6 h-6 rounded ${color} border border-gray-200 dark:border-white/10`}
-                  />
-                ))}
-              </div>
-
-              {/* Action Button */}
-              <button
-                aria-label={style.selected ? "Style Selected" : "Select Style"}
-                className={`w-full py-2 rounded-lg text-sm font-semibold transition-colors ${
-                  style.selected
-                    ? "bg-green-600 text-white"
-                    : "bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-zinc-300 hover:bg-gray-200 dark:hover:bg-zinc-700"
-                }`}
-              >
-                {style.selected ? (
-                  <span className="flex items-center justify-center gap-2">
-                    <svg
-                      className="w-4 h-4"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    Selected
-                  </span>
-                ) : (
-                  "Select Style"
-                )}
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-// Author Management component
-const AuthorManagement = () => {
-  const members = [
-    {
-      name: "Suraj Vishwakarma",
-      email: "suraj@texavor.com",
-      role: "Admin",
-      initial: "S",
-      you: true,
-      platform: "Medium",
-    },
-    {
-      name: "Akash Vishwakarma",
-      email: "akash@texavor.com",
-      role: "Editor",
-      initial: "A",
-      you: false,
-      platform: "WordPress",
-    },
-    {
-      name: "Sarah Jenkins",
-      email: "sarah@tech.io",
-      role: "Viewer",
-      initial: "S",
-      you: false,
-      platform: "Dev.to",
-    },
-    {
-      name: "David Chen",
-      email: "david@code.com",
-      role: "Writer",
-      initial: "D",
-      you: false,
-      platform: "Hashnode",
-    },
-  ];
-
-  const getRoleBadgeColor = (role: string) => {
-    switch (role) {
-      case "Admin":
-        return "bg-green-100 dark:bg-emerald-950/50 text-green-700 dark:text-emerald-400 border-green-200 dark:border-emerald-800/50";
-      case "Editor":
-        return "bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-400 border-purple-200 dark:border-purple-800/50";
-      case "Viewer":
-        return "bg-blue-100 dark:bg-blue-950/50 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800/50";
-      case "Writer":
-        return "bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-400 border-orange-200 dark:border-orange-800/50";
-      default:
-        return "bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-zinc-400 border-gray-200 dark:border-white/10";
-    }
-  };
-
-  return (
-    <div className="w-full space-y-4">
-      {/* Header */}
-
-      {/* Team Members Table */}
-      <div className="bg-white dark:bg-zinc-900 rounded-xl border-none overflow-hidden">
-        <div className="px-4 py-2 bg-gray-50 dark:bg-zinc-800 border-b border-gray-200 dark:border-white/5 flex justify-between items-center">
-          <div className="text-xs font-semibold text-gray-700 dark:text-zinc-300">
-            Author Profiles
-          </div>
-          <span className="text-[10px] text-green-600 dark:text-emerald-400 bg-green-50 dark:bg-emerald-950/50 px-2 py-0.5 rounded-full border border-green-100 dark:border-emerald-800/50">
-            ● All Synced
-          </span>
-        </div>
-
-        <div className="bg-gray-50/50 dark:bg-zinc-800/50 border-b border-gray-200 dark:border-white/5">
-          <div className="grid grid-cols-12 gap-4 px-4 py-2 text-[10px] font-semibold text-gray-600 dark:text-zinc-400">
-            <div className="col-span-6">Author</div>
-            <div className="col-span-3">Role</div>
-            <div className="col-span-3 text-right">Sync Source</div>
-          </div>
-        </div>
-
-        <div className="divide-y divide-gray-100">
-          {members.map((member, i) => (
-            <div
-              key={i}
-              className="grid grid-cols-12 gap-4 px-4 py-3 hover:bg-gray-50/50 dark:hover:bg-white/5 transition-colors items-center"
-            >
-              <div className="col-span-6 flex items-center gap-3">
-                <div className="w-8 h-8 bg-gray-100 dark:bg-zinc-800 rounded-full flex items-center justify-center text-gray-600 dark:text-zinc-400 font-semibold text-xs border border-gray-200 dark:border-white/10 flex-shrink-0">
-                  {member.initial}
-                </div>
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <p className="text-sm font-semibold text-gray-900 dark:text-white">
-                      {member.name}
-                    </p>
-                    {member.you && (
-                      <span className="text-[10px] text-gray-500 dark:text-zinc-500">
-                        (You)
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-xs text-gray-500 truncate">
-                    {member.email}
-                  </p>
-                </div>
-              </div>
-              <div className="col-span-3">
-                <span
-                  className={`inline-flex px-2 py-1 rounded-md text-[10px] font-semibold border ${getRoleBadgeColor(
-                    member.role,
-                  )}`}
-                >
-                  {member.role}
-                </span>
-              </div>
-              <div className="col-span-3 text-right">
-                <span className="text-[10px] text-gray-400 font-medium">
-                  {member.platform}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
+// --- Main Component ---
 
 export default function Features() {
-  const features = [
-    {
-      title: "Content Command Center",
-      description:
-        "Plan, write, and command your entire editorial calendar from one premium workspace.",
-      component: <CalendarView />,
-    },
-    {
-      title: "Deep Research & GEO Intent",
-      description:
-        "How do you rank in AI? Start with data. Analyze intent and competition before you write.",
-      component: <KeywordResearch />,
-    },
-    {
-      title: "Data-Backed Topic Briefs",
-      description: "Generate content briefs based on live SERP and LLM data.",
-      component: <TopicGeneration />,
-    },
-    {
-      title: "Write for Answers, Not Clicks.",
-      description:
-        "Chatbots don't want 2,000-word fluff pieces. Our GEO Outline Generator structures content with 'Answer Nodes' that LLMs love to ingest.",
-      component: <OutlineGeneration />,
-    },
-    {
-      title: "SERP & LLM Analysis",
-      description:
-        "Track where your competitors appear in Perplexity and Google SGE. Spot gaps instantly.",
-      component: <CompetitorAnalysis />,
-    },
-    {
-      title: "Precision Orchestration",
-      description:
-        "One-click publishing to Dev.to, Hashnode, and Medium with perfect code block formatting.",
-      component: <PlatformIntegration />,
-    },
-    {
-      title: "Asset Generation",
-      description:
-        "Auto-generate code-styled thumbnails and cover images for every article.",
-      component: <ThumbnailGeneration />,
-    },
-    {
-      title: "Authority Engine (Proof of Human).",
-      description:
-        "In an ocean of AI slop, verified human authorship is the ultimate ranking signal. Texavor syncs your Author Biography across Dev.to, Medium, and your blog to prove E-E-A-T.",
-      component: <AuthorManagement />,
-    },
-    {
-      title: "Stale Content is Invisible Content.",
-      description:
-        "LLMs hallucinate when data is old. Our Decay Risk Engine scans your articles 24/7. We alert you to update before AIs stop citing you.",
-      component: <ProgressStats />,
-      large: true,
-    },
-  ];
-
   return (
     <section
       id="features"
-      className="w-full py-24 md:py-32 relative overflow-hidden bg-white dark:bg-zinc-950"
+      className="w-full py-24 md:py-32 bg-background tx-dot-bg border-t border-border relative overflow-hidden"
     >
-      <div className="container mx-auto px-4 max-w-7xl relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white dark:bg-zinc-900 border border-primary/20 dark:border-white/10 rounded-full text-xs font-medium text-primary dark:text-emerald-400 mb-6 shadow-sm">
-            <Zap className="w-3 h-3 fill-primary dark:fill-emerald-400" />
-            The Content Engine
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+        <div className="max-w-3xl mb-16 animate-fade-slide-up">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-1 h-5 bg-accent" />
+            <span className="text-xs font-inter font-semibold uppercase tracking-widest text-muted-foreground">
+              The Texavor Engine
+            </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground font-poppins mb-6 tracking-tight">
-            The Complete Authority Engine
+          <h2 className="text-3xl md:text-5xl font-poppins font-bold text-foreground leading-tight mb-6">
+            Everything you need to <br className="hidden md:block" />{" "}
+            reverse-engineer AI search.
           </h2>
-          <p className="text-lg text-muted-foreground font-inter max-w-2xl mx-auto leading-relaxed">
-            Everything you need to plan, track, and deliver on all your tasks
+          <p className="text-lg text-muted-foreground font-inter max-w-2xl leading-relaxed">
+            Forget generic 'AI writers'. Texavor is a precision research and
+            analysis engine designed to build the entity depth and factual
+            density that LLMs cite.
           </p>
         </div>
 
-        {/* Feature Grid */}
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-          {features.map((feature, index) => (
-            <StaggerItem
-              key={index}
-              className={`
-                ${
-                  feature.large ? "md:col-span-2 lg:col-span-2" : "col-span-1"
-                } h-full`}
-            >
-              <Card className="border-[1px] border-gray-100 dark:border-white/5 rounded-[32px] p-3 h-full bg-transparent">
-                <div
-                  className="shadow-none h-full overflow-hidden
-                  bg-gradient-to-tr from-gray-50 to-[#f9f4f0] dark:from-zinc-900/50 dark:to-zinc-900/20
-                  p-4 rounded-3xl border-[1px] border-gray-100 dark:border-white/5 cursor-pointer"
-                >
-                  <div
-                    className={`${
-                      feature.large
-                        ? "grid md:grid-cols-2 gap-8 items-center"
-                        : "col-span-2"
-                    }`}
-                  >
-                    <div>
-                      {/* Feature Visual */}
-                      <div className="mb-6 bg-transparent rounded-2xl overflow-hidden">
-                        {feature.component ? (
-                          feature.component
-                        ) : (
-                          <div className="min-h-[180px] flex items-center justify-center bg-white/60 dark:bg-zinc-800/60 backdrop-blur-sm border border-white/40 dark:border-white/10 rounded-2xl p-6">
-                            <p className="text-sm text-gray-400 dark:text-zinc-500 font-inter">
-                              Visual placeholder - {feature.title}
-                            </p>
-                          </div>
-                        )}
-                      </div>
+        {/* Bento Grid — 1px borders, no shadows on the grid itself */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border border border-border rounded-2xl overflow-hidden">
+          {/* Card 1: SERP & LLM Analysis (2 cols) */}
+          <div className="col-span-1 md:col-span-2 bg-card p-8 md:p-12 flex flex-col group relative overflow-hidden transition-colors hover:bg-muted/30 min-h-[500px]">
+            <div className="flex items-center gap-2 mb-6">
+              <SvgVisibility className="w-6 h-6 text-primary" />
+              <span className="text-[11px] font-inter font-bold tracking-widest uppercase text-muted-foreground">
+                Analysis
+              </span>
+            </div>
+            <h3 className="text-2xl md:text-3xl font-poppins font-bold text-foreground mb-3">
+              SERP & LLM Analysis
+            </h3>
+            <p className="text-muted-foreground font-inter max-w-md mb-10">
+              Track where your competitors appear in Perplexity and Google SGE.
+              Analyze intent and spot topical gaps instantly before you write.
+            </p>
+            <div className="mt-8 relative rounded-xl border border-border bg-muted/20 overflow-hidden pt-8 pb-8 -mx-4 -mb-12 flex flex-col justify-center isolate">
+              {/* Decorative background pulse for the component */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-radial from-primary/5 to-transparent z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <CompetitorAnalysis />
+            </div>
+          </div>
 
-                      <h3 className="text-2xl font-bold font-poppins mb-3 text-foreground">
-                        {feature.title}
-                      </h3>
-                      <p className="text-muted-foreground font-inter leading-relaxed">
-                        {feature.description}
-                      </p>
-                    </div>
+          {/* Card 2: Entity Outlines (1 col) */}
+          <div className="col-span-1 bg-card p-8 md:p-12 flex flex-col group relative overflow-hidden transition-colors hover:bg-muted/30">
+            <div className="flex items-center gap-2 mb-6">
+              <SvgStructure className="w-6 h-6 text-amber-500" />
+              <span className="text-[11px] font-inter font-bold tracking-widest uppercase text-muted-foreground">
+                Strategy
+              </span>
+            </div>
+            <h3 className="text-2xl font-poppins font-bold text-foreground mb-3">
+              Entity Outlines
+            </h3>
+            <p className="text-muted-foreground font-inter mb-8">
+              We scan top AI responses to build structural outlines packed with
+              the exact entities required to rank.
+            </p>
+            <div className="mt-auto -mx-2 bg-muted/10 rounded-xl p-4 border border-border/50">
+              <OutlineGeneration />
+            </div>
+          </div>
 
-                    {feature.large && (
-                      <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm rounded-2xl p-6 border border-white/40 dark:border-white/10">
-                        <div className="mb-4">
-                          <p className="text-xs text-gray-500 dark:text-zinc-500 font-medium mb-1">
-                            Project
-                          </p>
-                          <p className="text-sm font-semibold dark:text-white">
-                            Surajondev Marketing Campaign
-                          </p>
-                        </div>
-                        <SimpleBarChart />
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </Card>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+          {/* Card 3: Data-Backed Briefs (1 col) */}
+          <div className="col-span-1 bg-card p-8 md:p-12 flex flex-col group relative overflow-hidden transition-colors hover:bg-muted/30">
+            <div className="flex items-center gap-2 mb-6">
+              <SvgResearch className="w-6 h-6 text-emerald-500" />
+              <span className="text-[11px] font-inter font-bold tracking-widest uppercase text-muted-foreground">
+                Research
+              </span>
+            </div>
+            <h3 className="text-2xl font-poppins font-bold text-foreground mb-3">
+              Data-Backed Briefs
+            </h3>
+            <p className="text-muted-foreground font-inter mb-8 text-sm">
+              Generate content briefs based on live SERP and LLM data to ensure
+              your writers never miss a critical topical gap.
+            </p>
+            <div className="mt-auto -mx-2 bg-muted/10 rounded-xl p-4 border border-border/50">
+              <TopicGeneration />
+            </div>
+          </div>
+
+          {/* Card 4: Content Decay Monitoring (2 cols) */}
+          <div className="col-span-1 md:col-span-2 bg-card p-8 md:p-12 flex flex-col group relative overflow-hidden transition-colors hover:bg-muted/30 min-h-[500px]">
+            <div className="flex items-center gap-2 mb-6">
+              <SvgMonitoring className="w-6 h-6 text-destructive" />
+              <span className="text-[11px] font-inter font-bold tracking-widest uppercase text-muted-foreground">
+                Monitoring
+              </span>
+            </div>
+            <h3 className="text-2xl md:text-3xl font-poppins font-bold text-foreground mb-3">
+              Stale Content is Invisible Content
+            </h3>
+            <p className="text-muted-foreground font-inter max-w-md mb-10">
+              LLMs hallucinate when data is old. Our Decay Risk Engine scans
+              your articles 24/7. We alert you to update before AIs stop citing
+              you.
+            </p>
+            <div className="mt-8 relative rounded-xl border border-border bg-muted/20 overflow-hidden py-8 px-2 -mx-4 -mb-8 lg:-mb-12 isolate flex items-center">
+              <ProgressStats />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
