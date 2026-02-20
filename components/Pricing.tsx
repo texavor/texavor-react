@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Check, CreditCard, ArrowRight } from "lucide-react";
+import { Check } from "lucide-react";
 import Link from "next/link";
 import { PRICING_TIERS } from "@/lib/pricing";
 import { useState } from "react";
@@ -13,61 +13,59 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
-      className="w-full py-24 md:py-32 bg-white dark:bg-zinc-950 relative"
+      className="w-full py-24 md:py-32 bg-muted/40 tx-dot-bg border-b border-border relative overflow-hidden"
     >
-      <div className="container mx-auto px-4 max-w-6xl relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-12 animate-fade-in flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-white/10 rounded-full text-xs font-medium text-primary dark:text-emerald-400 mb-6 shadow-sm">
-            <CreditCard className="w-3 h-3" />
-            Pricing Plans
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground font-poppins mb-6 tracking-tight">
-            Choose The Perfect Plan
-          </h2>
-          <p className="text-lg text-muted-foreground font-inter max-w-2xl mx-auto mb-8 leading-relaxed">
-            Flexible options designed to match every team's workflow.
-          </p>
-
-          <div className="flex items-center justify-center gap-2 mb-8">
-            <span className="px-4 py-1.5 rounded-full bg-emerald-100/50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 text-sm font-semibold border border-emerald-200 dark:border-emerald-800/50 flex items-center gap-2">
-              ✨ Start with a 14-day free trial
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+        {/* Left-Aligned Section Header */}
+        <div className="flex flex-col items-start text-left mb-16 md:mb-20 max-w-2xl">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-1 h-5 bg-accent" />
+            <span className="text-[11px] font-inter font-bold uppercase tracking-widest text-muted-foreground">
+              PRICING
             </span>
           </div>
+          <h2 className="text-3xl md:text-5xl font-poppins font-bold text-foreground mb-6 tracking-tight leading-tight">
+            Invest in your Share of Voice.
+          </h2>
+          <p className="text-lg font-inter text-muted-foreground leading-relaxed">
+            Transparent scaling for teams serious about Semantic SEO and
+            Generative Engine Optimization.
+          </p>
+        </div>
 
-          {/* Monthly/Annual Checkbox using Tabs */}
-          <div className="mb-2">
+        {/* Centered Toggle Above Cards */}
+        <div className="flex justify-center mb-12">
+          <div className="flex flex-col items-center">
             <Tabs
               defaultValue="monthly"
-              className="w-full w-[300px] flex flex-col items-center"
+              className="w-[280px]"
               onValueChange={(value) => setIsAnnual(value === "annual")}
             >
-              <TabsList className="grid w-full grid-cols-2 rounded-full h-12 p-1 bg-gray-100 dark:bg-zinc-800">
+              <TabsList className="grid w-full grid-cols-2 rounded-lg h-12 p-1.5 bg-background border border-border">
                 <TabsTrigger
                   value="monthly"
-                  className="rounded-full data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-900 data-[state=active]:text-primary dark:data-[state=active]:text-emerald-400 data-[state=active]:shadow-sm text-sm font-medium transition-all"
+                  className="rounded-md data-[state=active]:bg-[#1d533f] data-[state=active]:text-white text-sm font-bold font-inter transition-all text-muted-foreground"
                 >
                   Monthly
                 </TabsTrigger>
                 <TabsTrigger
                   value="annual"
-                  className="rounded-full data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-900 data-[state=active]:text-primary dark:data-[state=active]:text-emerald-400 data-[state=active]:shadow-sm text-sm font-medium transition-all"
+                  className="rounded-md data-[state=active]:bg-[#1d533f] data-[state=active]:text-white text-sm font-bold font-inter transition-all text-muted-foreground"
                 >
-                  Annual
+                  Annually
                 </TabsTrigger>
               </TabsList>
             </Tabs>
+            <div
+              className={`mt-3 text-[11px] font-bold font-inter text-[#1d533f] uppercase tracking-widest bg-[#1d533f]/10 px-3 py-1 rounded transition-opacity duration-300 ${isAnnual ? "opacity-100" : "opacity-0"}`}
+            >
+              Save 20% on Annual
+            </div>
           </div>
-
-          {isAnnual && (
-            <p className="text-xs text-primary dark:text-emerald-400 font-bold mt-2 animate-in fade-in slide-in-from-top-1">
-              -20% off on annual payments
-            </p>
-          )}
         </div>
 
-        {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-8 md:gap-6 max-w-5xl mx-auto items-center">
+        {/* Pricing Grid */}
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto items-stretch">
           {Object.entries(PRICING_TIERS).map(([key, tier]) => {
             const period = isAnnual ? tier.yearly : tier.monthly;
             const isRecommended = tier.recommended;
@@ -75,104 +73,78 @@ export default function Pricing() {
             return (
               <div
                 key={key}
-                className={`relative rounded-3xl p-8 transition-all duration-300 ${
-                  isRecommended
-                    ? "bg-white dark:bg-zinc-900 border-2 border-primary shadow-2xl md:scale-110 z-10"
-                    : "bg-white dark:bg-zinc-900/50 border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-md"
-                }`}
+                className={`flex flex-col relative transition-all duration-300 bg-white rounded-xl ${isRecommended ? "" : "pt-[2px] mt-10 border border-border/60"}`}
               >
-                {/* Recommended Badge */}
+                {/* Most Popular Hat */}
                 {isRecommended && (
-                  <div className="absolute top-0 left-0 right-0 h-10 bg-primary rounded-t-[22px] flex items-center justify-center">
-                    <span className="text-white dark:text-zinc-950 text-xs font-bold uppercase tracking-wider">
-                      Most Popular Plan
-                    </span>
+                  <div className="h-10 w-full bg-[#1d533f] text-white flex items-center justify-center text-[11px] font-bold uppercase tracking-widest rounded-t-xl transition-colors duration-300">
+                    Most Popular
                   </div>
                 )}
 
-                {/* Adjust padding for recommended card due to header */}
-                <div className={isRecommended ? "mt-4" : ""}>
-                  {/* Plan Name */}
+                <div
+                  className={`flex-1 p-6 md:p-8 flex flex-col transition-all duration-300 ${
+                    isRecommended
+                      ? "border-x border-b border-[#1d533f] rounded-b-xl shadow-tx-md"
+                      : ""
+                  }`}
+                >
+                  {/* Title & Description */}
                   <div className="mb-6">
-                    <h3 className="text-xl font-bold font-poppins mb-2 text-gray-900 dark:text-white">
+                    <h3 className="text-2xl font-bold font-poppins text-foreground mb-2">
                       {tier.name}
                     </h3>
-                    <p className="text-sm font-inter text-gray-500 dark:text-zinc-400 min-h-[40px]">
+                    <p className="text-sm font-inter text-muted-foreground min-h-[40px] max-w-[200px] leading-relaxed">
                       {tier.description}
                     </p>
                   </div>
 
                   {/* Price */}
-                  <div className="mb-6">
+                  <div className="mb-8">
                     <div className="flex items-baseline gap-1">
-                      <span className="text-4xl font-bold font-poppins text-gray-900 dark:text-white">
+                      <span className="text-5xl font-black font-poppins text-foreground tracking-tight">
                         ${period.price}
                       </span>
-                      <span className="text-sm font-medium text-gray-500 dark:text-zinc-400">
-                        per month
+                      <span className="text-sm font-semibold text-muted-foreground font-inter mb-1">
+                        /mo
                       </span>
                     </div>
-                    {isAnnual && period.savings && (
-                      <p className="text-xs font-medium mt-1 text-primary dark:text-emerald-400">
-                        Save ${period.savings}/year
-                      </p>
-                    )}
                   </div>
 
                   {/* CTA Button */}
                   <Button
                     asChild
-                    className={`w-full py-6 rounded-xl font-semibold mb-8 transition-all shadow-none ${
+                    className={`w-full h-11 rounded font-bold font-inter mb-10 transition-all ${
                       isRecommended
-                        ? "bg-primary text-white dark:text-zinc-950 hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5"
-                        : "bg-gray-100 dark:bg-zinc-800 text-gray-900 dark:text-zinc-300 hover:bg-gray-200 dark:hover:bg-zinc-700"
+                        ? "bg-[#1d533f] text-white hover:bg-[#1d533f]/90"
+                        : "bg-muted/60 text-foreground hover:bg-muted"
                     }`}
+                    variant={isRecommended ? "default" : "secondary"}
                   >
                     <Link
                       href={`${process.env.NEXT_PUBLIC_APP_URL}/register?plan=${tier.name.toLowerCase()}`}
-                      className="flex items-center justify-center gap-2"
                       target="_blank"
-                      data-umami-event="pricing_get_plan_click"
+                      data-umami-event="pricing_select_plan"
                       data-umami-event-plan={tier.name}
                     >
                       {`Get ${tier.name}`}
-                      <ArrowRight className="w-4 h-4" />
                     </Link>
                   </Button>
 
-                  {/* Features */}
-                  <div className="space-y-4">
-                    <p className="text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide">
-                      What's included in {tier.name.toLowerCase()} plan:
-                    </p>
-                    <ul className="space-y-3">
-                      {tier.features.map((feature, featureIndex) => (
-                        <li
-                          key={featureIndex}
-                          className="flex items-start gap-2.5"
-                        >
-                          <div
-                            className={`rounded-full p-0.5 mt-0.5 ${
-                              isRecommended
-                                ? "bg-primary/10 dark:bg-emerald-950/30 text-primary dark:text-emerald-400"
-                                : "bg-gray-100 dark:bg-zinc-800 text-gray-500 dark:text-zinc-500"
-                            }`}
-                          >
-                            <Check
-                              className={`w-3 h-3 ${
-                                isRecommended
-                                  ? "text-primary dark:text-emerald-400"
-                                  : "text-gray-600 dark:text-zinc-400 font-bold"
-                              }`}
-                            />
-                          </div>
-                          <span className="text-sm font-inter text-gray-600 dark:text-zinc-300">
-                            {feature}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  {/* Features list */}
+                  <ul className="space-y-4 pt-8 border-t border-border/60">
+                    {tier.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-start gap-3">
+                        <Check
+                          className="w-[16px] h-[16px] text-amber-500 shrink-0 mt-[2px]"
+                          strokeWidth={3}
+                        />
+                        <span className="text-[14px] font-inter text-foreground/80 leading-snug">
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             );

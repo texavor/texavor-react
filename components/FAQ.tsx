@@ -1,8 +1,8 @@
 "use client";
 
 import { HelpCircle, Plus, X } from "lucide-react";
-
 import { faqData } from "@/lib/faq-data";
+import Link from "next/link";
 
 export default function FAQ() {
   const faqs = faqData;
@@ -10,60 +10,64 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="w-full py-24 md:py-32 bg-gray-50 dark:bg-zinc-950"
+      className="w-full py-24 md:py-32 bg-muted/40 tx-dot-bg border-b border-border relative overflow-hidden"
     >
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className="text-center mb-16 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-white/10 rounded-full text-xs font-medium text-primary dark:text-emerald-400 mb-6 shadow-xs">
-            <HelpCircle className="w-3 h-3" />
-            FAQ
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+        {/* Left-Aligned Section Header */}
+        <div className="flex flex-col items-start text-left mb-16">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-1 h-5 bg-accent" />
+            <span className="text-[11px] font-inter font-bold uppercase tracking-widest text-muted-foreground">
+              FAQ
+            </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground font-poppins mb-6 tracking-tight">
-            Frequently Asked Questions
+          <h2 className="text-3xl md:text-5xl font-poppins font-bold text-foreground mb-6 tracking-tight leading-tight">
+            Frequently asked questions.
           </h2>
-          <p className="text-lg text-muted-foreground font-inter max-w-2xl mx-auto leading-relaxed">
-            Answers to common questions before you get started.
+          <p className="text-lg font-inter text-muted-foreground leading-relaxed max-w-2xl">
+            Everything you need to know about the product and billing.
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto space-y-4">
+        {/* Flat Accordion List */}
+        <div className="w-full space-y-0 border-t border-border/60">
           {faqs.map((faq, index) => (
             <details
               key={index}
-              className="group bg-white dark:bg-zinc-900 rounded-2xl border border-gray-100 dark:border-white/5 shadow-xs hover:shadow-sm transition-all duration-300 open:ring-1 open:ring-primary/5 dark:open:ring-emerald-400/10"
+              className="group border-b border-border/60 transition-colors duration-300"
             >
-              <summary className="flex items-center justify-between w-full px-6 py-5 text-left font-semibold text-gray-900 dark:text-white hover:text-primary dark:hover:text-emerald-400 transition-colors font-poppins text-sm cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                <span className="flex-1">{faq.question}</span>
-                {/* Custom Toggle Icon */}
-                <div className="flex-shrink-0 ml-4 w-6 h-6 rounded-full bg-primary/10 dark:bg-emerald-400/10 flex items-center justify-center transition-all duration-300 group-open:bg-primary/20 dark:group-open:bg-emerald-400/20">
+              <summary className="flex items-center justify-between w-full py-6 md:py-8 text-left font-medium text-foreground hover:text-accent transition-colors font-poppins text-lg cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                <span className="flex-1 pr-8 text-lg">{faq.question}</span>
+                <div className="flex-shrink-0 transition-transform duration-300 group-open:rotate-45">
                   <Plus
-                    className="w-3.5 h-3.5 text-primary dark:text-emerald-400 group-open:hidden"
-                    strokeWidth={3}
-                  />
-                  <X
-                    className="w-3.5 h-3.5 text-primary dark:text-emerald-400 hidden group-open:block"
-                    strokeWidth={3}
+                    className="w-6 h-6 text-muted-foreground group-open:text-accent transition-colors"
+                    strokeWidth={2.5}
                   />
                 </div>
               </summary>
-              <div className="px-6 pb-5 text-gray-600 dark:text-zinc-400 font-inter text-sm leading-relaxed animate-in slide-in-from-top-2 fade-in duration-200">
+              <div className="pb-8 text-muted-foreground font-inter text-base md:text-lg leading-relaxed max-w-3xl animate-in slide-in-from-top-2 fade-in duration-200">
                 {faq.answer}
               </div>
             </details>
           ))}
+        </div>
 
-          {/* Contact Us Card */}
-          <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-gray-100 dark:border-white/5 shadow-xs p-6 flex items-center justify-between">
-            <span className="font-semibold text-gray-900 dark:text-white font-poppins text-sm">
-              Can't find what you're looking for?
+        {/* Flat Contact Bar */}
+        <div className="mt-16 bg-muted/30 rounded-xl border border-border p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div>
+            <span className="block font-bold text-foreground font-poppins text-lg mb-1">
+              Still have questions?
             </span>
-            <a
-              href="mailto:hello@texavor.com"
-              className="px-4 py-2 bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 text-gray-900 dark:text-white text-xs font-semibold rounded-lg transition-colors"
-            >
-              Contact Us
-            </a>
+            <span className="text-muted-foreground font-inter text-sm">
+              We are here to help you get the most out of Texavor.
+            </span>
           </div>
+          <Link
+            href="mailto:hello@texavor.com"
+            className="px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground font-bold font-inter text-sm rounded-lg transition-colors inline-flex items-center justify-center whitespace-nowrap"
+          >
+            Contact Us
+          </Link>
         </div>
       </div>
     </section>
