@@ -87,7 +87,7 @@ export default async function DocPage({
     docData.title?.toLowerCase().includes("how to") ||
     docData.title?.toLowerCase().includes("guide") ||
     docData.title?.toLowerCase().includes("quick start") ||
-    docData.category === "getting-started" ||
+    docData?.category === "getting-started" ||
     docData.slug?.includes("guide");
 
   // Enhanced step extraction from markdown
@@ -145,8 +145,8 @@ export default async function DocPage({
           "@type": "HowTo",
           "@id": `https://www.texavor.com/docs/${slug}`,
           url: `https://www.texavor.com/docs/${slug}`,
-          name: docData.title,
-          description: docData.description,
+          name: docData?.title || "Texavor Documentation",
+          description: docData?.description || "Texavor Documentation",
           image: ["https://www.texavor.com/texavor.png"],
           step: steps,
           author: {
@@ -171,11 +171,15 @@ export default async function DocPage({
           "@type": "TechArticle",
           "@id": `https://www.texavor.com/docs/${slug}`,
           url: `https://www.texavor.com/docs/${slug}`,
-          headline: docData.title,
-          description: docData.description,
+          headline: docData?.title || "Texavor Documentation",
+          description: docData?.description || "Texavor Documentation",
           image: ["https://www.texavor.com/texavor.png"],
-          datePublished: new Date().toISOString(),
-          dateModified: new Date().toISOString(),
+          datePublished: docData?.date
+            ? new Date(docData.date).toISOString()
+            : new Date().toISOString(),
+          dateModified: docData?.date
+            ? new Date(docData.date).toISOString()
+            : new Date().toISOString(),
           author: {
             "@type": "Person",
             name: "Suraj Vishwakarma",
@@ -199,9 +203,10 @@ export default async function DocPage({
         };
 
   return (
-    <>
+    <div className="min-h-screen bg-background font-sans">
       <Schema script={schema} />
+
       <DocsView docData={docData} html={parsedHtml} allDocs={categorizedDocs} />
-    </>
+    </div>
   );
 }

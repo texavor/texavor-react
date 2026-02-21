@@ -20,12 +20,12 @@ export const InjectedRelatedArticles: React.FC<
   }
 
   return (
-    <div className="border-t-[1px] border-b-[1px] border-gray-600 dark:border-white/10 pb-10 w-full">
+    <div className="border-t border-b border-border/50 pb-10 w-full group">
       <h3
-        className="font-poppins text-xl font-medium text-gray-800 dark:text-white"
+        className="font-poppins text-lg font-bold text-foreground"
         style={{ margin: "16px 0px" }}
       >
-        You might also like...
+        TECHNICAL CONTEXT
       </h3>
       <div className="w-full">
         <Link
@@ -35,27 +35,27 @@ export const InjectedRelatedArticles: React.FC<
           passHref
         >
           <div
-            className="bg-[#EEDED3] dark:bg-zinc-800 rounded-xl overflow-hidden w-full md:flex gap-4"
+            className="bg-card border border-border rounded-lg overflow-hidden w-full md:flex gap-4 transition-all duration-300 group-hover:border-primary/40 group-hover:shadow-tx-sm"
             style={{ margin: "0px" }}
           >
-            <div className="overflow-hidden md:w-[50%]">
+            <div className="overflow-hidden md:w-[50%] bg-muted/20">
               <img
                 src={article.image}
                 alt={article.title}
-                className="object-cover w-full m-0 transition-transform duration-300 hover:scale-[1.1]"
+                className="object-cover w-full m-0 opacity-90 group-hover:opacity-100 transition-opacity"
                 loading="lazy"
                 style={{ margin: "0px" }}
               />
             </div>
-            <div className="md:w-[50%] mt-4 px-2 pb-4 md:p-0">
+            <div className="md:w-[50%] mt-4 px-2 pb-4 md:p-6">
               <p
-                className="font-poppins text-2xl no-underline font-medium text-gray-900 dark:text-white md:pr-4"
+                className="font-poppins text-xl no-underline font-bold text-foreground md:pr-4"
                 style={{ margin: "0px" }}
               >
                 {article.title}
               </p>
               <p
-                className="font-inter text-sm no-underline font-medium text-gray-700 dark:text-zinc-400 pt-2 md:pr-4"
+                className="font-inter text-sm no-underline text-muted-foreground pt-2 md:pr-4 leading-relaxed"
                 style={{ margin: "0px" }}
               >
                 {/* @ts-ignore */}
