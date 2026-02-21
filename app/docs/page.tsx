@@ -1,13 +1,8 @@
-import { redirect } from "next/navigation";
-import { getFirstDoc } from "@/lib/docs";
+import { getDocsByCategory } from "@/lib/docs";
+import DocsLanding from "./DocsLanding";
 
 export default function DocsPage() {
-  const firstDoc = getFirstDoc();
+  const categorizedDocs = getDocsByCategory();
 
-  if (firstDoc) {
-    redirect(`/docs/${firstDoc.slug}`);
-  }
-
-  // Fallback to introduction if no docs found
-  redirect("/docs/introduction");
+  return <DocsLanding categories={categorizedDocs} />;
 }

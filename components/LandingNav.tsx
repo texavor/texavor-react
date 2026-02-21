@@ -13,12 +13,13 @@ const NAV_ITEMS = [
   { label: "Features", id: "features", href: "/#features" },
   { label: "Tools", id: "free-tools", href: "/tools" },
   { label: "Blog", id: "blog", href: "/blog" },
-  { label: "Docs", id: "docs", href: "/docs/introduction" },
+  { label: "Docs", id: "docs", href: "/docs" },
 ];
 
 export default function LandingNav() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const fullWidth = false; // Reverted to standard width behavior
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -43,7 +44,12 @@ export default function LandingNav() {
           : "bg-background border-b border-transparent",
       )}
     >
-      <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
+      <div
+        className={cn(
+          "mx-auto px-6 h-16 flex items-center justify-between",
+          fullWidth ? "w-full max-w-none" : "max-w-7xl",
+        )}
+      >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
           <div className="relative w-7 h-7 overflow-hidden">

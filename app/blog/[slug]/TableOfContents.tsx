@@ -111,7 +111,7 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
   };
 
   return (
-    <div className="bg-muted/40 p-6 rounded-xl mb-8 border border-border">
+    <div className="bg-card p-6 rounded-lg mb-8 border border-border">
       <h2 className="font-poppins text-base font-bold text-foreground mb-4">
         Table of Contents
       </h2>
