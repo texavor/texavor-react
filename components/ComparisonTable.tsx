@@ -13,7 +13,7 @@ export function ComparisonTable() {
       category: "Target Audience",
       rankpill: "Beginners, Small Biz",
       jasper: "General Marketers",
-      texavor: "Devs, Tech Companies",
+      texavor: "Devs, Tech Companies, Saas",
     },
     {
       category: "Publishing",
