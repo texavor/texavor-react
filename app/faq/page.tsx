@@ -1,7 +1,9 @@
 import PageTransition from "@/components/PageTransition";
-import FAQ from "@/components/FAQ";
+import dynamic from "next/dynamic";
 import { faqData } from "@/lib/faq-data";
 import Schema from "@/components/Schema";
+
+const FAQ = dynamic(() => import("@/components/FAQ"));
 
 export const metadata = {
   title: "FAQ | Texavor",
@@ -13,29 +15,44 @@ export const metadata = {
 };
 
 export default function FAQPage() {
-  const faqSchema = Array.isArray(faqData)
-    ? faqData.map((faq) => ({
-        "@type": "Question",
-        name: faq.question,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: faq.answer,
-        },
-      }))
-    : [];
+  const faqSchemaRows =
+    faqData && Array.isArray(faqData)
+      ? faqData.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        }))
+      : [];
 
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
+      // PRIMARY: Organization Schema for Knowledge Graph
       {
-        "@type": "WebSite",
-        "@id": "https://www.texavor.com/#website",
-        url: "https://www.texavor.com",
+        "@type": "Organization",
+        "@id": "https://www.texavor.com/#organization",
         name: "Texavor",
-        publisher: {
-          "@id": "https://www.texavor.com/#person",
+        url: "https://www.texavor.com",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://www.texavor.com/texavor.png",
+        },
+        sameAs: [
+          "https://x.com/texavor",
+          "https://www.linkedin.com/company/texavor",
+          "https://github.com/texavor",
+        ],
+        contactPoint: {
+          "@type": "ContactPoint",
+          telephone: "",
+          contactType: "customer service",
+          email: "contact@texavor.com",
         },
       },
+      // Person Schema for E-E-A-T
       {
         "@type": "Person",
         "@id": "https://www.texavor.com/#person",
@@ -45,15 +62,32 @@ export default function FAQPage() {
           "Founder of Texavor, expert in AI visibility optimization and Generative Engine Optimization (GEO)",
         jobTitle: "Founder & CEO",
         worksFor: {
-          "@type": "Organization",
-          name: "Texavor",
-          url: "https://www.texavor.com",
+          "@id": "https://www.texavor.com/#organization",
         },
+        // Social profiles for Knowledge Graph
         sameAs: [
           "https://x.com/texavor",
           "https://www.linkedin.com/company/texavor",
           "https://github.com/texavor",
         ],
+        knowsAbout: [
+          "Generative Engine Optimization",
+          "AI Visibility Tracking",
+          "Content Optimization",
+          "SEO",
+        ],
+      },
+      // WebSite Schema
+      {
+        "@type": "WebSite",
+        "@id": "https://www.texavor.com/#website",
+        url: "https://www.texavor.com",
+        name: "Texavor",
+        description:
+          "AI-powered content creation and optimization platform for Generative Engine Optimization (GEO) and SEO.",
+        publisher: {
+          "@id": "https://www.texavor.com/#organization",
+        },
       },
       {
         "@type": "WebPage",
@@ -63,12 +97,18 @@ export default function FAQPage() {
         description:
           "Frequently asked questions about Texavor, GEO, content optimization, and more.",
         isPartOf: { "@id": "https://www.texavor.com/#website" },
-        about: { "@id": "https://www.texavor.com/#person" },
+        author: {
+          "@id": "https://www.texavor.com/#person",
+        },
+        primaryImageOfPage: {
+          "@type": "ImageObject",
+          url: "https://www.texavor.com/texavor.png",
+        },
       },
       {
         "@type": "FAQPage",
         "@id": "https://www.texavor.com/faq/#faq",
-        mainEntity: faqSchema,
+        mainEntity: faqSchemaRows,
         isPartOf: { "@id": "https://www.texavor.com/faq/#webpage" },
       },
     ],

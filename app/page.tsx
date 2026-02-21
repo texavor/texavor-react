@@ -15,7 +15,6 @@ import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import dynamic from "next/dynamic";
 import Schema from "@/components/Schema";
-import { faqData } from "@/lib/faq-data";
 
 const Integration = dynamic(() => import("@/components/Integration"));
 const SocialProof = dynamic(() => import("@/components/SocialProof"));
@@ -27,20 +26,22 @@ const FAQ = dynamic(() => import("@/components/FAQ"));
 const CTA = dynamic(() => import("@/components/CTA"));
 
 import { ComparisonTable } from "@/components/ComparisonTable";
+import { faqData as homepageFaqData } from "@/lib/faq-data";
 import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   // Dynamically compile FAQ schema from FAQ component data
-  const faqSchemaRows = Array.isArray(faqData)
-    ? faqData.map((faq) => ({
-        "@type": "Question",
-        name: faq.question,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: faq.answer,
-        },
-      }))
-    : [];
+  const faqSchemaRows =
+    homepageFaqData && Array.isArray(homepageFaqData)
+      ? homepageFaqData.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        }))
+      : [];
 
   const mainSchema = {
     "@context": "https://schema.org",
