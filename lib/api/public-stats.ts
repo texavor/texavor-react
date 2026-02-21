@@ -11,7 +11,7 @@ export interface PlatformStats {
   ai_visibility_scans: number;
   public_tool_uses: number;
   countries_reached: number;
-  avg_seo_score: number;
+  avg_content_score: number;
   avg_readability_score: number;
   cached_at: string;
   cache_ttl_seconds: number;
