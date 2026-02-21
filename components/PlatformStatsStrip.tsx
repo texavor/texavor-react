@@ -70,7 +70,7 @@ const STAT_CONFIG: {
     description: "Run through full AI visibility analysis",
   },
   {
-    key: "avg_seo_score",
+    key: "avg_content_score",
     label: "Avg content score",
     suffix: "/100",
     format: (n) => Math.round(n).toString(),
