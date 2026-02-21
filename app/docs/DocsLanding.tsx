@@ -129,13 +129,13 @@ export default function DocsLanding({ categories = [] }: DocsLandingProps) {
           <div className="max-w-3xl animate-fade-slide-up">
             <p className="tx-eyebrow mb-5">DOCUMENTATION</p>
             <h1 className="font-poppins text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight mb-4">
-              Build with <span className="text-primary italic">authority</span>.{" "}
+              Scale with <span className="text-primary italic">precision</span>.{" "}
               <br className="hidden md:block" />
-              Master the Texavor Engine.
+              Engineer your content flow.
             </h1>
             <p className="font-inter text-lg text-muted-foreground max-w-2xl leading-relaxed">
-              Technical guides, API references, and strategic recipes designed
-              to maximize your visibility in the generative search landscape.
+              Technical documentation and developer resources for building
+              data-driven content systems that excel in the generative era.
             </p>
           </div>
         </div>
@@ -157,13 +157,14 @@ export default function DocsLanding({ categories = [] }: DocsLandingProps) {
               </div>
 
               <h3 className="text-3xl font-poppins font-bold text-foreground mb-4">
-                Real-time visibility scoring and entity mapping for
-                high-authority content.
+                Real-time distribution analysis and entity clustering for
+                high-fidelity content systems.
               </h3>
 
               <p className="text-muted-foreground font-inter max-w-md mb-8 leading-relaxed">
-                Expert insights on citation logic, entity mapping, and automated
-                SEO workflows—integrated directly into your workspace.
+                Expert insights on inference mapping, node clustering, and
+                automated deployment pipelines—integrated directly into your
+                workspace.
               </p>
 
               <div className="mt-auto pt-8 border-t border-border/50 flex items-center gap-6">
@@ -196,11 +197,11 @@ export default function DocsLanding({ categories = [] }: DocsLandingProps) {
 
               <div className="space-y-4">
                 {[
-                  "AI Visibility Monitoring",
-                  "Automated Entity Mapping",
-                  "Competitor Decay Risk",
-                  "GEO Content Generation",
-                  "Multi-Channel Authority",
+                  "Neural Distribution Monitoring",
+                  "Automated Node Clustering",
+                  "Competitor Risk Analysis",
+                  "Generative Core Deployment",
+                  "Cross-Platform Scalability",
                 ].map((item, i) => (
                   <Link
                     key={i}
@@ -277,7 +278,8 @@ export default function DocsLanding({ categories = [] }: DocsLandingProps) {
             </h3>
             <p className="text-muted-foreground font-inter max-w-xl mx-auto mb-10 leading-relaxed text-base">
               Our technical support team is available 24/7 to help you with
-              custom integrations, domain analysis, or advanced GEO strategy.
+              custom integrations, architecture audits, or advanced content
+              engineering.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button
