@@ -459,7 +459,7 @@ export default function Features() {
               </span>
             </div>
             <h3 className="text-2xl md:text-3xl font-poppins font-bold text-foreground mb-3">
-              SERP & LLM Analysis
+              Citation Audit
             </h3>
             <p className="text-muted-foreground font-inter max-w-md mb-10">
               Track where your competitors appear in Perplexity and Google SGE.
@@ -481,7 +481,7 @@ export default function Features() {
               </span>
             </div>
             <h3 className="text-2xl font-poppins font-bold text-foreground mb-3">
-              Entity Outlines
+              AI Search Mastery
             </h3>
             <p className="text-muted-foreground font-inter mb-8">
               We scan top AI responses to build structural outlines packed with
@@ -504,8 +504,9 @@ export default function Features() {
               Data-Backed Briefs
             </h3>
             <p className="text-muted-foreground font-inter mb-8 text-sm">
-              Generate content briefs based on live SERP and LLM data to ensure
-              your writers never miss a critical topical gap.
+              Generate content briefs with direct "Answer Capsules" based on
+              live SERP and LLM data to ensure your writers never miss a
+              critical topical gap.
             </p>
             <div className="mt-auto -mx-2 bg-muted/10 rounded-xl p-4 border border-border/50">
               <TopicGeneration />

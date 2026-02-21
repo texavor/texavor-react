@@ -3,9 +3,9 @@ import Link from "next/link";
 import PageTransition from "@/components/PageTransition";
 
 export const metadata: Metadata = {
-  title: "Texavor - GEO & Content Optimization Platform for Developers",
+  title: "Rank in Google. Get Cited by ChatGPT. | Texavor",
   description:
-    "Generate high-impact, E-E-A-T optimized technical articles. Monitor Share of Voice on ChatGPT, Perplexity & Claude. Fix content decay before you lose rank.",
+    "Master the Search Era. Get cited by ChatGPT and rank in Google SGE. Texavor is the AI visibility engine for high-growth brands.",
   alternates: {
     canonical: "/",
   },
@@ -14,7 +14,8 @@ export const metadata: Metadata = {
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import PlatformStatsStrip from "@/components/PlatformStatsStrip";
-import BeforeAfterProof from "@/components/BeforeAfterProof";
+// import BeforeAfterProof from "@/components/BeforeAfterProof";
+import { CitationAnatomy } from "@/components/CitationAnatomy";
 import dynamic from "next/dynamic";
 import Schema from "@/components/Schema";
 
@@ -238,7 +239,8 @@ export default function Home() {
       <main className="flex min-h-screen flex-col items-center w-full pt-0">
         <Hero />
         <PlatformStatsStrip />
-        <BeforeAfterProof />
+        {/* <BeforeAfterProof /> */}
+        <CitationAnatomy />
         <Features />
         <Integration />
         <HowItWorks />

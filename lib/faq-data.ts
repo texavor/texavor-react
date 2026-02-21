@@ -34,6 +34,11 @@ export const faqData = [
       "No, billing is per workspace. You pay for the plan, and it covers all the members you invite up to the plan's limit.",
   },
   {
+    question: "Why is ranking in Google no longer enough for visibility?",
+    answer:
+      "While SEO is still vital, millions of users are now asking AI agents directly. Texavor ensures your content is structured for both humans and LLMs, helping you rank for 'AI SEO strategy 2026' while winning brand citations in AI answers.",
+  },
+  {
     question: "Does Texavor work offline?",
     answer:
       "Currently, Texavor requires an internet connection to sync your data and generate AI content. We are exploring offline capabilities for the future.",

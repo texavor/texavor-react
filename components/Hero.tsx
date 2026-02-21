@@ -38,7 +38,7 @@ export default function Hero() {
             <div className="flex items-center gap-2.5 mb-8">
               <span className="w-1 h-5 rounded-full bg-accent inline-block flex-shrink-0" />
               <span className="text-xs font-semibold font-inter text-foreground/70 uppercase tracking-widest">
-                People are asking AI, not Google
+                Rank in Google. Get Cited by ChatGPT.
               </span>
             </div>
 
@@ -50,9 +50,9 @@ export default function Hero() {
 
             {/* Sub-headline — humanized, no jargon, no 'GEO' */}
             <p className="text-base md:text-lg text-muted-foreground font-inter leading-relaxed mb-4 max-w-md">
-              Millions of people now skip Google and ask ChatGPT, Perplexity, or
-              Claude directly. Texavor helps your content show up in those
-              answers — by building the entity depth and authority they trust.
+              Texavor bridges the gap between traditional SEO and AI answers.
+              Build the entity depth and authority that ChatGPT, Perplexity, and
+              SGE trust.
             </p>
 
             {/* AI ticker — shows which engines Texavor tracks */}
