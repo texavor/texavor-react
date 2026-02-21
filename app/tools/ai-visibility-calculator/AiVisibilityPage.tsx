@@ -215,22 +215,27 @@ export default function AiScorePage() {
   };
 
   return (
-    <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
-      <div className="container max-w-7xl px-4 mx-auto pb-20">
-        {/* Header - Restored Gradient & Size */}
-        <div className="text-center mb-12 space-y-4">
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary to-green-600 bg-clip-text text-transparent pb-2 font-poppins">
-            AI Visibility Calculator
-          </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-inter">
-            Test how well your topic ranks in AI search results with our
-            advanced 5-point analysis.
-          </p>
+    <div className="min-h-screen bg-background font-sans mt-6 lg:mt-0">
+      {/* Hero Section */}
+      <section className="w-full pt-20 pb-12 md:pt-28 md:pb-16 bg-background tx-dot-bg border-b border-border/50">
+        <div className="container px-6 mx-auto max-w-7xl">
+          <div className="max-w-3xl animate-fade-slide-up">
+            <p className="tx-eyebrow mb-5">FREE SEO TOOL</p>
+            <h1 className="font-poppins text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight mb-4">
+              AI Visibility Calculator
+            </h1>
+            <p className="font-inter text-lg text-muted-foreground max-w-2xl leading-relaxed">
+              Test how well your topic ranks in AI search results with our
+              advanced 5-point analysis.
+            </p>
+          </div>
         </div>
+      </section>
 
-        {/* Search Input Card - Restored Separated Style */}
-        <Card className="mb-16 bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
-          <CardContent className="px-4 py-1">
+      <div className="container max-w-7xl px-6 mx-auto pt-10 md:pt-16 pb-24">
+        {/* Search Input Card */}
+        <Card className="mb-16 bg-card border border-border shadow-none rounded-lg mx-auto overflow-hidden">
+          <CardContent className="px-6 py-5">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -256,7 +261,7 @@ export default function AiScorePage() {
                           onBlur={field.handleBlur}
                           onChange={(e) => field.handleChange(e.target.value)}
                           placeholder="e.g. how to bake sourdough"
-                          className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
+                          className="h-11 pl-10 text-base bg-background border-input"
                         />
                         {field.state.meta.errors ? (
                           <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
@@ -271,8 +276,9 @@ export default function AiScorePage() {
 
                 <Button
                   type="submit"
-                  size="lg"
-                  className="h-12 px-8 min-w-[140px] font-semibold text-lg bg-primary hover:bg-primary/90 text-white dark:text-zinc-950 shadow-lg hover:shadow-xl transition-all rounded-xl"
+                  size="default"
+                  variant="brand"
+                  className="h-11 w-40 font-semibold text-base shrink-0 rounded-md"
                   disabled={loading || isWaitingForToken}
                 >
                   {isWaitingForToken ? (
@@ -320,11 +326,10 @@ export default function AiScorePage() {
 
         {/* Empty State Feature Preview - Shows when no result and not loading */}
         {!result && !loading && (
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto opacity-90">
+          <div className="grid md:grid-cols-2 gap-6 w-full mb-16 opacity-90">
             {/* Feature 1: Keyword Research */}
             <div className="relative group">
-              <div className="absolute inset-0 bg-emerald-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
+              <Card className="h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
                 <CardHeader className="pb-2">
                   <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center mb-3">
                     <Search className="w-5 h-5 text-blue-600" />
@@ -401,8 +406,7 @@ export default function AiScorePage() {
 
             {/* Feature 2: AI Radar */}
             <div className="relative group mt-8 md:mt-0">
-              <div className="absolute inset-0 bg-purple-100/50 rounded-3xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform rotate-1 group-hover:rotate-2 transition-transform duration-500">
+              <Card className="h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
                 <CardHeader className="pb-2">
                   <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center mb-3">
                     <Sparkles className="w-5 h-5 text-purple-600" />
@@ -500,10 +504,9 @@ export default function AiScorePage() {
                 </div>
 
                 {/* AI Summary (Widget 3) */}
-                <Card className="border border-border/50 shadow-none rounded-2xl bg-primary/5 dark:bg-zinc-900 overflow-hidden">
-                  <div className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
-                  <CardHeader className="pb-2 pt-5">
-                    <CardTitle className="text-lg font-semibold flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400">
+                <Card className="bg-card border border-border shadow-none rounded-lg overflow-hidden">
+                  <CardHeader className="pb-2 pt-5 flex flex-row items-center justify-between">
+                    <CardTitle className="text-lg font-semibold flex items-center gap-2 font-poppins text-foreground">
                       AI Field Strategy
                     </CardTitle>
                   </CardHeader>
@@ -515,21 +518,21 @@ export default function AiScorePage() {
                       <MetricCard
                         label="Ranking Prob."
                         value={`${result?.advanced_scores?.ranking_probability}%`}
-                        type="primary"
+                        type="secondary"
                         className="h-auto p-4"
                         labelClassName="text-sm"
                       />
                       <MetricCard
                         label="Topic Auth."
                         value={`${result?.advanced_scores?.topic_authority}/100`}
-                        type="primary"
+                        type="secondary"
                         className="h-auto p-4"
                         labelClassName="text-sm"
                       />
                       <MetricCard
                         label="Click Potential"
                         value={`${result?.advanced_scores?.click_potential}/100`}
-                        type="primary"
+                        type="secondary"
                         className="h-auto p-4"
                         labelClassName="text-sm"
                       />
@@ -540,20 +543,12 @@ export default function AiScorePage() {
 
               {/* Right Column: Radar Chart (Widget 2) */}
               <div className="lg:col-span-4">
-                <Card className="h-full border-none shadow-lg rounded-xl bg-[#104127] text-white relative overflow-hidden">
-                  {/* Dynamic Background for Primary */}
-                  <div
-                    className="absolute inset-0 opacity-100 pointer-events-none"
-                    style={{
-                      background:
-                        "radial-gradient(circle at 10% 90%, #1a5d3a 0%, transparent 60%), linear-gradient(to top right, #104127 0%, #0d3520 100%)",
-                    }}
-                  />
+                <Card className="h-full bg-card border border-border shadow-none rounded-lg relative overflow-hidden">
                   <CardHeader className="pb-2 text-center pt-5 relative z-10">
-                    <CardTitle className="text-2xl text-white">
+                    <CardTitle className="text-2xl text-foreground font-poppins">
                       Visibility Radar
                     </CardTitle>
-                    <CardDescription className="text-green-100/80">
+                    <CardDescription className="text-muted-foreground font-inter">
                       AI Search Intent Analysis
                     </CardDescription>
                   </CardHeader>
@@ -565,10 +560,10 @@ export default function AiScorePage() {
                         outerRadius="60%"
                         data={result?.radar_chart_data}
                       >
-                        <PolarGrid stroke="rgba(255,255,255,0.2)" />
+                        <PolarGrid stroke="#e5e7eb" />
                         <PolarAngleAxis
                           dataKey="subject"
-                          tick={{ fill: "#d1fae5", fontSize: 12, dy: 3 }}
+                          tick={{ fill: "#6b7280", fontSize: 12, dy: 3 }}
                         />
                         <PolarRadiusAxis
                           angle={30}
@@ -579,17 +574,17 @@ export default function AiScorePage() {
                         <Radar
                           name="AI Score"
                           dataKey="A"
-                          stroke="#34d399"
-                          fill="#34d399"
+                          stroke="#10b981"
+                          fill="#10b981"
                           fillOpacity={0.6}
                         />
                       </RadarChart>
                     </ResponsiveContainer>
                     <div className="absolute top-0 right-0 p-4 text-center">
-                      <div className="text-3xl font-bold text-white">
+                      <div className="text-3xl font-bold text-foreground">
                         {result?.grade}
                       </div>
-                      <div className="text-xs text-green-100/80 uppercase tracking-wider font-medium">
+                      <div className="text-xs text-muted-foreground uppercase tracking-wider font-medium">
                         Grade
                       </div>
                     </div>
@@ -601,12 +596,12 @@ export default function AiScorePage() {
             {/* Bottom Row: Prompts & Keywords */}
             <div className="grid md:grid-cols-2 gap-6">
               {/* Prompt Ideas (Widget 4) */}
-              <Card className="border border-border/50 shadow-none rounded-xl bg-primary/5 dark:bg-zinc-900 h-full">
+              <Card className="bg-card border border-border shadow-none rounded-lg h-full">
                 <CardHeader className="pb-3 ">
-                  <CardTitle className="text-lg font-semibold flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400">
+                  <CardTitle className="text-lg font-semibold flex items-center gap-2 font-poppins text-foreground">
                     AI Prompt Ideas
                   </CardTitle>
-                  <CardDescription className="text-inter text-gray-500">
+                  <CardDescription className="text-inter text-muted-foreground">
                     Copy-paste these into ChatGPT/Claude
                   </CardDescription>
                 </CardHeader>
@@ -615,22 +610,22 @@ export default function AiScorePage() {
                     {result?.prompt_ideas?.map((prompt, i) => (
                       <li
                         key={i}
-                        className="flex items-center min-h-[4rem] h-auto gap-3 p-3 rounded-2xl bg-gray-50 dark:bg-zinc-800/50 border border-border/50 hover:border-primary/20 hover:bg-white dark:hover:bg-zinc-800 transition-all group relative"
+                        className="flex items-center min-h-[4rem] h-auto gap-3 p-4 rounded-lg bg-background border border-border hover:border-primary/40 transition-all group relative"
                       >
                         {/* Content with Tooltip */}
                         <div className="flex-1 min-w-0 relative">
-                          <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100 break-words whitespace-normal leading-tight cursor-help">
+                          <p className="text-sm font-medium text-foreground break-words whitespace-normal leading-tight cursor-help">
                             {prompt}
                           </p>
-                          <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                          <p className="text-xs text-muted-foreground mt-0.5">
                             AI Generated Prompt
                           </p>
 
                           {/* Custom Tooltip */}
                           <div className="absolute bottom-full left-0 mb-2 w-max max-w-[250px] hidden group-hover:block z-50">
-                            <div className="bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-xs rounded-lg py-2 px-3 shadow-xl border border-border/50">
+                            <div className="bg-popover text-popover-foreground text-xs rounded-lg py-2 px-3 shadow-xl border border-border">
                               {prompt}
-                              <div className="absolute top-full left-4 -mt-1 border-4 border-transparent border-t-white dark:border-t-zinc-800"></div>
+                              <div className="absolute top-full left-4 -mt-1 border-4 border-transparent border-t-popover"></div>
                             </div>
                           </div>
                         </div>
@@ -639,7 +634,7 @@ export default function AiScorePage() {
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="h-8 w-8 text-zinc-500 dark:text-zinc-400 hover:text-primary dark:hover:text-primary hover:bg-primary/10 rounded-full transition-colors"
+                          className="h-8 w-8 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-full transition-colors"
                           onClick={() => copyToClipboard(prompt)}
                         >
                           <Copy className="w-4 h-4" />
@@ -651,12 +646,12 @@ export default function AiScorePage() {
               </Card>
 
               {/* Keyword Ideas (Widget 5) */}
-              <Card className="border border-border/50 shadow-none rounded-xl bg-primary/5 dark:bg-zinc-900 h-full">
+              <Card className="bg-card border border-border shadow-none rounded-lg h-full">
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-lg font-semibold flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400">
+                  <CardTitle className="text-lg font-semibold flex items-center gap-2 font-poppins text-foreground">
                     Keyword Ideas
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-inter text-muted-foreground">
                     Google Autocomplete Suggestions
                   </CardDescription>
                 </CardHeader>
@@ -665,25 +660,25 @@ export default function AiScorePage() {
                     {result?.keyword_ideas?.map((idea, i) => (
                       <li
                         key={i}
-                        className="flex items-center min-h-[4rem] h-auto gap-3 p-3 rounded-2xl bg-gray-50 dark:bg-zinc-800/50 border border-border/50 hover:border-primary/20 hover:bg-white dark:hover:bg-zinc-800 transition-all group relative"
+                        className="flex items-center min-h-[4rem] h-auto gap-3 p-4 rounded-lg bg-background border border-border hover:border-primary/40 transition-all group relative"
                       >
                         {/* Content with Tooltip */}
                         <div className="flex-1 min-w-0 relative">
-                          <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100 break-words whitespace-normal leading-tight cursor-help">
+                          <p className="text-sm font-medium text-foreground break-words whitespace-normal leading-tight cursor-help">
                             {idea?.term}
                           </p>
                           {idea?.vol &&
                             idea.vol.toLowerCase() !== "unknown" && (
-                              <p className="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
+                              <p className="text-xs text-muted-foreground font-mono mt-0.5">
                                 {idea.vol}
                               </p>
                             )}
 
                           {/* Custom Tooltip */}
                           <div className="absolute bottom-full left-0 mb-2 w-max max-w-[250px] hidden group-hover:block z-50">
-                            <div className="bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-xs rounded-lg py-2 px-3 shadow-xl border border-border/50">
+                            <div className="bg-popover text-popover-foreground text-xs rounded-lg py-2 px-3 shadow-xl border border-border">
                               {idea?.term}
-                              <div className="absolute top-full left-4 -mt-1 border-4 border-transparent border-t-white dark:border-t-zinc-800"></div>
+                              <div className="absolute top-full left-4 -mt-1 border-4 border-transparent border-t-popover"></div>
                             </div>
                           </div>
                         </div>
@@ -692,7 +687,7 @@ export default function AiScorePage() {
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="h-8 w-8 text-zinc-500 dark:text-zinc-400 hover:text-primary dark:hover:text-primary hover:bg-primary/10 rounded-full transition-colors"
+                          className="h-8 w-8 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-full transition-colors"
                           onClick={() => copyToClipboard(idea?.term)}
                         >
                           <Copy className="w-4 h-4" />
@@ -704,31 +699,20 @@ export default function AiScorePage() {
               </Card>
             </div>
 
-            {/* Upsell Section - Donezo Style Dark Card */}
-            {/* Upsell Section - Donezo Style Dark Card */}
-            <div className="relative rounded-2xl overflow-hidden bg-[#0A1A12] text-white p-8 md:p-12 text-center shadow-2xl">
-              {/* Background Pattern */}
-              <div
-                className="absolute inset-0 opacity-20 pointer-events-none"
-                style={{
-                  backgroundImage:
-                    "radial-gradient(circle at 50% 50%, #10B981 1px, transparent 1px)",
-                  backgroundSize: "24px 24px",
-                }}
-              ></div>
-
-              <div className="relative z-10 max-w-2xl mx-auto space-y-6">
-                <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto backdrop-blur-sm mb-4">
-                  <Lock className="w-8 h-8 text-emerald-400" />
-                </div>
-                <h3 className="text-3xl md:text-4xl font-bold tracking-tight">
+            {/* Upsell Section - Standardized Pattern */}
+            <div className="relative mt-12 bg-primary/5 border border-primary/20 rounded-lg overflow-hidden p-10 md:p-14 tx-dot-bg flex flex-col md:flex-row items-start md:items-center gap-8">
+              <div className="flex-1">
+                <p className="tx-eyebrow mb-2">READY TO GO DEEPER?</p>
+                <h3 className="text-2xl md:text-3xl font-bold tracking-tight font-poppins text-foreground mb-3">
                   Try Texavor for Deep Insights
                 </h3>
-                <p className="text-lg text-emerald-100/80">
-                  Unlock precise data on competitors, backlinks, and more.
+                <p className="font-inter text-base text-muted-foreground max-w-lg leading-relaxed mb-6">
+                  {result.upsell?.title ||
+                    "Unlock precise data on competitors, backlinks, and more."}{" "}
+                  Stay ahead in the AI SERP rankings.
                 </p>
 
-                <div className="flex flex-wrap justify-center gap-3 py-4">
+                <div className="flex flex-wrap gap-3">
                   {[
                     "Search Volume",
                     "Keyword Difficulty",
@@ -737,23 +721,27 @@ export default function AiScorePage() {
                   ].map((data, i) => (
                     <span
                       key={i}
-                      className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm font-medium flex items-center gap-2"
+                      className="px-4 py-2 rounded-lg bg-background border border-border text-sm text-foreground font-medium flex items-center gap-2"
                     >
-                      <Lock className="w-3 h-3 text-emerald-500" /> {data}
+                      <Lock className="w-3 h-3 text-muted-foreground" /> {data}
                     </span>
                   ))}
                 </div>
+              </div>
 
+              <div className="flex-shrink-0 w-full md:w-auto">
                 <Button
-                  size="lg"
-                  className="h-12 px-8 bg-emerald-500 hover:bg-emerald-400 text-[#0A1A12] font-semibold text-lg rounded-xl transition-all w-full sm:w-auto"
+                  size="default"
+                  variant="brand"
+                  className="w-full md:w-auto font-semibold text-base py-6 px-8 rounded-lg shadow-sm"
+                  asChild
                 >
                   <Link
-                    href={`${process.env.NEXT_PUBLIC_APP_URL}`}
+                    href={process.env.NEXT_PUBLIC_APP_URL || "#pricing"}
                     target="_blank"
                   >
                     Start Free Trial
-                  </Link>{" "}
+                  </Link>
                 </Button>
               </div>
             </div>

@@ -34,6 +34,7 @@ import {
   Code,
   Globe,
   RefreshCw,
+  Lock,
 } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
@@ -41,6 +42,7 @@ import hljs from "highlight.js";
 import "highlight.js/styles/github-dark.css";
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 // --- Types & Schemas ---
 
@@ -236,19 +238,24 @@ export default function FaqSchemaPage() {
   };
 
   return (
-    <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
-      <div className="container max-w-7xl px-4 mx-auto pb-20">
-        {/* Header */}
-        <div className="text-center mb-12 space-y-4">
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary to-green-600 bg-clip-text text-transparent pb-2 font-poppins">
-            FAQ Schema Generator
-          </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-inter">
-            Boost your visibility in search results. Create FAQ schema manually
-            or extract it from any page instantly.
-          </p>
+    <div className="min-h-screen bg-background font-sans mt-6 lg:mt-0">
+      {/* Hero Section */}
+      <section className="w-full pt-20 pb-12 md:pt-28 md:pb-16 bg-background tx-dot-bg border-b border-border/50">
+        <div className="container px-6 mx-auto max-w-7xl">
+          <div className="max-w-3xl animate-fade-slide-up">
+            <p className="tx-eyebrow mb-5">FREE SEO TOOL</p>
+            <h1 className="font-poppins text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight mb-4">
+              FAQ Schema Generator
+            </h1>
+            <p className="font-inter text-lg text-muted-foreground max-w-2xl leading-relaxed">
+              Boost your visibility in search results. Create FAQ schema
+              manually or extract it from any page instantly.
+            </p>
+          </div>
         </div>
+      </section>
 
+      <div className="container max-w-7xl px-6 mx-auto pt-10 md:pt-16 pb-24">
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* Left Column: Input */}
           <div className="space-y-6">
@@ -257,7 +264,7 @@ export default function FaqSchemaPage() {
               onValueChange={(v) => setActiveTab(v as any)}
               className="w-full"
             >
-              <TabsList className="grid w-full grid-cols-2 mb-6 bg-zinc-100 dark:bg-zinc-800/50 p-1 rounded-xl h-12">
+              <TabsList className="grid w-full grid-cols-2 mb-6 bg-muted/50 p-1 rounded-lg h-11">
                 <TabsTrigger
                   value="manual"
                   className="data-[state=active]:!bg-primary data-[state=active]:!text-primary-foreground transition-all rounded-lg"
@@ -273,18 +280,18 @@ export default function FaqSchemaPage() {
               </TabsList>
 
               <TabsContent value="manual" className="space-y-4">
-                <Card className="bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50">
+                <Card className="bg-card border border-border shadow-none rounded-lg">
                   <CardHeader>
                     <CardTitle>Questions & Answers</CardTitle>
                     <CardDescription>
                       Add your FAQ items below. The schema updates in real-time.
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="space-y-6">
+                  <CardContent className="p-6 space-y-6">
                     {qaPairs.map((pair, index) => (
                       <div
                         key={index}
-                        className="relative p-4 rounded-xl bg-white dark:bg-zinc-950/50 border border-border/50 space-y-3 group"
+                        className="relative p-5 rounded-lg bg-background border border-border/60 space-y-4 group transition-all hover:border-primary/30"
                       >
                         <div className="flex justify-between items-start gap-4">
                           <div className="space-y-2 w-full">
@@ -295,7 +302,7 @@ export default function FaqSchemaPage() {
                                 updatePair(index, "question", e.target.value)
                               }
                               placeholder="e.g., What is your return policy?"
-                              className="bg-slate-50 dark:bg-zinc-900"
+                              className="h-10 bg-background border-input"
                             />
                           </div>
                           {qaPairs.length > 1 && (
@@ -317,7 +324,7 @@ export default function FaqSchemaPage() {
                               updatePair(index, "answer", e.target.value)
                             }
                             placeholder="e.g., You can return items within 30 days..."
-                            className="bg-slate-50 dark:bg-zinc-900 min-h-[80px]"
+                            className="bg-background border-input min-h-[80px]"
                           />
                         </div>
                       </div>
@@ -335,7 +342,7 @@ export default function FaqSchemaPage() {
               </TabsContent>
 
               <TabsContent value="auto" className="space-y-4">
-                <Card className="bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50">
+                <Card className="bg-card border border-border shadow-none rounded-lg">
                   <CardHeader>
                     <CardTitle>Extract from URL</CardTitle>
                     <CardDescription>
@@ -365,14 +372,15 @@ export default function FaqSchemaPage() {
                                 }
                                 onBlur={field.handleBlur}
                                 placeholder="https://example.com/faq"
-                                className="flex-1 bg-white dark:bg-zinc-950/50 h-12"
+                                className="flex-1 bg-background border-input h-11 text-base placeholder:text-muted-foreground/60"
                               />
                               <Button
                                 type="submit"
+                                variant="brand"
                                 disabled={
                                   extractMutation.isPending || isWaitingForToken
                                 }
-                                className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-md transition-all w-32 shrink-0 self-start rounded-xl h-12"
+                                className="h-11 w-32 shrink-0 rounded-md font-semibold text-base"
                               >
                                 {isWaitingForToken ? (
                                   <>
@@ -407,9 +415,9 @@ export default function FaqSchemaPage() {
                           </div>
                         )}
                       />
-                      <Alert className="bg-primary/5 dark:bg-zinc-900 border border-primary/10 dark:border-white/10 text-foreground">
-                        <Globe className="w-4 h-4 text-primary" />
-                        <AlertDescription className="text-muted-foreground">
+                      <Alert className="bg-muted/30 border border-border text-foreground rounded-lg p-4">
+                        <Globe className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                        <AlertDescription className="text-muted-foreground font-inter text-sm leading-relaxed">
                           This checks the URL for common FAQ patterns (H2/H3 +
                           Paragraphs) and converts them into schema
                           automatically.
@@ -425,53 +433,86 @@ export default function FaqSchemaPage() {
           {/* Right Column: Preview & Output */}
           <div className="space-y-6 sticky top-8">
             {/* Preview Card */}
-            <Card className="bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50 overflow-hidden">
-              <CardHeader className="bg-slate-50/50 dark:bg-zinc-950/50 border-b-2 border-[#104127] py-3">
-                <CardTitle className="text-sm font-medium uppercase tracking-wider text-muted-foreground flex items-center gap-2">
+            <Card className="bg-card border border-border shadow-none rounded-lg overflow-hidden">
+              <CardHeader className="bg-muted/30 border-b border-border py-4">
+                <CardTitle className="text-xs font-bold uppercase tracking-widest text-muted-foreground flex items-center gap-2 font-inter">
                   <Image
                     src="/icons/google.png"
                     alt="Google"
                     width={18}
                     height={18}
                   />
-                  Google Search Preview
+                  SERP Presentation Preview
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-0">
+              <CardContent className="p-6">
                 {generatedSchema ? (
-                  <Accordion type="single" collapsible className="w-full">
-                    {generatedSchema.mainEntity.map((item: any, i: number) => (
-                      <AccordionItem
-                        value={`item-${i}`}
-                        key={i}
-                        className="px-4 border-b last:border-0 border-border/40"
-                      >
-                        <AccordionTrigger className="hover:no-underline hover:text-primary text-left">
-                          {item.name}
-                        </AccordionTrigger>
-                        <AccordionContent className="text-muted-foreground">
-                          {item.acceptedAnswer.text}
-                        </AccordionContent>
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
+                  <div className="space-y-4">
+                    {/* Google Result Mockup */}
+                    <div className="space-y-1 mb-6">
+                      <div className="flex items-center gap-2 text-sm text-[#202124] dark:text-zinc-400">
+                        <div className="w-7 h-7 rounded-full bg-muted flex items-center justify-center border border-border">
+                          <Globe className="w-4 h-4 text-muted-foreground" />
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-xs leading-none font-medium">
+                            Texavor
+                          </span>
+                          <span className="text-[11px] leading-none opacity-60">
+                            https://www.texavor.com › tools
+                          </span>
+                        </div>
+                      </div>
+                      <h3 className="text-xl text-[#1a0dab] dark:text-blue-400 font-medium hover:underline cursor-pointer">
+                        FAQ Schema Generator - GEO Rich Snippet Tool
+                      </h3>
+                      <p className="text-sm text-[#4d5156] dark:text-zinc-400 line-clamp-2 leading-relaxed">
+                        Boost CTR and AI visibility instantly by generating
+                        valid JSON-LD FAQ Schema markup. Optimized for
+                        generative engines and Google search.
+                      </p>
+                    </div>
+
+                    <Accordion
+                      type="single"
+                      collapsible
+                      className="w-full border-t border-border"
+                    >
+                      {generatedSchema.mainEntity.map(
+                        (item: any, i: number) => (
+                          <AccordionItem
+                            value={`item-${i}`}
+                            key={i}
+                            className="border-b border-border/40"
+                          >
+                            <AccordionTrigger className="py-3 text-[14px] font-medium text-[#1a0dab] dark:text-blue-400 hover:no-underline text-left">
+                              {item.name}
+                            </AccordionTrigger>
+                            <AccordionContent className="text-[14px] text-[#4d5156] dark:text-zinc-400 leading-relaxed pl-4 border-l-2 border-primary/20 bg-muted/20 p-4 rounded-r-md">
+                              {item.acceptedAnswer.text}
+                            </AccordionContent>
+                          </AccordionItem>
+                        ),
+                      )}
+                    </Accordion>
+                  </div>
                 ) : (
-                  <div className="p-8 text-center text-muted-foreground">
-                    Add questions to see a preview.
+                  <div className="p-12 text-center text-muted-foreground font-inter italic border-2 border-dashed border-border rounded-lg">
+                    Add questions to visualize the SERP snippet.
                   </div>
                 )}
               </CardContent>
             </Card>
 
             {/* Code Output Card */}
-            <Card className="border-gray-800 shadow-xl bg-[#0d1117] text-gray-300">
-              <CardHeader className="border-b border-gray-800 py-3 flex flex-row items-center justify-between">
+            <Card className="bg-card border border-border shadow-none rounded-lg overflow-hidden">
+              <CardHeader className="bg-muted/30 border-b border-border py-3 flex flex-row items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Code className="w-4 h-4 text-emerald-400" />
-                  <span className="font-mono text-sm font-semibold text-white">
-                    {showMicrodata
-                      ? "Microdata (HTML)"
-                      : "JSON-LD (Recommended)"}
+                  <div className="p-1.5 rounded-md bg-emerald-500/10 border border-emerald-500/20">
+                    <Code className="w-3.5 h-3.5 text-emerald-600" />
+                  </div>
+                  <span className="font-poppins text-[13px] font-bold text-foreground">
+                    {showMicrodata ? "MICRODATA HTML" : "JSON-LD SCHEMA"}
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -479,17 +520,17 @@ export default function FaqSchemaPage() {
                     variant="ghost"
                     size="sm"
                     onClick={() => setShowMicrodata(!showMicrodata)}
-                    className="h-7 text-xs text-gray-400 hover:text-white hover:bg-transparent"
+                    className="h-8 text-[11px] font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all"
                   >
                     Switch to {showMicrodata ? "JSON-LD" : "Microdata"}
                   </Button>
                 </div>
               </CardHeader>
-              <CardContent className="p-0 relative group">
+              <CardContent className="p-0 relative group bg-background">
                 <Button
                   size="icon"
-                  variant="secondary"
-                  className="absolute top-2 right-2 h-8 w-8 bg-gray-800 hover:bg-gray-700 text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                  variant="outline"
+                  className="absolute top-2 right-2 h-8 w-8 bg-background border-border hover:bg-muted/50 text-foreground opacity-0 group-hover:opacity-100 transition-opacity"
                   onClick={() =>
                     handleCopy(
                       showMicrodata
@@ -506,7 +547,7 @@ export default function FaqSchemaPage() {
                 </Button>
                 <div className="max-h-[400px] overflow-auto custom-scrollbar">
                   {generatedSchema ? (
-                    <pre className="p-4 text-xs md:text-sm font-mono leading-relaxed">
+                    <pre className="p-5 text-xs md:text-sm font-mono leading-relaxed text-foreground">
                       <code
                         className={
                           showMicrodata ? "language-html" : "language-json"
@@ -518,40 +559,60 @@ export default function FaqSchemaPage() {
                       </code>
                     </pre>
                   ) : (
-                    <div className="p-8 text-center text-gray-600 text-sm">
+                    <div className="p-10 text-center text-muted-foreground text-sm font-inter italic">
                       Generate schema to view code.
                     </div>
                   )}
                 </div>
               </CardContent>
             </Card>
+          </div>
+        </div>
 
-            {/* Actions */}
-            <div className="flex justify-end gap-4">
-              <Button variant="outline" asChild className="hover:bg-slate-100">
-                <a
-                  href="https://search.google.com/test/rich-results"
-                  target="_blank"
-                  rel="noopener noreferrer"
+        {/* Upsell Section - Standardized Pattern (Full Width) */}
+        <div className="relative mt-20 bg-primary/5 border border-primary/20 rounded-lg overflow-hidden p-10 md:p-14 tx-dot-bg flex flex-col md:flex-row items-start md:items-center gap-8 animate-fade-slide-up">
+          <div className="flex-1">
+            <p className="tx-eyebrow mb-2">READY TO GO DEEPER?</p>
+            <h3 className="text-2xl md:text-3xl font-bold tracking-tight font-poppins text-foreground mb-3">
+              Write with Authority
+            </h3>
+            <p className="font-inter text-base text-muted-foreground max-w-lg leading-relaxed mb-6">
+              Stop generating spam. Build citation-worthy content with deep
+              entity research, semantic link suggestions, and structured AI
+              analysis.
+            </p>
+
+            <div className="flex flex-wrap gap-3">
+              {[
+                "Entity Discovery",
+                "Competitor Content Gaps",
+                "Semantic Validations",
+                "AI Structure Scoring",
+              ].map((data, i) => (
+                <span
+                  key={i}
+                  className="px-4 py-2 rounded-lg bg-background border border-border text-sm text-foreground font-medium flex items-center gap-2"
                 >
-                  Test in Google
-                </a>
-              </Button>
-              <Button
-                onClick={() =>
-                  handleCopy(
-                    showMicrodata
-                      ? generatedMicrodata
-                      : JSON.stringify(generatedSchema, null, 2),
-                  )
-                }
-                disabled={!generatedSchema}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg transition-all rounded-xl"
-              >
-                <Copy className="w-4 h-4 mr-2" />
-                Copy Code
-              </Button>
+                  <Lock className="w-3 h-3 text-muted-foreground" /> {data}
+                </span>
+              ))}
             </div>
+          </div>
+
+          <div className="flex-shrink-0 w-full md:w-auto">
+            <Button
+              size="default"
+              variant="brand"
+              className="w-full md:w-auto font-semibold text-base py-6 px-8 rounded-lg shadow-sm"
+              asChild
+            >
+              <Link
+                href={process.env.NEXT_PUBLIC_APP_URL || "#pricing"}
+                target="_blank"
+              >
+                Start Free Trial
+              </Link>
+            </Button>
           </div>
         </div>
       </div>

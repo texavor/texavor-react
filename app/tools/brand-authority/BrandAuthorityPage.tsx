@@ -309,7 +309,7 @@ export default function BrandAuthorityPage() {
                           value={field.state.value}
                           onChange={(e) => field.handleChange(e.target.value)}
                           onBlur={field.handleBlur}
-                          className="h-12 pl-10 text-lg bg-background border-input"
+                          className="h-11 pl-10 text-base bg-background border-input"
                         />
                         {field.state.meta.errors ? (
                           <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
@@ -323,9 +323,9 @@ export default function BrandAuthorityPage() {
 
                 <Button
                   type="submit"
-                  size="lg"
+                  size="default"
                   variant="brand"
-                  className="h-12 w-48 font-semibold text-lg shrink-0 rounded-md"
+                  className="h-11 w-40 font-semibold text-base shrink-0 rounded-md"
                   disabled={checkMutation.isPending || isWaitingForToken}
                 >
                   {isWaitingForToken ? (
@@ -356,7 +356,7 @@ export default function BrandAuthorityPage() {
         </Card>
         {/* Feature Preview (Empty State) - Always show when no result */}
         {!result && (
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-16">
+          <div className="grid md:grid-cols-2 gap-6 w-full mb-16">
             {/* Feature 1: Authority Score */}
             <Card className="h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
               <CardHeader className="pb-2">

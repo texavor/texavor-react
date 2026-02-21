@@ -58,10 +58,10 @@ const MetricCard = ({
           </h3>
           <div
             className={cn(
-              "w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 transform group-hover:-translate-y-1 group-hover:translate-x-1",
+              "w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 transform group-hover:-translate-y-1 group-hover:translate-x-1 border",
               isPrimary
-                ? "bg-accent/10 text-accent group-hover:bg-accent group-hover:text-accent-foreground"
-                : "bg-background border border-border text-foreground group-hover:border-primary/50",
+                ? "border-transparent bg-accent/10 text-accent group-hover:border-accent"
+                : "border-border bg-background text-muted-foreground group-hover:border-primary/50 group-hover:text-foreground",
             )}
           >
             <MoveUpRight className="w-4 h-4" />
@@ -71,8 +71,7 @@ const MetricCard = ({
         <div>
           <div
             className={cn(
-              "text-5xl font-bold tracking-tight mb-2 font-inter",
-              isPrimary ? "text-accent" : "text-foreground",
+              "text-5xl font-bold tracking-tight mb-2 font-inter text-foreground",
             )}
           >
             {value}

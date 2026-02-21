@@ -207,22 +207,27 @@ export default function WebsiteAuditorPage() {
     : null;
 
   return (
-    <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
-      <div className="container max-w-7xl px-4 mx-auto pb-20">
-        {/* Header */}
-        <div className="text-center mb-12 space-y-4">
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary to-green-600 bg-clip-text text-transparent pb-2 font-poppins">
-            Website AI Auditor
-          </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-inter">
-            Is your website ready for the AI era? Check your specialized
-            readiness for Crawlers, RAG, and Entity Understanding.
-          </p>
+    <div className="min-h-screen bg-background font-sans mt-6 lg:mt-0">
+      {/* Hero Section */}
+      <section className="w-full pt-20 pb-12 md:pt-28 md:pb-16 bg-background tx-dot-bg border-b border-border/50">
+        <div className="container px-6 mx-auto max-w-7xl">
+          <div className="max-w-3xl animate-fade-slide-up">
+            <p className="tx-eyebrow mb-5">FREE SEO TOOL</p>
+            <h1 className="font-poppins text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight mb-4">
+              Website AI Auditor
+            </h1>
+            <p className="font-inter text-lg text-muted-foreground max-w-2xl leading-relaxed">
+              Is your website ready for the AI era? Check your specialized
+              readiness for Crawlers, RAG, and Entity Understanding.
+            </p>
+          </div>
         </div>
+      </section>
 
+      <div className="container max-w-7xl px-6 mx-auto pt-10 md:pt-16 pb-24">
         {/* Search Input Card */}
-        <Card className="mb-16 bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
-          <CardContent className="px-4 py-1">
+        <Card className="mb-16 bg-card border border-border shadow-none rounded-lg mx-auto overflow-visible">
+          <CardContent className="px-6 py-5">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -248,7 +253,7 @@ export default function WebsiteAuditorPage() {
                           onBlur={field.handleBlur}
                           onChange={(e) => field.handleChange(e.target.value)}
                           placeholder="https://texavor.com"
-                          className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
+                          className="h-11 pl-10 text-base bg-background border-input"
                         />
                         {field.state.meta.errors ? (
                           <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
@@ -262,8 +267,9 @@ export default function WebsiteAuditorPage() {
 
                 <Button
                   type="submit"
-                  size="lg"
-                  className="h-12 px-8 min-w-[140px] font-semibold text-lg bg-primary hover:bg-primary/90 text-white dark:text-zinc-950 shadow-lg hover:shadow-xl transition-all rounded-xl"
+                  size="default"
+                  variant="brand"
+                  className="h-11 w-40 font-semibold text-base shrink-0 rounded-md"
                   disabled={loading || isWaitingForToken}
                 >
                   {isWaitingForToken ? (
@@ -309,11 +315,10 @@ export default function WebsiteAuditorPage() {
 
         {/* Empty State Feature Preview */}
         {!result && !loading && (
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto opacity-90">
+          <div className="grid md:grid-cols-2 gap-6 w-full mb-16 opacity-90">
             {/* Feature 1: Traffic Light Checks */}
             <div className="relative group">
-              <div className="absolute inset-0 bg-emerald-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
+              <Card className="h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
                 <CardHeader className="pb-2">
                   <div className="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center mb-3">
                     <CheckCircle className="w-5 h-5 text-green-600" />
@@ -346,8 +351,7 @@ export default function WebsiteAuditorPage() {
 
             {/* Feature 2: Radar Preview */}
             <div className="relative group mt-8 md:mt-0">
-              <div className="absolute inset-0 bg-purple-100/50 rounded-3xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform rotate-1 group-hover:rotate-2 transition-transform duration-500">
+              <Card className="h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
                 <CardHeader className="pb-2">
                   <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center mb-3">
                     <Share2 className="w-5 h-5 text-purple-600" />
@@ -399,20 +403,11 @@ export default function WebsiteAuditorPage() {
                 {/* Score Card */}
                 <div className="grid sm:grid-cols-3 gap-4">
                   {/* Website Info Card */}
-                  <Card className="border-none shadow-lg bg-[#104127] text-white rounded-2xl relative overflow-hidden p-6 transition-all duration-300">
-                    {/* Dynamic Background */}
-                    <div
-                      className="absolute inset-0 opacity-100 pointer-events-none"
-                      style={{
-                        background:
-                          "radial-gradient(circle at 10% 90%, #1a5d3a 0%, transparent 60%), linear-gradient(to top right, #104127 0%, #0d3520 100%)",
-                      }}
-                    />
-
+                  <Card className="bg-card border border-border shadow-none rounded-lg relative overflow-hidden p-6 transition-all duration-300 group">
                     <div className="relative z-10 flex flex-col h-full justify-between">
                       {/* Top Row: Icon & Arrow */}
                       <div className="flex justify-between items-start mb-4">
-                        <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center shadow-sm border border-white/20">
+                        <div className="w-12 h-12 bg-background rounded-full flex items-center justify-center border border-border">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={`https://www.google.com/s2/favicons?domain=${result.domain}&sz=128`}
@@ -420,7 +415,7 @@ export default function WebsiteAuditorPage() {
                             className="w-10 h-10 object-contain"
                           />
                         </div>
-                        <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white text-[#104127] transition-transform hover:-translate-y-1 hover:translate-x-1">
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center bg-background border border-border text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 hover:border-primary/50 hover:text-foreground">
                           <MoveUpRight className="w-4 h-4" />
                         </div>
                       </div>
@@ -428,12 +423,12 @@ export default function WebsiteAuditorPage() {
                       {/* Bottom Row: Text */}
                       <div>
                         <h3
-                          className="text-2xl font-bold text-white mb-2 truncate w-full font-inter"
+                          className="text-2xl font-bold text-foreground mb-2 truncate w-full font-inter"
                           title={result.domain}
                         >
                           {result.domain}
                         </h3>
-                        <div className="text-sm font-medium flex items-center gap-1.5 font-inter text-green-100">
+                        <div className="text-sm font-medium flex items-center gap-1.5 font-inter text-muted-foreground">
                           Analyzed Site
                         </div>
                       </div>
@@ -459,12 +454,12 @@ export default function WebsiteAuditorPage() {
                 </div>
 
                 {/* Checks List */}
-                <Card className="border border-border/50 shadow-none rounded-2xl bg-primary/5 dark:bg-zinc-900 overflow-hidden">
+                <Card className="bg-card border border-border shadow-none rounded-lg overflow-hidden">
                   <CardHeader className="pb-4">
-                    <CardTitle className="text-2xl flex items-center gap-2 font-poppins">
+                    <CardTitle className="text-2xl flex items-center gap-2 font-poppins text-foreground">
                       Technical Deep Dive
                     </CardTitle>
-                    <CardDescription>
+                    <CardDescription className="text-muted-foreground font-inter">
                       Detailed analysis of your site's infrastructure.
                     </CardDescription>
                   </CardHeader>
@@ -476,20 +471,12 @@ export default function WebsiteAuditorPage() {
 
               {/* Right Column: Radar Chart */}
               <div className="lg:col-span-4">
-                <Card className="h-full border-none shadow-lg rounded-xl bg-[#104127] text-white relative overflow-hidden flex flex-col">
-                  {/* Dynamic Background */}
-                  <div
-                    className="absolute inset-0 opacity-100 pointer-events-none"
-                    style={{
-                      background:
-                        "radial-gradient(circle at 10% 90%, #1a5d3a 0%, transparent 60%), linear-gradient(to top right, #104127 0%, #0d3520 100%)",
-                    }}
-                  />
+                <Card className="h-full bg-card border border-border shadow-none rounded-lg relative overflow-hidden flex flex-col">
                   <CardHeader className="pb-2 text-center pt-5 relative z-10">
-                    <CardTitle className="text-2xl text-white">
+                    <CardTitle className="text-2xl text-foreground font-poppins">
                       Readiness Radar
                     </CardTitle>
-                    <CardDescription className="text-green-100/80">
+                    <CardDescription className="text-muted-foreground font-inter">
                       Crawlability • Discovery • Semantics • Freshness
                     </CardDescription>
                   </CardHeader>
@@ -501,10 +488,10 @@ export default function WebsiteAuditorPage() {
                         outerRadius="65%"
                         data={result.radar_chart}
                       >
-                        <PolarGrid stroke="rgba(255,255,255,0.2)" />
+                        <PolarGrid stroke="#e5e7eb" />
                         <PolarAngleAxis
                           dataKey="subject"
-                          tick={{ fill: "#d1fae5", fontSize: 11, dy: 3 }}
+                          tick={{ fill: "#6b7280", fontSize: 11, dy: 3 }}
                         />
                         <PolarRadiusAxis
                           angle={30}
@@ -515,8 +502,8 @@ export default function WebsiteAuditorPage() {
                         <Radar
                           name="Score"
                           dataKey="A"
-                          stroke="#34d399"
-                          fill="#34d399"
+                          stroke="#10b981"
+                          fill="#10b981"
                           fillOpacity={0.6}
                         />
                       </RadarChart>
@@ -532,55 +519,49 @@ export default function WebsiteAuditorPage() {
               </p>
             </div>
 
-            {/* Upsell Section - Standardized */}
-            <div className="relative rounded-2xl overflow-hidden bg-[#0A1A12] text-white p-8 md:p-12 text-center shadow-2xl mt-8">
-              {/* Background Pattern */}
-              <div
-                className="absolute inset-0 opacity-20 pointer-events-none"
-                style={{
-                  backgroundImage:
-                    "radial-gradient(circle at 50% 50%, #10B981 1px, transparent 1px)",
-                  backgroundSize: "24px 24px",
-                }}
-              ></div>
-
-              <div className="relative z-10 max-w-2xl mx-auto space-y-6">
-                <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto backdrop-blur-sm mb-4">
-                  <Lock className="w-8 h-8 text-emerald-400" />
-                </div>
-                <h3 className="text-3xl md:text-4xl font-bold tracking-tight">
-                  Try Texavor for Deep Insights
+            {/* Upsell Section - Standardized Pattern */}
+            <div className="relative mt-12 bg-primary/5 border border-primary/20 rounded-lg overflow-hidden p-10 md:p-14 tx-dot-bg flex flex-col md:flex-row items-start md:items-center gap-8">
+              <div className="flex-1">
+                <p className="tx-eyebrow mb-2">READY TO GO DEEPER?</p>
+                <h3 className="text-2xl md:text-3xl font-bold tracking-tight font-poppins text-foreground mb-3">
+                  Write with Authority
                 </h3>
-                <p className="text-lg text-emerald-100/80">
-                  Unlock precise data on competitors, backlinks, and more.
+                <p className="font-inter text-base text-muted-foreground max-w-lg leading-relaxed mb-6">
+                  Stop generating spam. Build citation-worthy content with deep
+                  entity research, semantic link suggestions, and structured AI
+                  analysis.
                 </p>
 
-                <div className="flex flex-wrap justify-center gap-3 py-4">
+                <div className="flex flex-wrap gap-3">
                   {[
-                    "Search Volume",
-                    "Keyword Difficulty",
-                    "CPC Cost",
-                    "Competitor List",
+                    "Entity Discovery",
+                    "Competitor Content Gaps",
+                    "Semantic Validations",
+                    "AI Structure Scoring",
                   ].map((data, i) => (
                     <span
                       key={i}
-                      className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm font-medium flex items-center gap-2"
+                      className="px-4 py-2 rounded-lg bg-background border border-border text-sm text-foreground font-medium flex items-center gap-2"
                     >
-                      <Lock className="w-3 h-3 text-emerald-500" /> {data}
+                      <Lock className="w-3 h-3 text-muted-foreground" /> {data}
                     </span>
                   ))}
                 </div>
+              </div>
 
+              <div className="flex-shrink-0 w-full md:w-auto">
                 <Button
-                  size="lg"
-                  className="h-12 px-8 bg-emerald-500 hover:bg-emerald-400 text-[#0A1A12] font-semibold text-lg rounded-xl transition-all w-full sm:w-auto"
+                  size="default"
+                  variant="brand"
+                  className="w-full md:w-auto font-semibold text-base py-6 px-8 rounded-lg shadow-sm"
+                  asChild
                 >
                   <Link
-                    href={`${process.env.NEXT_PUBLIC_APP_URL}`}
+                    href={process.env.NEXT_PUBLIC_APP_URL || "#pricing"}
                     target="_blank"
                   >
                     Start Free Trial
-                  </Link>{" "}
+                  </Link>
                 </Button>
               </div>
             </div>
