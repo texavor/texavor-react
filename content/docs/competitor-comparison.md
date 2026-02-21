@@ -17,7 +17,7 @@ Most competitors are either **Writers** (generators) or **Optimizers** (SEO tool
 | Feature Category    | Texavor                         | Legacy SEO Automation          | Manual AI Writers      | Traditional Auditing Tools |
 | :------------------ | :------------------------------ | :----------------------------- | :--------------------- | :------------------------- |
 | **Primary Goal**    | Lifecycle Management            | Automated SEO Content          | Content Generation     | Search Ranking             |
-| **Target Audience** | Devs, Tech Companies, Merchants | Beginners, Small Biz, Agencies | General Marketers      | SEO Specialists            |
+| **Target Audience** | Devs, Tech Companies, SaaS | Beginners, Small Biz, Agencies | General Marketers      | SEO Specialists            |
 | **Publishing**      | **Multi-Platform (Sync)**       | CMS Only (WP, Shopify, Wix)    | Basic / Copy-Paste     | None                       |
 | **Maintenance**     | **Freshness Score (Decay)**     | None                           | None                   | Audit (Manual)             |
 | **Research**        | **Autonomous Agent (Live Web)** | Keyword/Competitor Data        | Training Data (Static) | Keyword Data               |
