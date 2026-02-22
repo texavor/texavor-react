@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import { TexavorLogo } from "./TexavorLogo";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -65,18 +65,8 @@ export default function LandingNav() {
         )}
       >
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group shrink-0">
-          <div className="relative w-8 h-8 overflow-hidden">
-            <Image
-              src="/texavor.png"
-              alt="EasyWrite"
-              fill
-              className="object-contain dark:brightness-0 dark:invert"
-            />
-          </div>
-          <span className="text-secondary-foreground dark:text-white font-bold text-xl font-poppins tracking-tight">
-            Texavor
-          </span>
+        <Link href="/" className="flex items-center gap-2 shrink-0">
+          <TexavorLogo size={28} showText />
         </Link>
 
         {/* Desktop Navigation Links */}

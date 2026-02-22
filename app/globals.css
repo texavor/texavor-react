@@ -125,7 +125,167 @@
     }
 }
 
-/* View Transitions Sweep Effect */
+/* ============================================================
+   DESIGN SYSTEM UTILITIES
+   ============================================================ */
+
+/* Eyebrow label — the small tag above section headings */
+.tx-eyebrow {
+    @apply text-xs font-semibold uppercase tracking-widest font-inter pl-2.5 border-l-[3px] border-accent;
+    color: var(--primary);
+}
+
+.dark .tx-eyebrow {
+    color: hsl(148, 55%, 50%);
+}
+
+/* Accent eyebrow — amber variant */
+.tx-eyebrow-accent {
+    @apply text-xs font-semibold uppercase tracking-widest font-inter pl-2.5 border-l-[3px] border-accent;
+    color: var(--accent);
+}
+
+/* Brand gradient text */
+.tx-gradient-text {
+    background: linear-gradient(
+        135deg,
+        hsl(160, 55%, 22%) 0%,
+        hsl(148, 55%, 38%) 50%,
+        hsl(38, 80%, 55%) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.dark .tx-gradient-text {
+    background: linear-gradient(
+        135deg,
+        hsl(148, 55%, 60%) 0%,
+        hsl(148, 55%, 50%) 50%,
+        hsl(38, 75%, 55%) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Accent highlight — amber underline accent for inline emphasis */
+.tx-accent-text {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* Glow shadows via CSS variable */
+.tx-glow-primary {
+    box-shadow: var(--shadow-glow-primary);
+}
+.tx-glow-accent {
+    box-shadow: var(--shadow-glow-accent);
+}
+
+/* Standard section wrapper — use instead of ad-hoc py-* */
+.tx-section {
+    @apply py-20 md:py-28 px-4;
+}
+.tx-section-sm {
+    @apply py-14 md:py-20 px-4;
+}
+.tx-section-lg {
+    @apply py-28 md:py-36 px-4;
+}
+
+/* Container */
+.tx-container {
+    @apply mx-auto w-full max-w-7xl px-4 md:px-6;
+}
+.tx-container-narrow {
+    @apply mx-auto w-full max-w-4xl px-4 md:px-6;
+}
+
+/* Card styles */
+.tx-card {
+    @apply rounded-xl border bg-card p-6;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.tx-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+/* Subtle grid background pattern */
+.tx-grid-bg {
+    background-image:
+        linear-gradient(hsl(160 25% 8% / 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, hsl(160 25% 8% / 0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+.dark .tx-grid-bg {
+    background-image:
+        linear-gradient(hsl(45 15% 93% / 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, hsl(45 15% 93% / 0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+
+/* Dot texture — editorial depth without gradients (used for hero bg) */
+.tx-dot-bg {
+    background-image: radial-gradient(circle, hsl(160 25% 8% / 0.055) 1px, transparent 1px);
+    background-size: 22px 22px;
+}
+.dark .tx-dot-bg {
+    background-image: radial-gradient(circle, hsl(45 15% 93% / 0.06) 1px, transparent 1px);
+    background-size: 22px 22px;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fade-slide-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes scale-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-8px); }
+}
+
+@keyframes sweep-from-top {
+    from { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); }
+    to   { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
+
+.animate-fade-slide-up { animation: fade-slide-up 0.5s ease-out forwards; }
+.animate-fade-in       { animation: fade-in 0.4s ease-out forwards; }
+.animate-scale-in      { animation: scale-in 0.4s ease-out forwards; }
+.animate-float         { animation: float 4s ease-in-out infinite; }
+
+/* AI brand ticker — scrolls upward through 5 items (50% = half of 10 items) */
+@keyframes ticker-up {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+}
+.animate-ticker {
+    animation: ticker-up 6s linear infinite;
+}
+
+/* View Transitions */
 ::view-transition-group(root) {
     animation-duration: 0.75s;
     animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);

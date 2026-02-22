@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
-// import { Twitter } from "lucide-react";
+import { TexavorLogo } from "./TexavorLogo";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -27,17 +26,7 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="max-w-xs space-y-6">
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="relative w-8 h-8 rounded-lg flex items-center justify-center">
-                <Image
-                  src="/texavor.png"
-                  alt="EasyWrite"
-                  fill
-                  className="object-contain dark:brightness-0 dark:invert"
-                />
-              </div>
-              <span className="text-2xl font-bold font-poppins text-gray-900 dark:text-white">
-                Texavor
-              </span>
+              <TexavorLogo size={32} showText />
             </Link>
             <p className="text-gray-500 dark:text-zinc-400 font-inter text-sm leading-relaxed">
               Texavor helps teams work smarter, stay aligned, and get things
