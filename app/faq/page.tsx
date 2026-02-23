@@ -117,8 +117,8 @@ export default function FAQPage() {
   return (
     <PageTransition>
       <Schema script={schema} />
-      <main className="flex min-h-screen flex-col items-center w-full pt-20">
-        <FAQ />
+      <main className="min-h-screen">
+        <FAQ fullPage={true} />
       </main>
     </PageTransition>
   );
