@@ -154,13 +154,22 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                   {articleData?.easywrite_author?.name ||
                     articleData?.easywrite_author?.username}
                 </p>
-                <p className="font-inter text-xs text-muted-foreground">
-                  Updated{" "}
-                  {format(
-                    new Date(articleData.updated_at || new Date()),
-                    "dd MMM, yyyy",
-                  )}
-                </p>
+                <div className="flex gap-2">
+                  <p className="font-inter text-xs text-muted-foreground">
+                    Published on{" "}
+                    {format(
+                      new Date(articleData.created_at || new Date()),
+                      "dd MMM, yyyy",
+                    )}
+                  </p>
+                  <p className="font-inter text-xs text-muted-foreground border-l border-border pl-2">
+                    Updated{" "}
+                    {format(
+                      new Date(articleData.updated_at || new Date()),
+                      "dd MMM, yyyy",
+                    )}
+                  </p>
+                </div>
               </div>
             </div>
 
