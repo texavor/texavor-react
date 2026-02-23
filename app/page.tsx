@@ -142,7 +142,7 @@ export default function Home() {
         "@id": "https://www.texavor.com/#software",
         name: "Texavor",
         description:
-          "Generate high-impact, E-E-A-T optimized technical articles. Monitor Share of Voice on ChatGPT, Perplexity & Claude.",
+          "Generate high-impact, E-E-A-T optimized technical articles. Monitor AI Visibility on ChatGPT, Perplexity & Claude.",
         applicationCategory: "BusinessApplication",
         applicationSubCategory: "ContentOptimizationApplication",
         operatingSystem: "Web",
