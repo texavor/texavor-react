@@ -26,73 +26,65 @@ export default function EEATImpact({ impact }: EEATImpactProps) {
   };
 
   return (
-    <Card className="bg-primary/5 dark:bg-zinc-900/50 border border-border/50 shadow-none overflow-hidden relative">
-      <div className="absolute top-0 right-0 p-8 opacity-[0.03] dark:opacity-[0.05]">
-        <ShieldCheck className="w-32 h-32 text-indigo-600" />
+    <Card className="bg-card border border-border shadow-none rounded-xl overflow-hidden relative group transition-all duration-300 hover:border-primary/40">
+      <div className="absolute top-0 right-0 p-8 opacity-[0.02] dark:opacity-[0.04]">
+        <ShieldCheck className="w-40 h-40 text-foreground" />
       </div>
 
-      <CardContent className="p-8 relative z-10">
-        <div className="flex items-center gap-3 mb-8">
-          <div className="w-12 h-12 rounded-2xl bg-[#104127] flex items-center justify-center shadow-md">
-            <Zap className="w-6 h-6 text-white fill-white" />
+      <CardContent className="p-8 relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+        <div className="flex-1 max-w-2xl">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="p-1.5 rounded-md flex items-center justify-center bg-accent/10 text-accent">
+              <ShieldCheck className="w-5 h-5 text-current" />
+            </span>
+            <h3 className="text-xl font-semibold font-poppins text-foreground">
+              E-E-A-T Impact Analysis
+            </h3>
           </div>
-          <h3 className="text-2xl font-bold font-poppins text-[#104127] dark:text-white uppercase tracking-tight">
-            E-E-A-T Impact Analysis
-          </h3>
+          <p className="text-muted-foreground font-inter text-base leading-relaxed">
+            {impact.message}
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-          <div className="text-center md:text-left">
-            <div className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-1.5">
-              Current Status
-            </div>
-            <div
+        <div className="flex flex-row items-center justify-between lg:justify-end gap-6 w-full lg:w-auto bg-background/50 rounded-xl border border-border p-6">
+          <div className="flex flex-col items-start lg:items-end">
+            <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
+              Current
+            </span>
+            <span
               className={cn(
-                "text-3xl font-black font-inter",
+                "text-2xl font-bold font-inter",
                 getLevelColor(impact.current_level),
               )}
             >
               {impact.current_level}
-            </div>
+            </span>
           </div>
 
-          <div className="flex justify-center">
-            <div className="flex items-center gap-4 bg-background dark:bg-zinc-900 p-5 rounded-2xl border border-border/50 shadow-none">
-              <div className="text-center">
-                <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-tighter">
-                  Fix
-                </div>
-                <div className="text-3xl font-black text-[#104127] dark:text-white">
-                  {impact.missing_citations}
-                </div>
-              </div>
-              <div className="h-10 w-px bg-border/50" />
-              <div className="text-xs font-bold text-muted-foreground max-w-[80px] leading-tight text-left uppercase tracking-tighter">
-                Missing Citations Found
-              </div>
-            </div>
+          <div className="flex flex-col items-center px-4 md:px-6 border-x border-border">
+            <span className="text-[10px] font-semibold text-muted-foreground/80 uppercase tracking-wider mb-1">
+              To Fix
+            </span>
+            <span className="text-2xl font-black text-foreground font-inter">
+              {impact.missing_citations}
+            </span>
           </div>
 
-          <div className="text-center md:text-right">
-            <div className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-1.5">
-              Potential Level
-            </div>
-            <div
+          <div className="flex flex-col items-end">
+            <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-1 flex items-center gap-1">
+              <Zap className="w-3 h-3 text-accent" />
+              Potential
+            </span>
+            <span
               className={cn(
-                "text-4xl font-black font-inter flex items-center justify-center md:justify-end gap-2",
+                "text-2xl font-bold font-inter flex items-center gap-1.5",
                 getLevelColor(impact.potential_level),
               )}
             >
-              <TrendingUp className="w-8 h-8 font-black" />
+              <TrendingUp className="w-5 h-5" />
               {impact.potential_level}
-            </div>
+            </span>
           </div>
-        </div>
-
-        <div className="mt-8 bg-background/50 dark:bg-zinc-900/50 p-5 rounded-2xl border border-border/50 shadow-none">
-          <p className="text-base font-medium text-slate-700 dark:text-slate-300 leading-relaxed text-center italic">
-            "{impact.message}"
-          </p>
         </div>
       </CardContent>
     </Card>

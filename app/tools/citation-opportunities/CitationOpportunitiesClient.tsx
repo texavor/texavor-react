@@ -17,6 +17,7 @@ import {
   ArrowRight,
   ShieldCheck,
   Sparkles,
+  Lightbulb,
 } from "lucide-react";
 import { toast } from "sonner";
 import { axiosInstance } from "@/lib/axiosInstance";
@@ -144,23 +145,28 @@ export default function CitationOpportunitiesClient() {
     : null;
 
   return (
-    <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
-      <div className="container max-w-7xl px-4 mx-auto pb-20">
-        {/* Header */}
-        <div className="text-center mb-12 space-y-4">
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent pb-2 font-poppins">
-            Citation Opportunities Finder
-          </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-inter">
-            Improve your E-E-A-T and content credibility. Identify claims,
-            statistics, and expert advice that need authoritative citations and
-            get source suggestions.
-          </p>
+    <div className="min-h-screen dark:bg-zinc-950 font-sans mt-6 lg:mt-0">
+      {/* Hero Section */}
+      <section className="w-full pt-20 pb-12 md:pt-28 md:pb-16 bg-background tx-dot-bg border-b border-border/50">
+        <div className="container px-6 mx-auto max-w-7xl">
+          <div className="max-w-3xl animate-fade-slide-up">
+            <p className="tx-eyebrow mb-5">FREE SEO TOOL</p>
+            <h1 className="font-poppins text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight mb-4">
+              Citation Opportunities Finder
+            </h1>
+            <p className="font-inter text-lg text-muted-foreground max-w-2xl leading-relaxed">
+              Improve your E-E-A-T and content credibility. Identify claims,
+              statistics, and expert advice that need authoritative citations
+              and get source suggestions.
+            </p>
+          </div>
         </div>
+      </section>
 
+      <div className="container max-w-7xl px-4 mx-auto pb-20 pt-10 md:pt-16">
         {/* Search Input Card */}
-        <Card className="mb-16 bg-secondary shadow-none border-none mx-auto overflow-visible">
-          <CardContent className="px-4 py-1">
+        <Card className="mb-16 bg-card border border-border rounded-lg shadow-none mx-auto overflow-visible">
+          <CardContent className="px-6 py-5">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -186,7 +192,7 @@ export default function CitationOpportunitiesClient() {
                           onBlur={field.handleBlur}
                           onChange={(e) => field.handleChange(e.target.value)}
                           placeholder="https://example.com/article"
-                          className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input font-inter"
+                          className="h-11 pl-10 text-base bg-background border-input font-inter"
                         />
                         {field.state.meta.errors &&
                           field.state.meta.errors.length > 0 && (
@@ -201,8 +207,9 @@ export default function CitationOpportunitiesClient() {
 
                 <Button
                   type="submit"
-                  size="lg"
-                  className="h-12 px-8 min-w-[180px] font-semibold text-lg bg-primary hover:bg-primary/90 text-white dark:text-zinc-950 shadow-lg hover:shadow-xl transition-all rounded-xl transform active:scale-95 transition-transform"
+                  size="default"
+                  variant="brand"
+                  className="h-11 w-48 font-semibold text-base shrink-0 rounded-md"
                   disabled={loading || isWaitingForToken}
                 >
                   {isWaitingForToken ? (
@@ -249,14 +256,13 @@ export default function CitationOpportunitiesClient() {
 
         {/* Empty State: Feature Preview */}
         {!result && !loading && (
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto opacity-90">
+          <div className="grid md:grid-cols-2 gap-6 w-full mb-16">
             {/* Feature 1 */}
             <div className="relative group">
-              <div className="absolute inset-0 bg-purple-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border-none shadow-none rounded-2xl bg-secondary overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
+              <Card className="relative h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
                 <CardContent className="p-6">
-                  <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center mb-3">
-                    <ShieldCheck className="w-5 h-5 text-purple-600" />
+                  <div className="w-10 h-10 rounded-full bg-purple-50/50 dark:bg-purple-900/20 flex items-center justify-center mb-3">
+                    <ShieldCheck className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                   </div>
                   <h3 className="text-xl font-semibold text-foreground font-poppins mb-2">
                     E-E-A-T Optimizer
@@ -271,11 +277,10 @@ export default function CitationOpportunitiesClient() {
 
             {/* Feature 2 */}
             <div className="relative group mt-8 md:mt-0">
-              <div className="absolute inset-0 bg-indigo-100/50 rounded-3xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border-none shadow-none rounded-2xl bg-secondary overflow-hidden transform rotate-1 group-hover:rotate-2 transition-transform duration-500">
+              <Card className="relative h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
                 <CardContent className="p-6">
-                  <div className="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center mb-3">
-                    <Sparkles className="w-5 h-5 text-indigo-600" />
+                  <div className="w-10 h-10 rounded-full bg-indigo-50/50 dark:bg-indigo-900/20 flex items-center justify-center mb-3">
+                    <Sparkles className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                   </div>
                   <h3 className="text-xl font-semibold text-foreground font-poppins mb-2">
                     Source Suggestions
@@ -320,17 +325,35 @@ export default function CitationOpportunitiesClient() {
 
             {/* Opportunities List */}
             <div className="space-y-6">
-              <h3 className="text-2xl font-bold font-poppins text-[#104127] dark:text-white flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 rounded-xl bg-[#104127] flex items-center justify-center shadow-lg">
-                  <FileText className="w-6 h-6 text-white" />
-                </div>
+              <h3 className="text-xl font-semibold font-poppins text-foreground flex items-center gap-2 mb-6">
+                <span className="p-1.5 rounded-md flex items-center justify-center bg-accent/10 text-accent">
+                  <FileText className="w-5 h-5 text-current" />
+                </span>
                 Detected Citation Opportunities
               </h3>
-              <div className="grid grid-cols-1 gap-6">
-                {result.opportunities.map((opp, idx) => (
-                  <OpportunityCard key={idx} opportunity={opp} />
-                ))}
-              </div>
+              {result.opportunities && result.opportunities.length > 0 ? (
+                <div className="grid grid-cols-1 gap-6">
+                  {result.opportunities.map((opp, idx) => (
+                    <OpportunityCard key={idx} opportunity={opp} />
+                  ))}
+                </div>
+              ) : (
+                <Card className="bg-card border border-border shadow-none rounded-xl">
+                  <CardContent className="p-10 text-center flex flex-col items-center justify-center">
+                    <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                      <ShieldCheck className="w-7 h-7 text-primary" />
+                    </div>
+                    <h4 className="text-lg font-semibold font-poppins text-foreground mb-2">
+                      No Citation Opportunities Found
+                    </h4>
+                    <p className="text-sm text-muted-foreground font-inter max-w-md mx-auto">
+                      Great job! Your content has excellent citation coverage.
+                      We couldn't find any actionable opportunities to improve
+                      your E-E-A-T score.
+                    </p>
+                  </CardContent>
+                </Card>
+              )}
             </div>
 
             {/* E-E-A-T Impact */}
@@ -338,19 +361,24 @@ export default function CitationOpportunitiesClient() {
 
             {/* Recommendations */}
             {result.recommendations && result.recommendations.length > 0 && (
-              <Card className="bg-secondary shadow-none border-none">
+              <Card className="bg-card border border-border shadow-none rounded-xl">
                 <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold text-foreground font-poppins mb-4">
-                    💡 Strategic Recommendations
+                  <h3 className="text-lg font-medium font-poppins text-foreground flex items-center gap-2 mb-4">
+                    <span className="p-1.5 rounded-md flex items-center justify-center bg-accent/10 text-accent">
+                      <Lightbulb className="w-5 h-5 text-current" />
+                    </span>
+                    Strategic Recommendations
                   </h3>
                   <ul className="space-y-3">
                     {result.recommendations.map((rec, index) => (
                       <li
                         key={index}
-                        className="flex items-start gap-3 text-sm text-foreground bg-background/50 p-3 rounded-lg border border-border/50"
+                        className="flex items-start gap-3 text-sm font-medium text-foreground bg-background p-3 rounded-lg border border-border"
                       >
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                        <span className="font-medium">{rec}</span>
+                        <span className="text-primary mt-0.5 whitespace-nowrap">
+                          💡
+                        </span>
+                        <span>{rec}</span>
                       </li>
                     ))}
                   </ul>
@@ -360,29 +388,29 @@ export default function CitationOpportunitiesClient() {
 
             {/* Upsell */}
             {shouldShowUpsell && result.upsell && (
-              <Card className="bg-gradient-to-r from-primary/10 to-purple-600/10 border-none shadow-none overflow-hidden relative">
-                <div className="absolute top-0 right-0 p-8 opacity-5">
-                  <Sparkles className="w-32 h-32" />
+              <Card className="bg-primary/5 border border-primary/20 shadow-none rounded-xl overflow-hidden relative">
+                <div className="absolute top-0 right-0 p-8 opacity-[0.03] dark:opacity-5">
+                  <Sparkles className="w-32 h-32 text-primary" />
                 </div>
-                <CardContent className="p-10 relative z-10">
-                  <div className="flex flex-col md:flex-row items-center gap-8">
+                <CardContent className="p-8 relative z-10">
+                  <div className="flex flex-col md:flex-row items-center gap-6">
                     <div className="flex-1 text-center md:text-left">
-                      <h3 className="text-2xl font-bold text-foreground mb-3 font-poppins">
+                      <h3 className="text-xl font-semibold text-foreground mb-2 font-poppins">
                         {result.upsell.message}
                       </h3>
-                      <p className="text-base text-muted-foreground font-medium max-w-xl">
+                      <p className="text-sm text-muted-foreground max-w-xl">
                         Connect your content to the knowledge graph with
                         verified sources for every claim in seconds.
                       </p>
                     </div>
                     <Button
                       size="lg"
-                      className="bg-primary hover:bg-primary/90 px-10 h-14 text-lg font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all"
+                      className="bg-primary hover:bg-primary/90 px-8"
                       asChild
                     >
                       <a href={result.upsell.cta_link}>
                         Upgrade Now
-                        <ArrowRight className="ml-2 w-5 h-5" />
+                        <ArrowRight className="ml-2 w-4 h-4" />
                       </a>
                     </Button>
                   </div>

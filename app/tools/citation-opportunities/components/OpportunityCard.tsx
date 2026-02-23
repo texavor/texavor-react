@@ -62,9 +62,14 @@ export default function OpportunityCard({ opportunity }: OpportunityCardProps) {
   const styles = getSeverityStyles(opportunity.severity);
 
   return (
-    <Card className="bg-primary/5 dark:bg-zinc-900 border border-border/50 shadow-none overflow-hidden hover:bg-primary/10 transition-colors duration-300">
+    <Card
+      className={cn(
+        "bg-card border shadow-none overflow-hidden hover:bg-muted/50 transition-colors duration-300 rounded-xl",
+        styles.border,
+      )}
+    >
       <CardContent className="p-6">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
           <div className="flex items-center gap-3">
             <div className={cn("p-2 rounded-lg", styles.bg)}>{styles.icon}</div>
             <div>
@@ -78,11 +83,11 @@ export default function OpportunityCard({ opportunity }: OpportunityCardProps) {
                 >
                   {opportunity.severity}
                 </Badge>
-                <span className="text-[10px] font-bold text-[#104127] dark:text-emerald-400 uppercase tracking-widest">
+                <span className="text-[10px] font-bold text-foreground uppercase tracking-wider">
                   {opportunity.type.replace(/_/g, " ")}
                 </span>
               </div>
-              <div className="text-xs text-muted-foreground font-medium flex items-center gap-1">
+              <div className="text-sm text-muted-foreground font-medium flex items-center gap-1">
                 <MapPin className="w-3 h-3" />
                 {opportunity.location}
               </div>
@@ -90,27 +95,28 @@ export default function OpportunityCard({ opportunity }: OpportunityCardProps) {
           </div>
         </div>
 
-        <div className="bg-background/80 dark:bg-zinc-800 p-5 rounded-2xl mb-6 border border-border/40 shadow-sm">
-          <p className="text-base font-semibold text-slate-800 dark:text-white leading-relaxed italic mb-3">
+        <div className="bg-background rounded-lg p-5 mb-5 border border-border">
+          <p className="text-base font-semibold text-foreground leading-relaxed italic mb-3">
             "{opportunity.text}"
           </p>
-          <div className="flex gap-2">
-            <div className="w-1 h-auto bg-primary/20 rounded-full" />
-            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-2">
+          <div className="flex gap-3">
+            <div className="w-1 h-auto bg-border rounded-full" />
+            <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
               {opportunity.context}
             </p>
           </div>
         </div>
-        <div className="bg-[#104127]/5 dark:bg-[#104127]/20 p-5 rounded-2xl border border-[#104127]/10 dark:border-[#104127]/30">
-          <div className="flex items-start gap-3 mb-3">
-            <div className="w-8 h-8 rounded-full bg-[#104127] flex items-center justify-center shrink-0 shadow-sm mt-0.5">
-              <Lightbulb className="w-4 h-4 text-white" />
-            </div>
+
+        <div className="bg-background rounded-lg p-5 border border-border">
+          <div className="flex items-start gap-3">
+            <span className="p-1.5 rounded-md flex items-center justify-center bg-accent/10 text-accent shrink-0">
+              <Lightbulb className="w-4 h-4 text-current" />
+            </span>
             <div>
-              <p className="text-[10px] font-black text-[#104127] dark:text-emerald-400 uppercase tracking-widest mb-1">
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
                 Strategic Recommendation
               </p>
-              <p className="text-sm font-bold text-slate-800 dark:text-white leading-relaxed">
+              <p className="text-sm font-medium text-foreground leading-relaxed">
                 {opportunity.suggestion}
               </p>
             </div>
@@ -118,12 +124,12 @@ export default function OpportunityCard({ opportunity }: OpportunityCardProps) {
 
           {opportunity.suggested_sources &&
             opportunity.suggested_sources.length > 0 && (
-              <div className="mt-4 ml-11 flex flex-wrap gap-2 pt-4 border-t border-[#104127]/10">
+              <div className="mt-4 ml-11 flex flex-wrap gap-2 pt-4 border-t border-border">
                 {opportunity.suggested_sources.map((source, idx) => (
                   <Badge
                     key={idx}
-                    variant="secondary"
-                    className="bg-white dark:bg-zinc-800 text-[#104127] dark:text-emerald-400 border-border/50 text-[10px] font-bold shadow-sm"
+                    variant="outline"
+                    className="bg-background text-muted-foreground border-border text-[10px] font-semibold tracking-wider font-inter shadow-none"
                   >
                     {source}
                   </Badge>
