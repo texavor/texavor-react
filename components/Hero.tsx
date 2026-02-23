@@ -201,7 +201,7 @@ export default function Hero() {
                 AI Visibility Score
               </span>
               <span className="font-bold font-poppins text-primary text-base">
-                87
+                93
                 <span className="text-xs font-normal text-muted-foreground">
                   /100
                 </span>
