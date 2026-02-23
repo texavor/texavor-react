@@ -42,20 +42,40 @@ const BRANDS = [
   },
   // Doubling brands for infinite marquee effect
   {
-    name: "Surajondev-alt",
+    name: "Zappush",
+    logo: "https://www.zappush.com/favicon.ico",
+  },
+  {
+    name: "Statewatch.in",
+    logo: "https://statewatch.in/favicon.ico",
+  },
+  {
+    name: "Surajondev",
     logo: "https://surajon.dev/favicon.ico",
   },
   {
-    name: "Withorbit-alt",
+    name: "Withorbit",
     logo: "https://withorbit.io/favicon.ico",
   },
   {
-    name: "Ojasara-alt",
+    name: "Ojasara",
     logo: "https://www.ojasara.com/favicon.ico",
   },
   {
-    name: "Zbyneksvoboda-alt",
+    name: "Zbyneksvoboda",
     logo: "https://www.zbyneksvoboda.cz/favicon.ico",
+  },
+  {
+    name: "Thecareer.io",
+    logo: "https://thecareer.io/favicon.ico",
+  },
+  {
+    name: "Okck.net",
+    logo: "https://www.okck.net/favicon.ico",
+  },
+  {
+    name: "Shop-orchestra.com",
+    logo: "https://fr.shop-orchestra.com/favicon.ico",
   },
 ];
 

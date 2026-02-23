@@ -1,49 +1,99 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Home } from "lucide-react";
+import { Home, Search, ArrowRight, CornerDownRight } from "lucide-react";
+import LandingNav from "@/components/LandingNav";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen md:mt-8 flex items-center justify-center bg-gradient-to-b from-gray-50 to-white dark:from-zinc-950 dark:to-zinc-900 px-4">
-      <div className="max-w-2xl w-full text-center space-y-8">
-        {/* Image */}
-        <div className="relative w-full max-w-md mx-auto aspect-square">
-          <Image
-            src="/empty-state.png"
-            alt="Page not found"
-            fill
-            className="object-contain"
-            priority
-          />
-        </div>
+    <div className="min-h-screen bg-background text-foreground selection:bg-primary/10 flex flex-col">
+      <LandingNav />
+      <div className="fixed inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.015] pointer-events-none z-50" />
 
-        {/* Text Content */}
-        <div className="space-y-4">
-          <h1 className="text-6xl md:text-8xl font-bold text-gray-900 dark:text-white font-poppins">
-            404
-          </h1>
-          <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-gray-200 font-poppins">
-            Page Not Found
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-md mx-auto font-inter">
-            Oops! The page you're looking for doesn't exist or has been moved.
+      <main className="flex-1 flex flex-col items-center justify-center relative overflow-hidden tx-dot-bg px-6">
+        {/* Ambient Glows */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
+
+        <div className="max-w-xl w-full relative z-10 animate-fade-slide-up">
+          <div className="bg-card border border-border shadow-tx-lg rounded-[2rem] overflow-hidden">
+            <div className="p-8 md:p-12 text-center">
+              {/* Icon / Decor */}
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-muted border border-border mb-8 relative group">
+                <Search className="w-7 h-7 text-muted-foreground group-hover:text-primary transition-colors" />
+                <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-destructive border-2 border-card flex items-center justify-center">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white" />
+                </div>
+              </div>
+
+              {/* Text content */}
+              <h1 className="text-5xl md:text-6xl font-black font-poppins text-foreground tracking-tighter mb-4">
+                404
+              </h1>
+              <h2 className="text-xl md:text-2xl font-bold font-poppins text-foreground mb-4">
+                The content has shifted.
+              </h2>
+              <p className="text-base text-muted-foreground font-inter leading-relaxed mb-10 max-w-[320px] mx-auto">
+                The requested resource could not be found or has been moved to a
+                new semantic node.
+              </p>
+
+              {/* Actions */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Button
+                  asChild
+                  variant="brand"
+                  size="xl"
+                  className="w-full sm:w-auto min-w-[180px]"
+                >
+                  <Link href="/">
+                    <Home className="w-4 h-4 mr-2" />
+                    Return Home
+                  </Link>
+                </Button>
+
+                <Button
+                  asChild
+                  variant="outline"
+                  size="xl"
+                  className="w-full sm:w-auto bg-transparent border-border hover:bg-muted"
+                >
+                  <Link href="/tools">
+                    Free SEO Tools
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Bottom links - semantic list */}
+            <div className="bg-muted/50 border-t border-border p-6 md:px-12 flex flex-col gap-3 items-start">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1">
+                Quick Navigation
+              </span>
+              <div className="flex flex-wrap gap-x-6 gap-y-2">
+                {[
+                  { name: "Documentation", href: "/docs" },
+                  { name: "Blog Articles", href: "/blog" },
+                  { name: "Pricing", href: "/#pricing" },
+                ].map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className="text-xs font-medium text-muted-foreground hover:text-primary transition-colors flex items-center gap-1.5"
+                  >
+                    <CornerDownRight className="w-3 h-3 opacity-40" />
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Subheader feedback */}
+          <p className="mt-8 text-center text-xs font-bold text-muted-foreground/60 uppercase tracking-[0.2em]">
+            &copy; 2026 Texavor Labs. Optimized for Generative Search.
           </p>
         </div>
-
-        {/* Button */}
-        <div className="pt-4">
-          <Link href="/">
-            <Button
-              size="lg"
-              className="h-12 px-8 bg-[#104127] hover:bg-[#0c311d] text-white font-semibold text-lg rounded-xl transition-all shadow-lg hover:shadow-xl"
-            >
-              <Home className="w-5 h-5 mr-2" />
-              Return to Home
-            </Button>
-          </Link>
-        </div>
-      </div>
+      </main>
     </div>
   );
 }

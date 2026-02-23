@@ -175,12 +175,12 @@ export default function DocsLanding({ categories = [] }: DocsLandingProps) {
                   Get Started{" "}
                   <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
                 </Link>
-                <Link
+                {/* <Link
                   href="/docs/introduction"
                   className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                 >
                   API Reference
-                </Link>
+                </Link> */}
               </div>
             </div>
 
@@ -196,24 +196,22 @@ export default function DocsLanding({ categories = [] }: DocsLandingProps) {
               </div>
 
               <div className="space-y-4">
-                {[
-                  "Neural Distribution Monitoring",
-                  "Automated Node Clustering",
-                  "Competitor Risk Analysis",
-                  "Generative Core Deployment",
-                  "Cross-Platform Scalability",
-                ].map((item, i) => (
-                  <Link
-                    key={i}
-                    href="/docs/introduction"
-                    className="flex items-center justify-between group/guide"
-                  >
-                    <span className="text-sm font-inter font-medium text-muted-foreground group-hover/guide:text-foreground transition-colors">
-                      {item}
-                    </span>
-                    <MoveUpRight className="w-3 h-3 opacity-0 group-hover/guide:opacity-60 transition-all" />
-                  </Link>
-                ))}
+                {categories
+                  .flatMap((c) => c.items)
+                  .filter((doc) => doc && doc.title)
+                  .slice(0, 5)
+                  .map((doc, i) => (
+                    <Link
+                      key={i}
+                      href={`/docs/${doc.slug}`}
+                      className="flex items-center justify-between group/guide"
+                    >
+                      <span className="text-sm font-inter font-medium text-muted-foreground group-hover/guide:text-foreground transition-colors">
+                        {doc.title}
+                      </span>
+                      <MoveUpRight className="w-3 h-3 opacity-0 group-hover/guide:opacity-60 transition-all" />
+                    </Link>
+                  ))}
               </div>
             </div>
 
@@ -263,10 +261,114 @@ export default function DocsLanding({ categories = [] }: DocsLandingProps) {
                 </Link>
               </div>
             ))}
+
+            {/* ORNAMENTAL GRID FILLER */}
+            {categories.length % 3 !== 0 && (
+              <div className="bg-card p-10 flex flex-col justify-between overflow-hidden relative group md:col-span-1 h-full min-h-[300px]">
+                {/* Background Noise & Overlay */}
+                <div className="absolute inset-0 bg-muted/30 opacity-50 z-0" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--primary),transparent_70%)] opacity-10 blur-xl pointer-events-none z-0 transition-opacity duration-1000 group-hover:opacity-20" />
+
+                {/* Generative Content Flow SVG */}
+                <div className="absolute -right-8 -bottom-8 w-[140%] h-[140%] text-border z-0 transform transition-transform duration-1000 group-hover:scale-105 group-hover:-rotate-2">
+                  <svg
+                    viewBox="0 0 400 400"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-full h-full opacity-60 dark:opacity-40"
+                  >
+                    {/* Background Grid */}
+                    <defs>
+                      <pattern
+                        id="grid-doc"
+                        width="40"
+                        height="40"
+                        patternUnits="userSpaceOnUse"
+                      >
+                        <path
+                          d="M 40 0 L 0 0 0 40"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="0.5"
+                        />
+                      </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#grid-doc)" />
+
+                    {/* Central Document Base */}
+                    <rect
+                      x="140"
+                      y="100"
+                      width="120"
+                      height="160"
+                      rx="8"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      fill="none"
+                      className="opacity-80"
+                    />
+                    <path
+                      d="M165 135 H235 M165 165 H235 M165 195 H205"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      className="opacity-60"
+                    />
+
+                    {/* Surrounding AI Nodes / Entities */}
+                    <circle
+                      cx="100"
+                      cy="160"
+                      r="6"
+                      fill="var(--primary)"
+                      className="animate-pulse"
+                    />
+                    <circle cx="300" cy="200" r="8" fill="var(--primary)" />
+                    <circle cx="140" cy="300" r="5" fill="currentColor" />
+                    <circle cx="260" cy="100" r="4" fill="currentColor" />
+                    <circle cx="320" cy="280" r="6" fill="currentColor" />
+                    <circle cx="80" cy="240" r="4" fill="var(--primary)" />
+
+                    {/* Semantic Connections */}
+                    <path
+                      d="M100 160 L140 140 M300 200 L260 180 M140 300 L160 260 M260 100 L220 100 M80 240 L140 220"
+                      stroke="currentColor"
+                      strokeWidth="1"
+                      strokeDasharray="2 2"
+                      className="opacity-50"
+                    />
+
+                    {/* NLP Flow Indicator */}
+                    <path
+                      d="M 120 340 C 180 340, 220 380, 280 340"
+                      stroke="var(--primary)"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      fill="none"
+                      strokeDasharray="6 6"
+                      className="opacity-70"
+                    />
+                    <circle cx="280" cy="340" r="3" fill="var(--primary)" />
+                  </svg>
+                </div>
+
+                <div className="relative z-10 flex flex-col h-full items-start justify-end">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-background border border-border shadow-sm mb-4 backdrop-blur-sm">
+                    <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                    <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground font-inter">
+                      Generative Engine
+                    </span>
+                  </div>
+                  <p className="text-xl font-poppins font-semibold text-foreground max-w-[200px] leading-tight group-hover:text-primary transition-colors">
+                    Engineer content for AI discovery.
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Bottom CTA — Standard minimal block */}
-          <div className="mt-12 bg-card border border-border rounded-[40px] p-10 md:p-14 text-center">
+          <div className="mt-12 bg-card border border-border rounded-2xl p-10 md:p-14 text-center">
             <Badge
               variant="secondary"
               className="mb-6 bg-primary/10 text-primary border-primary/20"
