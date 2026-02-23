@@ -20,7 +20,7 @@ export default function CTA() {
           </div>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground font-poppins leading-[1.1] tracking-tight mb-6">
-            Claim your Share of Voice.
+            Claim your AI Visibility.
           </h2>
 
           <p className="text-lg md:text-xl text-muted-foreground font-inter leading-relaxed max-w-2xl mx-auto mb-10">
