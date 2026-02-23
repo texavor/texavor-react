@@ -91,7 +91,11 @@ export default function RootLayout({
         className={`${poppins.variable} ${inter.variable} ${geistMono.variable} antialiased`}
       >
         <ReactQueryProvider>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            forcedTheme="light"
+          >
             <CrispChat />
             <LandingNav />
             {children}

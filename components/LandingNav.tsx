@@ -90,7 +90,7 @@ export default function LandingNav() {
 
         {/* Right Actions */}
         <div className="flex items-center gap-3 shrink-0">
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
 
           <Link
             href={`${process.env.NEXT_PUBLIC_APP_URL || ""}/login`}

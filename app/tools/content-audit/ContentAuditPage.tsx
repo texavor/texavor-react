@@ -149,11 +149,36 @@ export default function ContentAuditPage() {
       mutation.error?.message
     : null;
 
-  const getScoreColor = (score: number) => {
-    if (score >= 80) return "#10B981"; // Green
-    if (score >= 50) return "#F59E0B"; // Orange
-    return "#EF4444"; // Red
+  const getScoreStyles = (score: number) => {
+    if (score >= 80)
+      return {
+        text: "text-primary",
+        bg: "bg-primary/10",
+        border: "border-primary/30",
+        hex: "#10b981",
+        label: "Healthy",
+        desc: "Excellent content structure and technical signals.",
+      };
+    if (score >= 50)
+      return {
+        text: "text-accent",
+        bg: "bg-accent/10",
+        border: "border-accent/30",
+        hex: "#f59e0b",
+        label: "Needs Work",
+        desc: "Content is okay but has significant optimization opportunities.",
+      };
+    return {
+      text: "text-destructive",
+      bg: "bg-destructive/10",
+      border: "border-destructive/30",
+      hex: "#ef4444",
+      label: "Critical",
+      desc: "Major technical or quality issues detected.",
+    };
   };
+
+  const scoreStyles = result ? getScoreStyles(result.health_score) : null;
 
   const StatusIcon = ({ status }: { status?: string }) => {
     if (!status) return null;
@@ -234,22 +259,27 @@ export default function ContentAuditPage() {
   };
 
   return (
-    <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
-      <div className="container max-w-7xl px-4 mx-auto pb-20">
-        {/* Header */}
-        <div className="text-center mb-12 space-y-4">
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary to-green-600 bg-clip-text text-transparent pb-2 font-poppins">
-            Content Audit Tool
-          </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-inter">
-            Scan any URL to identify technical errors, thin content, and missing
-            metadata. Get a free health score instantly.
-          </p>
+    <div className="min-h-screen bg-background font-sans mt-6 lg:mt-0">
+      {/* Hero Section */}
+      <section className="w-full pt-20 pb-12 md:pt-28 md:pb-16 bg-background tx-dot-bg border-b border-border/50">
+        <div className="container px-6 mx-auto max-w-7xl">
+          <div className="max-w-3xl animate-fade-slide-up">
+            <p className="tx-eyebrow mb-5">FREE SEO TOOL</p>
+            <h1 className="font-poppins text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight mb-4">
+              Content Audit Tool
+            </h1>
+            <p className="font-inter text-lg text-muted-foreground max-w-2xl leading-relaxed">
+              Scan any URL to identify technical errors, thin content, and
+              missing metadata. Get a free health score instantly.
+            </p>
+          </div>
         </div>
+      </section>
 
+      <div className="container max-w-7xl px-6 mx-auto pt-10 md:pt-16 pb-24">
         {/* Input Card */}
-        <Card className="mb-16 bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
-          <CardContent className="px-4 py-1">
+        <Card className="mb-16 bg-card border border-border shadow-none rounded-lg mx-auto overflow-hidden">
+          <CardContent className="px-6 py-5">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -275,7 +305,7 @@ export default function ContentAuditPage() {
                           onBlur={field.handleBlur}
                           onChange={(e) => field.handleChange(e.target.value)}
                           placeholder="https://example.com/blog/article"
-                          className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
+                          className="h-11 pl-10 text-base bg-background border-input"
                         />
                         {field.state.meta.errors ? (
                           <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
@@ -290,8 +320,9 @@ export default function ContentAuditPage() {
 
                 <Button
                   type="submit"
-                  size="lg"
-                  className="h-12 px-8 min-w-[140px] font-semibold text-lg bg-primary hover:bg-primary/90 text-white dark:text-zinc-950 shadow-lg hover:shadow-xl transition-all rounded-xl"
+                  size="default"
+                  variant="brand"
+                  className="h-11 w-40 font-semibold text-base shrink-0 rounded-md"
                   disabled={loading || isWaitingForToken}
                 >
                   {isWaitingForToken ? (
@@ -339,19 +370,18 @@ export default function ContentAuditPage() {
 
         {/* Empty State Feature Preview */}
         {!result && !loading && (
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto opacity-90">
+          <div className="grid md:grid-cols-3 gap-6 w-full mb-16 opacity-90">
             {/* Feature 1: Technical Scan */}
             <div className="relative group">
-              <div className="absolute inset-0 bg-emerald-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
+              <Card className="h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
                 <CardHeader className="pb-2">
                   <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center mb-3">
                     <Zap className="w-5 h-5 text-emerald-600" />
                   </div>
-                  <CardTitle className="text-xl font-poppins">
+                  <CardTitle className="text-xl font-poppins text-foreground">
                     Technical Scan
                   </CardTitle>
-                  <CardDescription className="font-inter">
+                  <CardDescription className="font-inter text-muted-foreground">
                     Speed & Meta Check
                   </CardDescription>
                 </CardHeader>
@@ -379,21 +409,20 @@ export default function ContentAuditPage() {
 
             {/* Feature 2: Content Quality */}
             <div className="relative group mt-8 md:mt-0">
-              <div className="absolute inset-0 bg-blue-100/50 rounded-3xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform rotate-1 group-hover:rotate-2 transition-transform duration-500">
+              <Card className="h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
                 <CardHeader className="pb-2">
                   <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center mb-3">
                     <FileText className="w-5 h-5 text-blue-600" />
                   </div>
-                  <CardTitle className="text-xl font-poppins">
+                  <CardTitle className="text-xl font-poppins text-foreground">
                     Content Quality
                   </CardTitle>
-                  <CardDescription className="font-inter">
+                  <CardDescription className="font-inter text-muted-foreground">
                     Depth & Readability
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="flex items-center justify-center p-6">
-                  <div className="space-y-2 w-full max-w-[120px] opacity-60 p-3 border border-blue-100 rounded bg-white dark:bg-zinc-950">
+                  <div className="space-y-2 w-full max-w-[120px] opacity-60 p-3 border border-blue-100 rounded bg-background">
                     <div className="h-2 w-full bg-blue-100 rounded"></div>
                     <div className="h-2 w-[80%] bg-blue-100 rounded"></div>
                     <div className="h-2 w-[90%] bg-blue-100 rounded"></div>
@@ -404,16 +433,15 @@ export default function ContentAuditPage() {
 
             {/* Feature 3: Structure Analysis */}
             <div className="relative group mt-8 md:mt-0">
-              <div className="absolute inset-0 bg-purple-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border border-border/20 shadow-none rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
+              <Card className="h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
                 <CardHeader className="pb-2">
                   <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center mb-3">
                     <LinkIcon className="w-5 h-5 text-purple-600" />
                   </div>
-                  <CardTitle className="text-xl font-poppins">
+                  <CardTitle className="text-xl font-poppins text-foreground">
                     Structure Analysis
                   </CardTitle>
-                  <CardDescription className="font-inter">
+                  <CardDescription className="font-inter text-muted-foreground">
                     Links & Tags
                   </CardDescription>
                 </CardHeader>

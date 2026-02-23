@@ -48,13 +48,13 @@ export default function ClusterTable({ cluster }: ClusterTableProps) {
   const getIntentColor = (intent: string) => {
     switch (intent.toLowerCase()) {
       case "informational":
-        return "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 hover:bg-blue-100/80";
+        return "bg-blue-100/50 text-blue-700 border-blue-200/50";
       case "commercial":
-        return "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300 hover:bg-emerald-100/80";
+        return "bg-emerald-100/50 text-emerald-700 border-emerald-200/50";
       case "transactional":
-        return "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 hover:bg-purple-100/80";
+        return "bg-purple-100/50 text-purple-700 border-purple-200/50";
       default:
-        return "bg-gray-100 text-gray-700 dark:bg-zinc-800 dark:text-gray-300";
+        return "bg-muted text-muted-foreground border-border";
     }
   };
 
@@ -72,11 +72,14 @@ export default function ClusterTable({ cluster }: ClusterTableProps) {
   };
 
   return (
-    <div className="rounded-xl overflow-hidden bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50">
-      <div className="p-4 bg-slate-100/80 dark:bg-zinc-800/50 border-b border-border/20 flex justify-between items-center">
-        <h3 className="font-poppins font-semibold text-lg flex items-center gap-2">
+    <div className="bg-card border border-border shadow-none rounded-lg overflow-hidden transition-all duration-300 hover:border-primary/40">
+      <div className="p-4 bg-muted/30 border-b border-border flex justify-between items-center">
+        <h3 className="font-poppins font-semibold text-lg text-foreground flex items-center gap-2">
           {cluster.name}
-          <Badge variant="outline" className="ml-2 bg-white dark:bg-zinc-800">
+          <Badge
+            variant="outline"
+            className="ml-2 bg-background border-border text-muted-foreground font-inter shadow-none"
+          >
             {cluster.count} Keywords
           </Badge>
         </h3>
@@ -89,18 +92,18 @@ export default function ClusterTable({ cluster }: ClusterTableProps) {
         </div>
       </div>
       <Table>
-        <TableHeader className="bg-slate-100/80 dark:bg-zinc-800/50">
-          <TableRow className="bg-primary hover:bg-primary border-b border-border/10">
-            <TableHead className="w-[40%] text-xs uppercase tracking-wider font-semibold text-black font-bold">
+        <TableHeader className="bg-muted/30">
+          <TableRow className="border-b border-border hover:bg-transparent">
+            <TableHead className="w-[40%] text-[11px] uppercase tracking-wider font-bold text-muted-foreground">
               Keyword
             </TableHead>
-            <TableHead className="text-xs uppercase tracking-wider font-semibold text-black font-bold">
+            <TableHead className="text-[11px] uppercase tracking-wider font-bold text-muted-foreground">
               Intent
             </TableHead>
-            <TableHead className="text-xs uppercase tracking-wider font-semibold text-black font-bold">
+            <TableHead className="text-[11px] uppercase tracking-wider font-bold text-muted-foreground">
               Difficulty
             </TableHead>
-            <TableHead className="text-right text-xs uppercase tracking-wider font-semibold text-black font-bold">
+            <TableHead className="text-right text-[11px] uppercase tracking-wider font-bold text-muted-foreground">
               Volume
             </TableHead>
             <TableHead className="w-[50px]"></TableHead>
@@ -110,13 +113,16 @@ export default function ClusterTable({ cluster }: ClusterTableProps) {
           {cluster.keywords.map((kw, i) => (
             <TableRow
               key={i}
-              className="group hover:bg-slate-50/50 dark:hover:bg-zinc-800/50"
+              className="group hover:bg-muted/50 border-b border-border"
             >
-              <TableCell className="font-medium text-base">{kw.term}</TableCell>
+              <TableCell className="font-medium text-sm text-foreground">
+                {kw.term}
+              </TableCell>
               <TableCell>
                 <Badge
+                  variant="outline"
                   className={cn(
-                    "rounded-md pointer-events-none shadow-none border-none",
+                    "rounded-md pointer-events-none shadow-none text-xs font-semibold uppercase tracking-wide",
                     getIntentColor(kw.intent),
                   )}
                 >

@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from "next/link";
 import MetricCard from "../ai-visibility-calculator/MetriCard";
@@ -75,6 +76,35 @@ interface AuthorityResult {
     cta_link: string;
   };
 }
+
+const getScoreStyles = (score: number) => {
+  if (score >= 70)
+    return {
+      text: "text-primary",
+      bg: "bg-primary/10",
+      border: "border-primary/30",
+      hex: "#10b981",
+      label: "Excellent Coverage",
+      desc: "Comprehensive topical map. Ready to dominate search results.",
+    };
+  if (score >= 40)
+    return {
+      text: "text-accent",
+      bg: "bg-accent/10",
+      border: "border-accent/30",
+      hex: "#f59e0b",
+      label: "Average Coverage",
+      desc: "Good foundation. Fill content gaps to improve visibility.",
+    };
+  return {
+    text: "text-destructive",
+    bg: "bg-destructive/10",
+    border: "border-destructive/30",
+    hex: "#ef4444",
+    label: "Low Coverage",
+    desc: "Missing core pillars. Significant gaps detected.",
+  };
+};
 
 export default function TopicalAuthorityPage() {
   const [turnstileToken, setTurnstileToken] = useState<string>("");
@@ -153,23 +183,31 @@ export default function TopicalAuthorityPage() {
       mutation.error?.message
     : null;
 
-  return (
-    <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
-      <div className="container max-w-7xl px-4 mx-auto pb-20">
-        {/* Header */}
-        <div className="text-center mb-12 space-y-4">
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary to-green-600 bg-clip-text text-transparent pb-2 font-poppins">
-            Topical Authority Map
-          </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-inter">
-            Visualize your topical authority. Enter a keyword to generate a
-            complete topic cluster map and content strategy.
-          </p>
-        </div>
+  const scoreStyles = result ? getScoreStyles(result.authority_score) : null;
 
+  return (
+    <div className="min-h-screen bg-background font-sans mt-6 lg:mt-0">
+      {/* Hero Section */}
+      <section className="w-full pt-20 pb-12 md:pt-28 md:pb-16 bg-background tx-dot-bg border-b border-border/50">
+        <div className="container px-6 mx-auto max-w-7xl">
+          <div className="max-w-3xl animate-fade-slide-up">
+            <p className="tx-eyebrow mb-5">FREE SEO TOOL</p>
+            <h1 className="font-poppins text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight mb-4">
+              Topical Authority Map
+            </h1>
+            <p className="font-inter text-lg text-muted-foreground max-w-2xl leading-relaxed">
+              Visualize your topical authority for AI search readiness. Enter a
+              keyword to generate a complete topic cluster map and content
+              strategy.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container max-w-7xl px-6 mx-auto pt-10 md:pt-16 pb-24">
         {/* Input Card */}
-        <Card className="mb-16 bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none mx-auto overflow-visible ring-1 ring-border/50">
-          <CardContent className="px-4 py-1">
+        <Card className="mb-16 bg-card border border-border shadow-none rounded-lg mx-auto overflow-hidden">
+          <CardContent className="px-6 py-5">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -195,7 +233,7 @@ export default function TopicalAuthorityPage() {
                           onBlur={field.handleBlur}
                           onChange={(e) => field.handleChange(e.target.value)}
                           placeholder="e.g. technical seo"
-                          className="h-12 pl-10 text-lg bg-white dark:bg-zinc-950/50 border-input"
+                          className="h-11 pl-10 text-base bg-background border-input"
                         />
                         {field.state.meta.errors ? (
                           <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
@@ -210,8 +248,9 @@ export default function TopicalAuthorityPage() {
 
                 <Button
                   type="submit"
-                  size="lg"
-                  className="h-12 px-8 min-w-[140px] font-semibold text-lg bg-primary hover:bg-primary/90 text-zinc-950 shadow-lg hover:shadow-xl transition-all rounded-xl"
+                  size="default"
+                  variant="brand"
+                  className="h-11 w-40 font-semibold text-base shrink-0 rounded-md"
                   disabled={loading || isWaitingForToken}
                 >
                   {isWaitingForToken ? (
@@ -257,11 +296,10 @@ export default function TopicalAuthorityPage() {
         {loading && <TopicalAuthoritySkeleton />}
 
         {!result && !loading && (
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto opacity-90">
+          <div className="grid md:grid-cols-2 gap-6 w-full mb-16 opacity-90">
             {/* Feature 1: Cluster Visualization */}
             <div className="relative group">
-              <div className="absolute inset-0 bg-emerald-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50 overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
+              <Card className="h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
                 <CardHeader className="pb-2">
                   <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center mb-3">
                     <Network className="w-5 h-5 text-blue-600" />
@@ -275,9 +313,9 @@ export default function TopicalAuthorityPage() {
                 </CardHeader>
                 <CardContent className="flex items-center justify-center p-6">
                   <div className="grid grid-cols-2 gap-2 w-full max-w-[200px] opacity-60">
-                    <div className="bg-blue-100 rounded-lg h-16 w-full"></div>
-                    <div className="bg-blue-100 rounded-lg h-16 w-full"></div>
-                    <div className="bg-blue-100 rounded-lg h-16 w-full col-span-2"></div>
+                    <div className="bg-blue-100/50 border border-blue-200 rounded-lg h-16 w-full"></div>
+                    <div className="bg-blue-100/50 border border-blue-200 rounded-lg h-16 w-full"></div>
+                    <div className="bg-blue-100/50 border border-blue-200 rounded-lg h-16 w-full col-span-2"></div>
                   </div>
                 </CardContent>
               </Card>
@@ -285,8 +323,7 @@ export default function TopicalAuthorityPage() {
 
             {/* Feature 2: Authority Score */}
             <div className="relative group mt-8 md:mt-0">
-              <div className="absolute inset-0 bg-purple-100/50 rounded-3xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50 overflow-hidden transform rotate-1 group-hover:rotate-2 transition-transform duration-500">
+              <Card className="h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
                 <CardHeader className="pb-2">
                   <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center mb-3">
                     <Layers className="w-5 h-5 text-purple-600" />
@@ -299,7 +336,7 @@ export default function TopicalAuthorityPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="flex items-center justify-center p-6">
-                  <div className="h-32 w-32 rounded-full border-8 border-purple-100 flex items-center justify-center">
+                  <div className="h-32 w-32 rounded-full border-[8px] border-purple-100 flex items-center justify-center bg-background">
                     <span className="text-2xl font-bold text-purple-600">
                       85+
                     </span>
@@ -314,121 +351,140 @@ export default function TopicalAuthorityPage() {
         {result && (
           <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             {/* Top Row: Authority Score & Stats */}
-            <div className="grid md:grid-cols-12 gap-6">
+            <div className="grid lg:grid-cols-12 gap-6">
               {/* Left: Authority Score Gauge */}
-              <div className="md:col-span-4">
-                <Card className="h-full border-none shadow-lg rounded-xl bg-[#104127] text-white relative overflow-hidden flex flex-col items-center justify-center p-6">
-                  <div
-                    className="absolute inset-0 opacity-100 pointer-events-none"
-                    style={{
-                      background:
-                        "radial-gradient(circle at 10% 90%, #1a5d3a 0%, transparent 60%), linear-gradient(to top right, #104127 0%, #0d3520 100%)",
-                    }}
-                  />
-                  <div className="relative z-10 text-center space-y-2">
-                    <h3 className="text-xl font-medium text-green-100">
+              <div className="lg:col-span-4">
+                <Card className="h-full border border-border shadow-none rounded-lg bg-card relative overflow-hidden flex flex-col min-h-[300px]">
+                  <CardHeader className="pb-2 text-center pt-8 relative z-10">
+                    <CardTitle className="text-2xl text-foreground font-poppins">
                       Authority Score
-                    </h3>
-                    <div className="h-[200px] w-[200px] mx-auto relative flex items-center justify-center">
+                    </CardTitle>
+                    <CardDescription className="text-muted-foreground font-inter">
+                      Based on Topic Completeness
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="flex-1 relative z-10 flex flex-col items-center justify-center pb-8">
+                    <div className="relative h-48 w-48">
                       <ResponsiveContainer width="100%" height="100%">
                         <RadialBarChart
                           innerRadius="80%"
                           outerRadius="100%"
-                          barSize={15}
+                          barSize={12}
                           data={[
                             {
                               name: "score",
                               value: result.authority_score,
-                              fill: "#34d399",
+                              fill: scoreStyles?.hex,
                             },
                           ]}
-                          startAngle={180}
-                          endAngle={0}
-                          cy="70%"
+                          startAngle={90}
+                          endAngle={-270}
                         >
-                          <RadialBar
-                            background={{ fill: "rgba(255,255,255,0.1)" }}
-                            dataKey="value"
-                            cornerRadius={30}
-                          />
                           <PolarAngleAxis
                             type="number"
                             domain={[0, 100]}
                             angleAxisId={0}
                             tick={false}
                           />
+                          <RadialBar dataKey="value" cornerRadius={30} />
                         </RadialBarChart>
                       </ResponsiveContainer>
-                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[20%] text-center">
-                        <span className="text-5xl font-bold text-white block">
+                      <div className="absolute inset-0 flex items-center justify-center flex-col">
+                        <span className="text-5xl font-bold font-poppins tracking-tighter text-foreground">
                           {result.authority_score}
                         </span>
-                        <span className="text-sm text-green-200">/ 100</span>
+                        <span className="text-sm text-muted-foreground font-medium uppercase tracking-widest mt-1">
+                          / 100
+                        </span>
                       </div>
                     </div>
-                  </div>
+                  </CardContent>
                 </Card>
               </div>
 
               {/* Right: Stats & Overview */}
-              <div className="md:col-span-8 grid sm:grid-cols-2 gap-4">
-                <MetricCard
-                  label="Analyzed Topic"
-                  value={result.topic}
-                  type="secondary"
-                  icon={<Layers className="w-4 h-4" />}
-                  className="capitalize"
-                />
-                <MetricCard
-                  label="Total Subtopics"
-                  value={result.total_subtopics}
-                  type="secondary"
-                  icon={<Network className="w-4 h-4" />}
-                />
-                <Card className="sm:col-span-2 bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none rounded-2xl p-6 ring-1 ring-border/50 flex flex-col md:flex-row items-center gap-6">
-                  <div className="flex-1 space-y-2">
-                    <h3 className="text-lg font-semibold flex items-center gap-2">
-                      <AlertTriangle className="w-5 h-5 text-orange-500" />
-                      Content Gaps Detected
-                    </h3>
-                    <div className="flex flex-wrap gap-2">
-                      {result.content_gaps.map((gap, i) => (
-                        <span
-                          key={i}
-                          className="bg-orange-50 text-orange-700 text-xs px-2 py-1 rounded-md border border-orange-100 font-medium"
-                        >
-                          {gap}
-                        </span>
-                      ))}
-                      {result.content_gaps.length === 0 && (
-                        <span className="text-sm text-slate-500">
-                          No major gaps found. Great job!
-                        </span>
-                      )}
+              <div className="lg:col-span-8 flex flex-col gap-6 h-full">
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <MetricCard
+                    label="Analyzed Topic"
+                    value={result.topic}
+                    type="primary"
+                    className="capitalize"
+                  />
+                  <MetricCard
+                    label="Total Subtopics"
+                    value={result.total_subtopics}
+                    type="secondary"
+                  />
+                  <Card className="sm:col-span-2 bg-card border border-border shadow-none rounded-lg p-6 flex flex-col md:flex-row items-start md:items-center gap-6 transition-all duration-300 hover:border-primary/40">
+                    <div className="flex-1 space-y-2">
+                      <h3 className="text-lg font-semibold flex items-center gap-2 font-poppins text-foreground">
+                        <AlertTriangle className="w-5 h-5 text-accent" />
+                        Content Gaps Detected
+                      </h3>
+                      <div className="flex flex-wrap gap-2 mt-3">
+                        {result.content_gaps.map((gap, i) => (
+                          <span
+                            key={i}
+                            className="px-3 py-1.5 rounded-md bg-accent/10 border border-accent/20 text-accent text-sm font-medium"
+                          >
+                            {gap}
+                          </span>
+                        ))}
+                        {result.content_gaps.length === 0 && (
+                          <span className="text-sm text-foreground">
+                            No major gaps found. Great job!
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+
+                {scoreStyles && (
+                  <div
+                    className={cn(
+                      "flex-1 p-6 rounded-lg flex flex-col sm:flex-row items-center justify-start text-left border w-full gap-4",
+                      scoreStyles.bg,
+                      scoreStyles.border,
+                    )}
+                  >
+                    <div>
+                      <h4
+                        className={cn(
+                          "font-poppins font-bold text-2xl",
+                          scoreStyles.text,
+                        )}
+                      >
+                        {scoreStyles.label}
+                      </h4>
+                      <p className="font-inter text-base text-foreground/80 mt-2 leading-relaxed">
+                        {scoreStyles.desc}
+                      </p>
                     </div>
                   </div>
-                </Card>
+                )}
               </div>
             </div>
 
             {/* Main Tabs Interface */}
             <Tabs defaultValue="visual" className="w-full">
-              <TabsList className="grid w-full grid-cols-3 mb-8 bg-zinc-100 dark:bg-zinc-800/50 p-1 rounded-xl h-12">
+              <TabsList className="grid w-full grid-cols-3 mb-6 bg-muted/50 p-1 rounded-lg h-11">
                 <TabsTrigger
                   value="visual"
-                  className="rounded-lg text-base font-medium data-[state=active]:!bg-primary data-[state=active]:!text-black transition-all"
+                  className="data-[state=active]:!bg-primary data-[state=active]:!text-primary-foreground transition-all rounded-lg"
                 >
                   Visual Map
                 </TabsTrigger>
                 <TabsTrigger
                   value="table"
-                  className="rounded-lg text-base font-medium data-[state=active]:!bg-primary data-[state=active]:!text-black transition-all"
+                  className="data-[state=active]:!bg-primary data-[state=active]:!text-primary-foreground transition-all rounded-lg"
                 >
                   Cluster Strategy
                 </TabsTrigger>
                 <TabsTrigger
                   value="gaps"
-                  className="rounded-lg text-base font-medium data-[state=active]:!bg-primary data-[state=active]:!text-black transition-all"
+                  className="data-[state=active]:!bg-primary data-[state=active]:!text-primary-foreground transition-all rounded-lg"
                 >
                   Content Gaps
                 </TabsTrigger>
@@ -438,7 +494,7 @@ export default function TopicalAuthorityPage() {
                 value="visual"
                 className="space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300"
               >
-                <Card className="bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50 rounded-xl overflow-hidden p-1">
+                <Card className="bg-card shadow-none border border-border rounded-xl overflow-hidden p-1 transition-all">
                   <TopicVisualGraph
                     initialNodes={result.visual_graph.nodes}
                     initialEdges={result.visual_graph.edges}
@@ -461,9 +517,9 @@ export default function TopicalAuthorityPage() {
                 value="gaps"
                 className="space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300"
               >
-                <Card className="bg-primary/5 dark:bg-zinc-900 shadow-lg shadow-green-900/5 border-none ring-1 ring-border/50">
+                <Card className="bg-card shadow-none border border-border rounded-xl">
                   <CardHeader>
-                    <CardTitle className="text-orange-700 dark:text-orange-400">
+                    <CardTitle className="text-accent flex items-center gap-2">
                       Missing Pillars
                     </CardTitle>
                     <CardDescription>
@@ -472,7 +528,7 @@ export default function TopicalAuthorityPage() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
+                    <ul className="list-disc pl-5 space-y-2 text-muted-foreground font-inter">
                       {result.content_gaps.map((gap, i) => (
                         <li key={i}>{gap}</li>
                       ))}
@@ -484,34 +540,45 @@ export default function TopicalAuthorityPage() {
 
             {/* Upsell Section */}
             {result.upsell && (
-              <div className="relative rounded-2xl overflow-hidden bg-[#0A1A12] text-white p-8 md:p-12 text-center shadow-2xl mt-12">
-                <div
-                  className="absolute inset-0 opacity-20 pointer-events-none"
-                  style={{
-                    backgroundImage:
-                      "radial-gradient(circle at 50% 50%, #10B981 1px, transparent 1px)",
-                    backgroundSize: "24px 24px",
-                  }}
-                ></div>
-
-                <div className="relative z-10 max-w-2xl mx-auto space-y-6">
-                  <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto backdrop-blur-sm mb-4">
-                    <Lock className="w-8 h-8 text-emerald-400" />
-                  </div>
-                  <h3 className="text-3xl md:text-4xl font-bold tracking-tight">
-                    {result.upsell?.message}
+              <div className="relative mt-12 bg-primary/5 border border-primary/20 rounded-lg overflow-hidden p-10 md:p-14 tx-dot-bg flex flex-col md:flex-row items-start md:items-center gap-8">
+                <div className="flex-1">
+                  <p className="tx-eyebrow mb-2">READY TO GO DEEPER?</p>
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight font-poppins text-foreground mb-3">
+                    {result.upsell.message}
                   </h3>
-                  <p className="text-lg text-emerald-100/80">
-                    Get the complete semantic map for this topic with Texavor
-                    Pro.
+                  <p className="font-inter text-base text-muted-foreground max-w-lg leading-relaxed mb-6">
+                    Get the complete semantic map for this topic, analyze
+                    competitor gaps, and build your content silo.
                   </p>
 
+                  <div className="flex flex-wrap gap-3">
+                    {[
+                      "Complete Search Volume",
+                      "Competitor URLs",
+                      "Missing Subtopics",
+                    ].map((data, i) => (
+                      <span
+                        key={i}
+                        className="px-4 py-2 rounded-lg bg-background border border-border text-sm text-foreground font-medium flex items-center gap-2"
+                      >
+                        <Lock className="w-3 h-3 text-muted-foreground" />{" "}
+                        {data}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex-shrink-0 w-full md:w-auto">
                   <Button
-                    size="lg"
-                    className="h-12 px-8 bg-emerald-500 hover:bg-emerald-400 text-[#0A1A12] font-semibold text-lg rounded-xl transition-all w-full sm:w-auto"
+                    size="default"
+                    variant="brand"
+                    className="w-full md:w-auto font-semibold text-base py-6 px-8 rounded-lg shadow-sm"
                     asChild
                   >
-                    <Link href={result.upsell?.cta_link || "#pricing"}>
+                    <Link
+                      href={result.upsell.cta_link || "#pricing"}
+                      target="_blank"
+                    >
                       Unlock Full Map
                     </Link>
                   </Button>

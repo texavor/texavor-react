@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import PageTransition from "@/components/PageTransition";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Rank in Google. Get Cited by ChatGPT. | Texavor",
@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 };
 
 import Hero from "@/components/Hero";
+import { TrustedBy } from "@/components/TrustedBy";
 import Features from "@/components/Features";
 import PlatformStatsStrip from "@/components/PlatformStatsStrip";
 // import BeforeAfterProof from "@/components/BeforeAfterProof";
@@ -29,6 +30,7 @@ const Testimonials = dynamic(() => import("@/components/Testimonials"));
 const Pricing = dynamic(() => import("@/components/Pricing"));
 const FAQ = dynamic(() => import("@/components/FAQ"));
 const CTA = dynamic(() => import("@/components/CTA"));
+const AIPitfalls = dynamic(() => import("@/components/AIPitfalls"));
 
 import { ComparisonTable } from "@/components/ComparisonTable";
 import { ArrowRight } from "lucide-react";
@@ -237,19 +239,20 @@ export default function Home() {
       <Schema script={mainSchema} />
       <main className="flex min-h-screen flex-col items-center w-full pt-0">
         <Hero />
+        <TrustedBy />
         <PlatformStatsStrip />
         {/* <BeforeAfterProof /> */}
         <CitationAnatomy />
         <Features />
         <Integration />
         <HowItWorks />
-        <Testimonials />
+        {/* <Testimonials /> */}
+        <AIPitfalls />
         <MarketData />
 
         {/* Comparison Section */}
         <section className="w-full py-24 md:py-32 bg-background tx-dot-bg border-b border-border relative overflow-hidden">
-          <div className="container px-6 mx-auto max-w-7xl relative z-10">
-            {/* Section Header */}
+          <div className="container mx-auto px-6 max-w-7xl relative z-10">
             <div className="flex flex-col items-start text-left mb-16 md:mb-20">
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-1 h-5 bg-accent" />
@@ -258,29 +261,20 @@ export default function Home() {
                 </span>
               </div>
               <h2 className="text-3xl md:text-5xl font-poppins font-bold text-foreground mb-6 tracking-tight leading-tight max-w-2xl">
-                Don't settle for a tool.
-                <br />
-                Build with an Operating System.
+                Why generic AI Outlines <br />
+                don't rank anymore.
               </h2>
               <p className="text-lg font-inter text-muted-foreground max-w-2xl leading-relaxed">
-                See how Texavor stacks up against traditional AI writers and SEO
-                platforms.
+                Most AI tools generate content for search engines. We engineer
+                it for{" "}
+                <span className="text-foreground font-semibold italic">
+                  Generative Engines.
+                </span>{" "}
+                Compare the depth of Texavor vs legacy AI generators.
               </p>
             </div>
 
             <ComparisonTable />
-
-            <div className="mt-12 flex justify-start">
-              <Link
-                href="/comparison"
-                className="inline-flex items-center gap-2 text-accent hover:text-accent/80 font-bold font-inter transition-colors text-lg group"
-              >
-                <span className="group-hover:underline underline-offset-4 decoration-2">
-                  See Full Comparison
-                </span>
-                <ArrowRight className="w-5 h-5 ml-1 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
           </div>
         </section>
 
