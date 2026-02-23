@@ -17,10 +17,12 @@ export default function GoodExamples({ examples }: GoodExamplesProps) {
   }
 
   return (
-    <Card className="bg-secondary shadow-none border-none">
-      <CardHeader className="pb-3">
-        <h3 className="text-lg font-semibold text-foreground font-poppins flex items-center gap-2">
-          <CheckCircle2 className="w-5 h-5 text-green-600" />
+    <Card className="bg-card border border-border shadow-none rounded-xl">
+      <CardHeader className="pb-3 border-b border-border/30">
+        <h3 className="text-lg font-medium text-foreground font-poppins flex items-center gap-2">
+          <span className="p-1.5 rounded-md flex items-center justify-center bg-green-500/10 text-green-500">
+            <CheckCircle2 className="w-5 h-5 text-current" />
+          </span>
           Well-Optimized Images ({examples.length})
         </h3>
       </CardHeader>

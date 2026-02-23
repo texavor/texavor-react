@@ -16,7 +16,7 @@ export default function WcagCompliance({ compliance }: WcagComplianceProps) {
   const isNA = compliance.level === "N/A";
 
   return (
-    <Card className="bg-secondary shadow-none border-none">
+    <Card className="bg-card shadow-none border border-border rounded-xl">
       <CardContent className="p-6">
         <div className="flex items-start gap-4">
           {/* Icon */}

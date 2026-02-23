@@ -39,9 +39,12 @@ export default function DatesCard({ dates }: DatesCardProps) {
   const hasNoDates = !dates.published && !dates.last_modified;
 
   return (
-    <Card className="bg-primary/5 dark:bg-zinc-900 border border-border/50 shadow-none h-full">
+    <Card className="bg-card border border-border shadow-none h-full rounded-xl">
       <CardContent className="p-6">
-        <h3 className="text-lg font-medium font-poppins text-slate-600 dark:text-slate-400 mb-4">
+        <h3 className="text-lg font-medium font-poppins text-foreground flex items-center gap-2 mb-4">
+          <span className="p-1.5 rounded-md flex items-center justify-center bg-accent/10 text-accent">
+            <Calendar className="w-5 h-5 text-current" />
+          </span>
           Date Information
         </h3>
 
@@ -52,20 +55,22 @@ export default function DatesCard({ dates }: DatesCardProps) {
             </p>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-5 mt-2">
             {/* Published Date */}
             {dates.published && (
-              <div className="flex items-start gap-3">
-                <Calendar className="w-5 h-5 text-primary mt-1" />
+              <div className="flex items-start gap-4 p-3 rounded-lg border border-border bg-background">
+                <div className="p-2 rounded-md bg-primary/10 text-primary shrink-0">
+                  <Calendar className="w-4 h-4" />
+                </div>
                 <div>
-                  <div className="text-sm font-medium text-muted-foreground">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">
                     Published
                   </div>
-                  <div className="text-lg font-semibold text-foreground">
+                  <div className="text-base font-semibold text-foreground font-inter">
                     {formatDate(dates.published)}
                   </div>
                   {dates.age_days !== null && (
-                    <div className="text-xs text-muted-foreground mt-1">
+                    <div className="text-sm font-medium text-muted-foreground mt-0.5">
                       {dates.age_days} days ago
                     </div>
                   )}
@@ -75,17 +80,19 @@ export default function DatesCard({ dates }: DatesCardProps) {
 
             {/* Last Modified */}
             {dates.last_modified && (
-              <div className="flex items-start gap-3">
-                <Clock className="w-5 h-5 text-primary mt-1" />
+              <div className="flex items-start gap-4 p-3 rounded-lg border border-border bg-background">
+                <div className="p-2 rounded-md bg-primary/10 text-primary shrink-0">
+                  <Clock className="w-4 h-4" />
+                </div>
                 <div>
-                  <div className="text-sm font-medium text-muted-foreground">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">
                     Last Updated
                   </div>
-                  <div className="text-lg font-semibold text-foreground">
+                  <div className="text-base font-semibold text-foreground font-inter">
                     {formatDate(dates.last_modified)}
                   </div>
                   {dates.last_update_days !== null && (
-                    <div className="text-xs text-muted-foreground mt-1">
+                    <div className="text-sm font-medium text-muted-foreground mt-0.5">
                       {dates.last_update_days} days ago
                     </div>
                   )}

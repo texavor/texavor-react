@@ -137,23 +137,28 @@ export default function ContentFreshnessClient() {
     : null;
 
   return (
-    <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
-      <div className="container max-w-7xl px-4 mx-auto pb-20">
-        {/* Header */}
-        <div className="text-center mb-12 space-y-4">
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent pb-2 font-poppins">
-            Content Freshness Checker
-          </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-inter">
-            Detect content decay signals, find outdated statistics, and get
-            actionable update recommendations to keep your content fresh and
-            SEO-friendly.
-          </p>
+    <div className="min-h-screen dark:bg-zinc-950 font-sans mt-6 lg:mt-0">
+      {/* Hero Section */}
+      <section className="w-full pt-20 pb-12 md:pt-28 md:pb-16 bg-background tx-dot-bg border-b border-border/50">
+        <div className="container px-6 mx-auto max-w-7xl">
+          <div className="max-w-3xl animate-fade-slide-up">
+            <p className="tx-eyebrow mb-5">FREE SEO TOOL</p>
+            <h1 className="font-poppins text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight mb-4">
+              Content Freshness Checker
+            </h1>
+            <p className="font-inter text-lg text-muted-foreground max-w-2xl leading-relaxed">
+              Detect content decay signals, find outdated statistics, and get
+              actionable update recommendations to keep your content fresh and
+              SEO-friendly.
+            </p>
+          </div>
         </div>
+      </section>
 
+      <div className="container max-w-7xl px-4 mx-auto pb-20 pt-10 md:pt-16">
         {/* Search Input Card */}
-        <Card className="mb-16 bg-secondary shadow-none border-none mx-auto overflow-visible">
-          <CardContent className="px-4 py-1">
+        <Card className="mb-16 bg-card border border-border shadow-none rounded-lg mx-auto overflow-visible">
+          <CardContent className="px-6 py-5">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -179,7 +184,7 @@ export default function ContentFreshnessClient() {
                           onBlur={field.handleBlur}
                           onChange={(e) => field.handleChange(e.target.value)}
                           placeholder="https://example.com/article"
-                          className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
+                          className="h-11 pl-10 text-base bg-background border-input"
                         />
                         {field.state.meta.errors &&
                           field.state.meta.errors.length > 0 && (
@@ -194,8 +199,9 @@ export default function ContentFreshnessClient() {
 
                 <Button
                   type="submit"
-                  size="lg"
-                  className="h-12 px-8 min-w-[180px] font-semibold text-lg bg-primary hover:bg-primary/90 text-white dark:text-zinc-950 shadow-lg hover:shadow-xl transition-all rounded-xl"
+                  size="default"
+                  variant="brand"
+                  className="h-11 w-40 font-semibold text-base shrink-0 rounded-md"
                   disabled={loading || isWaitingForToken}
                 >
                   {isWaitingForToken ? (
@@ -239,14 +245,13 @@ export default function ContentFreshnessClient() {
 
         {/* Empty State: Feature Preview */}
         {!result && !loading && (
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto opacity-90">
+          <div className="grid md:grid-cols-2 gap-6 w-full mb-16">
             {/* Feature 1 */}
             <div className="relative group">
-              <div className="absolute inset-0 bg-blue-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border-none shadow-none rounded-2xl bg-secondary overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
+              <Card className="relative h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
                 <CardHeader className="pb-2">
-                  <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center mb-3">
-                    <Calendar className="w-5 h-5 text-blue-600" />
+                  <div className="w-10 h-10 rounded-full bg-blue-50/50 dark:bg-blue-900/20 flex items-center justify-center mb-3">
+                    <Calendar className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <h3 className="text-xl font-semibold text-foreground font-poppins">
                     Date Detection
@@ -261,11 +266,10 @@ export default function ContentFreshnessClient() {
 
             {/* Feature 2 */}
             <div className="relative group mt-8 md:mt-0">
-              <div className="absolute inset-0 bg-purple-100/50 rounded-3xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border-none shadow-none rounded-2xl bg-secondary overflow-hidden transform rotate-1 group-hover:rotate-2 transition-transform duration-500">
+              <Card className="relative h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
                 <CardHeader className="pb-2">
-                  <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center mb-3">
-                    <TrendingUp className="w-5 h-5 text-purple-600" />
+                  <div className="w-10 h-10 rounded-full bg-purple-50/50 dark:bg-purple-900/20 flex items-center justify-center mb-3">
+                    <TrendingUp className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                   </div>
                   <h3 className="text-xl font-semibold text-foreground font-poppins">
                     Decay Detection
@@ -311,18 +315,35 @@ export default function ContentFreshnessClient() {
 
             {/* Recommendations */}
             {result.recommendations && result.recommendations.length > 0 && (
-              <Card className="bg-secondary shadow-none border-none">
+              <Card className="bg-card shadow-none border border-border rounded-xl">
                 <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold text-foreground font-poppins mb-4">
-                    💡 Update Recommendations
+                  <h3 className="text-lg font-medium flex items-center gap-2 font-poppins text-foreground mb-4">
+                    <span className="p-1.5 rounded-md flex items-center justify-center bg-accent/10 text-accent">
+                      <svg
+                        className="w-5 h-5 text-current"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </span>
+                    Update Recommendations
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-3">
                     {result.recommendations.map((rec, index) => (
                       <li
                         key={index}
-                        className="flex items-start gap-3 text-sm text-foreground"
+                        className="flex items-start gap-3 text-sm font-medium text-foreground bg-background p-3 rounded-lg border border-border"
                       >
-                        <span className="text-primary mt-0.5">•</span>
+                        <span className="text-primary mt-0.5 whitespace-nowrap">
+                          💡
+                        </span>
                         <span>{rec}</span>
                       </li>
                     ))}
@@ -333,7 +354,7 @@ export default function ContentFreshnessClient() {
 
             {/* Upsell */}
             {shouldShowUpsell && result.upsell && (
-              <Card className="bg-gradient-to-r from-primary/10 to-blue-600/10 border-none shadow-none">
+              <Card className="bg-primary/5 border border-primary/20 shadow-none rounded-xl">
                 <CardContent className="p-8">
                   <div className="flex flex-col md:flex-row items-center gap-6">
                     <div className="flex-1 text-center md:text-left">
