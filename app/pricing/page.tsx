@@ -24,7 +24,7 @@ export default function PricingPage() {
   return (
     <PageTransition>
       <Schema script={schema} />
-      <main className="flex min-h-screen flex-col items-center w-full pt-20">
+      <main className="flex min-h-screen flex-col items-center w-full">
         <Pricing />
       </main>
     </PageTransition>

@@ -43,7 +43,7 @@ export function CitationAnatomy() {
               </h3>
             </div>
 
-            <div className="rounded-xl border border-destructive/20 dark:border-destructive/40 bg-destructive/[0.01] dark:bg-destructive/[0.05] p-6 md:p-8 opacity-60 dark:opacity-80 hover:border-destructive/40 transition-all duration-300">
+            <div className="flex-1 rounded-xl border border-destructive/20 dark:border-destructive/40 bg-destructive/[0.01] dark:bg-destructive/[0.05] p-6 md:p-8 opacity-60 dark:opacity-80 hover:border-destructive/40 transition-all duration-300">
               <div className="space-y-6">
                 {/* Buried Answer */}
                 <div className="p-4 rounded border border-destructive/10 dark:border-destructive/20 bg-destructive/[0.02] dark:bg-destructive/10">
@@ -108,7 +108,7 @@ export function CitationAnatomy() {
               </h3>
             </div>
 
-            <div className="rounded-xl border border-primary/20 bg-primary/[0.01] p-6 md:p-8 relative overflow-hidden group hover:border-primary/50 transition-all duration-300">
+            <div className="flex-1 rounded-xl border border-primary/20 bg-primary/[0.01] p-6 md:p-8 relative overflow-hidden group hover:border-primary/50 transition-all duration-300">
               {/* Highlight Overlay */}
               <div className="absolute top-0 right-0 p-3">
                 <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 bg-primary/10 text-primary rounded border border-primary/20">
