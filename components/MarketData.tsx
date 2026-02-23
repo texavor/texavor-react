@@ -33,7 +33,7 @@ export default function MarketData() {
   return (
     <section
       ref={sectionRef}
-      className="w-full py-24 md:py-32 bg-muted/40 relative overflow-hidden border-t border-border"
+      className="w-full py-24 md:py-32 bg-muted/40 relative overflow-hidden border-b border-border"
     >
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
         {/* Section Header */}
@@ -57,7 +57,7 @@ export default function MarketData() {
         {/* 3-Column Data Bento */}
         <div className="grid lg:grid-cols-3 gap-6 items-stretch">
           {/* Card 1: AI Search Growth */}
-          <div className="bg-card border border-border shadow-tx-sm rounded-2xl p-8 flex flex-col transition-all duration-300 hover:shadow-tx-md">
+          <div className="bg-card border border-border shadow-tx-sm rounded-2xl p-8 flex flex-col transition-all duration-300 hover:border-primary/50 group">
             <div className="flex items-start justify-between mb-8">
               <div>
                 <h3 className="text-2xl font-bold font-poppins text-foreground mb-2">
@@ -170,7 +170,7 @@ export default function MarketData() {
           </div>
 
           {/* Card 2: Traditional CTR Drop */}
-          <div className="bg-card border border-border shadow-tx-sm rounded-2xl p-8 flex flex-col transition-colors duration-300">
+          <div className="bg-card border border-border shadow-tx-sm rounded-2xl p-8 flex flex-col transition-all duration-300 hover:border-primary/50 group">
             <div className="flex items-start justify-between mb-8">
               <div>
                 <h3 className="text-2xl font-bold font-poppins text-foreground mb-2">
@@ -226,7 +226,7 @@ export default function MarketData() {
           </div>
 
           {/* Card 3: Brand Visibility Gap */}
-          <div className="bg-card border border-border shadow-tx-sm rounded-2xl p-8 flex flex-col transition-colors duration-300">
+          <div className="bg-card border border-border shadow-tx-sm rounded-2xl p-8 flex flex-col transition-all duration-300 hover:border-primary/50 group">
             <div className="flex items-start justify-between mb-8">
               <div>
                 <h3 className="text-2xl font-bold font-poppins text-foreground mb-2">

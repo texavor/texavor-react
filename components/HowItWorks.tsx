@@ -202,7 +202,7 @@ export default function HowItWorks() {
           {steps.map((step, i) => (
             <div key={i} className="flex flex-col items-start text-left group">
               {/* Mockup Container */}
-              <div className="w-full relative bg-muted/30 rounded-2xl mb-8 border border-border overflow-hidden flex items-center justify-center p-8 h-[360px]">
+              <div className="w-full relative bg-muted/30 rounded-2xl mb-8 border border-border overflow-hidden flex items-center justify-center p-8 h-[360px] transition-colors duration-300 group-hover:border-primary/50">
                 {step.mockup}
                 {/* Bottom fade effect */}
                 <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-muted/30 to-transparent pointer-events-none z-20" />
