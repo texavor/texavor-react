@@ -193,7 +193,7 @@ const TopicGeneration = () => {
       {topics.map((topic, i) => (
         <div
           key={i}
-          className="bg-white dark:bg-zinc-900 rounded-xl border border-border shadow-sm p-4 transition-all duration-200 group"
+          className="bg-white dark:bg-zinc-900 rounded-xl border border-border p-4 transition-all duration-200 group"
         >
           <div className="flex items-start justify-between gap-3">
             <div className="flex-1 min-w-0">
@@ -259,7 +259,7 @@ const OutlineGeneration = () => {
       {sections.map((section, i) => (
         <div
           key={i}
-          className="bg-white dark:bg-zinc-900 rounded-xl border border-border shadow-sm p-4 transition-all"
+          className="bg-white dark:bg-zinc-900 rounded-xl border border-border p-4 transition-all"
         >
           <div className="flex items-start gap-3 mb-3">
             <div className="mt-1">
@@ -322,9 +322,9 @@ const CompetitorAnalysis = () => {
   return (
     <div className="w-full space-y-4 z-10 relative px-4">
       {/* Profile Header */}
-      <div className="bg-background rounded-xl border border-border/50 p-5 shadow-sm">
+      <div className="bg-background rounded-xl border border-border/50 p-5">
         <div className="flex items-start gap-4 mb-5">
-          <div className="w-14 h-14 bg-foreground rounded-lg flex items-center justify-center text-background font-bold text-xl flex-shrink-0 shadow-sm">
+          <div className="w-14 h-14 bg-foreground rounded-lg flex items-center justify-center text-background font-bold text-xl flex-shrink-0">
             TX
           </div>
           <div className="flex-1 min-w-0">
@@ -343,7 +343,7 @@ const CompetitorAnalysis = () => {
           </div>
           <button
             aria-label="Run Analysis"
-            className="hidden sm:flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground text-xs font-bold rounded-lg hover:bg-primary/90 transition-colors shadow-sm"
+            className="hidden sm:flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground text-xs font-bold rounded-lg hover:bg-primary/90 transition-colors"
           >
             <Activity className="w-3.5 h-3.5" />
             Scan Now
@@ -411,7 +411,7 @@ const CompetitorAnalysis = () => {
         {/* Mobile Action Button */}
         <button
           aria-label="Run Analysis"
-          className="sm:hidden w-full mt-4 flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground text-xs font-bold rounded-lg hover:bg-primary/90 transition-colors shadow-sm"
+          className="sm:hidden w-full mt-4 flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground text-xs font-bold rounded-lg hover:bg-primary/90 transition-colors"
         >
           <Activity className="w-3.5 h-3.5" />
           Scan Now
@@ -465,7 +465,7 @@ export default function Features() {
               Track where your competitors appear in Perplexity and Google SGE.
               Analyze intent and spot topical gaps instantly before you write.
             </p>
-            <div className="mt-8 relative rounded-xl border border-border bg-muted/20 overflow-hidden pt-8 pb-8 -mx-4 -mb-12 flex flex-col justify-center isolate">
+            <div className="mt-8 relative rounded-xl border border-border bg-muted/20 overflow-hidden pt-8 pb-8 md:pb-12 -mx-4 md:-mx-8 md:-mb-12 flex flex-col justify-center isolate">
               {/* Decorative background pulse for the component */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-radial from-primary/5 to-transparent z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               <CompetitorAnalysis />
@@ -529,7 +529,7 @@ export default function Features() {
               your articles 24/7. We alert you to update before AIs stop citing
               you.
             </p>
-            <div className="mt-8 relative rounded-xl border border-border bg-muted/20 overflow-hidden py-8 px-2 -mx-4 -mb-8 lg:-mb-12 isolate flex items-center">
+            <div className="mt-8 relative rounded-xl border border-border bg-muted/20 overflow-hidden py-8 px-2 -mx-4 md:-mx-8 md:-mb-12 isolate flex items-center">
               <ProgressStats />
             </div>
           </div>
