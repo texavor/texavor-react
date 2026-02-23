@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Copy, Check, ChevronLeft, ChevronRight } from "lucide-react";
+import { Copy, Check, ChevronLeft, ChevronRight, FileCode } from "lucide-react";
 import { toast } from "sonner";
 
 interface SchemaJsonViewerProps {
@@ -80,71 +80,76 @@ export default function SchemaJsonViewer({ schemas }: SchemaJsonViewerProps) {
   };
 
   return (
-    <Card className="bg-secondary shadow-none border-none">
-      <CardContent className="p-6">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-4">
-            <h3 className="text-lg font-semibold text-foreground font-poppins">
-              Raw Schema Markup
-            </h3>
-            {schemas.length > 1 && (
-              <div className="flex items-center gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={goToPrevious}
-                  className="h-8 w-8 p-0"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </Button>
-                <span className="text-sm text-muted-foreground">
-                  {currentIndex + 1} / {schemas.length}
-                </span>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={goToNext}
-                  className="h-8 w-8 p-0"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </Button>
-              </div>
-            )}
-          </div>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleCopy}
-            className="gap-2"
-          >
-            {copied ? (
-              <>
-                <Check className="w-4 h-4" />
-                Copied
-              </>
-            ) : (
-              <>
-                <Copy className="w-4 h-4" />
-                Copy
-              </>
-            )}
-          </Button>
+    <Card className="border-border shadow-none bg-card overflow-hidden rounded-lg">
+      <CardHeader className="border-b border-border py-4 flex flex-row items-center justify-between">
+        <div className="flex items-center gap-2">
+          <span className="p-1.5 rounded-md flex items-center justify-center bg-primary/10 text-primary">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-4 h-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>
+          </span>
+          <span className="font-mono text-sm font-semibold text-foreground">
+            Raw Schema Markup
+          </span>
+          {schemas.length > 1 && (
+            <span className="text-xs text-muted-foreground ml-2 bg-background border border-border px-2 py-0.5 rounded-full">
+              {currentIndex + 1} of {schemas.length}
+            </span>
+          )}
         </div>
 
-        <pre
-          className="rounded-lg overflow-x-auto text-sm border border-border/50 p-5"
-          style={{
-            background: draculaColors.background,
-            color: draculaColors.foreground,
-            fontFamily: "monospace",
-            lineHeight: "1.6",
-          }}
-        >
-          <code
-            dangerouslySetInnerHTML={{ __html: highlighted }}
-            style={{ fontSize: "0.875rem" }}
-          />
-        </pre>
+        <div className="flex items-center gap-2">
+          {schemas.length > 1 && (
+            <div className="flex items-center gap-1 mr-4">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={goToPrevious}
+                className="h-8 w-8 text-muted-foreground hover:text-foreground hover:bg-background border border-border"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={goToNext}
+                className="h-8 w-8 text-muted-foreground hover:text-foreground hover:bg-background border border-border"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            </div>
+          )}
+          <Button
+            size="sm"
+            variant="secondary"
+            onClick={handleCopy}
+            className="h-8 gap-2 transition-all"
+          >
+            {copied ? (
+              <Check className="w-3 h-3 text-emerald-500" />
+            ) : (
+              <Copy className="w-3 h-3" />
+            )}
+            <span className="text-xs">Copy JSON</span>
+          </Button>
+        </div>
+      </CardHeader>
+      <CardContent className="p-0 relative group">
+        <div className="max-h-[500px] overflow-auto custom-scrollbar bg-[#0d1117]">
+          <pre className="p-4 text-xs md:text-sm font-mono leading-relaxed text-gray-300">
+            <code dangerouslySetInnerHTML={{ __html: highlighted }} />
+          </pre>
+        </div>
       </CardContent>
     </Card>
   );

@@ -155,23 +155,28 @@ export default function VisualSearchClient() {
     : null;
 
   return (
-    <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
-      <div className="container max-w-7xl px-4 mx-auto pb-20">
-        {/* Header */}
-        <div className="text-center mb-12 space-y-4">
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent pb-2 font-poppins">
-            Alt Text Checker
-          </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-inter">
-            Audit images for WCAG accessibility compliance and Google Lens
-            visual search optimization. Find missing alt text, duplicates, and
-            get AI-powered suggestions.
-          </p>
+    <div className="min-h-screen dark:bg-zinc-950 font-sans">
+      {/* Hero Section */}
+      <section className="w-full pt-20 pb-12 md:pt-28 md:pb-16 bg-background tx-dot-bg border-b border-border/50">
+        <div className="container px-6 mx-auto max-w-7xl">
+          <div className="max-w-3xl animate-fade-slide-up">
+            <p className="tx-eyebrow mb-5">FREE SEO TOOL</p>
+            <h1 className="font-poppins text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight mb-4">
+              Alt Text Checker
+            </h1>
+            <p className="font-inter text-lg text-muted-foreground max-w-2xl leading-relaxed">
+              Audit images for WCAG accessibility compliance and Google Lens
+              visual search optimization. Find missing alt text, duplicates, and
+              get actionable suggestions.
+            </p>
+          </div>
         </div>
+      </section>
 
+      <div className="container max-w-7xl px-4 mx-auto pb-20 pt-10 md:pt-16">
         {/* Search Input Card */}
-        <Card className="mb-16 bg-secondary shadow-none border-none mx-auto overflow-visible">
-          <CardContent className="px-4 py-1">
+        <Card className="mb-16 bg-card border border-border shadow-none rounded-lg mx-auto overflow-hidden">
+          <CardContent className="px-6 py-5">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -197,7 +202,7 @@ export default function VisualSearchClient() {
                           onBlur={field.handleBlur}
                           onChange={(e) => field.handleChange(e.target.value)}
                           placeholder="https://example.com/article"
-                          className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
+                          className="h-11 pl-10 text-base bg-background border-input"
                         />
                         {field.state.meta.errors &&
                           field.state.meta.errors.length > 0 && (
@@ -212,8 +217,9 @@ export default function VisualSearchClient() {
 
                 <Button
                   type="submit"
-                  size="lg"
-                  className="h-12 px-8 min-w-[180px] font-semibold text-lg bg-primary hover:bg-primary/90 text-white dark:text-zinc-950 shadow-lg hover:shadow-xl transition-all rounded-xl"
+                  size="default"
+                  variant="brand"
+                  className="h-11 w-40 font-semibold text-base shrink-0 rounded-md"
                   disabled={loading || isWaitingForToken}
                 >
                   {isWaitingForToken ? (
@@ -227,7 +233,7 @@ export default function VisualSearchClient() {
                       Analyzing...
                     </>
                   ) : (
-                    "Check Alt Text"
+                    "Analyze"
                   )}
                 </Button>
               </div>
@@ -257,14 +263,13 @@ export default function VisualSearchClient() {
 
         {/* Empty State: Feature Preview */}
         {!result && !loading && (
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto opacity-90">
+          <div className="grid md:grid-cols-2 gap-6 w-full mb-16">
             {/* Feature 1 */}
             <div className="relative group">
-              <div className="absolute inset-0 bg-blue-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border-none shadow-none rounded-2xl bg-secondary overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
+              <Card className="relative h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
                 <CardHeader className="pb-2">
-                  <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center mb-3">
-                    <AlertTriangle className="w-5 h-5 text-blue-600" />
+                  <div className="w-10 h-10 rounded-full bg-blue-50/50 dark:bg-blue-900/20 flex items-center justify-center mb-3">
+                    <AlertTriangle className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <h3 className="text-xl font-semibold text-foreground font-poppins">
                     WCAG Compliance
@@ -274,16 +279,25 @@ export default function VisualSearchClient() {
                     instantly.
                   </p>
                 </CardHeader>
+                <CardContent className="pb-6">
+                  <div className="space-y-3 mt-2">
+                    <div className="flex items-center gap-3 p-2 bg-background border border-border/50 rounded-lg">
+                      <div className="w-4 h-4 rounded-full bg-red-100 flex items-center justify-center shrink-0">
+                        <div className="w-1.5 h-1.5 rounded-full bg-red-600"></div>
+                      </div>
+                      <div className="h-2 bg-red-100 dark:bg-red-900/30 rounded w-full"></div>
+                    </div>
+                  </div>
+                </CardContent>
               </Card>
             </div>
 
             {/* Feature 2 */}
             <div className="relative group mt-8 md:mt-0">
-              <div className="absolute inset-0 bg-cyan-100/50 rounded-3xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border-none shadow-none rounded-2xl bg-secondary overflow-hidden transform rotate-1 group-hover:rotate-2 transition-transform duration-500">
+              <Card className="relative h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
                 <CardHeader className="pb-2">
-                  <div className="w-10 h-10 rounded-full bg-cyan-50 flex items-center justify-center mb-3">
-                    <ImageIcon className="w-5 h-5 text-cyan-600" />
+                  <div className="w-10 h-10 rounded-full bg-cyan-50/50 dark:bg-cyan-900/20 flex items-center justify-center mb-3">
+                    <ImageIcon className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                   </div>
                   <h3 className="text-xl font-semibold text-foreground font-poppins">
                     Visual Search SEO
@@ -293,6 +307,15 @@ export default function VisualSearchClient() {
                     text.
                   </p>
                 </CardHeader>
+                <CardContent className="pb-6">
+                  <div className="bg-card border border-border rounded-lg p-3 mt-2 flex gap-3">
+                    <div className="w-12 h-12 bg-muted rounded shrink-0"></div>
+                    <div className="space-y-2 flex-1 pt-1 opacity-60">
+                      <div className="h-2 bg-muted rounded w-full"></div>
+                      <div className="h-2 bg-primary/20 rounded w-2/3"></div>
+                    </div>
+                  </div>
+                </CardContent>
               </Card>
             </div>
           </div>
@@ -302,27 +325,30 @@ export default function VisualSearchClient() {
         {result && (
           <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 mx-auto">
             {/* Score + Total Images */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <ScoreDisplay
-                score={result.score}
-                grade={result.grade}
-                type="primary"
-                className="h-full"
-              />
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+              <div className="md:col-span-4 h-full">
+                <ScoreDisplay
+                  score={result.score}
+                  grade={result.grade}
+                  type="primary"
+                />
+              </div>
 
               {/* Total Images Card */}
-              <div className="rounded-2xl p-6 bg-primary/5 dark:bg-zinc-900 border border-border/50 shadow-none h-full flex flex-col justify-between">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-lg font-medium font-poppins text-slate-600 dark:text-slate-400">
-                    Total Images
-                  </h3>
-                </div>
-                <div>
-                  <div className="text-5xl font-bold tracking-tight mb-2 font-inter text-slate-900 dark:text-white">
-                    {result.total_images}
+              <div className="md:col-span-8 h-full">
+                <div className="rounded-xl p-8 bg-card border border-border shadow-none h-full flex flex-col justify-center items-center text-center">
+                  <div className="flex justify-between items-start mb-6">
+                    <h3 className="text-xl font-semibold font-poppins text-foreground">
+                      Images Analyzed
+                    </h3>
                   </div>
-                  <div className="text-sm font-medium font-inter text-slate-500 dark:text-slate-400">
-                    Images Analyzed
+                  <div>
+                    <div className="text-6xl font-bold tracking-tight mb-2 font-inter text-foreground">
+                      {result.total_images}
+                    </div>
+                    <div className="text-sm font-medium font-inter text-muted-foreground">
+                      Total images found on page
+                    </div>
                   </div>
                 </div>
               </div>
@@ -352,18 +378,45 @@ export default function VisualSearchClient() {
 
             {/* Opportunities */}
             {result.opportunities && result.opportunities.length > 0 && (
-              <Card className="bg-secondary shadow-none border-none">
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold text-foreground font-poppins mb-4">
-                    Optimization Opportunities
-                  </h3>
-                  <ul className="space-y-2">
-                    {result.opportunities.map((opp, index) => (
+              <Card className="bg-card shadow-none border border-border rounded-xl p-6 flex flex-col justify-center">
+                <h3 className="text-lg font-medium flex items-center gap-2 font-poppins text-foreground mb-4">
+                  <span className="p-1.5 rounded-md flex items-center justify-center bg-accent/10 text-accent">
+                    <svg
+                      className="w-5 h-5 text-current"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                      />
+                    </svg>
+                  </span>
+                  Optimization Opportunities
+                </h3>
+                <CardContent className="p-0">
+                  <ul className="space-y-3">
+                    {result.opportunities.map((opp, i) => (
                       <li
-                        key={index}
-                        className="flex items-start gap-3 text-sm text-foreground"
+                        key={i}
+                        className="flex items-start gap-3 text-sm font-medium text-foreground bg-background p-3 rounded-lg border border-border"
                       >
-                        <span className="text-primary mt-0.5">•</span>
+                        <svg
+                          className="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                          />
+                        </svg>
                         <span>{opp}</span>
                       </li>
                     ))}
@@ -374,7 +427,7 @@ export default function VisualSearchClient() {
 
             {/* Upsell */}
             {shouldShowUpsell && result.upsell && (
-              <Card className="bg-gradient-to-r from-primary/10 to-blue-600/10 border-none shadow-none">
+              <Card className="bg-primary/5 border border-primary/20 shadow-none rounded-xl">
                 <CardContent className="p-8">
                   <div className="flex flex-col md:flex-row items-center gap-6">
                     <div className="flex-1 text-center md:text-left">
@@ -388,7 +441,8 @@ export default function VisualSearchClient() {
                     </div>
                     <Button
                       size="lg"
-                      className="bg-primary hover:bg-primary/90 px-8"
+                      variant="brand"
+                      className="px-8 shrink-0 rounded-md"
                       asChild
                     >
                       <a href={result.upsell.cta_link}>

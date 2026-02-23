@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card";
+// removed Card/CardContent
 import {
   CheckCircle2,
   XCircle,
@@ -6,6 +6,7 @@ import {
   TrendingDown,
   Copy,
   Palette,
+  MoveUpRight,
 } from "lucide-react";
 
 interface StatsGridProps {
@@ -65,22 +66,29 @@ export default function StatsGrid({ stats }: StatsGridProps) {
       {statsData.map((stat, index) => {
         const Icon = stat.icon;
         return (
-          <Card
+          <div
             key={index}
-            className="bg-primary/5 dark:bg-zinc-900 border border-border/50 shadow-none"
+            className="bg-card border border-border/50 shadow-none rounded-xl p-6 group hover:border-primary/40 transition-all duration-300 relative overflow-hidden"
           >
-            <CardContent className="p-4">
-              <div className="flex items-center gap-2 mb-2">
-                <Icon className={`w-5 h-5 ${stat.color}`} />
+            <div className="flex flex-col h-full justify-between">
+              <div className="flex justify-between items-start mb-4">
+                <h3 className="text-sm font-medium flex items-center gap-2 font-poppins text-foreground">
+                  <span
+                    className={`p-1.5 rounded-md flex items-center justify-center bg-accent/10 ${stat.color}`}
+                  >
+                    <Icon className="w-5 h-5" />
+                  </span>
+                  {stat.label}
+                </h3>
+                <div className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 transform group-hover:-translate-y-1 group-hover:translate-x-1 border border-border bg-background text-muted-foreground group-hover:border-primary/50 group-hover:text-foreground">
+                  <MoveUpRight className="w-4 h-4" />
+                </div>
               </div>
-              <div className="text-3xl font-bold tracking-tight mb-1 font-inter text-slate-900 dark:text-white">
+              <div className="text-4xl font-bold tracking-tight font-inter text-foreground">
                 {stat.value}
               </div>
-              <div className="text-xs font-medium font-inter text-slate-500 dark:text-slate-400">
-                {stat.label}
-              </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         );
       })}
     </div>

@@ -151,22 +151,27 @@ export default function SchemaValidatorClient() {
     : null;
 
   return (
-    <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
-      <div className="container max-w-7xl px-4 mx-auto pb-20">
-        {/* Header */}
-        <div className="text-center mb-12 space-y-4">
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent pb-2 font-poppins">
-            Schema Markup Validator
-          </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-inter">
-            Validate JSON-LD schema markup, check syntax errors, and get GEO
-            optimization recommendations for Article, FAQPage, HowTo schemas.
-          </p>
+    <div className="min-h-screen dark:bg-zinc-950 font-sans">
+      {/* Hero Section */}
+      <section className="w-full pt-20 pb-12 md:pt-28 md:pb-16 bg-background tx-dot-bg border-b border-border/50">
+        <div className="container px-6 mx-auto max-w-7xl">
+          <div className="max-w-3xl animate-fade-slide-up">
+            <p className="tx-eyebrow mb-5">FREE SEO TOOL</p>
+            <h1 className="font-poppins text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight mb-4">
+              Schema Markup Validator
+            </h1>
+            <p className="font-inter text-lg text-muted-foreground max-w-2xl leading-relaxed">
+              Validate JSON-LD schema markup, check syntax errors, and get GEO
+              optimization recommendations for Article, FAQPage, HowTo schemas.
+            </p>
+          </div>
         </div>
+      </section>
 
+      <div className="container max-w-7xl px-6 mx-auto pt-10 md:pt-16 pb-24">
         {/* Search Input Card */}
-        <Card className="mb-16 bg-secondary shadow-none border-none mx-auto overflow-visible">
-          <CardContent className="px-4 py-1">
+        <Card className="mb-16 bg-card border border-border shadow-none rounded-lg mx-auto overflow-hidden">
+          <CardContent className="px-6 py-5">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -175,7 +180,7 @@ export default function SchemaValidatorClient() {
               }}
               className="flex flex-col gap-4"
             >
-              <div className="flex flex-col md:flex-row gap-4 items-center md:items-start w-full">
+              <div className="flex flex-col md:flex-row gap-4 items-center w-full">
                 <div className="flex-1 w-full space-y-2">
                   <Label htmlFor="url" className="sr-only">
                     Article URL
@@ -192,7 +197,7 @@ export default function SchemaValidatorClient() {
                           onBlur={field.handleBlur}
                           onChange={(e) => field.handleChange(e.target.value)}
                           placeholder="https://example.com/article"
-                          className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
+                          className="h-11 pl-10 text-base bg-background border-input"
                         />
                         {field.state.meta.errors &&
                           field.state.meta.errors.length > 0 && (
@@ -207,8 +212,9 @@ export default function SchemaValidatorClient() {
 
                 <Button
                   type="submit"
-                  size="lg"
-                  className="h-12 px-8 min-w-[180px] font-semibold text-lg bg-primary hover:bg-primary/90 text-white dark:text-zinc-950 shadow-lg hover:shadow-xl transition-all rounded-xl"
+                  size="default"
+                  variant="brand"
+                  className="h-11 min-w-[160px] font-semibold text-base shrink-0 rounded-md"
                   disabled={loading || isWaitingForToken}
                 >
                   {isWaitingForToken ? (
@@ -252,147 +258,156 @@ export default function SchemaValidatorClient() {
 
         {/* Empty State: Feature Preview */}
         {!result && !loading && (
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto opacity-90">
+          <div className="grid md:grid-cols-2 gap-6 w-full mb-16">
             {/* Feature 1: Schema Detection */}
-            <div className="relative group">
-              <div className="absolute inset-0 bg-purple-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border-none shadow-none rounded-2xl bg-secondary overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
-                <CardHeader className="pb-2">
-                  <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center mb-3">
-                    <FileCode className="w-5 h-5 text-purple-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground font-poppins">
-                    Schema Detection
-                  </h3>
-                  <p className="text-sm text-muted-foreground font-inter">
-                    Automatically detect and validate all JSON-LD schemas on
-                    your page including Article, FAQPage, HowTo, and more.
-                  </p>
-                </CardHeader>
-              </Card>
-            </div>
+            <Card className="h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
+              <CardHeader className="pb-2">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
+                  <FileCode className="w-5 h-5 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground font-poppins">
+                  Schema Detection
+                </h3>
+                <p className="text-sm text-muted-foreground font-inter">
+                  Automatically detect and validate all JSON-LD schemas on your
+                  page including Article, FAQPage, HowTo, and more.
+                </p>
+              </CardHeader>
+            </Card>
 
             {/* Feature 2: AEO Analysis */}
-            <div className="relative group mt-8 md:mt-0">
-              <div className="absolute inset-0 bg-indigo-100/50 rounded-3xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border-none shadow-none rounded-2xl bg-secondary overflow-hidden transform rotate-1 group-hover:rotate-2 transition-transform duration-500">
-                <CardHeader className="pb-2">
-                  <div className="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center mb-3">
-                    <CheckCircle2 className="w-5 h-5 text-indigo-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground font-poppins">
-                    GEO Analysis
-                  </h3>
-                  <p className="text-sm text-muted-foreground font-inter">
-                    Get detailed GEO compliance checks including entity linking,
-                    voice readiness, and syntax validation.
-                  </p>
-                </CardHeader>
-              </Card>
-            </div>
+            <Card className="h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
+              <CardHeader className="pb-2">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
+                  <CheckCircle2 className="w-5 h-5 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground font-poppins">
+                  GEO Analysis
+                </h3>
+                <p className="text-sm text-muted-foreground font-inter">
+                  Get detailed GEO compliance checks including entity linking,
+                  voice readiness, and syntax validation.
+                </p>
+              </CardHeader>
+            </Card>
           </div>
         )}
 
         {/* Results */}
         {result && (
           <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 mx-auto">
-            {/* Score + Health Row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Score Card */}
-              <ScoreDisplay
-                score={result.score}
-                grade={result.grade}
-                type="primary"
-                className="h-full"
-              />
-
-              {/* Health Status Card */}
-              <div className="rounded-2xl p-6 bg-primary/5 dark:bg-zinc-900 border border-border/50 shadow-none h-full flex flex-col justify-between">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-lg font-medium font-poppins text-slate-600 dark:text-slate-400">
-                    Schema Health
-                  </h3>
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-border text-slate-800 dark:bg-zinc-800 dark:text-slate-200 transition-transform hover:-translate-y-1 hover:translate-x-1">
-                    <MoveUpRight className="w-4 h-4" />
-                  </div>
-                </div>
-                <div>
-                  <div
-                    className={`text-5xl font-bold tracking-tight mb-2 font-inter capitalize ${
-                      result.schema_health === "good"
-                        ? "text-green-600"
-                        : result.schema_health === "fair"
-                          ? "text-yellow-600"
-                          : "text-red-600"
-                    }`}
-                  >
-                    {result.schema_health}
-                  </div>
-                  <div className="text-sm font-medium font-inter text-slate-500 dark:text-slate-400">
-                    Overall Status
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Stats Grid - 3 columns */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Schema Types */}
-              <div className="rounded-2xl p-6 bg-primary/5 dark:bg-zinc-900 border border-border/50 text-foreground shadow-none h-full flex flex-col justify-between">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-lg font-medium font-poppins text-slate-600 dark:text-slate-400">
-                    <Code2 className="w-5 h-5" />
-                  </h3>
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-border text-slate-800 dark:bg-zinc-800 dark:text-slate-200 transition-transform hover:-translate-y-1 hover:translate-x-1">
-                    <MoveUpRight className="w-4 h-4" />
-                  </div>
-                </div>
-                <div>
-                  <div className="text-5xl font-bold tracking-tight mb-2 font-inter text-slate-900 dark:text-white">
-                    {result.detected_types?.length || 0}
-                  </div>
-                  <div className="text-sm font-medium font-inter text-slate-500 dark:text-slate-400">
-                    Schema Types
-                  </div>
-                </div>
+            <div className="grid md:grid-cols-12 gap-6 items-stretch">
+              {/* Score Column */}
+              <div className="md:col-span-4 h-full">
+                <ScoreDisplay
+                  score={result.score}
+                  grade={result.grade}
+                  type="primary"
+                  className="h-full border border-border bg-card shadow-none rounded-xl"
+                />
               </div>
 
-              {/* AEO Checks Passed */}
-              <div className="rounded-2xl p-6 bg-primary/5 dark:bg-zinc-900 border border-border/50 text-foreground shadow-none h-full flex flex-col justify-between">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-lg font-medium font-poppins text-slate-600 dark:text-slate-400">
-                    <CheckCircle2 className="w-5 h-5" />
-                  </h3>
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-border text-slate-800 dark:bg-zinc-800 dark:text-slate-200 transition-transform hover:-translate-y-1 hover:translate-x-1">
-                    <MoveUpRight className="w-4 h-4" />
+              {/* Stats Grid */}
+              <div className="md:col-span-8 h-full">
+                <div className="grid sm:grid-cols-2 gap-4 h-full">
+                  {/* Schema Health */}
+                  <div className="group rounded-xl p-6 bg-card border border-border shadow-none flex flex-col justify-between transition-colors hover:border-primary/20 cursor-pointer">
+                    <div className="flex justify-between items-start mb-4">
+                      <h3 className="text-sm font-medium flex items-center gap-2 font-poppins text-muted-foreground group-hover:text-foreground transition-colors">
+                        <span className="p-1.5 rounded-md flex items-center justify-center bg-primary/10 text-primary">
+                          <CheckCircle2 className="w-4 h-4" />
+                        </span>
+                        Schema Health
+                      </h3>
+                      <div className="w-8 h-8 rounded-full flex items-center justify-center bg-background border border-border text-muted-foreground transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:bg-primary/5 group-hover:text-primary group-hover:border-primary/20">
+                        <MoveUpRight className="w-3 h-3" />
+                      </div>
+                    </div>
+                    <div>
+                      <div
+                        className={`text-4xl font-bold tracking-tight mb-1 font-inter capitalize ${
+                          result.schema_health === "good"
+                            ? "text-emerald-600 dark:text-emerald-500"
+                            : result.schema_health === "fair"
+                              ? "text-amber-600 dark:text-amber-500"
+                              : "text-rose-600 dark:text-rose-500"
+                        }`}
+                      >
+                        {result.schema_health}
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        Overall Status
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <div className="text-5xl font-bold tracking-tight mb-2 font-inter text-slate-900 dark:text-white">
-                    {stats?.checks_passed || 0}
-                  </div>
-                  <div className="text-sm font-medium font-inter text-slate-500 dark:text-slate-400">
-                    GEO Checks Passed
-                  </div>
-                </div>
-              </div>
 
-              {/* Syntax Status */}
-              <div className="rounded-2xl p-6 bg-primary/5 dark:bg-zinc-900 border border-border/50 text-foreground shadow-none h-full flex flex-col justify-between">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-lg font-medium font-poppins text-slate-600 dark:text-slate-400">
-                    <FileCode className="w-5 h-5" />
-                  </h3>
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-border text-slate-800 dark:bg-zinc-800 dark:text-slate-200 transition-transform hover:-translate-y-1 hover:translate-x-1">
-                    <MoveUpRight className="w-4 h-4" />
+                  {/* Schema Types */}
+                  <div className="group rounded-xl p-6 bg-card border border-border shadow-none flex flex-col justify-between transition-colors hover:border-primary/20 cursor-pointer">
+                    <div className="flex justify-between items-start mb-4">
+                      <h3 className="text-sm font-medium flex items-center gap-2 font-poppins text-muted-foreground group-hover:text-foreground transition-colors">
+                        <span className="p-1.5 rounded-md flex items-center justify-center bg-primary/10 text-primary">
+                          <Code2 className="w-4 h-4" />
+                        </span>
+                        Schema Types
+                      </h3>
+                      <div className="w-8 h-8 rounded-full flex items-center justify-center bg-background border border-border text-muted-foreground transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:bg-primary/5 group-hover:text-primary group-hover:border-primary/20">
+                        <MoveUpRight className="w-3 h-3" />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-4xl font-bold tracking-tight mb-1 font-inter text-foreground">
+                        {result.detected_types?.length || 0}
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        Detected on page
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold tracking-tight mb-2 font-inter text-slate-900 dark:text-white">
-                    {stats?.syntax_status || "Unknown"}
+
+                  {/* AEO Checks Passed */}
+                  <div className="group rounded-xl p-6 bg-card border border-border shadow-none flex flex-col justify-between transition-colors hover:border-primary/20 cursor-pointer">
+                    <div className="flex justify-between items-start mb-4">
+                      <h3 className="text-sm font-medium flex items-center gap-2 font-poppins text-muted-foreground group-hover:text-foreground transition-colors">
+                        <span className="p-1.5 rounded-md flex items-center justify-center bg-primary/10 text-primary">
+                          <CheckCircle2 className="w-4 h-4" />
+                        </span>
+                        GEO Checks Passed
+                      </h3>
+                      <div className="w-8 h-8 rounded-full flex items-center justify-center bg-background border border-border text-muted-foreground transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:bg-primary/5 group-hover:text-primary group-hover:border-primary/20">
+                        <MoveUpRight className="w-3 h-3" />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-4xl font-bold tracking-tight mb-1 font-inter text-foreground">
+                        {stats?.checks_passed || 0}
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        Successful validations
+                      </div>
+                    </div>
                   </div>
-                  <div className="text-sm font-medium font-inter text-slate-500 dark:text-slate-400">
-                    JSON Syntax
+
+                  {/* Syntax Status */}
+                  <div className="group rounded-xl p-6 bg-card border border-border shadow-none flex flex-col justify-between transition-colors hover:border-primary/20 cursor-pointer">
+                    <div className="flex justify-between items-start mb-4">
+                      <h3 className="text-sm font-medium flex items-center gap-2 font-poppins text-muted-foreground group-hover:text-foreground transition-colors">
+                        <span className="p-1.5 rounded-md flex items-center justify-center bg-primary/10 text-primary">
+                          <FileCode className="w-4 h-4" />
+                        </span>
+                        JSON Syntax
+                      </h3>
+                      <div className="w-8 h-8 rounded-full flex items-center justify-center bg-background border border-border text-muted-foreground transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:bg-primary/5 group-hover:text-primary group-hover:border-primary/20">
+                        <MoveUpRight className="w-3 h-3" />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-4xl font-bold tracking-tight mb-1 font-inter text-foreground">
+                        {stats?.syntax_status || "Unknown"}
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        Parsing status
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -400,32 +415,40 @@ export default function SchemaValidatorClient() {
 
             {/* Detected Types */}
             {result.detected_types && result.detected_types.length > 0 && (
-              <Card className="bg-secondary shadow-none border-none">
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold text-foreground font-poppins mb-4">
+              <Card className="bg-card shadow-none border border-border rounded-xl">
+                <CardHeader className="pb-3 border-b border-border/30">
+                  <h3 className="text-lg font-medium flex items-center gap-2 font-poppins text-foreground">
+                    <span className="p-1.5 rounded-md flex items-center justify-center bg-primary/10 text-primary">
+                      <Code2 className="w-5 h-5 text-current" />
+                    </span>
                     Detected Schema Types
                   </h3>
+                </CardHeader>
+                <CardContent className="p-6 pt-4">
                   <SchemaTypeBadges types={result.detected_types} />
                 </CardContent>
               </Card>
             )}
 
             {/* Two Column Layout for Checks and Opportunities */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
               {/* AEO Checks */}
-              <Card className="bg-secondary shadow-none border-none">
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold text-foreground font-poppins mb-4">
+              <Card className="bg-card shadow-none border border-border rounded-xl h-full">
+                <CardHeader className="pb-3 border-b border-border/30">
+                  <h3 className="text-lg font-medium flex items-center gap-2 font-poppins text-foreground">
+                    <span className="p-1.5 rounded-md flex items-center justify-center bg-primary/10 text-primary">
+                      <CheckCircle2 className="w-5 h-5 text-current" />
+                    </span>
                     GEO Validation Checks
                   </h3>
+                </CardHeader>
+                <CardContent className="p-0">
                   <AeoChecksTable checks={result.aeo_checks} />
                 </CardContent>
               </Card>
 
               {/* Opportunities */}
-              {result.opportunities && result.opportunities.length > 0 && (
-                <OpportunitiesList opportunities={result.opportunities} />
-              )}
+              <OpportunitiesList opportunities={result.opportunities || []} />
             </div>
 
             {/* Raw Schema JSON - Collapsible */}
@@ -435,7 +458,7 @@ export default function SchemaValidatorClient() {
 
             {/* Upsell */}
             {shouldShowUpsell && result.upsell && (
-              <Card className="bg-gradient-to-r from-primary/10 to-purple-600/10 border-none shadow-none">
+              <Card className="bg-primary/5 border border-primary/20 shadow-none rounded-xl">
                 <CardContent className="p-8">
                   <div className="flex flex-col md:flex-row items-center gap-6">
                     <div className="flex-1 text-center md:text-left">
@@ -448,7 +471,8 @@ export default function SchemaValidatorClient() {
                     </div>
                     <Button
                       size="lg"
-                      className="bg-primary hover:bg-primary/90 px-8"
+                      variant="brand"
+                      className="px-8 shrink-0 rounded-md"
                       asChild
                     >
                       <a href={result.upsell.cta_link}>

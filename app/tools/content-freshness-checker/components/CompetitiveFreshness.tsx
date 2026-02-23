@@ -16,21 +16,21 @@ export default function CompetitiveFreshness({
   const isAdvantage = data.your_advantage.toLowerCase().includes("fresher");
 
   return (
-    <Card className="bg-secondary shadow-none border-none">
+    <Card className="bg-card shadow-none border border-border rounded-xl">
       <CardContent className="p-6">
         <div className="flex items-start gap-4">
           {/* Icon */}
           <div
-            className={`w-12 h-12 rounded-full flex items-center justify-center ${
+            className={`w-12 h-12 rounded-xl flex items-center justify-center ${
               isAdvantage
-                ? "bg-green-100 dark:bg-green-950/20"
-                : "bg-orange-100 dark:bg-orange-950/20"
+                ? "bg-emerald-500/10 text-emerald-500"
+                : "bg-orange-500/10 text-orange-500"
             }`}
           >
             {isAdvantage ? (
-              <TrendingUp className="w-6 h-6 text-green-600" />
+              <TrendingUp className="w-6 h-6 text-current" />
             ) : (
-              <TrendingDown className="w-6 h-6 text-orange-600" />
+              <TrendingDown className="w-6 h-6 text-current" />
             )}
           </div>
 
