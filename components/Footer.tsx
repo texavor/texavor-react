@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { TexavorLogo } from "./TexavorLogo";
+import Image from "next/image";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -13,7 +13,17 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="max-w-xs space-y-6">
             <Link href="/" className="flex items-center gap-2 group">
-              <TexavorLogo size={32} showText />
+              <div className="relative w-8 h-8 rounded flex items-center justify-center">
+                <Image
+                  src="/texavor.png"
+                  alt="Texavor"
+                  fill
+                  className="object-contain dark:brightness-0 dark:invert"
+                />
+              </div>
+              <span className="text-2xl font-bold font-poppins text-foreground tracking-tight">
+                Texavor
+              </span>
             </Link>
             <p className="text-muted-foreground font-inter text-sm leading-relaxed">
               Stop guessing what AI engines want. Dominate Perplexity, ChatGPT,
