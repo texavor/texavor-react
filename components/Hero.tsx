@@ -133,7 +133,7 @@ export default function Hero() {
                 TODO [OPTIONAL]: Swap with real Texavor user headshots later.
             */}
             <div className="flex flex-col gap-1.5 animate-fade-slide-up [animation-delay:250ms]">
-              <div className="flex items-center">
+              {/* <div className="flex items-center">
                 {[11, 22, 33, 44, 55, 65].map((seed, i) => (
                   <div
                     key={seed}
@@ -148,7 +148,7 @@ export default function Hero() {
                     />
                   </div>
                 ))}
-              </div>
+              </div> */}
               <p className="text-sm font-inter text-muted-foreground">
                 <span className="text-amber-400 mr-1">★★★★★</span>
                 Loved by{" "}

@@ -71,7 +71,7 @@ const MetricCard = ({
         <div>
           <div
             className={cn(
-              "text-5xl font-bold tracking-tight mb-2 font-inter text-foreground",
+              "text-5xl font-bold tracking-tight mb-2 font-inter text-foreground break-words hyphens-auto",
             )}
           >
             {value}

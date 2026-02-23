@@ -51,31 +51,31 @@ export default function CitationStatsGrid({ stats }: CitationStatsGridProps) {
   ];
 
   return (
-    <>
+    <div className="grid sm:grid-cols-2 gap-4 h-full">
       {statItems.map((item, index) => (
         <div
           key={index}
-          className="rounded-2xl p-6 bg-primary/5 dark:bg-zinc-900 border border-border/50 text-foreground shadow-none h-full flex flex-col justify-between"
+          className="group rounded-xl p-6 bg-card border border-border shadow-none flex flex-col justify-between transition-colors hover:border-primary/20 cursor-pointer"
         >
           <div className="flex justify-between items-start mb-4">
-            <h3 className="text-lg font-medium flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400">
-              <item.icon className="w-5 h-5" />
+            <h3 className="text-sm font-medium flex items-center gap-2 font-poppins text-muted-foreground group-hover:text-foreground transition-colors">
+              <span className="p-1.5 rounded-md flex items-center justify-center bg-primary/10 text-primary">
+                <item.icon className="w-4 h-4" />
+              </span>
+              {item.label}
             </h3>
-            <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-border text-slate-800 dark:bg-zinc-800 dark:text-slate-200 transition-transform hover:-translate-y-1 hover:translate-x-1">
-              <MoveUpRight className="w-4 h-4" />
+            <div className="w-8 h-8 rounded-full flex items-center justify-center bg-background border border-border text-muted-foreground transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:bg-primary/5 group-hover:text-primary group-hover:border-primary/20">
+              <MoveUpRight className="w-3 h-3" />
             </div>
           </div>
 
           <div>
-            <div className="text-5xl font-bold tracking-tight mb-2 font-inter text-slate-900 dark:text-white">
+            <div className="text-4xl font-bold tracking-tight mb-1 font-inter text-foreground">
               {item.value}
-            </div>
-            <div className="text-sm font-medium font-inter text-slate-500 dark:text-slate-400">
-              {item.label}
             </div>
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 }

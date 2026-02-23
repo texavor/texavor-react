@@ -6,17 +6,17 @@ interface AuthorityBadgeProps {
 }
 
 export default function AuthorityBadge({ tier, label }: AuthorityBadgeProps) {
-  const colors = {
-    high: "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
+  const styles = {
+    high: "border-emerald-500/20 text-emerald-700 bg-emerald-500/10 dark:text-emerald-400 dark:bg-emerald-500/10",
     medium:
-      "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400",
-    low: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
+      "border-amber-500/20 text-amber-700 bg-amber-500/10 dark:text-amber-400 dark:bg-amber-500/10",
+    low: "border-rose-500/20 text-rose-700 bg-rose-500/10 dark:text-rose-400 dark:bg-rose-500/10",
   };
 
-  const icons = {
-    high: "🟢",
-    medium: "🟡",
-    low: "🔴",
+  const dots = {
+    high: "bg-emerald-500",
+    medium: "bg-amber-500",
+    low: "bg-rose-500",
   };
 
   const defaultLabels = {
@@ -28,11 +28,11 @@ export default function AuthorityBadge({ tier, label }: AuthorityBadgeProps) {
   return (
     <span
       className={cn(
-        "px-2 py-1 text-xs font-semibold rounded inline-flex items-center gap-1",
-        colors[tier],
+        "px-2.5 py-1 text-xs font-semibold rounded-md border inline-flex items-center gap-2",
+        styles[tier],
       )}
     >
-      <span>{icons[tier]}</span>
+      <span className={cn("w-1.5 h-1.5 rounded-full", dots[tier])} />
       <span>{label || defaultLabels[tier]}</span>
     </span>
   );

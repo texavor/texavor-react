@@ -12,7 +12,7 @@ interface HierarchyTreeProps {
 export default function HierarchyTree({ nodes }: HierarchyTreeProps) {
   if (!nodes || nodes.length === 0) {
     return (
-      <Card className="bg-primary/5 dark:bg-zinc-900 border border-border/50">
+      <Card className="bg-card shadow-none border border-border rounded-xl">
         <CardContent className="p-8 text-center text-muted-foreground">
           No heading structure detected
         </CardContent>
@@ -21,9 +21,25 @@ export default function HierarchyTree({ nodes }: HierarchyTreeProps) {
   }
 
   return (
-    <Card className="bg-primary/5 dark:bg-zinc-900 border border-border/50">
+    <Card className="bg-card shadow-none border border-border rounded-xl">
       <CardContent className="p-6">
-        <h3 className="text-lg font-semibold mb-4 text-foreground font-poppins">
+        <h3 className="text-lg font-medium flex items-center gap-2 font-poppins text-foreground mb-4">
+          <span className="p-1.5 rounded-md flex items-center justify-center bg-primary/10 text-primary">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="w-5 h-5"
+            >
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+              <line x1="12" x2="12" y1="22.08" y2="12" />
+            </svg>
+          </span>
           Heading Hierarchy
         </h3>
         <div className="space-y-0">

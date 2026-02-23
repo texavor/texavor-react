@@ -45,24 +45,13 @@ const ScoreDisplay = ({
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center p-6 rounded-2xl relative overflow-hidden transition-all duration-300",
+        "flex flex-col items-center justify-center p-6 rounded-lg relative overflow-hidden transition-all duration-300",
         isPrimary
-          ? "bg-[#104127] text-white shadow-lg border-none"
-          : "bg-primary/5 dark:bg-zinc-900 border border-border/50",
+          ? "bg-card border border-border text-foreground shadow-none"
+          : "bg-card border border-border shadow-none",
         className,
       )}
     >
-      {/* Dynamic Background for Primary */}
-      {isPrimary && (
-        <div
-          className="absolute inset-0 opacity-100 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle at 10% 90%, #1a5d3a 0%, transparent 60%), linear-gradient(to top right, #104127 0%, #0d3520 100%)",
-          }}
-        />
-      )}
-
       <div className="relative w-40 h-40 flex items-center justify-center z-10">
         {/* Background Circle */}
         <svg className="w-full h-full transform -rotate-90">
@@ -95,7 +84,7 @@ const ScoreDisplay = ({
           <span
             className={cn(
               "text-4xl font-bold font-poppins",
-              isPrimary ? "text-white" : color,
+              isPrimary ? color : color,
             )}
           >
             {score}
@@ -103,7 +92,7 @@ const ScoreDisplay = ({
           <span
             className={cn(
               "text-sm font-medium uppercase tracking-wider",
-              isPrimary ? "text-emerald-100/80" : "text-muted-foreground",
+              "text-muted-foreground",
             )}
           >
             Score
@@ -112,18 +101,11 @@ const ScoreDisplay = ({
       </div>
 
       <div className="mt-4 text-center z-10">
-        <div
-          className={cn(
-            "text-sm mb-1",
-            isPrimary ? "text-emerald-100/80" : "text-muted-foreground",
-          )}
-        >
-          Grade
-        </div>
+        <div className={cn("text-sm mb-1", "text-muted-foreground")}>Grade</div>
         <div
           className={cn(
             "text-5xl font-bold font-poppins",
-            isPrimary ? "text-white" : color,
+            isPrimary ? color : color,
           )}
         >
           {grade}

@@ -16,21 +16,23 @@ export default function SuggestionsList({ suggestions }: SuggestionsListProps) {
   }
 
   return (
-    <Card className="bg-secondary shadow-none border-none">
-      <CardHeader className="pb-3">
-        <h3 className="text-lg font-semibold text-foreground font-poppins flex items-center gap-2">
-          <Lightbulb className="w-5 h-5 text-amber-500" />
+    <Card className="bg-card shadow-none border border-border rounded-xl h-full">
+      <CardHeader className="pb-3 border-b border-border/30">
+        <h3 className="text-lg font-medium text-foreground font-poppins flex items-center gap-2">
+          <span className="p-1.5 rounded-md flex items-center justify-center bg-amber-500/10 text-amber-500">
+            <Lightbulb className="w-5 h-5 text-current" />
+          </span>
           AI-Powered Suggestions
         </h3>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-muted-foreground mt-1">
           Add citations to these claims to improve your E-E-A-T score
         </p>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="p-6 flex flex-col gap-6 pt-4">
         {suggestions.map((suggestion, index) => (
           <div
             key={index}
-            className="p-4 rounded-lg bg-background/50 space-y-3"
+            className="space-y-2 pb-6 border-b border-border/30 last:border-0 last:pb-0"
           >
             {/* Uncited Claim */}
             <div>

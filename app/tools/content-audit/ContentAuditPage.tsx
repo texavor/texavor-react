@@ -150,22 +150,22 @@ export default function ContentAuditPage() {
     : null;
 
   const getScoreStyles = (score: number) => {
-    if (score >= 80)
+    if (score >= 70)
       return {
         text: "text-primary",
         bg: "bg-primary/10",
         border: "border-primary/30",
         hex: "#10b981",
-        label: "Healthy",
+        label: "Excellent",
         desc: "Excellent content structure and technical signals.",
       };
-    if (score >= 50)
+    if (score >= 40)
       return {
         text: "text-accent",
         bg: "bg-accent/10",
         border: "border-accent/30",
         hex: "#f59e0b",
-        label: "Needs Work",
+        label: "Average",
         desc: "Content is okay but has significant optimization opportunities.",
       };
     return {
@@ -173,7 +173,7 @@ export default function ContentAuditPage() {
       bg: "bg-destructive/10",
       border: "border-destructive/30",
       hex: "#ef4444",
-      label: "Critical",
+      label: "Low/Poor",
       desc: "Major technical or quality issues detected.",
     };
   };
@@ -213,7 +213,7 @@ export default function ContentAuditPage() {
     // The redundancy check mainly handles "Good" + "Good" cases.
 
     return (
-      <div className="flex flex-col sm:flex-row justify-between sm:items-center items-start gap-2 p-3 rounded-lg bg-white dark:bg-zinc-800 border border-border/50 shadow-none">
+      <div className="flex flex-col sm:flex-row justify-between sm:items-center items-start gap-2 p-3 rounded-lg bg-card border border-border shadow-none">
         <div className="flex items-center gap-3 w-full sm:w-auto">
           <StatusIcon
             status={
@@ -467,16 +467,9 @@ export default function ContentAuditPage() {
             <div className="grid lg:grid-cols-12 gap-6">
               {/* Score Gauge */}
               <div className="lg:col-span-4">
-                <Card className="h-full border-none shadow-lg rounded-xl bg-[#104127] text-white relative overflow-hidden flex flex-col items-center justify-center p-6">
-                  <div
-                    className="absolute inset-0 opacity-100 pointer-events-none"
-                    style={{
-                      background:
-                        "radial-gradient(circle at 10% 90%, #1a5d3a 0%, transparent 60%), linear-gradient(to top right, #104127 0%, #0d3520 100%)",
-                    }}
-                  />
-                  <div className="relative z-10 text-center space-y-4">
-                    <h3 className="text-xl font-medium text-green-100">
+                <Card className="h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40 flex flex-col items-center justify-center p-6 relative">
+                  <div className="relative z-10 text-center space-y-4 w-full">
+                    <h3 className="text-xl font-medium text-foreground">
                       Health Score
                     </h3>
                     <div className="h-[200px] w-[200px] mx-auto relative flex items-center justify-center">
@@ -489,7 +482,7 @@ export default function ContentAuditPage() {
                             {
                               name: "score",
                               value: result.health_score,
-                              fill: getScoreColor(result.health_score),
+                              fill: scoreStyles?.hex,
                             },
                           ]}
                           startAngle={180}
@@ -497,7 +490,7 @@ export default function ContentAuditPage() {
                           cy="70%"
                         >
                           <RadialBar
-                            background={{ fill: "rgba(255,255,255,0.1)" }}
+                            background={{ fill: "var(--border)" }}
                             dataKey="value"
                             cornerRadius={30}
                           />
@@ -510,15 +503,21 @@ export default function ContentAuditPage() {
                         </RadialBarChart>
                       </ResponsiveContainer>
                       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[20%] text-center">
-                        <span className="text-6xl font-bold text-white block">
+                        <span
+                          className={cn(
+                            "text-6xl font-bold block",
+                            scoreStyles?.text,
+                          )}
+                        >
                           {result.health_score}
                         </span>
-                        <span className="text-sm font-medium uppercase tracking-wide opacity-80">
-                          {result.health_score >= 80
-                            ? "Healthy"
-                            : result.health_score >= 50
-                              ? "Needs Work"
-                              : "Critical"}
+                        <span
+                          className={cn(
+                            "text-sm font-medium uppercase tracking-wide opacity-80",
+                            scoreStyles?.text,
+                          )}
+                        >
+                          {scoreStyles?.label}
                         </span>
                       </div>
                     </div>
@@ -532,7 +531,20 @@ export default function ContentAuditPage() {
                   label="Load Time"
                   value={`${result.analysis.technical.load_time_seconds}s`}
                   type="secondary"
-                  icon={<Zap className="w-4 h-4" />}
+                  icon={
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="w-4 h-4"
+                    >
+                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                    </svg>
+                  }
                   subtext={
                     result.analysis.technical.load_time_seconds < 1
                       ? "Fast"
@@ -543,12 +555,43 @@ export default function ContentAuditPage() {
                   label="Word Count"
                   value={result.analysis.content_quality.word_count}
                   type="secondary"
-                  icon={<FileText className="w-4 h-4" />}
+                  icon={
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="w-4 h-4"
+                    >
+                      <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                      <polyline points="14 2 14 8 20 8" />
+                      <line x1="16" x2="8" y1="13" y2="13" />
+                      <line x1="16" x2="8" y1="17" y2="17" />
+                      <line x1="10" x2="8" y1="9" y2="9" />
+                    </svg>
+                  }
                   subtext={result.analysis.content_quality.content_status}
                 />
-                <Card className="sm:col-span-2 bg-primary/5 shadow-none dark:bg-zinc-900 border border-border/50 rounded-xl p-6 flex flex-col justify-center">
-                  <h3 className="text-lg font-medium flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400 mb-4">
-                    <AlertTriangle className="w-5 h-5 text-amber-500" />
+                <Card className="sm:col-span-2 bg-card shadow-none border border-border rounded-xl p-6 flex flex-col justify-center">
+                  <h3 className="text-lg font-medium flex items-center gap-2 font-poppins text-foreground mb-4">
+                    <span className="p-1.5 rounded-md flex items-center justify-center bg-accent/10 text-accent">
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                        />
+                      </svg>
+                    </span>
                     Improvement Opportunities
                   </h3>
                   <div className="flex flex-col gap-3">
@@ -614,10 +657,32 @@ export default function ContentAuditPage() {
             {/* Analysis Detail Grids */}
             <div className="grid md:grid-cols-2 gap-6">
               {/* On-Page & Technical */}
-              <Card className="border border-border/50 shadow-none bg-primary/5 dark:bg-zinc-900">
+              <Card className="border border-border shadow-none bg-card">
                 <CardHeader>
-                  <CardTitle className="text-lg font-medium flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400">
-                    <Layout className="w-5 h-5 text-blue-500" />
+                  <CardTitle className="text-lg font-medium flex items-center gap-2 font-poppins text-foreground">
+                    <span className="p-1.5 rounded-md flex items-center justify-center bg-accent/10 text-accent">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-5 h-5"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <rect
+                          width="18"
+                          height="18"
+                          x="3"
+                          y="3"
+                          rx="2"
+                          ry="2"
+                        />
+                        <line x1="3" x2="21" y1="9" y2="9" />
+                        <line x1="9" x2="9" y1="21" y2="9" />
+                      </svg>
+                    </span>
                     On-Page & Technical
                   </CardTitle>
                 </CardHeader>
@@ -657,10 +722,27 @@ export default function ContentAuditPage() {
               </Card>
 
               {/* Quality & Structure */}
-              <Card className="border border-border/50 shadow-none bg-primary/5 dark:bg-zinc-900">
+              <Card className="border border-border shadow-none bg-card">
                 <CardHeader>
-                  <CardTitle className="text-lg font-medium flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400">
-                    <FileText className="w-5 h-5 text-emerald-500" />
+                  <CardTitle className="text-lg font-medium flex items-center gap-2 font-poppins text-foreground">
+                    <span className="p-1.5 rounded-md flex items-center justify-center bg-accent/10 text-accent">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-5 h-5"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" x2="8" y1="13" y2="13" />
+                        <line x1="16" x2="8" y1="17" y2="17" />
+                        <line x1="10" x2="8" y1="9" y2="9" />
+                      </svg>
+                    </span>
                     Quality & Structure
                   </CardTitle>
                 </CardHeader>
@@ -705,10 +787,32 @@ export default function ContentAuditPage() {
             {/* Header Structure (New Section) */}
             {result.analysis.structure.header_structure &&
               result.analysis.structure.header_structure.length > 0 && (
-                <Card className="border border-border/50 shadow-none bg-primary/5 dark:bg-zinc-900">
+                <Card className="border border-border shadow-none bg-card">
                   <CardHeader>
-                    <CardTitle className="text-lg font-medium flex items-center gap-2 font-poppins text-slate-600 dark:text-slate-400">
-                      <Layout className="w-5 h-5 text-purple-500" />
+                    <CardTitle className="text-lg font-medium flex items-center gap-2 font-poppins text-foreground">
+                      <span className="p-1.5 rounded-md flex items-center justify-center bg-accent/10 text-accent">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-5 h-5"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <rect
+                            width="18"
+                            height="18"
+                            x="3"
+                            y="3"
+                            rx="2"
+                            ry="2"
+                          />
+                          <line x1="3" x2="21" y1="9" y2="9" />
+                          <line x1="9" x2="9" y1="21" y2="9" />
+                        </svg>
+                      </span>
                       Header Structure
                     </CardTitle>
                     <CardDescription>
@@ -722,20 +826,20 @@ export default function ContentAuditPage() {
                           <div
                             key={index}
                             className={cn(
-                              "p-3 rounded-lg bg-white dark:bg-zinc-950/50 border border-gray-100 dark:border-zinc-800/50 text-sm flex items-start gap-4 transition-colors hover:border-primary/20",
+                              "p-3 rounded-lg bg-card border border-border text-sm flex items-start gap-4 transition-colors hover:border-primary/20",
                             )}
                           >
                             <span
                               className={cn(
                                 "font-mono font-bold uppercase text-xs px-2 py-1 rounded shrink-0",
                                 header.tag === "h1"
-                                  ? "bg-purple-100 text-purple-700"
-                                  : "bg-black/10 text-black dark:bg-white/10 dark:text-zinc-300",
+                                  ? "bg-accent/10 text-accent"
+                                  : "bg-primary/10 text-primary",
                               )}
                             >
                               {header.tag}
                             </span>
-                            <span className="text-zinc-900 dark:text-zinc-100 font-medium leading-relaxed">
+                            <span className="text-foreground font-medium leading-relaxed">
                               {header.text}
                             </span>
                           </div>
@@ -748,38 +852,36 @@ export default function ContentAuditPage() {
 
             {/* Upsell Section */}
             {result.upsell && (
-              <div className="relative rounded-2xl overflow-hidden bg-[#0A1A12] text-white p-8 md:p-12 text-center shadow-2xl mt-12">
-                <div
-                  className="absolute inset-0 opacity-20 pointer-events-none"
-                  style={{
-                    backgroundImage:
-                      "radial-gradient(circle at 50% 50%, #10B981 1px, transparent 1px)",
-                    backgroundSize: "24px 24px",
-                  }}
-                ></div>
-
-                <div className="relative z-10 max-w-2xl mx-auto space-y-6">
-                  <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto backdrop-blur-sm mb-4">
-                    <Lock className="w-8 h-8 text-emerald-400" />
-                  </div>
-                  <h3 className="text-3xl md:text-4xl font-bold tracking-tight">
-                    {result.upsell?.message}
-                  </h3>
-                  <p className="text-lg text-emerald-100/80">
-                    Get automated, site-wide audits and historical tracking with
-                    Texavor Pro.
-                  </p>
-
-                  <Button
-                    size="lg"
-                    className="h-12 px-8 bg-emerald-500 hover:bg-emerald-400 text-[#0A1A12] font-semibold text-lg rounded-xl transition-all w-full sm:w-auto"
-                    asChild
+              <div className="relative bg-card border border-border rounded-lg overflow-hidden p-10 md:p-14 tx-dot-bg flex flex-col md:flex-row items-start md:items-center gap-8 mt-12">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-8 h-8 text-primary"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
-                    <Link href={result.upsell?.cta_link || "#pricing"}>
-                      Start Site Audit
-                    </Link>
-                  </Button>
+                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
                 </div>
+                <div className="flex-1 space-y-2">
+                  <h3 className="text-2xl font-bold tracking-tight text-foreground">
+                    Ready to go deeper?
+                  </h3>
+                  <p className="text-muted-foreground text-lg">
+                    {result.upsell?.message ||
+                      "Get automated, site-wide audits and historical tracking with Texavor Pro."}
+                  </p>
+                </div>
+                <Button size="lg" variant="brand" className="shrink-0" asChild>
+                  <Link href={result.upsell?.cta_link || "#pricing"}>
+                    Start Site Audit
+                  </Link>
+                </Button>
               </div>
             )}
           </div>
