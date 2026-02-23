@@ -17,9 +17,12 @@ export default function EntitySignals({ signals }: EntitySignalsProps) {
   }
 
   return (
-    <Card className="bg-secondary shadow-none border-none">
+    <Card className="bg-card shadow-none border border-border rounded-xl">
       <CardContent className="p-6">
-        <h3 className="text-lg font-semibold text-foreground font-poppins mb-4">
+        <h3 className="text-lg font-medium text-foreground font-poppins mb-4 flex items-center gap-2">
+          <span className="p-1.5 rounded-md flex items-center justify-center bg-accent/10 text-accent">
+            <AlertTriangle className="w-5 h-5 text-current" />
+          </span>
           Entity Signals
         </h3>
         <div className="space-y-3">
@@ -28,34 +31,28 @@ export default function EntitySignals({ signals }: EntitySignalsProps) {
             return (
               <div
                 key={idx}
-                className={`flex items-start gap-3 p-4 rounded-lg ${
-                  isPositive
-                    ? "bg-green-50 dark:bg-green-950/20 border-l-4 border-green-500"
-                    : "bg-yellow-50 dark:bg-yellow-950/20 border-l-4 border-yellow-500"
+                className={`flex items-start gap-4 p-4 rounded-lg border bg-background ${
+                  isPositive ? "border-emerald-500/30" : "border-orange-500/30"
                 }`}
               >
-                {isPositive ? (
-                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
-                ) : (
-                  <AlertTriangle className="w-5 h-5 text-yellow-600 dark:text-yellow-400 mt-0.5 flex-shrink-0" />
-                )}
+                <div
+                  className={`p-2 rounded-md shrink-0 ${
+                    isPositive
+                      ? "bg-emerald-500/10 text-emerald-500"
+                      : "bg-orange-500/10 text-orange-500"
+                  }`}
+                >
+                  {isPositive ? (
+                    <CheckCircle2 className="w-4 h-4 text-current" />
+                  ) : (
+                    <AlertTriangle className="w-4 h-4 text-current" />
+                  )}
+                </div>
                 <div>
-                  <div
-                    className={`text-sm font-medium mb-1 ${
-                      isPositive
-                        ? "text-green-800 dark:text-green-300"
-                        : "text-yellow-800 dark:text-yellow-300"
-                    }`}
-                  >
-                    {signal.type.replace(/_/g, " ").toUpperCase()}
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">
+                    {signal.type.replace(/_/g, " ")}
                   </div>
-                  <p
-                    className={`text-sm ${
-                      isPositive
-                        ? "text-green-700 dark:text-green-200"
-                        : "text-yellow-700 dark:text-yellow-200"
-                    }`}
-                  >
+                  <p className="text-sm font-medium text-foreground">
                     {signal.message}
                   </p>
                 </div>

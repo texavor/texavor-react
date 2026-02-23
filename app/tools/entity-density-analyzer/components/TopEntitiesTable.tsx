@@ -56,16 +56,19 @@ export default function TopEntitiesTable({ entities }: TopEntitiesTableProps) {
   };
 
   return (
-    <Card className="bg-secondary shadow-none border-none">
-      <CardHeader className="pb-3">
-        <h3 className="text-lg font-semibold text-foreground font-poppins">
+    <Card className="bg-card shadow-none border border-border rounded-xl">
+      <CardHeader className="pb-3 border-b border-border/30">
+        <h3 className="text-lg font-medium text-foreground font-poppins flex items-center gap-2">
+          <span className="p-1.5 rounded-md flex items-center justify-center bg-accent/10 text-accent">
+            <Hash className="w-5 h-5 text-current" />
+          </span>
           Top Entities
         </h3>
       </CardHeader>
       <CardContent>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
-            <thead className="bg-primary/5 dark:bg-zinc-900">
+            <thead className="bg-background">
               <tr>
                 <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Entity
@@ -92,18 +95,17 @@ export default function TopEntitiesTable({ entities }: TopEntitiesTableProps) {
                     key={idx}
                     className="hover:bg-primary/5 dark:hover:bg-zinc-900 transition-colors"
                   >
-                    <td className="px-4 py-3 font-medium text-foreground">
+                    <td className="px-4 py-4 font-medium text-foreground">
                       {entity.name}
                     </td>
-                    <td className="px-4 py-3">
-                      <Badge
-                        variant="outline"
-                        className={`${typeColors.bg} ${typeColors.text} ${typeColors.border} text-xs`}
+                    <td className="px-4 py-4">
+                      <span
+                        className={`px-2.5 py-1 ${typeColors.bg} ${typeColors.text} ${typeColors.border} text-xs font-semibold rounded-md border`}
                       >
-                        {entity.type}
-                      </Badge>
+                        {entity.type.toUpperCase()}
+                      </span>
                     </td>
-                    <td className="px-4 py-3 text-center">
+                    <td className="px-4 py-4 text-center">
                       <div className="flex items-center justify-center gap-1">
                         <Hash className="w-3 h-3 text-muted-foreground" />
                         <span className="font-bold text-foreground">
@@ -111,7 +113,7 @@ export default function TopEntitiesTable({ entities }: TopEntitiesTableProps) {
                         </span>
                       </div>
                     </td>
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-4">
                       <div className="flex items-center gap-2">
                         <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 flex-1">
                           <div
@@ -124,7 +126,7 @@ export default function TopEntitiesTable({ entities }: TopEntitiesTableProps) {
                         </span>
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-center">
+                    <td className="px-4 py-4 text-center">
                       <div className="flex items-center justify-center gap-2">
                         {entity.in_title && (
                           <span
