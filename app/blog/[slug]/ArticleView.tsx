@@ -93,10 +93,10 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
 
   return (
     <>
-      {/* Scroll progress bar — design system tokens */}
-      <div className="fixed top-0 left-0 w-full h-1 z-[200]">
+      {/* Scroll progress bar — matched with Docs behavior */}
+      <div className="fixed top-0 left-0 w-full h-1 z-[200] bg-muted/30">
         <div
-          className="h-full bg-gradient-to-r from-primary via-primary/70 to-accent origin-left transition-transform duration-200 ease-out"
+          className="h-full bg-primary origin-left transition-transform duration-150 ease-out"
           style={{ transform: `scaleX(${scrollPercentage / 100})` }}
         />
       </div>
