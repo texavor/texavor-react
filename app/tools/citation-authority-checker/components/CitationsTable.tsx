@@ -18,7 +18,7 @@ interface CitationsTableProps {
 export default function CitationsTable({ citations }: CitationsTableProps) {
   if (!citations || citations.length === 0) {
     return (
-      <Card className="bg-secondary shadow-none border-none">
+      <Card className="bg-card shadow-none border border-border rounded-xl">
         <CardContent className="p-8 text-center text-muted-foreground">
           No citations detected
         </CardContent>
@@ -27,9 +27,9 @@ export default function CitationsTable({ citations }: CitationsTableProps) {
   }
 
   return (
-    <Card className="bg-secondary shadow-none border-none">
-      <CardHeader className="pb-3">
-        <h3 className="text-lg font-semibold text-foreground font-poppins">
+    <Card className="bg-card shadow-none border border-border rounded-xl">
+      <CardHeader className="pb-3 border-b border-border/30">
+        <h3 className="text-lg font-medium text-foreground font-poppins">
           Citations Breakdown
         </h3>
       </CardHeader>

@@ -31,8 +31,13 @@ import CitationAuthoritySkeleton from "./CitationAuthoritySkeleton";
 import CitationStatsGrid from "./components/CitationStatsGrid";
 import CitationsTable from "./components/CitationsTable";
 import SuggestionsList from "./components/SuggestionsList";
-import ScoreDisplay from "../aeo-schema-validator/components/ScoreDisplay";
 import Link from "next/link";
+import {
+  RadialBarChart,
+  RadialBar,
+  PolarAngleAxis,
+  ResponsiveContainer,
+} from "recharts";
 
 // --- Types ---
 const formSchema = z.object({
@@ -175,24 +180,43 @@ export default function CitationAuthorityClient() {
 
   const shouldShowUpsell = result?.upsell;
 
-  return (
-    <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
-      <div className="container max-w-7xl px-4 mx-auto pb-20">
-        {/* Header */}
-        <div className="text-center mb-12 space-y-4">
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary to-green-600 bg-clip-text text-transparent pb-2 font-poppins">
-            Citation Authority Checker
-          </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-inter">
-            Google&apos;s E-E-A-T guidelines require content to cite
-            authoritative sources. Analyze your outbound links, score them by
-            domain authority, and identify uncited claims.
-          </p>
-        </div>
+  const getScoreGrade = (score: number) => {
+    if (score >= 90)
+      return { letter: "A", color: "text-emerald-500", fill: "#10b981" };
+    if (score >= 80)
+      return { letter: "B", color: "text-emerald-500", fill: "#10b981" };
+    if (score >= 70)
+      return { letter: "C", color: "text-yellow-500", fill: "#eab308" };
+    if (score >= 60)
+      return { letter: "D", color: "text-yellow-500", fill: "#eab308" };
+    return { letter: "F", color: "text-red-500", fill: "#ef4444" };
+  };
 
+  const gradeInfo = result ? getScoreGrade(result.citation_score) : null;
+
+  return (
+    <div className="min-h-screen bg-background font-sans mt-6 lg:mt-0">
+      {/* Hero Section */}
+      <section className="w-full pt-20 pb-12 md:pt-28 md:pb-16 bg-background tx-dot-bg border-b border-border/50">
+        <div className="container px-6 mx-auto max-w-7xl">
+          <div className="max-w-3xl animate-fade-slide-up">
+            <p className="tx-eyebrow mb-5">FREE SEO TOOL</p>
+            <h1 className="font-poppins text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight mb-4">
+              Citation Authority Checker
+            </h1>
+            <p className="font-inter text-lg text-muted-foreground max-w-2xl leading-relaxed">
+              Google&apos;s E-E-A-T guidelines require content to cite
+              authoritative sources. Analyze your outbound links, score them by
+              domain authority, and identify uncited claims.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container max-w-7xl px-6 mx-auto pt-10 md:pt-16 pb-24">
         {/* Search Input Card */}
-        <Card className="mb-16 bg-secondary shadow-none border-none mx-auto overflow-visible">
-          <CardContent className="px-4 py-1">
+        <Card className="mb-16 bg-card border border-border shadow-none rounded-lg mx-auto overflow-hidden">
+          <CardContent className="px-6 py-5">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -218,7 +242,7 @@ export default function CitationAuthorityClient() {
                           onBlur={field.handleBlur}
                           onChange={(e) => field.handleChange(e.target.value)}
                           placeholder="https://example.com/article"
-                          className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input"
+                          className="h-11 pl-10 text-base bg-background border-input"
                         />
                         {field.state.meta.errors ? (
                           <p className="text-sm text-destructive mt-1 font-medium animate-in slide-in-from-top-1 fade-in duration-300">
@@ -232,8 +256,9 @@ export default function CitationAuthorityClient() {
 
                 <Button
                   type="submit"
-                  size="lg"
-                  className="h-12 px-8 min-w-[180px] font-semibold text-lg bg-primary hover:bg-primary/90 text-white dark:text-zinc-950 shadow-lg hover:shadow-xl transition-all rounded-xl"
+                  size="default"
+                  variant="brand"
+                  className="h-11 w-44 font-semibold text-base shrink-0 rounded-md"
                   disabled={loading || isWaitingForToken}
                 >
                   {isWaitingForToken ? (
@@ -280,14 +305,24 @@ export default function CitationAuthorityClient() {
 
         {/* Empty State Feature Preview */}
         {!result && !loading && (
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto opacity-90">
+          <div className="grid md:grid-cols-2 gap-6 w-full mb-16">
             {/* Feature 1: Authority Scoring */}
             <div className="relative group">
-              <div className="absolute inset-0 bg-emerald-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border-none shadow-none rounded-2xl bg-secondary overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
+              <Card className="relative h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
                 <CardHeader className="pb-2">
-                  <div className="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center mb-3">
-                    <Shield className="w-5 h-5 text-green-600" />
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="w-5 h-5 text-primary"
+                    >
+                      <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+                    </svg>
                   </div>
                   <CardTitle className="text-xl font-poppins">
                     Authority Scoring
@@ -302,11 +337,23 @@ export default function CitationAuthorityClient() {
 
             {/* Feature 2: E-E-A-T Analysis */}
             <div className="relative group mt-8 md:mt-0">
-              <div className="absolute inset-0 bg-purple-100/50 rounded-3xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border-none shadow-none rounded-2xl bg-secondary overflow-hidden transform rotate-1 group-hover:rotate-2 transition-transform duration-500">
+              <Card className="relative h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
                 <CardHeader className="pb-2">
-                  <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center mb-3">
-                    <FileCheck className="w-5 h-5 text-purple-600" />
+                  <div className="w-10 h-10 rounded-lg bg-purple-50 flex items-center justify-center mb-3">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="w-5 h-5 text-purple-600"
+                    >
+                      <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+                      <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                      <path d="m9 15 2 2 4-4" />
+                    </svg>
                   </div>
                   <CardTitle className="text-xl font-poppins">
                     E-E-A-T Report
@@ -324,80 +371,171 @@ export default function CitationAuthorityClient() {
         {/* Results */}
         {result && (
           <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+            <div className="grid md:grid-cols-12 gap-6 items-stretch">
               {/* Score Column */}
-              <div className="md:col-span-1">
-                <ScoreDisplay
-                  score={result.citation_score}
-                  type="primary"
-                  className="h-full"
-                />
+              <div className="md:col-span-4 flex flex-col h-full">
+                <Card className="h-full border border-border shadow-none rounded-xl bg-card relative overflow-hidden flex flex-col justify-between">
+                  <CardHeader className="pb-0 text-center pt-8 relative z-10">
+                    <CardTitle className="text-xl text-foreground font-poppins">
+                      Citation Score
+                    </CardTitle>
+                    <CardDescription className="text-muted-foreground font-inter">
+                      Overall Metric
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="flex-1 relative z-10 flex flex-col items-center justify-center pb-8 pt-4">
+                    <div className="relative h-32 w-32 md:h-40 md:w-40">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <RadialBarChart
+                          innerRadius="80%"
+                          outerRadius="100%"
+                          barSize={10}
+                          data={[
+                            {
+                              value: result.citation_score,
+                              fill: gradeInfo?.fill || "#ef4444",
+                            },
+                          ]}
+                          startAngle={90}
+                          endAngle={-270}
+                        >
+                          <PolarAngleAxis
+                            type="number"
+                            domain={[0, 100]}
+                            angleAxisId={0}
+                            tick={false}
+                          />
+                          <RadialBar dataKey="value" cornerRadius={30} />
+                        </RadialBarChart>
+                      </ResponsiveContainer>
+                      <div className="absolute inset-0 flex items-center justify-center flex-col">
+                        <span className="text-4xl font-bold font-poppins tracking-tighter text-foreground">
+                          {result.citation_score}
+                        </span>
+                        <span className="text-xs text-muted-foreground font-medium uppercase tracking-widest mt-1">
+                          / 100
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="mt-4 flex items-baseline gap-2 text-sm font-medium">
+                      <span className="text-muted-foreground">Grade:</span>
+                      <span
+                        className={`text-2xl font-bold font-poppins ${gradeInfo?.color}`}
+                      >
+                        {gradeInfo?.letter}
+                      </span>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
 
               {/* Stats Grid - Individual Cards */}
-              <CitationStatsGrid stats={result.stats} />
+              <div className="md:col-span-8 h-full">
+                <CitationStatsGrid stats={result.stats} />
+              </div>
             </div>
 
             {/* Citations Table */}
             <CitationsTable citations={allCitations} />
 
-            {/* Issues */}
-            {result.issues && result.issues.length > 0 && (
-              <Card className="bg-secondary shadow-none border-none">
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold mb-4 text-foreground font-poppins flex items-center gap-2">
-                    <AlertTriangle className="w-5 h-5 text-amber-500" />
-                    Issues Detected
-                  </h3>
-                  <ul className="space-y-2">
-                    {result.issues.map((issue, index) => (
-                      <li
-                        key={index}
-                        className="flex items-start gap-3 text-sm font-medium text-foreground bg-amber-50 dark:bg-amber-500/10 p-3 rounded-lg border border-amber-200 dark:border-amber-500/20"
-                      >
-                        <AlertTriangle className="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-amber-800 dark:text-amber-300">
-                          {issue}
+            <div className="grid md:grid-cols-2 gap-6 items-start">
+              {/* Issues */}
+              {result.issues && result.issues.length > 0 && (
+                <div className="h-full">
+                  <Card className="bg-card shadow-none border border-border rounded-xl h-full">
+                    <CardHeader className="pb-3 border-b border-border/30">
+                      <h3 className="text-lg font-medium flex items-center gap-2 font-poppins text-foreground">
+                        <span className="p-1.5 rounded-md flex items-center justify-center bg-amber-500/10 text-amber-500">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="w-5 h-5"
+                          >
+                            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                            <path d="M12 9v4" />
+                            <path d="M12 17h.01" />
+                          </svg>
                         </span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            )}
+                        Issues Detected
+                      </h3>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        Potential problems affecting your citation authority
+                      </p>
+                    </CardHeader>
+                    <CardContent className="p-6 flex flex-col gap-4 pt-4">
+                      <ul className="flex flex-col gap-4">
+                        {result.issues.map((issue, index) => (
+                          <li
+                            key={index}
+                            className="flex items-start gap-3 text-sm font-medium text-foreground pb-4 border-b border-border/30 last:border-0 last:pb-0"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0"
+                            >
+                              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                              <path d="M12 9v4" />
+                              <path d="M12 17h.01" />
+                            </svg>
+                            <span className="leading-snug">{issue}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </div>
+              )}
 
-            {/* Suggestions */}
-            {result.suggestions && result.suggestions.length > 0 && (
-              <SuggestionsList suggestions={result.suggestions} />
-            )}
+              {/* Suggestions */}
+              {result.suggestions && result.suggestions.length > 0 && (
+                <div className="h-full">
+                  <SuggestionsList suggestions={result.suggestions} />
+                </div>
+              )}
+            </div>
 
             {/* Upsell Section */}
             {shouldShowUpsell && (
-              <Card className="bg-gradient-to-r from-primary/10 to-green-600/10 border-none shadow-none">
-                <CardContent className="p-8">
-                  <div className="flex flex-col md:flex-row items-center gap-6">
-                    <div className="flex-1 text-center md:text-left">
-                      <h3 className="text-2xl font-bold mb-2 font-poppins">
-                        {shouldShowUpsell.message ||
-                          "Want better citation management?"}
-                      </h3>
-                      <p className="text-muted-foreground">
-                        Texavor Pro automatically suggests high-authority
-                        replacements and monitors link health 24/7.
-                      </p>
-                    </div>
-                    <Link href={shouldShowUpsell.cta_link || "/pricing"}>
-                      <Button
-                        size="lg"
-                        className="bg-primary hover:bg-primary/90 text-white dark:text-zinc-950 shadow-lg hover:shadow-xl transition-all font-semibold"
-                      >
-                        Upgrade to Pro
-                        <ArrowRight className="ml-2 w-5 h-5" />
-                      </Button>
-                    </Link>
+              <div className="relative pt-8">
+                <div className="relative bg-primary/5 border border-primary/20 rounded-lg overflow-hidden p-10 md:p-14 tx-dot-bg flex flex-col md:flex-row items-start md:items-center gap-8">
+                  <div className="flex-1">
+                    <p className="tx-eyebrow mb-2">TAKE IT TO THE NEXT LEVEL</p>
+                    <h3 className="text-2xl md:text-3xl font-bold tracking-tight font-poppins text-foreground mb-3">
+                      {shouldShowUpsell.message ||
+                        "Want better citation management?"}
+                    </h3>
+                    <p className="font-inter text-base text-muted-foreground max-w-lg leading-relaxed">
+                      Texavor Pro automatically suggests high-authority
+                      replacements and monitors link health 24/7.
+                    </p>
                   </div>
-                </CardContent>
-              </Card>
+                  <div className="shrink-0 pt-4 md:pt-0">
+                    <Button
+                      asChild
+                      variant="brand"
+                      size="lg"
+                      className="h-12 px-8 font-semibold text-lg rounded-md"
+                    >
+                      <Link href={shouldShowUpsell.cta_link || "/pricing"}>
+                        Upgrade to Pro
+                        <ArrowRight className="ml-2 w-5 h-5 shrink-0 border-none bg-transparent hover:bg-transparent" />
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </div>
             )}
           </div>
         )}
