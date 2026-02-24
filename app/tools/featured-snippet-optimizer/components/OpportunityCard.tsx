@@ -56,7 +56,7 @@ export default function OpportunityCard({ opportunity }: OpportunityCardProps) {
   const styles = getSeverityStyles(opportunity.severity);
 
   return (
-    <Card className="bg-primary/5 dark:bg-zinc-900 border border-border/50 shadow-none overflow-hidden hover:bg-primary/10 transition-colors duration-300">
+    <Card className="bg-card border border-border shadow-none rounded-lg overflow-hidden transition-all duration-300 hover:border-primary/40">
       <CardContent className="p-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
           <div className="flex items-center gap-3">
@@ -66,17 +66,17 @@ export default function OpportunityCard({ opportunity }: OpportunityCardProps) {
                 <Badge
                   variant="outline"
                   className={cn(
-                    "uppercase font-bold tracking-widest text-[9px] h-4",
+                    "uppercase font-bold tracking-widest text-[9px] h-4 border",
                     styles.badge,
                   )}
                 >
                   {opportunity.severity}
                 </Badge>
-                <span className="text-[10px] font-bold text-[#104127] dark:text-emerald-400 uppercase tracking-widest">
+                <span className="text-xs font-bold text-primary uppercase tracking-widest">
                   Snippet Opportunity
                 </span>
               </div>
-              <div className="text-xs text-muted-foreground font-medium flex items-center gap-1">
+              <div className="text-sm text-muted-foreground font-medium flex items-center gap-1">
                 <Heading className="w-3 h-3" />
                 In Header: {opportunity.header}
               </div>
@@ -84,27 +84,27 @@ export default function OpportunityCard({ opportunity }: OpportunityCardProps) {
           </div>
         </div>
 
-        <div className="bg-background/80 dark:bg-zinc-800 p-5 rounded-2xl mb-6 border border-border/40 shadow-sm relative">
+        <div className="bg-muted/30 p-5 rounded-lg mb-6 border border-border/60 shadow-none relative">
           <div className="absolute top-0 right-0 p-4">
-            <span className="text-[10px] font-black text-red-500 uppercase tracking-tighter opacity-50">
+            <span className="text-xs font-bold text-destructive uppercase tracking-tighter opacity-70">
               Issue Detected
             </span>
           </div>
-          <p className="text-sm font-bold text-slate-800 dark:text-white leading-relaxed mb-1">
+          <p className="text-sm font-medium text-foreground leading-relaxed mb-1 pr-24">
             {opportunity.issue}
           </p>
         </div>
 
-        <div className="bg-[#104127]/5 dark:bg-[#104127]/20 p-5 rounded-2xl border border-[#104127]/10 dark:border-[#104127]/30">
+        <div className="bg-primary/5 p-5 rounded-lg border border-border/60">
           <div className="flex items-start gap-3">
-            <div className="w-8 h-8 rounded-full bg-[#104127] flex items-center justify-center shrink-0 shadow-sm mt-0.5">
-              <Lightbulb className="w-4 h-4 text-white" />
+            <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+              <Lightbulb className="w-4 h-4 text-primary" />
             </div>
             <div>
-              <p className="text-[10px] font-black text-[#104127] dark:text-emerald-400 uppercase tracking-widest mb-1">
+              <p className="text-xs font-bold text-primary uppercase tracking-widest mb-1">
                 Optimization Fix
               </p>
-              <p className="text-sm font-bold text-slate-800 dark:text-white leading-relaxed">
+              <p className="text-sm font-medium text-foreground leading-relaxed">
                 {opportunity.suggestion}
               </p>
             </div>

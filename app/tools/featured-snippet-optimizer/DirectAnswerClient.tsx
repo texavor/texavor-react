@@ -139,23 +139,28 @@ export default function DirectAnswerClient() {
     : null;
 
   return (
-    <div className="min-h-screen dark:bg-zinc-950 font-sans mt-32">
-      <div className="container max-w-7xl px-4 mx-auto pb-20">
-        {/* Header */}
-        <div className="text-center mb-12 space-y-4">
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent pb-2 font-poppins">
-            Direct Answer Optimizer
-          </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-inter">
-            Win the "Position Zero" and AI-driven direct answers. Detect headers
-            missing concise answers, validate answer structures, and optimize
-            your schema for rich results.
-          </p>
+    <div className="min-h-screen bg-background font-sans mt-6 lg:mt-0">
+      {/* Hero Section */}
+      <section className="w-full pt-20 pb-12 md:pt-28 md:pb-16 bg-background tx-dot-bg border-b border-border/50">
+        <div className="container px-6 mx-auto max-w-7xl">
+          <div className="max-w-3xl animate-fade-slide-up">
+            <p className="tx-eyebrow mb-5">FREE SEO TOOL</p>
+            <h1 className="font-poppins text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight mb-4">
+              Direct Answer Optimizer
+            </h1>
+            <p className="font-inter text-lg text-muted-foreground max-w-2xl leading-relaxed">
+              Win "Position Zero" and AI-driven direct answers. Detect headers
+              missing concise answers, validate answer structures, and optimize
+              your schema for rich results.
+            </p>
+          </div>
         </div>
+      </section>
 
+      <div className="container max-w-7xl px-6 mx-auto pt-10 md:pt-16 pb-24">
         {/* Search Input Card */}
-        <Card className="mb-16 bg-secondary shadow-none border-none mx-auto overflow-visible">
-          <CardContent className="px-4 py-1">
+        <Card className="mb-16 bg-card border border-border shadow-none rounded-lg mx-auto overflow-hidden">
+          <CardContent className="px-6 py-5">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -181,7 +186,7 @@ export default function DirectAnswerClient() {
                           onBlur={field.handleBlur}
                           onChange={(e) => field.handleChange(e.target.value)}
                           placeholder="https://example.com/article"
-                          className="h-12 pl-10 text-lg bg-slate-50 dark:bg-zinc-950/50 border-input font-inter"
+                          className="h-11 pl-10 text-base bg-background border-input font-inter"
                         />
                         {field.state.meta.errors &&
                           field.state.meta.errors.length > 0 && (
@@ -196,8 +201,9 @@ export default function DirectAnswerClient() {
 
                 <Button
                   type="submit"
-                  size="lg"
-                  className="h-12 px-8 min-w-[200px] font-semibold text-lg bg-primary hover:bg-primary/90 text-white dark:text-zinc-950 shadow-lg hover:shadow-xl transition-all rounded-xl transform active:scale-95 transition-transform"
+                  size="default"
+                  variant="brand"
+                  className="h-11 w-48 font-semibold text-base shrink-0 rounded-md"
                   disabled={loading || isWaitingForToken}
                 >
                   {isWaitingForToken ? (
@@ -244,19 +250,18 @@ export default function DirectAnswerClient() {
 
         {/* Empty State: Feature Preview */}
         {!result && !loading && (
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto opacity-90">
+          <div className="grid md:grid-cols-2 gap-6 w-full mb-16 opacity-90">
             {/* Feature 1 */}
             <div className="relative group">
-              <div className="absolute inset-0 bg-blue-100/50 rounded-3xl transform rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border-none shadow-none rounded-2xl bg-secondary overflow-hidden transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500">
+              <Card className="h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
                 <CardContent className="p-6">
-                  <div className="w-10 h-10 rounded-full bg-blue-50 dark:bg-blue-900/10 flex items-center justify-center mb-3">
-                    <MessageSquareText className="w-5 h-5 text-blue-600" />
+                  <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-900/10 flex items-center justify-center mb-3">
+                    <MessageSquareText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <h3 className="text-xl font-semibold text-foreground font-poppins mb-2">
                     Header-Answer Validation
                   </h3>
-                  <p className="text-sm text-muted-foreground font-inter">
+                  <p className="text-sm text-muted-foreground font-inter leading-relaxed">
                     Automatically detect headers that ask questions and validate
                     if the following content provides a concise direct answer.
                   </p>
@@ -266,16 +271,15 @@ export default function DirectAnswerClient() {
 
             {/* Feature 2 */}
             <div className="relative group mt-8 md:mt-0">
-              <div className="absolute inset-0 bg-indigo-100/50 rounded-3xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-500"></div>
-              <Card className="relative h-full border-none shadow-none rounded-2xl bg-secondary overflow-hidden transform rotate-1 group-hover:rotate-2 transition-transform duration-500">
+              <Card className="h-full border border-border shadow-none rounded-lg bg-card overflow-hidden transition-all duration-300 hover:border-primary/40">
                 <CardContent className="p-6">
-                  <div className="w-10 h-10 rounded-full bg-indigo-50 dark:bg-indigo-900/10 flex items-center justify-center mb-3">
-                    <Sparkles className="w-5 h-5 text-indigo-600" />
+                  <div className="w-10 h-10 rounded-lg bg-indigo-50 dark:bg-indigo-900/10 flex items-center justify-center mb-3">
+                    <Sparkles className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                   </div>
                   <h3 className="text-xl font-semibold text-foreground font-poppins mb-2">
                     Rich Snippet Eligibility
                   </h3>
-                  <p className="text-sm text-muted-foreground font-inter">
+                  <p className="text-sm text-muted-foreground font-inter leading-relaxed">
                     Ensure your content is formatted correctly for list and
                     paragraph snippets with specialized schema health checks.
                   </p>
@@ -310,9 +314,9 @@ export default function DirectAnswerClient() {
             {/* Opportunities List */}
             {result.opportunities && result.opportunities.length > 0 && (
               <div className="space-y-6">
-                <h3 className="text-2xl font-bold font-poppins text-[#104127] dark:text-white flex items-center gap-3 mb-8">
-                  <div className="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center shadow-lg">
-                    <ArrowRight className="w-6 h-6 text-white rotate-45" />
+                <h3 className="text-2xl font-bold font-poppins text-foreground flex items-center gap-3 mb-8">
+                  <div className="w-10 h-10 rounded-lg bg-red-100 dark:bg-red-900/30 border border-red-200 dark:border-red-900/50 flex items-center justify-center">
+                    <ArrowRight className="w-5 h-5 text-red-600 dark:text-red-400 rotate-45" />
                   </div>
                   Optimization Opportunities
                 </h3>
@@ -327,9 +331,9 @@ export default function DirectAnswerClient() {
             {/* Good Examples */}
             {result.good_examples && result.good_examples.length > 0 && (
               <div className="space-y-6">
-                <h3 className="text-2xl font-bold font-poppins text-[#104127] dark:text-white flex items-center gap-3 mb-8 pt-8">
-                  <div className="w-10 h-10 rounded-xl bg-[#104127] flex items-center justify-center shadow-lg">
-                    <CheckSquare className="w-6 h-6 text-white" />
+                <h3 className="text-2xl font-bold font-poppins text-foreground flex items-center gap-3 mb-8 pt-8">
+                  <div className="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-900/50 flex items-center justify-center">
+                    <CheckSquare className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   Optimized Snippets
                 </h3>
@@ -346,25 +350,24 @@ export default function DirectAnswerClient() {
 
             {/* Upsell */}
             {shouldShowUpsell && result.upsell && (
-              <Card className="bg-gradient-to-r from-blue-600/10 to-indigo-600/10 border-none shadow-none overflow-hidden relative">
-                <div className="absolute top-0 right-0 p-8 opacity-5">
-                  <Sparkles className="w-32 h-32" />
-                </div>
-                <CardContent className="p-10 relative z-10">
-                  <div className="flex flex-col md:flex-row items-center gap-8">
-                    <div className="flex-1 text-center md:text-left">
-                      <h3 className="text-2xl font-bold text-foreground mb-3 font-poppins text-[#104127] dark:text-blue-400">
-                        {result.upsell.message}
-                      </h3>
-                      <p className="text-base text-muted-foreground font-medium max-w-xl">
-                        Rank higher in AI search engines and win the featured
-                        snippet with auto-generated optimized answers.
-                      </p>
-                    </div>
+              <div className="relative pt-12">
+                <div className="relative bg-primary/5 border border-primary/20 rounded-lg overflow-hidden p-10 md:p-14 tx-dot-bg flex flex-col md:flex-row items-start md:items-center gap-8">
+                  <div className="flex-1">
+                    <p className="tx-eyebrow mb-2">READY TO GO DEEPER?</p>
+                    <h3 className="text-2xl md:text-3xl font-bold tracking-tight font-poppins text-foreground mb-3">
+                      {result.upsell.message}
+                    </h3>
+                    <p className="font-inter text-base text-muted-foreground max-w-lg leading-relaxed mb-6">
+                      Rank higher in AI search engines and win the featured
+                      snippet with auto-generated optimized answers.
+                    </p>
+                  </div>
+                  <div className="shrink-0">
                     <Button
-                      size="lg"
-                      className="bg-primary hover:bg-primary/90 px-10 h-14 text-lg font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all"
                       asChild
+                      variant="brand"
+                      size="lg"
+                      className="h-12 px-8 font-semibold text-lg rounded-md"
                     >
                       <a href={result.upsell.cta_link}>
                         Try Texavor Pro
@@ -372,8 +375,8 @@ export default function DirectAnswerClient() {
                       </a>
                     </Button>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             )}
           </div>
         )}

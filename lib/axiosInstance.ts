@@ -1,12 +1,12 @@
 import axios from "axios";
 import { toast } from "sonner";
 
-// export const baseURL =
-//   process.env.NODE_ENV == "development"
-//     ? "http://localhost:3000"
-//     : "https://www.api.texavor.com";
+export const baseURL =
+  process.env.NODE_ENV == "development"
+    ? "http://localhost:3000"
+    : "https://www.api.texavor.com";
 
-export const baseURL = "https://www.api.texavor.com";
+// export const baseURL = "https://www.api.texavor.com";
 
 export const axiosInstance = axios.create({
   baseURL,
