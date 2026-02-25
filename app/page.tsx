@@ -3,9 +3,9 @@ import PageTransition from "@/components/PageTransition";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Rank in Google. Get Cited by ChatGPT. | Texavor",
+  title: "AI Content Workflow & Topic Discovery | Texavor",
   description:
-    "Master the Search Era. Get cited by ChatGPT and rank in Google SGE. Texavor is the AI visibility engine for high-growth brands.",
+    "Discover exactly what your audience asks AI. Generate data-backed briefs and publish perfectly formatted content to your CMS with Texavor.",
   alternates: {
     canonical: "/",
   },
@@ -82,7 +82,7 @@ export default function Home() {
         url: "https://www.texavor.com",
         name: "Texavor",
         description:
-          "AI-powered content creation and optimization platform for Generative Engine Optimization (GEO) and SEO.",
+          "Find missing topics in AI search, generate data-backed briefs, and publish seamlessly to your blog.",
         publisher: {
           "@id": "https://www.texavor.com/#organization",
         },
@@ -143,7 +143,7 @@ export default function Home() {
         "@id": "https://www.texavor.com/#software",
         name: "Texavor",
         description:
-          "Generate high-impact, E-E-A-T optimized technical articles. Monitor AI Visibility on ChatGPT, Perplexity & Claude.",
+          "Turn AI searches into published content. Find missing topics, generate data-backed briefs, and sync directly to your CMS.",
         applicationCategory: "BusinessApplication",
         applicationSubCategory: "ContentOptimizationApplication",
         operatingSystem: "Web",
@@ -219,9 +219,9 @@ export default function Home() {
         "@type": "WebPage",
         "@id": "https://www.texavor.com/#webpage",
         url: "https://www.texavor.com",
-        name: "Texavor - Best AI Visibility Optimization / GEO Tool",
+        name: "Texavor - AI Content Workflow & Topic Discovery",
         description:
-          "Texavor helps you track and optimize your company's visibility across ChatGPT, Perplexity, and other AI/LLMs. Get mentioned in AI with Texavor.",
+          "Texavor helps you discover exactly what your audience asks AI. Generate data-backed briefs and publish perfectly formatted content directly to your CMS.",
         author: {
           "@type": "Person",
           name: "Suraj Vishwakarma",
@@ -262,16 +262,16 @@ export default function Home() {
                 </span>
               </div>
               <h2 className="text-3xl md:text-5xl font-poppins font-bold text-foreground mb-6 tracking-tight leading-tight max-w-2xl">
-                Why generic AI Outlines <br />
-                don't rank anymore.
+                Stop guessing what <br />
+                your audience wants.
               </h2>
               <p className="text-lg font-inter text-muted-foreground max-w-2xl leading-relaxed">
-                Most AI tools generate content for search engines. We engineer
-                it for{" "}
+                Most AI tools just rewrite existing articles. We help you find{" "}
                 <span className="text-foreground font-semibold italic">
-                  Generative Engines.
+                  untapped questions
                 </span>{" "}
-                Compare the depth of Texavor vs legacy AI generators.
+                and build content workflows that actually drive value. Compare
+                the depth of Texavor vs legacy AI generators.
               </p>
             </div>
 
