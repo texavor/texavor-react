@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title:
     "Free JSON-LD Schema Validator | AI Search Readiness Auditor | Texavor",
   description:
-    "Validate your Schema Markup for Google and AI search engines. Audit JSON-LD snippets for technical correctness and GEO (Generative Engine Optimization) readiness.",
+    "Validate your Schema Markup for Google and AI search engines. Audit JSON-LD snippets for technical correctness and AI Search readiness.",
   alternates: {
     canonical: "/tools/schema-validator",
   },
@@ -43,9 +43,9 @@ export default function SchemaValidatorPage() {
     "@type": "SoftwareApplication",
     "@id": "https://www.texavor.com/tools/schema-validator",
     url: "https://www.texavor.com/tools/schema-validator",
-    name: "Advanced Schema Validator - GEO Readiness Tool",
+    name: "Advanced Schema Validator - AI Readiness Tool",
     description:
-      "Validate JSON-LD schema markup for enhanced search results and generative engine optimization readiness.",
+      "Validate JSON-LD schema markup for enhanced search results and generative AI engine readiness.",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     browserRequirements: "Requires JavaScript. Requires HTML5.",

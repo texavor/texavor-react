@@ -3,10 +3,9 @@ import ContentFreshnessClient from "./ContentFreshnessClient";
 import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
-  title:
-    "Free Content Freshness Checker | AI Ranking & Decay Auditor | Texavor",
+    "Free Content Freshness Checker | AI Relevance Auditor | Texavor",
   description:
-    "Audit your content freshness for the AI era. Detect content decay, analyze update frequency, and improve your GEO (Generative Engine Optimization) relevance in AI search.",
+    "Audit your content freshness for the AI era. Detect content decay, analyze update frequency, and improve your relevance in AI search.",
   alternates: {
     canonical: "/tools/content-freshness-checker",
   },
@@ -43,9 +42,9 @@ export default function ContentFreshnessPage() {
     "@type": "SoftwareApplication",
     "@id": "https://www.texavor.com/tools/content-freshness-checker",
     url: "https://www.texavor.com/tools/content-freshness-checker",
-    name: "Content Freshness Checker - GEO Decay Tool",
+    name: "Content Freshness Checker - AI Decay Tool",
     description:
-      "Identify content decay and freshness signals to maintain visibility in generative engines and AI search results.",
+      "Identify content decay and freshness signals to maintain visibility in AI search engines and modern workflows.",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     browserRequirements: "Requires JavaScript. Requires HTML5.",

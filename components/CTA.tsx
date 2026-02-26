@@ -20,12 +20,12 @@ export default function CTA() {
           </div>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground font-poppins leading-[1.1] tracking-tight mb-6">
-            Claim your AI Visibility.
+            Scale your content workflow.
           </h2>
 
           <p className="text-lg md:text-xl text-muted-foreground font-inter leading-relaxed max-w-2xl mx-auto mb-10">
-            Stop guessing what AI engines want. Dominate Perplexity, ChatGPT,
-            and Google with data-driven Semantic SEO.
+            Discover untapped AI topics, generate data-backed briefs, and
+            publish simultaneously across all your channels.
           </p>
 
           <Button

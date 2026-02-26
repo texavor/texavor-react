@@ -33,8 +33,8 @@ export default function FAQ({ fullPage = false }: FAQProps) {
                 <span className="text-primary">Questions.</span>
               </h1>
               <p className="font-inter text-lg text-muted-foreground leading-relaxed">
-                Everything you need to know about Texavor, billing, and our GEO
-                engine.
+                Everything you need to know about Texavor, billing, and our
+                content workflow engine.
               </p>
             </div>
           </div>

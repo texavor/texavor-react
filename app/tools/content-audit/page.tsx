@@ -4,10 +4,9 @@ import { Metadata } from "next";
 import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
-  title:
-    "Free Content Audit Tool | GEO Health & AI Search Quality Audit | Texavor",
+    "Free Content Audit Tool | AI Search Quality Audit | Texavor",
   description:
-    "Scan any URL for technical GEO errors, thin content, and AI search readiness. Get a free health score and actionable fix list to improve your rankings in generative engines.",
+    "Scan any URL for technical errors, thin content, and AI search readiness. Get a free health score and actionable fix list to improve your visibility in generative engines.",
   alternates: {
     canonical: "/tools/content-audit",
   },
@@ -44,9 +43,9 @@ export default function Page() {
     "@type": "SoftwareApplication",
     "@id": "https://www.texavor.com/tools/content-audit",
     url: "https://www.texavor.com/tools/content-audit",
-    name: "Content Quality Audit - GEO Readiness Tool",
+    name: "Content Quality Audit - AI Readiness Tool",
     description:
-      "Analyze your content depth, keyword usage, and GEO optimization score. Scan any URL to identify technical errors and AI readiness signals.",
+      "Analyze your content depth, keyword usage, and AI optimization score. Scan any URL to identify technical errors and AI readiness signals.",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     browserRequirements: "Requires JavaScript. Requires HTML5.",

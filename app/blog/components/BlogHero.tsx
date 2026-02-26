@@ -14,14 +14,13 @@ export default function BlogHero({ articleCount }: BlogHeroProps) {
 
           {/* Heading */}
           <h1 className="text-5xl md:text-6xl font-poppins font-bold text-foreground tracking-tight leading-[1.05] mb-6">
-            Insights on GEO &amp;{" "}
-            <span className="text-primary">AI Search.</span>
+            Insights on AI <span className="text-primary">Content Strategy.</span>
           </h1>
 
           {/* Description */}
           <p className="text-xl font-inter text-muted-foreground leading-relaxed max-w-2xl mb-8">
-            Guides, research, and strategy for getting your content cited by
-            ChatGPT, Perplexity, and Claude — not just ranked on Google.
+            Guides, research, and strategy for creating structured content that
+            audiences and AI engines (ChatGPT, Perplexity, Claude) actually trust.
           </p>
 
           {/* Article count stat — amber accent */}

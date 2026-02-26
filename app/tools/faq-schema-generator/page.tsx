@@ -3,10 +3,9 @@ import FaqSchemaPage from "./FaqSchemaPage";
 import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
-  title:
-    "Free FAQ Schema Generator | JSON-LD & GEO Rich Snippet Tool | Texavor",
+    "Free FAQ Schema Generator | JSON-LD & AI Rich Snippet Tool | Texavor",
   description:
-    "Instantly generate AI-ready FAQ Schema. Type your questions or auto-extract for better GEO (Generative Engine Optimization) and Google Rich Snippet visibility.",
+    "Instantly generate AI-ready FAQ Schema. Type your questions or auto-extract from content to improve knowledge extraction in AI search.",
   alternates: {
     canonical: "/tools/faq-schema-generator",
   },
@@ -43,9 +42,9 @@ export default function Page() {
     "@type": "SoftwareApplication",
     "@id": "https://www.texavor.com/tools/faq-schema-generator",
     url: "https://www.texavor.com/tools/faq-schema-generator",
-    name: "FAQ Schema Generator - GEO Rich Snippet Tool",
+    name: "FAQ Schema Generator - AI Rich Snippet Tool",
     description:
-      "Boost CTR and AI visibility instantly by generating valid JSON-LD FAQ Schema markup. Optimized for generative engines and Google search.",
+      "Boost structure extraction instantly by generating valid JSON-LD FAQ Schema markup. Optimized for LLMs and Google search.",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     browserRequirements: "Requires JavaScript. Requires HTML5.",

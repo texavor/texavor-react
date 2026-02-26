@@ -3,10 +3,9 @@ import AEOSchemaValidatorClient from "./AEOSchemaValidatorClient";
 import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
-  title:
-    "GEO Schema Validator | AI Search Readiness & Entity Content Audit | Texavor",
+    "AI Schema Validator | AI Search Readiness & Entity Content Audit | Texavor",
   description:
-    "Validate your Schema Markup for the Generative Engine era. Audit content for LLM understanding, entity density, and GEO readiness to rank in AI search results.",
+    "Validate your Schema Markup for the Generative Engine era. Audit content for LLM understanding, entity density, and readiness to appear in AI search results.",
   alternates: {
     canonical: "/tools/aeo-schema-validator",
   },
@@ -32,7 +31,7 @@ export default function Page() {
       {
         "@type": "ListItem",
         position: 3,
-        name: "GEO Schema Validator",
+        name: "AI Schema Validator",
         item: "https://www.texavor.com/tools/aeo-schema-validator",
       },
     ],
@@ -43,9 +42,9 @@ export default function Page() {
     "@type": "SoftwareApplication",
     "@id": "https://www.texavor.com/tools/aeo-schema-validator",
     url: "https://www.texavor.com/tools/aeo-schema-validator",
-    name: "GEO Schema Validator - AI Readiness Tool",
+    name: "AI Schema Validator - AI Readiness Tool",
     description:
-      "Validate your Schema Markup for Generative Engine Optimization (GEO) and AI Search readiness. Analyze your content for AI search engines and get optimization recommendations.",
+      "Validate your Schema Markup for AI Search readiness. Analyze your content for AI search engines and get optimization recommendations.",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     browserRequirements: "Requires JavaScript. Requires HTML5.",

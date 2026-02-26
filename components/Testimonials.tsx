@@ -6,19 +6,19 @@ import Image from "next/image";
 export default function Testimonials() {
   const testimonials = [
     {
-      stat: "312%",
-      statLabel: "AI citations in 8 weeks",
+      stat: "10 hrs",
+      statLabel: "Saved per week",
       quote:
-        "Texavor replaced our janky notion-to-markdown scripts. We fixed 3 articles and citations appeared in Perplexity within 2 weeks.",
+        "Texavor replaced our janky notion-to-markdown workflows. We now generate briefs and publish perfectly formatted articles straight to our CMS.",
       name: "Adam Kings",
       role: "Head of Engineering, Kingsy",
       avatarSeed: 11,
     },
     {
-      stat: "#1",
-      statLabel: "Rank in 14 days",
+      stat: "3x",
+      statLabel: "Topic discovery rate",
       quote:
-        "The competitor intelligence is scary good. I spotted a gap in 'React Server Components' content and we ranked #1 in two weeks without backlinks.",
+        "The competitor intelligence is scary good. I spotted a huge gap in 'React Server Components' topics that our audience was asking AI about.",
       name: "John Deo",
       role: "DevRel Manager, Tripe",
       avatarSeed: 22,

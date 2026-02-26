@@ -25,11 +25,11 @@ export default function Pricing() {
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-poppins font-bold text-foreground mb-6 tracking-tight leading-tight">
-            Invest in your AI Visibility.
+            Scale your Content Workflow.
           </h2>
           <p className="text-lg font-inter text-muted-foreground leading-relaxed">
-            Transparent scaling for teams serious about Semantic SEO and
-            Generative Engine Optimization.
+            Transparent scaling for teams serious about discovering AI topics
+            and publishing at scale.
           </p>
         </div>
 

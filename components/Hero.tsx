@@ -38,21 +38,20 @@ export default function Hero() {
             <div className="flex items-center gap-2.5 mb-8">
               <span className="w-1 h-5 rounded-full bg-accent inline-block flex-shrink-0" />
               <span className="text-xs font-semibold font-inter text-foreground/70 uppercase tracking-widest">
-                Rank in Google. Get Cited by ChatGPT.
+                Research, Write, and Publish for AI Search.
               </span>
             </div>
 
             {/* H1 — human, creates a felt need */}
             <h1 className="font-poppins font-bold text-foreground leading-[1.05] tracking-tight mb-5 text-4xl sm:text-5xl lg:text-[56px]">
-              Your next customer <br className="hidden sm:block" />
-              is asking AI.
+              Find what they ask. <br className="hidden sm:block" />
+              Publish the answers.
             </h1>
 
             {/* Sub-headline — humanized, no jargon, no 'GEO' */}
             <p className="text-base md:text-lg text-muted-foreground font-inter leading-relaxed mb-4 max-w-md">
-              Texavor bridges the gap between traditional SEO and AI answers.
-              Build the entity depth and authority that ChatGPT, Perplexity, and
-              SGE trust.
+              See exactly what your audience is asking AI. Generate expert
+              briefs to fill those gaps and push content straight to your CMS.
             </p>
 
             {/* AI ticker — shows which engines Texavor tracks */}

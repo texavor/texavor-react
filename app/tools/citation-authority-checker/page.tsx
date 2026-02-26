@@ -5,8 +5,7 @@ import Schema from "@/components/Schema";
 export const metadata: Metadata = {
   title:
     "Free Citation Authority Checker | Source Validation & E-E-A-T Audit | Texavor",
-  description:
-    "Audit external links and score citation authority (.edu/.gov) for the AI era. Boost E-E-A-T signals and establish credible data sources for GEO (Generative Engine Optimization).",
+    "Audit external links and score citation authority (.edu/.gov) for the AI era. Boost E-E-A-T signals and establish credible data sources for AI content workflows.",
   alternates: {
     canonical: "/tools/citation-authority-checker",
   },
@@ -43,7 +42,7 @@ export default function Page() {
     "@type": "SoftwareApplication",
     "@id": "https://www.texavor.com/tools/citation-authority-checker",
     url: "https://www.texavor.com/tools/citation-authority-checker",
-    name: "Citation Authority Checker - GEO Source Tool",
+    name: "Citation Authority Checker - AI Source Tool",
     description:
       "Audit external links, score citation authority, and boost E-E-A-T compliance for improved AI search relevance.",
     applicationCategory: "BusinessApplication",

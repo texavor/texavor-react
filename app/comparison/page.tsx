@@ -140,7 +140,7 @@ export default function ComparisonPage() {
                         <p className="text-sm text-red-700 dark:text-red-400 mt-1">
                           "How to use React" article written in 2022. <br />
                           <span className="italic opacity-80">
-                            Result: 404 links, deprecated code, lost rankings.
+                            Result: 404 links, deprecated code, lost traffic.
                           </span>
                         </p>
                       </div>
@@ -157,7 +157,7 @@ export default function ComparisonPage() {
                           Auto-scans for outdated libraries and broken links.{" "}
                           <br />
                           <span className="italic opacity-80">
-                            Result: Content stays fresh, rankings stay high.
+                            Result: Content stays fresh, traffic stays high.
                           </span>
                         </p>
                       </div>
@@ -267,7 +267,7 @@ export default function ComparisonPage() {
                   </div>
                   <div>
                     <strong className="text-zinc-900 dark:text-white block">
-                      Generative Engine Optimization (GEO)
+                      AI Content Workflows
                     </strong>
                     <span className="text-zinc-600 dark:text-zinc-400 text-sm">
                       Specific tools for Brand Authority and FAQ Schema designed

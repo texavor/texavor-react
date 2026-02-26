@@ -8,7 +8,7 @@ const FAQ = dynamic(() => import("@/components/FAQ"));
 export const metadata = {
   title: "FAQ | Texavor",
   description:
-    "Find answers to frequently asked questions about Texavor, Generative Engine Optimization (GEO), content optimization features, and our AI-powered platform tools.",
+    "Find answers to frequently asked questions about Texavor, AI content workflows, content optimization, and our AI-powered platform tools.",
   alternates: {
     canonical: "/faq",
   },
@@ -59,7 +59,7 @@ export default function FAQPage() {
         name: "Suraj Vishwakarma",
         url: "https://www.texavor.com",
         description:
-          "Founder of Texavor, expert in AI visibility optimization and Generative Engine Optimization (GEO)",
+          "Founder of Texavor, expert in AI content strategy and technical auditing.",
         jobTitle: "Founder & CEO",
         worksFor: {
           "@id": "https://www.texavor.com/#organization",
@@ -71,8 +71,8 @@ export default function FAQPage() {
           "https://github.com/texavor",
         ],
         knowsAbout: [
-          "Generative Engine Optimization",
-          "AI Visibility Tracking",
+          "AI Content Strategy",
+          "Technical Content Workflows",
           "Content Optimization",
           "SEO",
         ],
@@ -84,7 +84,7 @@ export default function FAQPage() {
         url: "https://www.texavor.com",
         name: "Texavor",
         description:
-          "AI-powered content creation and optimization platform for Generative Engine Optimization (GEO) and SEO.",
+          "AI-powered content creation and optimization platform for modern content workflows and SEO.",
         publisher: {
           "@id": "https://www.texavor.com/#organization",
         },
@@ -95,7 +95,7 @@ export default function FAQPage() {
         url: "https://www.texavor.com/faq",
         name: "FAQ - Texavor",
         description:
-          "Frequently asked questions about Texavor, GEO, content optimization, and more.",
+          "Frequently asked questions about Texavor, AI content workflows, content optimization, and more.",
         isPartOf: { "@id": "https://www.texavor.com/#website" },
         author: {
           "@id": "https://www.texavor.com/#person",

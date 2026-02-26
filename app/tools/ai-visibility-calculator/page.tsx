@@ -3,10 +3,9 @@ import AiVisibilityPage from "./AiVisibilityPage";
 import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
-  title:
-    "Free AI Visibility Calculator | GEO & SGE Search Ranking Checker | Texavor",
+    "Free AI Topic Analyzer | AI Search Visibility Checker | Texavor",
   description:
-    "Test how well your content ranks in AI search results like ChatGPT and Perplexity. Improve visibility in generative engines with our advanced 5-point analysis.",
+    "Test how well your content covers topics for AI search results like ChatGPT and Perplexity. Improve visibility in generative engines with our advanced 5-point analysis.",
   alternates: {
     canonical: "/tools/ai-visibility-calculator",
   },
@@ -43,9 +42,9 @@ export default function Page() {
     "@type": "SoftwareApplication",
     "@id": "https://www.texavor.com/tools/ai-visibility-calculator",
     url: "https://www.texavor.com/tools/ai-visibility-calculator",
-    name: "AI Visibility Calculator - Free GEO Tool",
+    name: "AI Topic Analyzer - Free Tool",
     description:
-      "Analyze keyword rankings in AI Overviews (SGE) and optimize for Large Language Models. Test how well your content ranks in AI search results with our advanced 5-point analysis.",
+      "Analyze keyword relevance in AI Overviews (SGE) and optimize for Large Language Models. Test how well your content covers topics in AI search results with our advanced 5-point analysis.",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     browserRequirements: "Requires JavaScript. Requires HTML5.",

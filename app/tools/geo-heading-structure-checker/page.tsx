@@ -3,10 +3,9 @@ import SemanticStructureClient from "./SemanticStructureClient";
 import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
-  title:
-    "Free GEO Heading Structure Checker | HTML H1-H6 Hierarchy Validator | Texavor",
+    "Free Semantic Heading Structure Checker | HTML H1-H6 Hierarchy Validator | Texavor",
   description:
-    "Instantly validate your HTML heading hierarchy for the AI era. Fix skipped H2/H3 levels, missing H1 tags, and improve GEO (Generative Engine Optimization) semantic depth.",
+    "Instantly validate your HTML heading hierarchy for the AI era. Fix skipped H2/H3 levels, missing H1 tags, and improve semantic depth for AI search.",
   alternates: {
     canonical: "/tools/geo-heading-structure-checker",
   },
@@ -32,7 +31,7 @@ export default function Page() {
       {
         "@type": "ListItem",
         position: 3,
-        name: "GEO Heading Structure Checker",
+        name: "Semantic Heading Structure Checker",
         item: "https://www.texavor.com/tools/geo-heading-structure-checker",
       },
     ],
@@ -43,9 +42,9 @@ export default function Page() {
     "@type": "SoftwareApplication",
     "@id": "https://www.texavor.com/tools/geo-heading-structure-checker",
     url: "https://www.texavor.com/tools/geo-heading-structure-checker",
-    name: "GEO Heading Structure Checker - Semantic Validator",
+    name: "Semantic Heading Structure Checker - AI Validator",
     description:
-      "Instantly validate your HTML heading hierarchy. Fix skipped H2/H3 levels, missing H1 tags, and improve GEO & Accessibility with our advanced semantic structure tool.",
+      "Instantly validate your HTML heading hierarchy. Fix skipped H2/H3 levels, missing H1 tags, and improve semantic structure for AI search tools.",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     browserRequirements: "Requires JavaScript. Requires HTML5.",

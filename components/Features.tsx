@@ -438,13 +438,13 @@ export default function Features() {
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-poppins font-bold text-foreground leading-tight mb-6">
-            Everything you need to <br className="hidden md:block" />{" "}
-            reverse-engineer AI search.
+            Everything you need to <br className="hidden md:block" /> run an
+            AI-first content strategy.
           </h2>
           <p className="text-lg text-muted-foreground font-inter max-w-2xl leading-relaxed">
             Forget generic 'AI writers'. Texavor is a precision research and
-            analysis engine designed to build the entity depth and factual
-            density that LLMs cite.
+            analysis engine designed to help you discover topics, generate
+            data-backed briefs, and publish seamlessly.
           </p>
         </div>
 
@@ -463,7 +463,8 @@ export default function Features() {
             </h3>
             <p className="text-muted-foreground font-inter max-w-md mb-10">
               Track where your competitors appear in Perplexity and Google SGE.
-              Analyze intent and spot topical gaps instantly before you write.
+              Analyze intent and spot topical gaps to guide your editorial
+              calendar.
             </p>
             <div className="mt-8 relative rounded-xl border border-border bg-muted/20 overflow-hidden pt-8 pb-8 md:pb-12 -mx-4 md:-mx-8 md:-mb-12 flex flex-col justify-center isolate">
               {/* Decorative background pulse for the component */}
@@ -481,11 +482,11 @@ export default function Features() {
               </span>
             </div>
             <h3 className="text-2xl font-poppins font-bold text-foreground mb-3">
-              AI Search Mastery
+              AI Topic Discovery
             </h3>
             <p className="text-muted-foreground font-inter mb-8">
               We scan top AI responses to build structural outlines packed with
-              the exact entities required to rank.
+              the exact entities your audience is searching for.
             </p>
             <div className="mt-auto -mx-2 bg-muted/10 rounded-xl p-4 border border-border/50">
               <OutlineGeneration />

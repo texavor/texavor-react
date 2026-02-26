@@ -222,10 +222,10 @@ export default function AiScorePage() {
           <div className="max-w-3xl animate-fade-slide-up">
             <p className="tx-eyebrow mb-5">FREE SEO TOOL</p>
             <h1 className="font-poppins text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight mb-4">
-              AI Visibility Calculator
+              AI Topic Analyzer
             </h1>
             <p className="font-inter text-lg text-muted-foreground max-w-2xl leading-relaxed">
-              Test how well your topic ranks in AI search results with our
+              Test how well your topic performs in AI search results with our
               advanced 5-point analysis.
             </p>
           </div>
@@ -516,7 +516,7 @@ export default function AiScorePage() {
                     </p>
                     <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
                       <MetricCard
-                        label="Ranking Prob."
+                        label="Topic Relevancy"
                         value={`${result?.advanced_scores?.ranking_probability}%`}
                         type="secondary"
                         className="h-auto p-4"
@@ -709,7 +709,7 @@ export default function AiScorePage() {
                 <p className="font-inter text-base text-muted-foreground max-w-lg leading-relaxed mb-6">
                   {result.upsell?.title ||
                     "Unlock precise data on competitors, backlinks, and more."}{" "}
-                  Stay ahead in the AI SERP rankings.
+                  Stay ahead in AI content discovery.
                 </p>
 
                 <div className="flex flex-wrap gap-3">

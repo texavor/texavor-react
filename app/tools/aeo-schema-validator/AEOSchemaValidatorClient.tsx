@@ -195,11 +195,11 @@ export default function AEOSchemaValidatorClient() {
           <div className="max-w-3xl animate-fade-slide-up">
             <p className="tx-eyebrow mb-5">FREE SEO TOOL</p>
             <h1 className="font-poppins text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-tight mb-4">
-              GEO Schema Validator
+              AI Schema Validator
             </h1>
             <p className="font-inter text-lg text-muted-foreground max-w-2xl leading-relaxed">
               Is your content ready for AI search? Analyze your Schema Markup
-              for Generative Engine Optimization (GEO) readiness.
+              for AI visibility readiness.
             </p>
           </div>
         </div>
@@ -317,11 +317,11 @@ export default function AEOSchemaValidatorClient() {
                     </svg>
                   </div>
                   <CardTitle className="text-xl font-poppins text-foreground">
-                    GEO Health Analysis
+                    AI Schema Health Analysis
                   </CardTitle>
                   <CardDescription className="font-inter text-muted-foreground">
-                    Comprehensive checks for AI search readiness and generative
-                    engine optimization.
+                    Comprehensive checks for AI search readiness and structured
+                    data optimization.
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="pb-6">

@@ -211,12 +211,12 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                   <SidebarVisual />
                 </div>
                 <h4 className="font-poppins text-base font-bold text-foreground mb-2">
-                  Get Cited by AI Search
+                  Build Topical Authority
                 </h4>
                 <p className="font-inter text-sm text-muted-foreground mb-4 leading-relaxed">
-                  Texavor gives serious writers the research depth to get{" "}
-                  <span className="font-semibold text-foreground">cited</span>{" "}
-                  by ChatGPT, Perplexity &amp; Claude.
+                  Texavor gives serious writers the research depth to build{" "}
+                  <span className="font-semibold text-foreground">authority</span>{" "}
+                  across AI search engines.
                 </p>
                 <Link
                   href="/"
@@ -272,12 +272,12 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
             </div>
             <div className="flex-1">
               <h3 className="font-poppins text-xl font-bold text-foreground mb-2">
-                Ready to get cited by AI?
+                Ready to build real topical authority?
               </h3>
               <p className="font-inter text-sm text-muted-foreground leading-relaxed">
-                Texavor structures your expertise into content that ChatGPT,
-                Perplexity, and Claude actually cite. Join writers who&apos;ve
-                stopped guessing and started building real AI authority.
+                Texavor structures your expertise into content that both audiences and
+                AI engines trust. Join writers who&apos;ve
+                stopped guessing and started building real authority.
               </p>
             </div>
             <Button
