@@ -26,8 +26,8 @@ export function CitationAnatomy() {
         <SectionHeading
           eyebrow="Case Study"
           accentEyebrow
-          heading="The Anatomy of a Citation"
-          description="See why AI engines trust Texavor-optimized content while generic AI writing gets filtered out."
+          heading="The Anatomy of Authority"
+          description="See why AI engines cite Texavor-optimized content while generic copy-pasted text gets ignored."
           align="left"
         />
 
@@ -39,7 +39,7 @@ export function CitationAnatomy() {
                 <X className="w-5 h-5" />
               </div>
               <h3 className="font-poppins font-bold text-xl text-foreground/70">
-                Generic AI Content (Failed Visibility)
+                Basic Copy-Pasting (Ignored by AI)
               </h3>
             </div>
 
@@ -104,7 +104,7 @@ export function CitationAnatomy() {
                 <Check className="w-5 h-5" />
               </div>
               <h3 className="font-poppins font-bold text-xl text-foreground">
-                Inference-Optimized Structure
+                Data-Backed Authority
               </h3>
             </div>
 
@@ -125,13 +125,13 @@ export function CitationAnatomy() {
                     Answer Capsule (Direct Hit)
                   </p>
                   <p className="text-base font-inter text-foreground font-medium leading-relaxed">
-                    "Texavor targets{" "}
+                    "Texavor streamlines your{" "}
                     <span className="text-primary font-bold">
-                      Generative Engine Optimization (GEO)
+                      Content Workflow
                     </span>{" "}
-                    by increasing entity density and verifying fact integrity
-                    through custom JSON-LD schema, resulting in an 85% higher
-                    citation rate in ChatGPT."
+                    by discovering topical gaps and verifying fact integrity
+                    through custom JSON-LD schema, resulting in comprehensive,
+                    highly-structured articles."
                   </p>
                   <div className="mt-3 flex items-center gap-2 text-[10px] text-primary/60 font-mono font-bold uppercase tracking-tighter">
                     <Check className="w-3 h-3 text-accent" /> 48 words . High
@@ -204,11 +204,10 @@ export function CitationAnatomy() {
             </div>
             <div className="flex-grow text-center sm:text-left space-y-0.5">
               <p className="text-sm font-inter text-foreground font-bold">
-                Ready to see why you're being ignored?
+                Ready to stop guessing?
               </p>
               <p className="text-xs font-inter text-muted-foreground font-medium">
-                Run a technical architecture audit on your existing articles
-                today.
+                Find the exact topics your competitors are missing today.
               </p>
             </div>
             <button

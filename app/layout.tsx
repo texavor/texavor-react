@@ -57,7 +57,7 @@ export const metadata: Metadata = {
       "Texavor - GEO & Content Optimization Platform for Writers, Marketers & Developers",
   },
   description:
-    "Generate high-impact, E-E-A-T optimized technical articles. Monitor AI Visibility on ChatGPT, Perplexity & Claude. Fix content decay before you lose rank.",
+    "Build your AI content workflow. Discover topics across ChatGPT and Perplexity, and generate data-backed briefs.",
   verification: {
     google: "E4iB-NQGsBin8Lyn7z9uYrmUZR0YwVl4_FhB4bWaKzo",
   },
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     title:
       "Texavor - GEO & Content Optimization Platform for Writers, Marketers & Developers",
     description:
-      "Generate high-impact, E-E-A-T optimized technical articles. Monitor AI Visibility on ChatGPT, Perplexity & Claude. Fix content decay before you lose rank.",
+      "Build your AI content workflow. Discover topics across ChatGPT and Perplexity, and generate data-backed briefs.",
     // images: "/easywriteOpenGraph.png",
   },
   twitter: {
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     title:
       "Texavor - GEO & Content Optimization Platform for Writers, Marketers & Developers",
     description:
-      "Generate high-impact, E-E-A-T optimized technical articles. Monitor AI Visibility on ChatGPT, Perplexity & Claude. Fix content decay before you lose rank.",
+      "Build your AI content workflow. Discover topics across ChatGPT and Perplexity, and generate data-backed briefs.",
     // images: "/easywriteOpenGraph.png",
   },
 

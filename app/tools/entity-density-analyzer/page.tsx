@@ -3,10 +3,9 @@ import EntityDensityClient from "./EntityDensityClient";
 import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
-  title:
-    "Free Entity Density Analyzer | LLM Understanding & GEO Audit | Texavor",
+    "Free Entity Density Analyzer | LLM Understanding Audit | Texavor",
   description:
-    "Analyze your content for entity density and LLM readiness. See how AI search engines extract entities and improve your GEO (Generative Engine Optimization) performance.",
+    "Analyze your content for entity density and LLM readiness. See how AI search engines extract entities and improve your knowledge graph relevance.",
   alternates: {
     canonical: "/tools/entity-density-analyzer",
   },
@@ -45,7 +44,7 @@ export default function EntityDensityPage() {
     url: "https://www.texavor.com/tools/entity-density-analyzer",
     name: "Entity Density Analyzer - LLM Readiness Tool",
     description:
-      "Identify key entities and analyze their density for improved entity-based SEO and Generative Engine Optimization.",
+      "Identify key entities and analyze their density to ensure structured understanding by Large Language Models.",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     browserRequirements: "Requires JavaScript. Requires HTML5.",

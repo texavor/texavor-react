@@ -9,9 +9,9 @@ export function MidArticleCTA() {
       <div className="relative bg-card border border-border rounded-lg px-8 py-10 overflow-hidden flex flex-col sm:flex-row items-center sm:items-end gap-6 shadow-tx-sm">
         {/* Headline */}
         <div className="flex-1">
-          <p className="tx-eyebrow mb-2">GEO ACCELERATOR</p>
+          <p className="tx-eyebrow mb-2">AI WORKFLOW</p>
           <h4 className="font-poppins text-2xl font-bold text-foreground leading-tight">
-            Get cited. <span className="text-primary">Not just</span> ranked.
+            Build authority. <span className="text-primary">Not just</span> traffic.
           </h4>
           <p className="font-inter text-sm text-muted-foreground mt-2 max-w-md">
             Implement the citation patterns that AI search engines like ChatGPT

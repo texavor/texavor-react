@@ -367,7 +367,7 @@ export default function BrandAuthorityPage() {
                   Domain Authority
                 </CardTitle>
                 <CardDescription className="font-inter text-muted-foreground">
-                  Predict ranking potential (0-100).
+                  Estimate domain trust signals (0-100).
                 </CardDescription>
               </CardHeader>
               <CardContent className="flex items-center justify-center p-6">
@@ -595,7 +595,7 @@ export default function BrandAuthorityPage() {
                   </h3>
                   <p className="font-inter text-base text-muted-foreground max-w-lg leading-relaxed">
                     {result.upsell.message} Unlock the full backlink profile,
-                    keyword gaps, and top pages to build a complete GEO
+                    keyword gaps, and top pages to build a complete content
                     strategy.
                   </p>
                   <div className="flex flex-wrap gap-2 mt-4">
