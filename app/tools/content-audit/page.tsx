@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
-    "Free Content Audit Tool | AI Search Quality Audit | Texavor",
+  title: "Free Content Audit Tool | AI Search Quality Audit | Texavor",
   description:
     "Scan any URL for technical errors, thin content, and AI search readiness. Get a free health score and actionable fix list to improve your visibility in generative engines.",
   alternates: {

@@ -3,7 +3,7 @@ import FaqSchemaPage from "./FaqSchemaPage";
 import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
-    "Free FAQ Schema Generator | JSON-LD & AI Rich Snippet Tool | Texavor",
+  title: "Free FAQ Schema Generator | JSON-LD & AI Rich Snippet Tool | Texavor",
   description:
     "Instantly generate AI-ready FAQ Schema. Type your questions or auto-extract from content to improve knowledge extraction in AI search.",
   alternates: {

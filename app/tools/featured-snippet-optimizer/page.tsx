@@ -3,7 +3,7 @@ import DirectAnswerClient from "./DirectAnswerClient";
 import Schema from "@/components/Schema"; // Assuming a Schema component for structured data
 
 export const metadata: Metadata = {
-    "Free Featured Snippet Optimizer | Win AI Direct Answers | Texavor",
+  title: "Free Featured Snippet Optimizer | Win AI Direct Answers | Texavor",
   description:
     "Optimize your content structure for AI direct answers. Detect featured snippet opportunities, analyze answer structure, and improve your knowledge graph presence.",
   alternates: {

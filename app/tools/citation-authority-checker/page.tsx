@@ -5,6 +5,7 @@ import Schema from "@/components/Schema";
 export const metadata: Metadata = {
   title:
     "Free Citation Authority Checker | Source Validation & E-E-A-T Audit | Texavor",
+  description:
     "Audit external links and score citation authority (.edu/.gov) for the AI era. Boost E-E-A-T signals and establish credible data sources for AI content workflows.",
   alternates: {
     canonical: "/tools/citation-authority-checker",

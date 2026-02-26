@@ -3,6 +3,7 @@ import VisualSearchClient from "./VisualSearchClient";
 import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
+  title:
     "Free Alt Text Checker | AI Visual Search & Accessibility Audit | Texavor",
   description:
     "Instantly audit image alt text for WCAG compliance and AI Lens optimization. Improve image metadata for better visibility in visual search results.",

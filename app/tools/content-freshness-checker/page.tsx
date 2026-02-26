@@ -3,7 +3,7 @@ import ContentFreshnessClient from "./ContentFreshnessClient";
 import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
-    "Free Content Freshness Checker | AI Relevance Auditor | Texavor",
+  title: "Free Content Freshness Checker | AI Relevance Auditor | Texavor",
   description:
     "Audit your content freshness for the AI era. Detect content decay, analyze update frequency, and improve your relevance in AI search.",
   alternates: {
