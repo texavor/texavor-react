@@ -3,7 +3,7 @@ import EntityDensityClient from "./EntityDensityClient";
 import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
-    "Free Entity Density Analyzer | LLM Understanding Audit | Texavor",
+  title: "Free Entity Density Analyzer | LLM Understanding Audit | Texavor",
   description:
     "Analyze your content for entity density and LLM readiness. See how AI search engines extract entities and improve your knowledge graph relevance.",
   alternates: {

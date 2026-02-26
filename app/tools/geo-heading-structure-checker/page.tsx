@@ -3,6 +3,7 @@ import SemanticStructureClient from "./SemanticStructureClient";
 import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
+  title:
     "Free Semantic Heading Structure Checker | HTML H1-H6 Hierarchy Validator | Texavor",
   description:
     "Instantly validate your HTML heading hierarchy for the AI era. Fix skipped H2/H3 levels, missing H1 tags, and improve semantic depth for AI search.",

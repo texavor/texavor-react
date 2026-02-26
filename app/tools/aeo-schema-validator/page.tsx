@@ -3,6 +3,7 @@ import AEOSchemaValidatorClient from "./AEOSchemaValidatorClient";
 import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
+  title:
     "AI Schema Validator | AI Search Readiness & Entity Content Audit | Texavor",
   description:
     "Validate your Schema Markup for the Generative Engine era. Audit content for LLM understanding, entity density, and readiness to appear in AI search results.",

@@ -3,7 +3,7 @@ import AiVisibilityPage from "./AiVisibilityPage";
 import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
-    "Free AI Topic Analyzer | AI Search Visibility Checker | Texavor",
+  title: "Free AI Topic Analyzer | AI Search Visibility Checker | Texavor",
   description:
     "Test how well your content covers topics for AI search results like ChatGPT and Perplexity. Improve visibility in generative engines with our advanced 5-point analysis.",
   alternates: {
