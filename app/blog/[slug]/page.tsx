@@ -1,6 +1,6 @@
 // app/articles/[slug]/page.tsx
 
-import React from "react";
+import React, { cache } from "react";
 import { Marked } from "marked";
 import { markedHighlight } from "marked-highlight";
 import hljs from "highlight.js";
@@ -61,23 +61,27 @@ const marked = new Marked(
   }),
 );
 
-// This function now runs at BUILD TIME for each slug
-async function getArticleData(slug: string): Promise<ArticleData | null> {
-  try {
-    const axiosInstance = getServerAxiosInstance();
-    const response = await axiosInstance.get(
-      `${baseURL}/easywrite_articles/${slug}`,
-    );
-    return response.data;
-  } catch (error) {
-    console.error(`Error fetching article: ${slug}`, error);
-    return null;
-  }
-}
+// This function now runs at BUILD TIME for each slug and is memoized per request
+const getArticleData = cache(
+  async (slug: string): Promise<ArticleData | null> => {
+    try {
+      const axiosInstance = getServerAxiosInstance();
+      const response = await axiosInstance.get(
+        `${baseURL}/easywrite_articles/${slug}`,
+      );
+      return response.data;
+    } catch (error) {
+      console.error(`Error fetching article: ${slug}`, error);
+      return null;
+    }
+  },
+);
 
 // -------------------------------------------------------------------
-// NEW: Function to fetch all slugs for SSG
 // -------------------------------------------------------------------
+export const revalidate = 3600; // Cache pages for 1 hour to prevent constant CPU spikes
+export const dynamicParams = true; // Dynamically server-generate new articles and then cache them
+
 async function getAllArticlesForStaticGen(): Promise<{ slug: string }[] | []> {
   try {
     const axiosInstance = getServerAxiosInstance();
