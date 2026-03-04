@@ -62,8 +62,8 @@ export default function AIPitfalls() {
             The Toxicity of Mass Generation
           </h2>
           <p className="text-lg font-inter text-muted-foreground max-w-2xl leading-relaxed">
-            In the generative era, volume is a liability. Precision is the only
-            surviving strategy.
+            In the AI era, volume is a liability. Precision discovery and
+            workflows are the only surviving strategies.
           </p>
         </div>
 

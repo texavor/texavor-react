@@ -4,9 +4,9 @@ import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
   title:
-    "Free Alt Text Checker | GEO Visual Search & Accessibility Audit | Texavor",
+    "Free Alt Text Checker | AI Visual Search & Accessibility Audit | Texavor",
   description:
-    "Instantly audit image alt text for WCAG compliance and AI Lens optimization. Improve image metadata for better GEO (Generative Engine Optimization) in visual search results.",
+    "Instantly audit image alt text for WCAG compliance and AI Lens optimization. Improve image metadata for better visibility in visual search results.",
   alternates: {
     canonical: "/tools/alt-text-checker",
   },
@@ -43,7 +43,7 @@ export default function AltTextCheckerPage() {
     "@type": "SoftwareApplication",
     "@id": "https://www.texavor.com/tools/alt-text-checker",
     url: "https://www.texavor.com/tools/alt-text-checker",
-    name: "Alt Text Checker - GEO Visual Tool",
+    name: "Alt Text Checker - AI Visual Tool",
     description:
       "Audit image alt text for WCAG compliance and AI visual search optimization for generative engines.",
     applicationCategory: "BusinessApplication",

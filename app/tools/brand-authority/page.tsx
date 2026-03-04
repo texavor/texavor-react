@@ -42,9 +42,9 @@ export default function Page() {
     "@type": "SoftwareApplication",
     "@id": "https://www.texavor.com/tools/brand-authority",
     url: "https://www.texavor.com/tools/brand-authority",
-    name: "Brand Authority Checker - E-E-A-T & GEO Audit Tool",
+    name: "Brand Authority Checker - E-E-A-T & Trust Audit Tool",
     description:
-      "Calculate your Brand Authority Score instantly. Analyze Social Links, Knowledge Graph Schema, and AI visibility signals for better Generative Engine Optimization.",
+      "Calculate your Brand Authority Score instantly. Analyze Social Links, Knowledge Graph Schema, and AI visibility signals.",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     browserRequirements: "Requires JavaScript. Requires HTML5.",

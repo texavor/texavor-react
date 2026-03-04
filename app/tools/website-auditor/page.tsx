@@ -3,9 +3,9 @@ import WebsiteAuditorPage from "./WebsiteAuditorPage";
 import Schema from "@/components/Schema";
 
 export const metadata: Metadata = {
-  title: "Website AI Auditor | Technical GEO & RAG Readiness Test | Texavor",
+  title: "Website AI Auditor | Technical Readiness Test | Texavor",
   description:
-    "Audit your website for the AI era. Check technical readiness for crawlers (GPTBot, CCBot), RAG systems, and entity understanding for better GEO rankings.",
+    "Audit your website for the AI era. Check technical readiness for crawlers (GPTBot, CCBot), RAG systems, and entity understanding for better discoverability.",
   alternates: {
     canonical: "/tools/website-auditor",
   },
@@ -42,7 +42,7 @@ export default function Page() {
     "@type": "SoftwareApplication",
     "@id": "https://www.texavor.com/tools/website-auditor",
     url: "https://www.texavor.com/tools/website-auditor",
-    name: "Website AI Auditor - Technical GEO Tool",
+    name: "Website AI Auditor - Technical Tool",
     description:
       "Technical audit for the generative engine era. Check Robots.txt, Sitemap, and Schema health for AI Crawlers and RAG systems.",
     applicationCategory: "BusinessApplication",

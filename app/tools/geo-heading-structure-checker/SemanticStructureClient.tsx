@@ -149,7 +149,7 @@ export default function SemanticStructureClient() {
             <p className="font-inter text-lg text-muted-foreground max-w-2xl leading-relaxed">
               Search engines and AI models rely on a logical heading hierarchy
               to extract meaning. Validate your content's structure for
-              Generative Engine Optimization (GEO).
+              AI search readiness.
             </p>
           </div>
         </div>
@@ -326,7 +326,7 @@ export default function SemanticStructureClient() {
                   </CardTitle>
                   <CardDescription className="font-inter">
                     Instantly spot missing H1s or illogical jumps (H2 → H4) that
-                    hurt your GEO score.
+                    hurt your semantic score.
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="pb-6">

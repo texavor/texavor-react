@@ -41,7 +41,7 @@ export interface Tool {
 
 export const categories: ToolCategory[] = [
   { name: "All Tools", slug: "all" },
-  { name: "AI Visibility & GEO", slug: "ai-aeo" },
+  { name: "AI Search & Workflows", slug: "ai-aeo" },
   { name: "Authority & E-E-A-T", slug: "authority" },
   { name: "Content Optimization", slug: "content" },
   { name: "Technical & Schema", slug: "technical" },
@@ -59,9 +59,9 @@ export const tools: Tool[] = [
     changeFrequency: "weekly",
   },
   {
-    title: "AI Visibility Calculator",
+    title: "AI Topic Analyzer",
     description:
-      "Analyze keyword rankings in AI Overviews (SGE) and optimize for Large Language Models.",
+      "Analyze keyword relevance for AI Overviews (SGE) and optimize your topics for Large Language Models.",
     href: "/tools/ai-visibility-calculator",
     iconName: "Sparkles",
     category: "ai-aeo",
@@ -109,9 +109,9 @@ export const tools: Tool[] = [
     changeFrequency: "weekly",
   },
   {
-    title: "GEO Schema Validator",
+    title: "AI Schema Validator",
     description:
-      "Validate your Schema Markup for Generative Engine Optimization (GEO) and AI Search readiness.",
+      "Validate your Schema Markup for AI Search readiness and ensure perfect knowledge graph extraction.",
     href: "/tools/aeo-schema-validator",
     iconName: "Sparkles",
     category: "technical",
@@ -119,9 +119,9 @@ export const tools: Tool[] = [
     changeFrequency: "weekly",
   },
   {
-    title: "GEO Heading Structure Checker",
+    title: "Semantic Heading Structure Checker",
     description:
-      "Validate HTML heading hierarchy (H1-H6). Fix skipped levels and missing H1s to improve GEO & accessibility.",
+      "Validate HTML heading hierarchy (H1-H6). Fix skipped levels and missing H1s to improve semantic structures & accessibility.",
     href: "/tools/geo-heading-structure-checker",
     iconName: "LayoutDashboard",
     category: "content",
@@ -203,13 +203,13 @@ export const tools: Tool[] = [
 export const getIconByTitle = (title: string): React.ElementType => {
   const customMap: Record<string, React.ElementType> = {
     "Domain Authority Checker": IconDomainAuthority,
-    "AI Visibility Calculator": IconAIVisibility,
+    "AI Topic Analyzer": IconAIVisibility,
     "Website AI Auditor": IconWebsiteAuditor,
     "FAQ Schema Generator": IconFAQSchema,
     "Topical Authority Map": IconTopicalAuthority,
     "Content Quality Audit": IconContentQuality,
-    "GEO Schema Validator": IconGEOSchema,
-    "GEO Heading Structure Checker": IconHeadingChecker,
+    "AI Schema Validator": IconGEOSchema,
+    "Semantic Heading Structure Checker": IconHeadingChecker,
     "Citation Authority Checker": IconCitationAuthority,
     "Schema Markup Validator": IconSchemaMarkup,
     "Alt Text Checker": IconAltText,

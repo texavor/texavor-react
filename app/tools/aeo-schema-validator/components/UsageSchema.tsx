@@ -6,9 +6,9 @@ const UsageSchema = () => {
     "@type": "SoftwareApplication",
     "@id": "https://www.texavor.com/tools/aeo-schema-validator",
     url: "https://www.texavor.com/tools/aeo-schema-validator",
-    name: "GEO Schema Validator - Free AI Search Readiness Tool",
+    name: "AI Schema Validator - Free AI Search Readiness Tool",
     description:
-      "Validate your Schema Markup for Generative Engine Optimization (GEO) and AI Search readiness. Analyze your content for AI search engines and get optimization recommendations.",
+      "Validate your Schema Markup for AI Search readiness. Analyze your content for AI search engines and get optimization recommendations.",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     browserRequirements: "Requires JavaScript. Requires HTML5.",

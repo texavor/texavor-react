@@ -43,9 +43,9 @@ export default function CitationOpportunitiesPage() {
     "@type": "SoftwareApplication",
     "@id": "https://www.texavor.com/tools/citation-opportunities",
     url: "https://www.texavor.com/tools/citation-opportunities",
-    name: "Citation Opportunities Finder - GEO Trust Tool",
+    name: "Citation Opportunities Finder - AI Trust Tool",
     description:
-      "Identify where citations should be added to improve E-E-A-T and content credibility for generative engine optimization.",
+      "Identify where citations should be added to improve E-E-A-T and content credibility for AI search workflows.",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     browserRequirements: "Requires JavaScript. Requires HTML5.",
