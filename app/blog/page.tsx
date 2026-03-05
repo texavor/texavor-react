@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 60; // Revalidate every 60 seconds
+export const revalidate = 36000; // Revalidate every 60 seconds
 
 async function getArticles() {
   const axios = require("axios");

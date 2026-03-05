@@ -79,7 +79,7 @@ const getArticleData = cache(
 
 // -------------------------------------------------------------------
 // -------------------------------------------------------------------
-export const revalidate = 3600; // Cache pages for 1 hour to prevent constant CPU spikes
+export const revalidate = 36000; // Cache pages for 1 hour to prevent constant CPU spikes
 export const dynamicParams = true; // Dynamically server-generate new articles and then cache them
 
 async function getAllArticlesForStaticGen(): Promise<{ slug: string }[] | []> {
