@@ -37,7 +37,11 @@ export function ComparisonTable() {
   ];
 
   return (
-    <div className="w-full overflow-x-auto rounded-xl border border-border bg-card shadow-tx-sm">
+    <div
+      className="w-full overflow-x-auto rounded-xl border border-border bg-card shadow-tx-sm"
+      tabIndex={0}
+      aria-label="Feature comparison table"
+    >
       <table className="w-full min-w-[900px] text-left border-collapse">
         <thead>
           <tr className="border-b border-border bg-muted/20">

@@ -5,7 +5,7 @@ import { Check } from "lucide-react";
 import Link from "next/link";
 import { PRICING_TIERS } from "@/lib/pricing";
 import { useState } from "react";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 export default function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false); // Monthly is default
@@ -55,6 +55,8 @@ export default function Pricing() {
                   Annually
                 </TabsTrigger>
               </TabsList>
+              <TabsContent value="monthly" className="hidden" />
+              <TabsContent value="annual" className="hidden" />
             </Tabs>
             <div
               className={`mt-3 text-[11px] font-bold font-inter text-[#1d533f] dark:text-emerald-400 uppercase tracking-widest bg-[#1d533f]/10 dark:bg-emerald-400/10 px-3 py-1 rounded transition-opacity duration-300 ${isAnnual ? "opacity-100" : "opacity-0"}`}

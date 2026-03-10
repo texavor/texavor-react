@@ -62,7 +62,7 @@ export default function SocialProof() {
 
         {/* Company Logos */}
         <div className="pt-8 border-t border-border/40 dark:border-white/10">
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
             {/* Simplified Logo Placeholders */}
             {logos.map((logo, index) => (
               <div

@@ -55,7 +55,7 @@ export default function LandingNav() {
           <div className="relative w-7 h-7 overflow-hidden">
             <Image
               src="/texavor.png"
-              alt="Texavor"
+              alt=""
               fill
               className="object-contain dark:brightness-0 dark:invert"
             />

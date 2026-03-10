@@ -16,7 +16,7 @@ export default function Footer() {
               <div className="relative w-8 h-8 rounded flex items-center justify-center">
                 <Image
                   src="/texavor.png"
-                  alt="Texavor"
+                  alt=""
                   fill
                   className="object-contain dark:brightness-0 dark:invert"
                 />
@@ -35,9 +35,9 @@ export default function Footer() {
           <div className="flex flex-wrap gap-12 md:gap-24">
             {/* Product */}
             <div>
-              <h4 className="font-semibold text-foreground font-poppins mb-6">
+              <p className="font-semibold text-foreground font-poppins mb-6">
                 Product
-              </h4>
+              </p>
               <ul className="space-y-4 text-sm text-muted-foreground font-inter">
                 <li>
                   <Link
@@ -84,9 +84,9 @@ export default function Footer() {
 
             {/* Tools */}
             <div>
-              <h4 className="font-semibold text-foreground font-poppins mb-6">
+              <p className="font-semibold text-foreground font-poppins mb-6">
                 Free Tools
-              </h4>
+              </p>
               <ul className="space-y-4 text-sm text-muted-foreground font-inter">
                 <li>
                   <Link
@@ -149,9 +149,9 @@ export default function Footer() {
 
             {/* Resources */}
             <div>
-              <h4 className="font-semibold text-foreground font-poppins mb-6">
+              <p className="font-semibold text-foreground font-poppins mb-6">
                 Resources
-              </h4>
+              </p>
               <ul className="space-y-4 text-sm text-muted-foreground font-inter">
                 <li>
                   <Link
@@ -182,9 +182,9 @@ export default function Footer() {
 
             {/* Socials */}
             <div>
-              <h4 className="font-semibold text-foreground font-poppins mb-6">
+              <p className="font-semibold text-foreground font-poppins mb-6">
                 Socials
-              </h4>
+              </p>
               <div className="flex items-center gap-4">
                 <Link
                   href="https://x.com/texavor"
