@@ -22,6 +22,9 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { axiosInstance } from "@/lib/axiosInstance";
+import { useLeadGeneration, DownloadFormat } from "@/hooks/useLeadGeneration";
+import { EmailCaptureModal } from "@/components/tools/EmailCaptureModal";
+import { FileJson, FileText } from "lucide-react";
 import SchemaValidatorSkeleton from "./SchemaValidatorSkeleton";
 import ScoreDisplay from "@/app/tools/aeo-schema-validator/components/ScoreDisplay";
 import SchemaTypeBadges from "./components/SchemaTypeBadges";
@@ -45,6 +48,7 @@ interface AeoChecks {
 }
 
 interface SchemaValidatorResult {
+  public_id: string;
   url: string;
   domain: string;
   score: number;
@@ -105,6 +109,14 @@ export default function SchemaValidatorClient() {
 
   const result = mutation.data;
   const loading = mutation.isPending;
+
+  const {
+    showModal,
+    setShowModal,
+    isSubmitting: isLeadSubmitting,
+    submitEmail,
+    handleDownloadClick,
+  } = useLeadGeneration(result?.public_id);
 
   // Calculate stats from result
   const stats = result
@@ -411,6 +423,61 @@ export default function SchemaValidatorClient() {
                   </div>
                 </div>
               </div>
+
+              {/* Download Actions */}
+              <Card className="md:col-span-12 border border-border shadow-none rounded-xl bg-card overflow-hidden">
+                <CardContent className="p-6">
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div>
+                      <h4 className="font-poppins font-bold text-foreground">
+                        Export Results
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        Download this schema validation in your preferred
+                        format.
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-9 gap-2"
+                        onClick={() => handleDownloadClick("pdf")}
+                      >
+                        <FileText className="w-4 h-4 text-red-500" />
+                        PDF
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-9 gap-2"
+                        onClick={() => handleDownloadClick("json")}
+                      >
+                        <FileJson className="w-4 h-4 text-blue-500" />
+                        JSON
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-9 gap-2"
+                        onClick={() => handleDownloadClick("toon")}
+                      >
+                        <FileCode className="w-4 h-4 text-emerald-500" />
+                        TOON
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-9 gap-2"
+                        onClick={() => handleDownloadClick("md")}
+                      >
+                        <FileText className="w-4 h-4 text-muted-foreground" />
+                        Markdown
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
 
             {/* Detected Types */}
@@ -487,6 +554,13 @@ export default function SchemaValidatorClient() {
           </div>
         )}
       </div>
+
+      <EmailCaptureModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onSubmit={submitEmail}
+        isSubmitting={isLeadSubmitting}
+      />
     </div>
   );
 }

@@ -50,6 +50,9 @@ import LandingNav from "@/components/LandingNav";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useLeadGeneration, DownloadFormat } from "@/hooks/useLeadGeneration";
+import { EmailCaptureModal } from "@/components/tools/EmailCaptureModal";
+import { FileJson, FileText, FileCode } from "lucide-react";
 
 // --- Types based on Guide ---
 
@@ -91,6 +94,7 @@ interface UpsellData {
 }
 
 interface AnalysisResult {
+  public_id: string;
   keyword: string;
   website: string;
   overall_score: number;
@@ -202,6 +206,14 @@ export default function AiScorePage() {
     ? (mutation.error as any)?.response?.data?.message ||
       mutation.error?.message
     : null;
+
+  const {
+    showModal,
+    setShowModal,
+    isSubmitting: isLeadSubmitting,
+    submitEmail,
+    handleDownloadClick,
+  } = useLeadGeneration(result?.public_id);
 
   const getDifficultyColor = (score: number) => {
     if (score <= 40) return "text-green-600 bg-green-50 border-green-200";
@@ -539,6 +551,60 @@ export default function AiScorePage() {
                     </div>
                   </CardContent>
                 </Card>
+
+                {/* Download Actions */}
+                <Card className="border border-border shadow-none rounded-xl bg-card overflow-hidden">
+                  <CardContent className="p-6">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                      <div>
+                        <h4 className="font-poppins font-bold text-foreground">
+                          Export Results
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          Download this analysis in your preferred format.
+                        </p>
+                      </div>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-9 gap-2"
+                          onClick={() => handleDownloadClick("pdf")}
+                        >
+                          <FileText className="w-4 h-4 text-red-500" />
+                          PDF
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-9 gap-2"
+                          onClick={() => handleDownloadClick("json")}
+                        >
+                          <FileJson className="w-4 h-4 text-blue-500" />
+                          JSON
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-9 gap-2"
+                          onClick={() => handleDownloadClick("toon")}
+                        >
+                          <FileCode className="w-4 h-4 text-emerald-500" />
+                          TOON
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-9 gap-2"
+                          onClick={() => handleDownloadClick("md")}
+                        >
+                          <FileText className="w-4 h-4 text-muted-foreground" />
+                          Markdown
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
 
               {/* Right Column: Radar Chart (Widget 2) */}
@@ -765,6 +831,13 @@ export default function AiScorePage() {
           </div>
         )}
       </div>
+
+      <EmailCaptureModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onSubmit={submitEmail}
+        isSubmitting={isLeadSubmitting}
+      />
     </div>
   );
 }

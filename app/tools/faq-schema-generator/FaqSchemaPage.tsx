@@ -43,6 +43,9 @@ import "highlight.js/styles/github-dark.css";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useLeadGeneration, DownloadFormat } from "@/hooks/useLeadGeneration";
+import { EmailCaptureModal } from "@/components/tools/EmailCaptureModal";
+import { FileJson, FileText, FileCode } from "lucide-react";
 
 // --- Types & Schemas ---
 
@@ -65,6 +68,7 @@ interface QaPair {
 }
 
 interface ApiResponse {
+  public_id: string;
   source: string;
   qa_count: number;
   qa_pairs: QaPair[];
@@ -83,6 +87,16 @@ export default function FaqSchemaPage() {
   const [qaPairs, setQaPairs] = useState<QaPair[]>([
     { question: "", answer: "" },
   ]);
+  const [result, setResult] = useState<ApiResponse | null>(null);
+
+  const {
+    showModal,
+    setShowModal,
+    isSubmitting: isLeadSubmitting,
+    submitEmail,
+    handleDownloadClick,
+  } = useLeadGeneration(result?.public_id);
+
   const [generatedSchema, setGeneratedSchema] = useState<any>(null);
   const [generatedMicrodata, setGeneratedMicrodata] = useState<string>("");
   const [showMicrodata, setShowMicrodata] = useState(false);
@@ -106,6 +120,7 @@ export default function FaqSchemaPage() {
       setQaPairs(data.qa_pairs);
       setGeneratedSchema(data.json_ld);
       setGeneratedMicrodata(data.microdata);
+      setResult(data);
       toast.success(`Found ${data.qa_count} questions!`);
       // Switch to manual tab to show results in inputs
       setActiveTab("manual");
@@ -566,6 +581,62 @@ export default function FaqSchemaPage() {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Download Actions */}
+            {result && (
+              <Card className="border border-border shadow-none rounded-xl bg-card overflow-hidden">
+                <CardContent className="p-6">
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div>
+                      <h4 className="font-poppins font-bold text-foreground whitespace-nowrap">
+                        Export Schema
+                      </h4>
+                      <p className="text-xs text-muted-foreground">
+                        Download your FAQ schema as a report.
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-9 gap-2"
+                        onClick={() => handleDownloadClick("pdf")}
+                      >
+                        <FileText className="w-4 h-4 text-red-500" />
+                        PDF
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-9 gap-2"
+                        onClick={() => handleDownloadClick("json")}
+                      >
+                        <FileJson className="w-4 h-4 text-blue-500" />
+                        JSON
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-9 gap-2"
+                        onClick={() => handleDownloadClick("toon")}
+                      >
+                        <FileCode className="w-4 h-4 text-emerald-500" />
+                        TOON
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-9 gap-2"
+                        onClick={() => handleDownloadClick("md")}
+                      >
+                        <FileText className="w-4 h-4 text-muted-foreground" />
+                        MD
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
           </div>
         </div>
 
@@ -616,6 +687,13 @@ export default function FaqSchemaPage() {
           </div>
         </div>
       </div>
+
+      <EmailCaptureModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onSubmit={submitEmail}
+        isSubmitting={isLeadSubmitting}
+      />
     </div>
   );
 }

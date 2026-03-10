@@ -36,6 +36,9 @@ import ScoreDisplay from "./components/ScoreDisplay";
 import AEOSchemaValidatorSkeleton from "./AEOSchemaValidatorSkeleton";
 import hljs from "highlight.js";
 import "highlight.js/styles/github-dark.css";
+import { useLeadGeneration, DownloadFormat } from "@/hooks/useLeadGeneration";
+import { EmailCaptureModal } from "@/components/tools/EmailCaptureModal";
+import { FileJson, FileText, FileCode } from "lucide-react";
 
 // --- Types ---
 const formSchema = z.object({
@@ -43,6 +46,7 @@ const formSchema = z.object({
 });
 
 interface AEOAnalysisResult {
+  public_id: string;
   url: string;
   domain: string;
   score: number;
@@ -133,6 +137,14 @@ export default function AEOSchemaValidatorClient() {
 
   const result = mutation.data;
   const loading = mutation.isPending;
+
+  const {
+    showModal,
+    setShowModal,
+    isSubmitting: isLeadSubmitting,
+    submitEmail,
+    handleDownloadClick,
+  } = useLeadGeneration(result?.public_id);
 
   // Watch for token and pending values
   useEffect(() => {
@@ -415,8 +427,62 @@ export default function AEOSchemaValidatorClient() {
               </div>
 
               {/* Health Checks Column */}
-              <div className="md:col-span-8">
+              <div className="md:col-span-8 space-y-6">
                 <AEOHealthGrid checks={result.aeo_checks} />
+
+                {/* Download Actions */}
+                <Card className="border border-border shadow-none rounded-xl bg-card overflow-hidden">
+                  <CardContent className="p-6">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                      <div>
+                        <h4 className="font-poppins font-bold text-foreground">
+                          Export Results
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          Download this analysis in your preferred format.
+                        </p>
+                      </div>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-9 gap-2"
+                          onClick={() => handleDownloadClick("pdf")}
+                        >
+                          <FileText className="w-4 h-4 text-red-500" />
+                          PDF
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-9 gap-2"
+                          onClick={() => handleDownloadClick("json")}
+                        >
+                          <FileJson className="w-4 h-4 text-blue-500" />
+                          JSON
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-9 gap-2"
+                          onClick={() => handleDownloadClick("toon")}
+                        >
+                          <FileCode className="w-4 h-4 text-emerald-500" />
+                          TOON
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-9 gap-2"
+                          onClick={() => handleDownloadClick("md")}
+                        >
+                          <FileText className="w-4 h-4 text-muted-foreground" />
+                          Markdown
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             </div>
 
@@ -608,6 +674,13 @@ export default function AEOSchemaValidatorClient() {
           </div>
         )}
       </div>
+
+      <EmailCaptureModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onSubmit={submitEmail}
+        isSubmitting={isLeadSubmitting}
+      />
     </div>
   );
 }

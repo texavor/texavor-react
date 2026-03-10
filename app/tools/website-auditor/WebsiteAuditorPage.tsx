@@ -27,6 +27,14 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { axiosInstance } from "@/lib/axiosInstance";
+import { useLeadGeneration, DownloadFormat } from "@/hooks/useLeadGeneration";
+import { EmailCaptureModal } from "@/components/tools/EmailCaptureModal";
+import {
+  FileJson,
+  FileText,
+  FileCode,
+  FileText as FileTextIcon,
+} from "lucide-react";
 import {
   Loader2,
   CheckCircle,
@@ -62,6 +70,7 @@ interface RadarPoint {
 }
 
 interface AuditResult {
+  public_id: string;
   domain: string;
   ai_readiness_score: number;
   grade: string;
@@ -201,6 +210,14 @@ export default function WebsiteAuditorPage() {
 
   const result = mutation.data;
   const loading = mutation.isPending;
+
+  const {
+    showModal,
+    setShowModal,
+    isSubmitting: isLeadSubmitting,
+    submitEmail,
+    handleDownloadClick,
+  } = useLeadGeneration(result?.public_id);
   const error = mutation.error
     ? (mutation.error as any)?.response?.data?.message ||
       mutation.error?.message
@@ -513,6 +530,60 @@ export default function WebsiteAuditorPage() {
               </div>
             </div>
 
+            {/* Download Actions */}
+            <Card className="border border-border shadow-none rounded-xl bg-card overflow-hidden">
+              <CardContent className="p-6">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                  <div>
+                    <h4 className="font-poppins font-bold text-foreground">
+                      Export Audit
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      Download this AI readiness audit in your preferred format.
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-9 gap-2"
+                      onClick={() => handleDownloadClick("pdf")}
+                    >
+                      <FileTextIcon className="w-4 h-4 text-red-500" />
+                      PDF
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-9 gap-2"
+                      onClick={() => handleDownloadClick("json")}
+                    >
+                      <FileJson className="w-4 h-4 text-blue-500" />
+                      JSON
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-9 gap-2"
+                      onClick={() => handleDownloadClick("toon")}
+                    >
+                      <FileCode className="w-4 h-4 text-emerald-500" />
+                      TOON
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-9 gap-2"
+                      onClick={() => handleDownloadClick("md")}
+                    >
+                      <FileTextIcon className="w-4 h-4 text-muted-foreground" />
+                      Markdown
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             <div className="flex justify-center mt-8">
               <p className="text-sm text-gray-500">
                 Analysis based on {result.samples_analyzed} sample pages.
@@ -568,6 +639,13 @@ export default function WebsiteAuditorPage() {
           </div>
         )}
       </div>
+
+      <EmailCaptureModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onSubmit={submitEmail}
+        isSubmitting={isLeadSubmitting}
+      />
     </div>
   );
 }

@@ -13,6 +13,9 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Network, Loader2, TrendingUp, ArrowRight, Brain } from "lucide-react";
 import { toast } from "sonner";
 import { axiosInstance } from "@/lib/axiosInstance";
+import { useLeadGeneration, DownloadFormat } from "@/hooks/useLeadGeneration";
+import { EmailCaptureModal } from "@/components/tools/EmailCaptureModal";
+import { FileJson, FileText, FileCode } from "lucide-react";
 import EntityDensitySkeleton from "./EntityDensitySkeleton";
 import MetricCard from "@/app/tools/ai-visibility-calculator/MetriCard";
 import TopEntitiesTable from "./components/TopEntitiesTable";
@@ -55,6 +58,7 @@ interface SchemaStatusData {
 }
 
 interface EntityDensityResult {
+  public_id: string;
   url: string;
   entity_score: number;
   grade: string;
@@ -114,6 +118,14 @@ export default function EntityDensityClient() {
 
   const result = mutation.data;
   const loading = mutation.isPending;
+
+  const {
+    showModal,
+    setShowModal,
+    isSubmitting: isLeadSubmitting,
+    submitEmail,
+    handleDownloadClick,
+  } = useLeadGeneration(result?.public_id);
 
   const shouldShowUpsell =
     (result?.entity_score ?? 0) < 70 ||
@@ -317,6 +329,60 @@ export default function EntityDensityClient() {
               />
             </div>
 
+            {/* Download Actions */}
+            <Card className="border border-border shadow-none rounded-xl bg-card overflow-hidden">
+              <CardContent className="p-6">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                  <div>
+                    <h4 className="font-poppins font-bold text-foreground">
+                      Export Results
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      Download this analysis in your preferred format.
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-9 gap-2"
+                      onClick={() => handleDownloadClick("pdf")}
+                    >
+                      <FileText className="w-4 h-4 text-red-500" />
+                      PDF
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-9 gap-2"
+                      onClick={() => handleDownloadClick("json")}
+                    >
+                      <FileJson className="w-4 h-4 text-blue-500" />
+                      JSON
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-9 gap-2"
+                      onClick={() => handleDownloadClick("toon")}
+                    >
+                      <FileCode className="w-4 h-4 text-emerald-500" />
+                      TOON
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-9 gap-2"
+                      onClick={() => handleDownloadClick("md")}
+                    >
+                      <FileText className="w-4 h-4 text-muted-foreground" />
+                      Markdown
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Entity Breakdown */}
             <Card className="bg-card border border-border shadow-none rounded-xl">
               <CardContent className="p-6">
@@ -445,6 +511,13 @@ export default function EntityDensityClient() {
           </div>
         )}
       </div>
+
+      <EmailCaptureModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onSubmit={submitEmail}
+        isSubmitting={isLeadSubmitting}
+      />
     </div>
   );
 }

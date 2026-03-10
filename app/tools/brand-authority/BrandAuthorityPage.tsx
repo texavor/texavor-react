@@ -38,6 +38,9 @@ import {
 } from "recharts";
 import { toast } from "sonner";
 import Link from "next/link";
+import { useLeadGeneration, DownloadFormat } from "@/hooks/useLeadGeneration";
+import { EmailCaptureModal } from "@/components/tools/EmailCaptureModal";
+import { FileJson, FileText, FileCode } from "lucide-react";
 import { z } from "zod";
 import { useForm } from "@tanstack/react-form";
 import { zodValidator } from "@tanstack/zod-form-adapter";
@@ -52,6 +55,7 @@ import {
 
 // --- Types ---
 interface DomainAuthorityResponse {
+  public_id: string;
   domain_authority: number;
   metrics: {
     backlinks: number;
@@ -135,6 +139,14 @@ export default function BrandAuthorityPage() {
     return () => clearTimeout(timeout);
   }, [isWaitingForToken]);
 
+  const {
+    showModal,
+    setShowModal,
+    isSubmitting: isLeadSubmitting,
+    submitEmail,
+    handleDownloadClick,
+  } = useLeadGeneration(result?.public_id);
+
   // Mutation
   const checkMutation = useMutation({
     mutationFn: async (values: { url: string }) => {
@@ -172,6 +184,7 @@ export default function BrandAuthorityPage() {
 
       // Mock data for verification/demo purposes since API might not be live
       setResult({
+        public_id: "demo-" + Math.random().toString(36).substring(7),
         domain_authority: 45,
         metrics: {
           backlinks: 12500,
@@ -566,6 +579,60 @@ export default function BrandAuthorityPage() {
                   />
                 </div>
 
+                {/* Download Actions */}
+                <Card className="border border-border shadow-none rounded-xl bg-card overflow-hidden">
+                  <CardContent className="p-6">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                      <div>
+                        <h4 className="font-poppins font-bold text-foreground">
+                          Export Results
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          Download this analysis in your preferred format.
+                        </p>
+                      </div>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-9 gap-2"
+                          onClick={() => handleDownloadClick("pdf")}
+                        >
+                          <FileText className="w-4 h-4 text-red-500" />
+                          PDF
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-9 gap-2"
+                          onClick={() => handleDownloadClick("json")}
+                        >
+                          <FileJson className="w-4 h-4 text-blue-500" />
+                          JSON
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-9 gap-2"
+                          onClick={() => handleDownloadClick("toon")}
+                        >
+                          <FileCode className="w-4 h-4 text-emerald-500" />
+                          TOON
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-9 gap-2"
+                          onClick={() => handleDownloadClick("md")}
+                        >
+                          <FileText className="w-4 h-4 text-muted-foreground" />
+                          Markdown
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
                 {impact && (
                   <div
                     className={`flex-1 p-6 rounded-lg flex flex-col sm:flex-row items-center justify-start text-left border ${impact.bgClass} ${impact.borderClass} w-full gap-4`}
@@ -650,6 +717,13 @@ export default function BrandAuthorityPage() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      <EmailCaptureModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onSubmit={submitEmail}
+        isSubmitting={isLeadSubmitting}
+      />
     </div>
   );
 }

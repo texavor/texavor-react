@@ -38,6 +38,9 @@ import {
   PolarAngleAxis,
   ResponsiveContainer,
 } from "recharts";
+import { useLeadGeneration, DownloadFormat } from "@/hooks/useLeadGeneration";
+import { EmailCaptureModal } from "@/components/tools/EmailCaptureModal";
+import { Download, FileJson, FileText, FileCode } from "lucide-react";
 
 // --- Types ---
 const formSchema = z.object({
@@ -58,6 +61,7 @@ interface Suggestion {
 }
 
 interface CitationValidatorResult {
+  public_id: string;
   citation_score: number;
   stats: {
     total_citations: number;
@@ -125,6 +129,14 @@ export default function CitationAuthorityClient() {
 
   const result = mutation.data;
   const loading = mutation.isPending;
+
+  const {
+    showModal,
+    setShowModal,
+    isSubmitting: isLeadSubmitting,
+    submitEmail,
+    handleDownloadClick,
+  } = useLeadGeneration(result?.public_id);
 
   // Combine all citation sources into one array with tier_label for display
   const allCitations = result
@@ -431,8 +443,62 @@ export default function CitationAuthorityClient() {
               </div>
 
               {/* Stats Grid - Individual Cards */}
-              <div className="md:col-span-8 h-full">
+              <div className="md:col-span-8 h-full flex flex-col gap-6">
                 <CitationStatsGrid stats={result.stats} />
+
+                {/* Download Actions */}
+                <Card className="border border-border shadow-none rounded-xl bg-card overflow-hidden">
+                  <CardContent className="p-6">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                      <div>
+                        <h4 className="font-poppins font-bold text-foreground">
+                          Export Results
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          Download this analysis in your preferred format.
+                        </p>
+                      </div>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-9 gap-2"
+                          onClick={() => handleDownloadClick("pdf")}
+                        >
+                          <FileText className="w-4 h-4 text-red-500" />
+                          PDF
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-9 gap-2"
+                          onClick={() => handleDownloadClick("json")}
+                        >
+                          <FileJson className="w-4 h-4 text-blue-500" />
+                          JSON
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-9 gap-2"
+                          onClick={() => handleDownloadClick("toon")}
+                        >
+                          <FileCode className="w-4 h-4 text-emerald-500" />
+                          TOON
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-9 gap-2"
+                          onClick={() => handleDownloadClick("md")}
+                        >
+                          <FileText className="w-4 h-4 text-muted-foreground" />
+                          Markdown
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             </div>
 
@@ -441,7 +507,7 @@ export default function CitationAuthorityClient() {
 
             <div className="grid md:grid-cols-2 gap-6 items-start">
               {/* Issues */}
-              {result.issues && result.issues.length > 0 && (
+              {result?.issues && result?.issues.length > 0 && (
                 <div className="h-full">
                   <Card className="bg-card shadow-none border border-border rounded-xl h-full">
                     <CardHeader className="pb-3 border-b border-border/30">
@@ -470,7 +536,7 @@ export default function CitationAuthorityClient() {
                     </CardHeader>
                     <CardContent className="p-6 flex flex-col gap-4 pt-4">
                       <ul className="flex flex-col gap-4">
-                        {result.issues.map((issue, index) => (
+                        {result?.issues?.map((issue, index) => (
                           <li
                             key={index}
                             className="flex items-start gap-3 text-sm font-medium text-foreground pb-4 border-b border-border/30 last:border-0 last:pb-0"
@@ -499,9 +565,9 @@ export default function CitationAuthorityClient() {
               )}
 
               {/* Suggestions */}
-              {result.suggestions && result.suggestions.length > 0 && (
+              {result?.suggestions && result?.suggestions.length > 0 && (
                 <div className="h-full">
-                  <SuggestionsList suggestions={result.suggestions} />
+                  <SuggestionsList suggestions={result?.suggestions} />
                 </div>
               )}
             </div>
@@ -540,6 +606,13 @@ export default function CitationAuthorityClient() {
           </div>
         )}
       </div>
+
+      <EmailCaptureModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onSubmit={submitEmail}
+        isSubmitting={isLeadSubmitting}
+      />
     </div>
   );
 }

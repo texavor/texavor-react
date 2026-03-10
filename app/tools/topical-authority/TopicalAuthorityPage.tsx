@@ -24,6 +24,14 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { axiosInstance } from "@/lib/axiosInstance";
+import { useLeadGeneration, DownloadFormat } from "@/hooks/useLeadGeneration";
+import { EmailCaptureModal } from "@/components/tools/EmailCaptureModal";
+import {
+  FileJson,
+  FileText,
+  FileCode,
+  FileText as FileTextIcon,
+} from "lucide-react";
 import {
   Loader2,
   Search,
@@ -62,6 +70,7 @@ interface Cluster {
 }
 
 interface AuthorityResult {
+  public_id: string;
   topic: string;
   authority_score: number;
   total_subtopics: number;
@@ -178,6 +187,14 @@ export default function TopicalAuthorityPage() {
 
   const result = mutation.data;
   const loading = mutation.isPending;
+
+  const {
+    showModal,
+    setShowModal,
+    isSubmitting: isLeadSubmitting,
+    submitEmail,
+    handleDownloadClick,
+  } = useLeadGeneration(result?.public_id);
   const error = mutation.error
     ? (mutation.error as any)?.response?.data?.message ||
       mutation.error?.message
@@ -467,6 +484,60 @@ export default function TopicalAuthorityPage() {
               </div>
             </div>
 
+            {/* Download Actions */}
+            <Card className="border border-border shadow-none rounded-xl bg-card overflow-hidden">
+              <CardContent className="p-6">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                  <div>
+                    <h4 className="font-poppins font-bold text-foreground">
+                      Export Results
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      Download this topical map in your preferred format.
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-9 gap-2"
+                      onClick={() => handleDownloadClick("pdf")}
+                    >
+                      <FileTextIcon className="w-4 h-4 text-red-500" />
+                      PDF
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-9 gap-2"
+                      onClick={() => handleDownloadClick("json")}
+                    >
+                      <FileJson className="w-4 h-4 text-blue-500" />
+                      JSON
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-9 gap-2"
+                      onClick={() => handleDownloadClick("toon")}
+                    >
+                      <FileCode className="w-4 h-4 text-emerald-500" />
+                      TOON
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-9 gap-2"
+                      onClick={() => handleDownloadClick("md")}
+                    >
+                      <FileTextIcon className="w-4 h-4 text-muted-foreground" />
+                      Markdown
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Main Tabs Interface */}
             <Tabs defaultValue="visual" className="w-full">
               <TabsList className="grid w-full grid-cols-3 mb-6 bg-muted/50 p-1 rounded-lg h-11">
@@ -588,6 +659,13 @@ export default function TopicalAuthorityPage() {
           </div>
         )}
       </div>
+
+      <EmailCaptureModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onSubmit={submitEmail}
+        isSubmitting={isLeadSubmitting}
+      />
     </div>
   );
 }
