@@ -41,7 +41,7 @@ export const InjectedRelatedArticles: React.FC<
             <div className="overflow-hidden md:w-[50%] bg-muted/20">
               <img
                 src={article.image}
-                alt={article.title}
+                alt=""
                 className="object-cover w-full m-0 opacity-90 group-hover:opacity-100 transition-opacity"
                 loading="lazy"
                 style={{ margin: "0px" }}

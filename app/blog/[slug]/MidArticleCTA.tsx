@@ -10,9 +10,10 @@ export function MidArticleCTA() {
         {/* Headline */}
         <div className="flex-1">
           <p className="tx-eyebrow mb-2">AI WORKFLOW</p>
-          <h4 className="font-poppins text-2xl font-bold text-foreground leading-tight">
-            Build authority. <span className="text-primary">Not just</span> traffic.
-          </h4>
+          <p className="font-poppins text-2xl font-bold text-foreground leading-tight">
+            Build authority. <span className="text-primary">Not just</span>{" "}
+            traffic.
+          </p>
           <p className="font-inter text-sm text-muted-foreground mt-2 max-w-md">
             Implement the citation patterns that AI search engines like ChatGPT
             &amp; Claude prioritize.
