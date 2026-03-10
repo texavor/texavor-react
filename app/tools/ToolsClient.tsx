@@ -79,11 +79,16 @@ export default function ToolsClient() {
 
       <div className="container max-w-7xl px-6 mx-auto py-16 md:py-20 pb-24">
         {/* Filter Pills */}
-        <div className="flex flex-wrap items-center gap-2 mb-10">
+        <div
+          className="flex flex-wrap items-center gap-2 mb-10"
+          role="group"
+          aria-label="Filter tools by category"
+        >
           {categories.map((cat) => (
             <button
               key={cat.slug}
               onClick={() => setCategory(cat.slug)}
+              aria-pressed={currentCategory === cat.slug}
               className={cn(
                 "relative px-5 py-1.5 rounded-sm text-sm font-medium transition-colors duration-200 cursor-pointer border",
                 currentCategory === cat.slug
@@ -103,6 +108,9 @@ export default function ToolsClient() {
             </button>
           ))}
         </div>
+
+        {/* Screen Reader Only Heading for Structure */}
+        <h2 className="sr-only">Available SEO and GEO Tools</h2>
 
         {/* Tools Grid */}
         <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -133,7 +141,7 @@ export default function ToolsClient() {
                         <h3 className="font-poppins text-base font-bold text-foreground">
                           {tool?.title}
                         </h3>
-                        <p className="font-inter text-sm text-muted-foreground leading-relaxed line-clamp-3">
+                        <p className="font-inter text-sm text-foreground/70 dark:text-muted-foreground leading-relaxed line-clamp-3">
                           {tool?.description}
                         </p>
                       </div>
@@ -141,7 +149,10 @@ export default function ToolsClient() {
                       {/* Footer — always visible */}
                       <span className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground tracking-wide font-inter transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-accent hover:after:w-full max-w-max">
                         Open tool{" "}
-                        <ArrowRight className="w-3.5 h-3.5 text-accent opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                        <ArrowRight
+                          className="w-3.5 h-3.5 text-accent opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
+                          aria-hidden="true"
+                        />
                       </span>
                     </div>
                   </Link>
