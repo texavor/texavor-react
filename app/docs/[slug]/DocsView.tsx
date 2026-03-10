@@ -298,7 +298,7 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
             <article>
               {/* Hero Section Integrated into Column */}
               <div className="mb-12 animate-fade-slide-up">
-                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground/60 font-inter mb-6">
+                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground/80 font-inter mb-6">
                   <Link
                     href="/docs"
                     className="hover:text-primary transition-colors"
@@ -306,7 +306,7 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
                     DOCS
                   </Link>
                   <ChevronRight className="w-3 h-3" />
-                  <span className="text-muted-foreground/40">
+                  <span className="text-muted-foreground/80">
                     {docData.category?.replace(/-/g, " ").toUpperCase()}
                   </span>
                   <ChevronRight className="w-3 h-3" />
@@ -412,9 +412,9 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
             )}
 
             <div className="bg-muted/30 p-5 rounded-lg border border-border/50 shadow-none">
-              <h4 className="font-semibold text-foreground text-sm mb-2 font-poppins">
+              <p className="font-semibold text-foreground text-sm mb-2 font-poppins">
                 Technical Support
-              </h4>
+              </p>
               <p className="text-xs text-muted-foreground mb-4 font-inter leading-relaxed">
                 Need assistance with GEO implementation or citation analysis?
               </p>

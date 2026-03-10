@@ -151,9 +151,9 @@ export default function DocsLanding({ categories = [] }: DocsLandingProps) {
                 <div className="p-2 bg-primary/10 rounded-lg text-primary">
                   <Sparkles className="w-5 h-5" />
                 </div>
-                <h4 className="text-[11px] font-inter font-bold tracking-widest uppercase text-muted-foreground">
+                <p className="text-[11px] font-inter font-bold tracking-widest uppercase text-muted-foreground">
                   AI Research Engine
-                </h4>
+                </p>
               </div>
 
               <h3 className="text-3xl font-poppins font-bold text-foreground mb-4">
@@ -190,9 +190,9 @@ export default function DocsLanding({ categories = [] }: DocsLandingProps) {
                 <div className="p-2 bg-amber-500/10 rounded-lg text-amber-500">
                   <Star className="w-5 h-5" />
                 </div>
-                <h4 className="text-[11px] font-inter font-bold tracking-widest uppercase text-muted-foreground">
+                <p className="text-[11px] font-inter font-bold tracking-widest uppercase text-muted-foreground">
                   Popular Guides
-                </h4>
+                </p>
               </div>
 
               <div className="space-y-4">
@@ -229,9 +229,9 @@ export default function DocsLanding({ categories = [] }: DocsLandingProps) {
                       <BookOpen className="w-5 h-5" />
                     )}
                   </div>
-                  <h4 className="text-[11px] font-inter font-bold tracking-widest uppercase text-muted-foreground">
+                  <p className="text-[11px] font-inter font-bold tracking-widest uppercase text-muted-foreground">
                     {category?.name}
-                  </h4>
+                  </p>
                 </div>
 
                 <div className="space-y-4 mb-10">
