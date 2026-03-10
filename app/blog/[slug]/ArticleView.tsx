@@ -144,7 +144,7 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
             <div className="mt-4 flex items-center gap-3">
               <Image
                 src={articleData?.easywrite_author?.profile_pic}
-                alt={articleData?.easywrite_author?.name || "Author"}
+                alt=""
                 width={40}
                 height={40}
                 className="rounded-full object-cover"
@@ -215,7 +215,9 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                 </h4>
                 <p className="font-inter text-sm text-muted-foreground mb-4 leading-relaxed">
                   Texavor gives serious writers the research depth to build{" "}
-                  <span className="font-semibold text-foreground">authority</span>{" "}
+                  <span className="font-semibold text-foreground">
+                    authority
+                  </span>{" "}
                   across AI search engines.
                 </p>
                 <Link
@@ -248,7 +250,7 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                       <div className="relative overflow-hidden h-[160px]">
                         <Image
                           src={relatedArticle?.image}
-                          alt={relatedArticle?.title}
+                          alt=""
                           fill
                           className="object-cover transition-opacity duration-300 group-hover:opacity-90"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -275,9 +277,9 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                 Ready to build real topical authority?
               </h3>
               <p className="font-inter text-sm text-muted-foreground leading-relaxed">
-                Texavor structures your expertise into content that both audiences and
-                AI engines trust. Join writers who&apos;ve
-                stopped guessing and started building real authority.
+                Texavor structures your expertise into content that both
+                audiences and AI engines trust. Join writers who&apos;ve stopped
+                guessing and started building real authority.
               </p>
             </div>
             <Button
