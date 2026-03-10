@@ -154,8 +154,26 @@ export default function VisualSearchClient() {
       "An unexpected error occurred"
     : null;
 
+  // Accessibility: Status announcement helper
+  const [statusMessage, setStatusMessage] = useState("");
+  useEffect(() => {
+    if (loading) {
+      setStatusMessage(`Analyzing images for: ${form.state.values.url}...`);
+    } else if (result) {
+      setStatusMessage(
+        `Analysis complete for ${result.url}. Score: ${result.score}. Analyzed ${result.total_images} images. Grade: ${result.grade}.`,
+      );
+    } else if (error) {
+      setStatusMessage(`Analysis failed: ${error}`);
+    }
+  }, [loading, result, error, form.state.values.url]);
+
   return (
     <div className="min-h-screen dark:bg-zinc-950 font-sans">
+      {/* Screen Reader Status Announcements */}
+      <div className="sr-only" role="status" aria-live="polite">
+        {statusMessage}
+      </div>
       {/* Hero Section */}
       <section className="w-full pt-20 pb-12 md:pt-28 md:pb-16 bg-background tx-dot-bg border-b border-border/50">
         <div className="container px-6 mx-auto max-w-7xl">
@@ -324,6 +342,7 @@ export default function VisualSearchClient() {
         {/* Results */}
         {result && (
           <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 mx-auto">
+            <h2 className="sr-only">Analysis Results</h2>
             {/* Score + Total Images */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
               <div className="md:col-span-4 h-full">

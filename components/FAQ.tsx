@@ -78,9 +78,9 @@ export default function FAQ({ fullPage = false }: FAQProps) {
               className="group border-b border-border/60 transition-colors duration-300 hover:border-primary/20"
             >
               <summary className="flex items-center justify-between w-full py-6 md:py-8 text-left font-medium text-foreground hover:text-primary transition-colors font-poppins text-lg cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                <span className="flex-1 pr-8 text-lg font-bold tracking-tight">
+                <h3 className="flex-1 pr-8 text-lg font-bold tracking-tight">
                   {faq.question}
-                </span>
+                </h3>
                 <div className="flex-shrink-0 transition-all duration-300 group-open:rotate-45 group-hover:scale-110">
                   <Plus
                     className="w-5 h-5 text-muted-foreground group-open:text-primary group-hover:text-primary transition-colors"

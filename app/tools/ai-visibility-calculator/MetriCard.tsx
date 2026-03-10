@@ -50,6 +50,7 @@ const MetricCard = ({
                     ? "bg-accent/10 text-accent"
                     : "bg-primary/10 text-primary",
                 )}
+                aria-hidden="true"
               >
                 {icon}
               </span>
@@ -63,6 +64,7 @@ const MetricCard = ({
                 ? "border-transparent bg-accent/10 text-accent group-hover:border-accent"
                 : "border-border bg-background text-muted-foreground group-hover:border-primary/50 group-hover:text-foreground",
             )}
+            aria-hidden="true"
           >
             <MoveUpRight className="w-4 h-4" />
           </div>

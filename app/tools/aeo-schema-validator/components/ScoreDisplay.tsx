@@ -51,8 +51,13 @@ const ScoreDisplay = ({
           : "bg-card border border-border shadow-none",
         className,
       )}
+      role="img"
+      aria-label={`Score: ${score} out of 100, Grade: ${grade}`}
     >
-      <div className="relative w-40 h-40 flex items-center justify-center z-10">
+      <div
+        className="relative w-40 h-40 flex items-center justify-center z-10"
+        aria-hidden="true"
+      >
         {/* Background Circle */}
         <svg className="w-full h-full transform -rotate-90">
           <circle
@@ -100,7 +105,7 @@ const ScoreDisplay = ({
         </div>
       </div>
 
-      <div className="mt-4 text-center z-10">
+      <div className="mt-4 text-center z-10" aria-hidden="true">
         <div className={cn("text-sm mb-1", "text-muted-foreground")}>Grade</div>
         <div
           className={cn(

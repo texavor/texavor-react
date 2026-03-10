@@ -214,8 +214,26 @@ export default function AiScorePage() {
     toast.success("Copied to clipboard!");
   };
 
+  // Accessibility: Status announcement helper
+  const [statusMessage, setStatusMessage] = useState("");
+  useEffect(() => {
+    if (loading) {
+      setStatusMessage(`Analyzing topic: ${form.state.values.keyword}...`);
+    } else if (result) {
+      setStatusMessage(
+        `Analysis complete for ${result.keyword}. Overall score: ${result.overall_score}. Grade: ${result.grade}.`,
+      );
+    } else if (error) {
+      setStatusMessage(`Error during analysis: ${error}`);
+    }
+  }, [loading, result, error]);
+
   return (
     <div className="min-h-screen bg-background font-sans mt-6 lg:mt-0">
+      {/* Screen Reader Status Announcements */}
+      <div className="sr-only" role="status" aria-live="polite">
+        {statusMessage}
+      </div>
       {/* Hero Section */}
       <section className="w-full pt-20 pb-12 md:pt-28 md:pb-16 bg-background tx-dot-bg border-b border-border/50">
         <div className="container px-6 mx-auto max-w-7xl">
@@ -367,7 +385,10 @@ export default function AiScorePage() {
                     </div>
                     <div className="h-32 w-full">
                       <ResponsiveContainer width="100%" height="100%">
-                        <AreaChart data={dummyTrendData}>
+                        <AreaChart
+                          data={dummyTrendData}
+                          aria-label="Keyword search volume trend chart"
+                        >
                           <defs>
                             <linearGradient
                               id="colorVal"
@@ -398,6 +419,10 @@ export default function AiScorePage() {
                           />
                         </AreaChart>
                       </ResponsiveContainer>
+                      <p className="sr-only">
+                        Trend chart showing search volume growth from 400 in
+                        January to 900 in June.
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -451,6 +476,7 @@ export default function AiScorePage() {
         {/* Results Dashboard */}
         {result && (
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <h2 className="sr-only">Analysis Results</h2>
             {/* Top Row: Important Metrics & Radar */}
             <div className="grid lg:grid-cols-12 gap-6">
               {/* Left Column: Metrics Grid */}
@@ -559,6 +585,7 @@ export default function AiScorePage() {
                         cy="50%"
                         outerRadius="60%"
                         data={result?.radar_chart_data}
+                        aria-label="Visibility Radar breakdown"
                       >
                         <PolarGrid stroke="#e5e7eb" />
                         <PolarAngleAxis
@@ -580,6 +607,16 @@ export default function AiScorePage() {
                         />
                       </RadarChart>
                     </ResponsiveContainer>
+                    <div className="sr-only">
+                      <h3>Visibility Breakdown Data:</h3>
+                      <ul>
+                        {result?.radar_chart_data.map((point) => (
+                          <li key={point.subject}>
+                            {point.subject}: {point.A}%
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                     <div className="absolute top-0 right-0 p-4 text-center">
                       <div className="text-3xl font-bold text-foreground">
                         {result?.grade}
