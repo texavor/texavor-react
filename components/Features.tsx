@@ -146,7 +146,7 @@ const ProgressStats = () => {
               className={`text-[11px] font-inter font-bold px-2.5 py-1 rounded-full ${
                 stat.trend === "up"
                   ? "text-primary bg-primary/10"
-                  : "text-orange-600 bg-orange-500/10 dark:text-orange-400"
+                  : "text-orange-700 bg-orange-500/10 dark:text-orange-400"
               }`}
             >
               {stat.change}
@@ -352,7 +352,7 @@ const CompetitorAnalysis = () => {
 
         {/* Score Cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-          <div className="bg-muted/30 rounded-lg p-3.5 border border-border/50 hover:border-primary/30 transition-colors">
+          <div className="bg-muted/30 rounded-lg p-3.5 border border-border/50 hover:border-primary/50 transition-colors">
             <div className="flex items-center justify-between mb-2">
               <div className="text-[10px] font-inter text-muted-foreground uppercase tracking-widest font-semibold">
                 AI Auth
@@ -361,13 +361,13 @@ const CompetitorAnalysis = () => {
             </div>
             <div className="text-3xl font-mono tabular-nums tracking-tight font-bold text-foreground">
               94
-              <span className="text-sm font-inter text-muted-foreground/60">
+              <span className="text-sm font-inter text-muted-foreground/80">
                 /100
               </span>
             </div>
           </div>
 
-          <div className="bg-muted/30 rounded-lg p-3.5 border border-border/50 hover:border-emerald-500/30 transition-colors">
+          <div className="bg-muted/30 rounded-lg p-3.5 border border-border/50 hover:border-emerald-500/50 transition-colors">
             <div className="flex items-center justify-between mb-2">
               <div className="text-[10px] font-inter text-muted-foreground uppercase tracking-widest font-semibold">
                 SEO Score
@@ -376,13 +376,13 @@ const CompetitorAnalysis = () => {
             </div>
             <div className="text-3xl font-mono tabular-nums tracking-tight font-bold text-foreground">
               82
-              <span className="text-sm font-inter text-muted-foreground/60">
+              <span className="text-sm font-inter text-muted-foreground/80">
                 /100
               </span>
             </div>
           </div>
 
-          <div className="bg-muted/30 rounded-lg p-3.5 border border-border/50 hover:border-amber-500/30 transition-colors">
+          <div className="bg-muted/30 rounded-lg p-3.5 border border-border/50 hover:border-amber-500/50 transition-colors">
             <div className="flex items-center justify-between mb-2">
               <div className="text-[10px] font-inter text-muted-foreground uppercase tracking-widest font-semibold">
                 Entities
@@ -394,7 +394,7 @@ const CompetitorAnalysis = () => {
             </div>
           </div>
 
-          <div className="bg-muted/30 rounded-lg p-3.5 border border-border/50 hover:border-blue-500/30 transition-colors">
+          <div className="bg-muted/30 rounded-lg p-3.5 border border-border/50 hover:border-blue-500/50 transition-colors">
             <div className="flex items-center justify-between mb-2">
               <div className="text-[10px] font-inter text-muted-foreground uppercase tracking-widest font-semibold">
                 Growth

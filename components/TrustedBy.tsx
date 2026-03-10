@@ -114,7 +114,7 @@ export function TrustedBy() {
               {BRANDS.map((brand, idx) => (
                 <div
                   key={`${brand.name}-${idx}`}
-                  className="flex-shrink-0 flex items-center gap-2 group/item opacity-50 grayscale-[0.5] hover:opacity-100 hover:grayscale-0 transition-all duration-500"
+                  className="flex-shrink-0 flex items-center gap-2 group/item opacity-70 grayscale-[0.5] hover:opacity-100 hover:grayscale-0 transition-all duration-500"
                 >
                   <div className="h-8 w-8 rounded-md overflow-hidden bg-muted/20 flex items-center justify-center border border-border/20 p-1">
                     <img
