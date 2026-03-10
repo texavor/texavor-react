@@ -206,8 +206,31 @@ export default function WebsiteAuditorPage() {
       mutation.error?.message
     : null;
 
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    toast.success("Copied to clipboard!");
+  };
+
+  // Accessibility: Status announcement helper
+  const [statusMessage, setStatusMessage] = useState("");
+  useEffect(() => {
+    if (loading) {
+      setStatusMessage(`Auditing website: ${form.state.values.url}...`);
+    } else if (result) {
+      setStatusMessage(
+        `Audit complete for ${result.domain}. AI Readiness Score: ${result.ai_readiness_score}. Grade: ${result.grade}.`,
+      );
+    } else if (error) {
+      setStatusMessage(`Audit failed: ${error}`);
+    }
+  }, [loading, result, error, form.state.values.url]);
+
   return (
     <div className="min-h-screen bg-background font-sans mt-6 lg:mt-0">
+      {/* Screen Reader Status Announcements */}
+      <div className="sr-only" role="status" aria-live="polite">
+        {statusMessage}
+      </div>
       {/* Hero Section */}
       <section className="w-full pt-20 pb-12 md:pt-28 md:pb-16 bg-background tx-dot-bg border-b border-border/50">
         <div className="container px-6 mx-auto max-w-7xl">
@@ -372,6 +395,7 @@ export default function WebsiteAuditorPage() {
                         cy="50%"
                         outerRadius="80%"
                         data={dummyRadarData}
+                        aria-label="Example AI Readiness Radar"
                       >
                         <PolarGrid stroke="#e5e7eb" />
                         <PolarAngleAxis
@@ -387,6 +411,10 @@ export default function WebsiteAuditorPage() {
                         />
                       </RadarChart>
                     </ResponsiveContainer>
+                    <p className="sr-only">
+                      Example score breakdown: Crawlability 65%, Discovery 40%,
+                      Semantics 85%, Freshness 50%.
+                    </p>
                   </div>
                 </CardContent>
               </Card>
@@ -397,6 +425,7 @@ export default function WebsiteAuditorPage() {
         {/* Results Dashboard */}
         {result && (
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 mx-auto">
+            <h2 className="sr-only">Audit Results</h2>
             <div className="grid lg:grid-cols-12 gap-6">
               {/* Left Column: Metrics & Checks */}
               <div className="lg:col-span-8 space-y-6">
@@ -487,6 +516,7 @@ export default function WebsiteAuditorPage() {
                         cy="50%"
                         outerRadius="65%"
                         data={result.radar_chart}
+                        aria-label="Website Readiness Radar"
                       >
                         <PolarGrid stroke="#e5e7eb" />
                         <PolarAngleAxis
@@ -508,6 +538,16 @@ export default function WebsiteAuditorPage() {
                         />
                       </RadarChart>
                     </ResponsiveContainer>
+                    <div className="sr-only">
+                      <h3>Readiness Breakdown Data:</h3>
+                      <ul>
+                        {result.radar_chart.map((point) => (
+                          <li key={point.subject}>
+                            {point.subject}: {point.A}%
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </CardContent>
                 </Card>
               </div>
