@@ -3,10 +3,35 @@ import { Marked } from "marked";
 import { markedHighlight } from "marked-highlight";
 import hljs from "highlight.js";
 import Link from "next/link";
-import { DocsView } from "./DocsView";
+import { DocsView, type Heading } from "./DocsView";
 import { getAllDocs, getDocData, getDocsByCategory, DocData } from "@/lib/docs";
 import Schema from "@/components/Schema";
 import "../../dracula.css";
+import "../../blog/[slug]/blog.css";
+
+
+const renderer = {
+  link({ href, title, text }: { href: string; title?: string | null; text: string }) {
+    const isExternal = href.startsWith("http") && !href.includes("texavor.com");
+    if (isExternal) {
+      return `<a href="${href}" title="${title || ""}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+    }
+    return `<a href="${href}" title="${title || ""}">${text}</a>`;
+  },
+  code({ text, lang }: { text: string; lang?: string }) {
+    const language = lang && hljs.getLanguage(lang) ? lang : "plaintext";
+    const highlighted = hljs.highlight(text, { language }).value;
+
+    return `
+      <div class="code-block-container" style="position: relative;">
+        <button class="copy-button absolute top-2 right-2 px-2 py-1 text-xs font-semibold uppercase tracking-wider rounded-md bg-muted text-foreground hover:bg-muted/80 border border-border/50 backdrop-blur-sm transition-colors">
+          Copy
+        </button>
+        <pre><code class="hljs language-${language}">${highlighted}</code></pre>
+      </div>
+    `;
+  },
+};
 
 const marked = new Marked(
   markedHighlight({
@@ -17,6 +42,8 @@ const marked = new Marked(
     },
   }),
 );
+
+marked.use({ renderer });
 
 export async function generateStaticParams() {
   const docs = getAllDocs();
@@ -76,11 +103,57 @@ export default async function DocPage({
   }
 
   const rawHtml = marked.parse(docData.content || "") as string;
-  // Shift heading levels: h1 -> h2, h2 -> h3, etc.
+  // Shift heading levels: h1 -> h2, h2 -> h3, etc. for better semantic structure in the app
   const parsedHtml = rawHtml
     .replace(/<h([1-5])/g, (m, c) => `<h${parseInt(c) + 1}`)
     .replace(/<\/h([1-5])>/g, (m, c) => `</h${parseInt(c) + 1}>`);
+  
   const categorizedDocs = getDocsByCategory();
+
+  const extractHeadings = (markdown: string): Heading[] => {
+    const headings: Heading[] = [];
+    const stack: Heading[] = [];
+
+    // Match #, ##, ### (h1, h2, h3)
+    const headingRegex = /^(#{1,3})\s+(.+)$/gm;
+    let match;
+
+    while ((match = headingRegex.exec(markdown)) !== null) {
+      const level = match[1].length + 1; // +1 to match the HTML shift (h1->h2, etc)
+      const text = match[2].trim().replace(/\*\*/g, ""); 
+      const id = text
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, "")
+        .replace(/\s+/g, "-");
+
+      const newHeading: Heading = { id, level, text };
+
+      while (stack.length > 0 && stack[stack.length - 1].level >= level) {
+        stack.pop();
+      }
+
+      if (stack.length > 0) {
+        const parent = stack[stack.length - 1];
+        if (!parent.children) parent.children = [];
+        parent.children.push(newHeading);
+      } else {
+        headings.push(newHeading);
+      }
+
+      stack.push(newHeading);
+    }
+
+    return headings;
+  };
+
+  const splitHtmlByH2 = (html: string) => {
+    // Regex matches <h2> tags and keeps them as part of the split result
+    const sections = html.split(/(?=<h2)/i);
+    return sections;
+  };
+
+  const headings = extractHeadings(docData.content || "");
+  const htmlSections = splitHtmlByH2(parsedHtml);
 
   // Detect if this is a How-To guide
   const isHowTo =
@@ -206,7 +279,12 @@ export default async function DocPage({
     <div className="min-h-screen bg-background font-sans">
       <Schema script={schema} />
 
-      <DocsView docData={docData} html={parsedHtml} allDocs={categorizedDocs} />
+      <DocsView 
+        docData={docData} 
+        htmlSections={htmlSections} 
+        headings={headings}
+        allDocs={categorizedDocs} 
+      />
     </div>
   );
 }
