@@ -9,15 +9,22 @@ import Schema from "@/components/Schema";
 import "../../dracula.css";
 import "../../blog/[slug]/blog.css";
 
+const markdownParser = new Marked();
+markdownParser.setOptions({
+  gfm: true,
+  breaks: true,
+});
 
 const renderer = {
   link(token: { href: string; title?: string | null; text: string }) {
     const { href, title, text } = token;
-    const isExternal = href.startsWith("http") && !href.includes("texavor.com");
-    if (isExternal) {
-      return `<a href="${href}" title="${title || ""}" target="_blank" rel="noopener noreferrer">${text}</a>`;
-    }
-    return `<a href="${href}" title="${title || ""}">${text}</a>`;
+    // Use the initialized markdownParser instance to parse nested inline content
+    const parsedText = markdownParser.parseInline(text) as string;
+    const isInternal = href.startsWith("/") || href.startsWith("#");
+    const targetAttr = isInternal ? "" : 'target="_blank" rel="noopener noreferrer"';
+    const titleAttr = title ? `title="${title}"` : "";
+
+    return `<a href="${href}" ${titleAttr} ${targetAttr} class="text-primary hover:underline font-medium transition-colors duration-200">${parsedText}</a>`;
   },
   code(token: { text: string; lang?: string }) {
     const { text, lang } = token;
@@ -44,8 +51,7 @@ const renderer = {
   },
 };
 
-const marked = new Marked();
-marked.use({ renderer });
+markdownParser.use({ renderer });
 
 export async function generateStaticParams() {
   const docs = getAllDocs();
@@ -104,7 +110,7 @@ export default async function DocPage({
     );
   }
 
-  const rawHtml = marked.parse(docData.content || "") as string;
+  const rawHtml = markdownParser.parse(docData.content || "") as string;
   // Shift heading levels: h1 -> h2, h2 -> h3, etc. for better semantic structure in the app
   const parsedHtml = rawHtml
     .replace(/<h([1-5])/g, (m, c) => `<h${parseInt(c) + 1}`)

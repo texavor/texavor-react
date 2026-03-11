@@ -49,14 +49,22 @@ const getServerAxiosInstance = () => {
   });
 };
 
+const markdownParser = new Marked();
+markdownParser.setOptions({
+  gfm: true,
+  breaks: true,
+});
+
 const renderer = {
   link(token: { href: string; title?: string | null; text: string }) {
     const { href, title, text } = token;
-    const isExternal = href.startsWith("http") && !href.includes("texavor.com");
-    if (isExternal) {
-      return `<a href="${href}" title="${title || ""}" target="_blank" rel="noopener noreferrer">${text}</a>`;
-    }
-    return `<a href="${href}" title="${title || ""}">${text}</a>`;
+    // Use the initialized markdownParser instance to parse nested inline content
+    const parsedText = markdownParser.parseInline(text) as string;
+    const isInternal = href.startsWith("/") || href.startsWith("#");
+    const targetAttr = isInternal ? "" : 'target="_blank" rel="noopener noreferrer"';
+    const titleAttr = title ? `title="${title}"` : "";
+
+    return `<a href="${href}" ${titleAttr} ${targetAttr} class="text-primary hover:underline font-medium transition-colors duration-200">${parsedText}</a>`;
   },
   code(token: { text: string; lang?: string }) {
     const { text, lang } = token;
@@ -83,8 +91,7 @@ const renderer = {
   },
 };
 
-const marked = new Marked();
-marked.use({ renderer });
+markdownParser.use({ renderer });
 
 // This function now runs at BUILD TIME for each slug and is memoized per request
 const getArticleData = cache(
@@ -188,7 +195,7 @@ export default async function ArticlePage(props: {
     );
   }
 
-  const parsedHtml = marked.parse(articleData?.content || "") as string;
+  const parsedHtml = markdownParser.parse(articleData?.content || "") as string;
 
   // Extract FAQs from content (looking for Q&A patterns)
   // Extract FAQs from content (looking for Q&A patterns)
