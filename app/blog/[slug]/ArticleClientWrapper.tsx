@@ -19,12 +19,10 @@ export function ArticleClientWrapper({ children }: ArticleClientWrapperProps) {
         const codeToCopy = codeElement.innerText;
         navigator.clipboard.writeText(codeToCopy).then(() => {
           const originalText = button.innerText;
-          button.innerText = "Copied!";
-          button.classList.add("bg-primary/20", "text-primary");
+          button.innerText = "COPIED!";
 
           setTimeout(() => {
             button.innerText = originalText;
-            button.classList.remove("bg-primary/20", "text-primary");
           }, 2000);
         });
       }

@@ -50,21 +50,23 @@ const getServerAxiosInstance = () => {
 };
 
 const renderer = {
-  link({ href, title, text }: { href: string; title?: string | null; text: string }) {
+  link(token: { href: string; title?: string | null; text: string }) {
+    const { href, title, text } = token;
     const isExternal = href.startsWith("http") && !href.includes("texavor.com");
     if (isExternal) {
       return `<a href="${href}" title="${title || ""}" target="_blank" rel="noopener noreferrer">${text}</a>`;
     }
     return `<a href="${href}" title="${title || ""}">${text}</a>`;
   },
-  code({ text, lang }: { text: string; lang?: string }) {
+  code(token: { text: string; lang?: string }) {
+    const { text, lang } = token;
     const language = lang && hljs.getLanguage(lang) ? lang : "plaintext";
     const highlighted = hljs.highlight(text, { language }).value;
 
     return `
-      <div class="code-block-container" style="position: relative;">
-        <button class="copy-button absolute top-2 right-2 px-2 py-1 text-xs font-semibold uppercase tracking-wider rounded-md bg-muted text-foreground hover:bg-muted/80 border border-border/50 backdrop-blur-sm transition-colors">
-          Copy
+      <div class="code-block-container" style="position: relative; margin-top: 1.5rem; margin-bottom: 1.5rem;">
+        <button class="copy-button absolute top-3 right-3 px-3 py-1 text-[11px] font-bold uppercase tracking-wider rounded bg-slate-200 text-slate-900 hover:bg-slate-300 transition-all duration-200">
+          COPY
         </button>
         <pre><code class="hljs language-${language}">${highlighted}</code></pre>
       </div>
@@ -72,16 +74,7 @@ const renderer = {
   },
 };
 
-const marked = new Marked(
-  markedHighlight({
-    langPrefix: "```",
-    highlight(code, lang) {
-      const language = hljs.getLanguage(lang) ? lang : "plaintext";
-      return hljs.highlight(code, { language }).value;
-    },
-  }),
-);
-
+const marked = new Marked();
 marked.use({ renderer });
 
 // This function now runs at BUILD TIME for each slug and is memoized per request

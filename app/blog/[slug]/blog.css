@@ -14,6 +14,11 @@
     content: none !important;
 }
 
+/* Adjust internal padding for code blocks as per user request */
+.hljs {
+    padding: 4px !important;
+}
+
 /* Blog Post Table */
 .prose table {
     margin: 2em 0;
