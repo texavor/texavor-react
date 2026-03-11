@@ -176,9 +176,9 @@
         @apply bg-background text-foreground;
         font-feature-settings: "rlig" 1, "calt" 1;
     }
-    /* Smooth scrolling */
+    /* Remove scroll-behavior: smooth to prevent gliding during Next.js navigation */
     html {
-        scroll-behavior: smooth;
+        scroll-behavior: auto;
     }
 }
 

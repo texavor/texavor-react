@@ -21,8 +21,17 @@ const renderer = {
   },
   code(token: { text: string; lang?: string }) {
     const { text, lang } = token;
-    const language = lang && hljs.getLanguage(lang) ? lang : "plaintext";
-    const highlighted = hljs.highlight(text, { language }).value;
+    let highlighted;
+    let language;
+
+    if (lang && hljs.getLanguage(lang)) {
+      language = lang;
+      highlighted = hljs.highlight(text, { language }).value;
+    } else {
+      const result = hljs.highlightAuto(text);
+      language = result.language || "plaintext";
+      highlighted = result.value;
+    }
 
     return `
       <div class="code-block-container" style="position: relative; margin-top: 1.5rem; margin-bottom: 1.5rem;">
