@@ -97,7 +97,8 @@ const renderer = {
         language = lang;
         highlighted = hljs.highlight(text, { language }).value;
       } else {
-        const result = hljs.highlightAuto(text);
+        // Restrict auto-detection to common web languages to avoid obscure guesses like Smalltalk
+        const result = hljs.highlightAuto(text, ["html", "javascript", "json", "css", "typescript", "bash", "python", "yaml", "xml", "markdown"]);
         language = result.language || "plaintext";
         highlighted = result.value;
       }
@@ -116,19 +117,19 @@ const renderer = {
               <div class="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]"></div>
               <div class="h-2.5 w-2.5 rounded-full bg-[#27c93f]"></div>
             </div>
-            <span class="ml-2 text-[10px] font-medium uppercase tracking-widest text-white/40">
+            <span class="ml-2 text-[10px] font-bold uppercase tracking-widest text-slate-300">
               ${language.toUpperCase()}
             </span>
           </div>
           <button
             onclick="navigator.clipboard.writeText(document.getElementById('${id}').innerText); this.textContent='COPIED!'; setTimeout(() => this.textContent='COPY', 2000)"
-            class="rounded-md bg-white/5 px-2 py-1 text-[10px] font-bold text-white/50 transition-all hover:bg-white/10 hover:text-white"
+            class="rounded-md bg-white/10 px-2 py-1 text-[10px] font-bold text-slate-300 transition-all hover:bg-white/20 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/50"
           >
             COPY
           </button>
         </div>
         <div class="relative overflow-x-auto p-4 custom-scrollbar">
-          <pre><code id="${id}" class="hljs language-${language} !bg-transparent !p-0 font-mono text-sm leading-relaxed text-[#e6edf3]">${highlighted}</code></pre>
+          <pre class="!bg-transparent !m-0 !p-0 border-0"><code id="${id}" class="hljs language-${language} !bg-transparent !p-0 font-mono text-sm leading-relaxed text-[#e6edf3]">${highlighted}</code></pre>
         </div>
       </div>
     `;
@@ -333,18 +334,25 @@ export default async function ArticlePage(props: {
     const strippedMarkdown = markdown.replace(/```[\s\S]*?```/g, "");
 
     // Match #, ##, ### (h1, h2, h3) - Ensure at least one alphanumeric character
-    const headingRegex = /^(#{1,3})\s+.*[a-zA-Z0-9].*$/gm;
+    const headingRegex = /^(#{1,3})\s+(.+)$/gm;
     let match;
 
     while ((match = headingRegex.exec(strippedMarkdown)) !== null) {
       const level = match[1].length;
-      const text = match[0].replace(/^#+\s+/, "").trim().replace(/\*\*/g, ""); 
-      const id = text
+      const rawText = match[2].trim();
+
+      const cleanText = rawText
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1") // Strip links
+        .replace(/\*\*([^*]+)\*\*/g, "$1") // Strip bold
+        .replace(/__([^_]+)__/g, "$1") // Strip alternate bold
+        .trim();
+
+      const id = rawText
         .toLowerCase()
         .replace(/[^\w\s-]/g, "") // Remove special chars
         .replace(/\s+/g, "-"); // Replace spaces with hyphens
 
-      const newHeading: Heading = { id, level, text };
+      const newHeading: Heading = { id, level, text: cleanText };
 
       while (stack.length > 0 && stack[stack.length - 1].level >= level) {
         stack.pop();

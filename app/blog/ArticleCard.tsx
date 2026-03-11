@@ -42,7 +42,7 @@ const ArticleCard = ({
               {tags?.slice(0, 2).map((item) => (
                 <span
                   key={item}
-                  className="bg-accent/5 text-accent text-[11px] font-medium px-2.5 py-0.5 rounded-sm font-mono border border-accent/30 uppercase tracking-wide"
+                  className="bg-white text-primary text-[11px] font-medium px-2.5 py-0.5 rounded-sm font-mono border border-primary/30 uppercase tracking-wide"
                 >
                   {item}
                 </span>
