@@ -1,10 +1,6 @@
-// components/article/ArticleContent.tsx
-"use client";
-
-import React, { useEffect, useRef, memo } from "react";
-import { createRoot } from "react-dom/client";
 import { InjectedRelatedArticles } from "./InjectedRelatedArticles";
 import { MidArticleCTA } from "./MidArticleCTA";
+import { ArticleClientWrapper } from "./ArticleClientWrapper";
 
 // Define the interface for a single related article
 interface RelatedArticle {
@@ -13,200 +9,48 @@ interface RelatedArticle {
   title: string;
 }
 
-interface Heading {
-  id: string;
-  level: number;
-  text: string;
-  children?: Heading[];
-}
-
-// Add relatedArticles prop to the component
-export const ArticleContent = memo(function ArticleContent({
-  html,
+export function ArticleContent({
+  htmlSections,
   relatedArticles,
-  setHeadings,
-  setIsTocLoaded,
 }: {
-  html: string;
+  htmlSections: string[];
   relatedArticles: RelatedArticle[];
-  setHeadings: (headings: Heading[]) => void;
-  setIsTocLoaded: (isTocLoaded: boolean) => void;
 }) {
-  const articleRef = useRef<HTMLElement>(null);
-  // It's better to store the roots directly for easier cleanup
-  const injectedRoots = useRef<ReturnType<typeof createRoot>[]>([]);
+  // Mid-article CTA index (approx 60% through h2s)
+  const h2Count = htmlSections.length - 1;
+  const midIndex = h2Count >= 1 ? Math.max(1, Math.floor(h2Count * 0.6)) : -1;
 
-  // Log the incoming HTML to make sure it's what you expect
-  // console.log("Received HTML prop:", html);
-
-  useEffect(() => {
-    if (articleRef.current) {
-      const headingElements = articleRef.current.querySelectorAll("h1, h2, h3");
-      const newHeadings: Heading[] = [];
-      const parentHeadings: Heading[] = [];
-
-      headingElements.forEach((heading) => {
-        const level = parseInt(heading.tagName.substring(1));
-        const text = heading.textContent || "";
-        const id = text.toLowerCase().replace(/\s/g, "-");
-        heading.id = id;
-
-        const newHeading: Heading = { id, level, text };
-
-        while (
-          parentHeadings.length > 0 &&
-          parentHeadings[parentHeadings.length - 1].level >= level
-        ) {
-          parentHeadings.pop();
-        }
-
-        if (parentHeadings.length > 0) {
-          const parent = parentHeadings[parentHeadings.length - 1];
-          if (!parent.children) {
-            parent.children = [];
-          }
-          parent.children.push(newHeading);
-        } else {
-          newHeadings.push(newHeading);
-        }
-
-        parentHeadings.push(newHeading);
-      });
-
-      setHeadings(newHeadings);
-      setIsTocLoaded(true);
-
-      // Find all <a> elements within the article content
-      const linkElements = articleRef.current.querySelectorAll("a");
-
-      linkElements.forEach((link) => {
-        if (link.hostname !== window.location.hostname) {
-          link.target = "_blank";
-          link.rel = "noopener noreferrer";
-        }
-      });
-
-      // Find all <pre> elements within the article content
-      const preElements = articleRef.current.querySelectorAll("pre");
-
-      preElements.forEach((pre) => {
-        // Avoid adding a button if one already exists
-        if (pre.parentElement?.classList.contains("code-block-container")) {
-          return;
-        }
-
-        // --- 1. Create a container for the <pre> tag and the button ---
-        const container = document.createElement("div");
-        container.className = "code-block-container";
-        container.style.position = "relative";
-
-        // --- 2. Create the button ---
-        const button = document.createElement("button");
-        button.innerText = "Copy";
-        button.className =
-          "copy-button absolute top-2 right-2 px-2 py-1 text-xs font-semibold uppercase tracking-wider rounded-md bg-muted text-foreground hover:bg-muted/80 border border-border/50 backdrop-blur-sm transition-colors";
-
-        // --- 3. Add event listener to copy code ---
-        button.addEventListener("click", () => {
-          const codeElement = pre.querySelector("code");
-          if (codeElement) {
-            const codeToCopy = codeElement.innerText;
-            navigator.clipboard.writeText(codeToCopy).then(() => {
-              button.innerText = "Copied!";
-              setTimeout(() => {
-                button.innerText = "Copy";
-              }, 2000); // Reset text after 2 seconds
-            });
-          }
-        });
-
-        // --- 4. Wrap the <pre> tag with the container ---
-        pre.parentNode?.insertBefore(container, pre);
-        container.appendChild(pre);
-
-        // --- 5. Append the button to the container ---
-        container.appendChild(button);
-      });
-    }
-
-    const articleElement = articleRef.current;
-    if (!articleElement) return;
-
-    // --- Cleanup Previous Injections ---
-    // This part is for when the component re-renders with new HTML
-    injectedRoots.current.forEach((root) => {
-      // Find the container div and remove it before unmounting
-      //@ts-ignore
-      const container = root._internalRoot.containerInfo;
-      container.parentNode?.removeChild(container);
-      root.unmount();
-    });
-    injectedRoots.current = [];
-    // --- End Cleanup ---
-
-    // Find all <h2> elements within the rendered article
-    const h2Elements = articleElement.querySelectorAll("h2");
-
-    // Inject mid-article CTA independently — fires on any article with at least 1 h2
-    const injectCTA = (targetElement: Element) => {
-      if (!targetElement) return;
-      const container = document.createElement("div");
-      targetElement.parentNode?.insertBefore(container, targetElement);
-      const root = createRoot(container);
-      root.render(<MidArticleCTA />);
-      injectedRoots.current.push(root);
-    };
-
-    if (h2Elements.length >= 1) {
-      const midIndex = Math.max(1, Math.floor(h2Elements.length * 0.6));
-      const midH2 = h2Elements[midIndex] ?? h2Elements[h2Elements.length - 1];
-      if (midH2) injectCTA(midH2);
-    }
-
-    // Related articles injection — requires relatedArticles + at least 2 h2s
-    if (
-      !relatedArticles ||
-      relatedArticles.length === 0 ||
-      h2Elements.length < 2
-    ) {
-      return;
-    }
-
-    // Target the second and last <h2> tags
-    const secondH2 = h2Elements[1];
-    const lastH2 = h2Elements[h2Elements.length - 1];
-
-    // Function to inject the React component
-    const inject = (targetElement: Element, article: any) => {
-      if (!targetElement) return;
-      const container = document.createElement("div");
-      targetElement.parentNode?.insertBefore(container, targetElement);
-      const root = createRoot(container);
-      root.render(<InjectedRelatedArticles article={article} />);
-      injectedRoots.current.push(root);
-    };
-
-    // Inject related articles before second h2
-    if (secondH2) {
-      inject(secondH2, relatedArticles?.[0]);
-    }
-
-    // Inject related articles before last h2 (if different from second)
-    if (lastH2 && lastH2 !== secondH2) {
-      inject(lastH2, relatedArticles?.[1]);
-    }
-  }, [html, relatedArticles]);
+  // Related articles indices
+  const secondH2Index = h2Count >= 2 ? 1 : -1;
+  const lastH2Index = h2Count >= 2 ? h2Count - 1 : -1;
 
   return (
-    <article
-      ref={articleRef}
-      className="prose dark:prose-invert max-w-none font-inter
-      prose-headings:font-poppins
-      prose-p:text-foreground/90 dark:prose-p:text-muted-foreground
-      prose-strong:text-foreground dark:prose-strong:text-foreground
-      prose-li:text-foreground/90 dark:prose-li:text-muted-foreground
-      prose-code:font-semibold break-words w-full"
-      dangerouslySetInnerHTML={{ __html: html }}
-    />
+    <ArticleClientWrapper>
+      {htmlSections.map((html, index) => {
+        const isBeforeSecondH2 = secondH2Index !== -1 && index === secondH2Index;
+        const isBeforeLastH2 =
+          lastH2Index !== -1 &&
+          index === lastH2Index &&
+          lastH2Index !== secondH2Index;
+        const isBeforeMidH2 = midIndex !== -1 && index === midIndex;
+
+        return (
+          <div key={index}>
+            {/* Injection Point: Before H2 (index starts at 1 for first H2) */}
+            {isBeforeSecondH2 && relatedArticles?.[0] && (
+              <InjectedRelatedArticles article={relatedArticles[0]} />
+            )}
+
+            {isBeforeMidH2 && index !== secondH2Index && <MidArticleCTA />}
+
+            {isBeforeLastH2 && relatedArticles?.[1] && (
+              <InjectedRelatedArticles article={relatedArticles[1]} />
+            )}
+
+            <div dangerouslySetInnerHTML={{ __html: html }} />
+          </div>
+        );
+      })}
+    </ArticleClientWrapper>
   );
-});
+}

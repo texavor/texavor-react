@@ -1,6 +1,6 @@
 // app/articles/[slug]/page.tsx
 
-import React, { cache } from "react";
+import { cache } from "react";
 import { Marked } from "marked";
 import { markedHighlight } from "marked-highlight";
 import hljs from "highlight.js";
@@ -11,6 +11,13 @@ import { ArticleView } from "./ArticleView";
 import Schema from "@/components/Schema";
 
 import "../../dracula.css";
+
+interface Heading {
+  id: string;
+  level: number;
+  text: string;
+  children?: Heading[];
+}
 
 interface ArticleData {
   image: string;
@@ -41,15 +48,28 @@ const getServerAxiosInstance = () => {
   });
 };
 
-function extractDomain(url: string) {
-  try {
-    const u = new URL(url);
-    return u.hostname.replace(/^www\./, "");
-  } catch (e) {
-    // invalid URL
-    return null;
-  }
-}
+const renderer = {
+  link({ href, title, text }: { href: string; title?: string | null; text: string }) {
+    const isExternal = href.startsWith("http") && !href.includes("texavor.com");
+    if (isExternal) {
+      return `<a href="${href}" title="${title || ""}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+    }
+    return `<a href="${href}" title="${title || ""}">${text}</a>`;
+  },
+  code({ text, lang }: { text: string; lang?: string }) {
+    const language = lang && hljs.getLanguage(lang) ? lang : "plaintext";
+    const highlighted = hljs.highlight(text, { language }).value;
+
+    return `
+      <div class="code-block-container" style="position: relative;">
+        <button class="copy-button absolute top-2 right-2 px-2 py-1 text-xs font-semibold uppercase tracking-wider rounded-md bg-muted text-foreground hover:bg-muted/80 border border-border/50 backdrop-blur-sm transition-colors">
+          Copy
+        </button>
+        <pre><code class="hljs language-${language}">${highlighted}</code></pre>
+      </div>
+    `;
+  },
+};
 
 const marked = new Marked(
   markedHighlight({
@@ -60,6 +80,8 @@ const marked = new Marked(
     },
   }),
 );
+
+marked.use({ renderer });
 
 // This function now runs at BUILD TIME for each slug and is memoized per request
 const getArticleData = cache(
@@ -249,7 +271,44 @@ export default async function ArticlePage(props: {
     return faqs;
   };
 
+  const extractHeadings = (markdown: string): Heading[] => {
+    const headings: Heading[] = [];
+    const stack: Heading[] = [];
+
+    // Match #, ##, ### (h1, h2, h3)
+    const headingRegex = /^(#{1,3})\s+(.+)$/gm;
+    let match;
+
+    while ((match = headingRegex.exec(markdown)) !== null) {
+      const level = match[1].length;
+      const text = match[2].trim().replace(/\*\*/g, ""); // Remove bold markers if present
+      const id = text
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, "") // Remove special chars
+        .replace(/\s+/g, "-"); // Replace spaces with hyphens
+
+      const newHeading: Heading = { id, level, text };
+
+      while (stack.length > 0 && stack[stack.length - 1].level >= level) {
+        stack.pop();
+      }
+
+      if (stack.length > 0) {
+        const parent = stack[stack.length - 1];
+        if (!parent.children) parent.children = [];
+        parent.children.push(newHeading);
+      } else {
+        headings.push(newHeading);
+      }
+
+      stack.push(newHeading);
+    }
+
+    return headings;
+  };
+
   const faqs = extractFAQs(articleData?.content || "");
+  const headings = extractHeadings(articleData?.content || "");
 
   // BlogPosting schema
   const blogSchema = {
@@ -305,11 +364,25 @@ export default async function ArticlePage(props: {
         }
       : null;
 
+  // Split HTML into sections by <h2> tags to allow interleaved components without createRoot
+  const splitHtmlByH2 = (html: string) => {
+    // Regex matches <h2> tags and keeps them as part of the split result
+    // We use a positive lookahead to split *before* each <h2>
+    const sections = html.split(/(?=<h2)/i);
+    return sections;
+  };
+
+  const htmlSections = splitHtmlByH2(parsedHtml);
+
   return (
     <>
       <Schema script={blogSchema} />
       {faqSchema && <Schema script={faqSchema} />}
-      <ArticleView articleData={articleData} html={parsedHtml} />
+      <ArticleView
+        articleData={articleData}
+        htmlSections={htmlSections}
+        headings={headings}
+      />
     </>
   );
 }

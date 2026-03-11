@@ -5,17 +5,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import {
-  CircleCheckIcon,
-  CircleHelpIcon,
-  CircleIcon,
-  Phone,
-  Menu,
-  X,
-  ChevronDown,
-  ChevronRight,
-  ArrowRight,
-} from "lucide-react";
+import { Menu, ChevronRight, ArrowRight } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
