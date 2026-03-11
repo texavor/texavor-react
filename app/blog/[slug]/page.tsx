@@ -11,6 +11,7 @@ import { ArticleView } from "./ArticleView";
 import Schema from "@/components/Schema";
 
 import "../../dracula.css";
+import "./blog.css";
 
 interface Heading {
   id: string;
