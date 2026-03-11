@@ -26,6 +26,17 @@ const renderer = {
 
     return `<a href="${href}" ${titleAttr} ${targetAttr} class="text-primary hover:underline font-medium transition-colors duration-200">${parsedText}</a>`;
   },
+  heading(token: { text: string; depth: number }) {
+    const { text, depth } = token;
+    const shiftedDepth = Math.min(depth + 1, 6); // h1 -> h2, etc. (max h6)
+    const cleanText = text.replace(/\*\*/g, ""); // Remove bold markers for ID generation
+    const id = cleanText
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-");
+
+    return `<h${shiftedDepth} id="${id}">${text}</h${shiftedDepth}>`;
+  },
   code(token: { text: string; lang?: string }) {
     const { text, lang } = token;
     let highlighted;
@@ -110,11 +121,7 @@ export default async function DocPage({
     );
   }
 
-  const rawHtml = markdownParser.parse(docData.content || "") as string;
-  // Shift heading levels: h1 -> h2, h2 -> h3, etc. for better semantic structure in the app
-  const parsedHtml = rawHtml
-    .replace(/<h([1-5])/g, (m, c) => `<h${parseInt(c) + 1}`)
-    .replace(/<\/h([1-5])>/g, (m, c) => `</h${parseInt(c) + 1}>`);
+  const parsedHtml = markdownParser.parse(docData.content || "") as string;
   
   const categorizedDocs = getDocsByCategory();
 
@@ -122,13 +129,16 @@ export default async function DocPage({
     const headings: Heading[] = [];
     const stack: Heading[] = [];
 
-    // Match #, ##, ### (h1, h2, h3)
-    const headingRegex = /^(#{1,3})\s+(.+)$/gm;
+    // Strip code blocks to avoid extracting "headings" from code comments/separators
+    const strippedMarkdown = markdown.replace(/```[\s\S]*?```/g, "");
+
+    // Match #, ##, ### (h1, h2, h3) - Ensure at least one alphanumeric character
+    const headingRegex = /^(#{1,3})\s+.*[a-zA-Z0-9].*$/gm;
     let match;
 
-    while ((match = headingRegex.exec(markdown)) !== null) {
+    while ((match = headingRegex.exec(strippedMarkdown)) !== null) {
       const level = match[1].length + 1; // +1 to match the HTML shift (h1->h2, etc)
-      const text = match[2].trim().replace(/\*\*/g, ""); 
+      const text = match[0].replace(/^#+\s+/, "").trim().replace(/\*\*/g, ""); 
       const id = text
         .toLowerCase()
         .replace(/[^\w\s-]/g, "")

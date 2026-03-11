@@ -66,6 +66,16 @@ const renderer = {
 
     return `<a href="${href}" ${titleAttr} ${targetAttr} class="text-primary hover:underline font-medium transition-colors duration-200">${parsedText}</a>`;
   },
+  heading(token: { text: string; depth: number }) {
+    const { text, depth } = token;
+    const cleanText = text.replace(/\*\*/g, ""); // Remove bold markers for ID generation
+    const id = cleanText
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-");
+
+    return `<h${depth} id="${id}">${text}</h${depth}>`;
+  },
   code(token: { text: string; lang?: string }) {
     const { text, lang } = token;
     let highlighted;
@@ -285,13 +295,16 @@ export default async function ArticlePage(props: {
     const headings: Heading[] = [];
     const stack: Heading[] = [];
 
-    // Match #, ##, ### (h1, h2, h3)
-    const headingRegex = /^(#{1,3})\s+(.+)$/gm;
+    // Strip code blocks to avoid extracting "headings" from code comments/separators
+    const strippedMarkdown = markdown.replace(/```[\s\S]*?```/g, "");
+
+    // Match #, ##, ### (h1, h2, h3) - Ensure at least one alphanumeric character
+    const headingRegex = /^(#{1,3})\s+.*[a-zA-Z0-9].*$/gm;
     let match;
 
-    while ((match = headingRegex.exec(markdown)) !== null) {
+    while ((match = headingRegex.exec(strippedMarkdown)) !== null) {
       const level = match[1].length;
-      const text = match[2].trim().replace(/\*\*/g, ""); // Remove bold markers if present
+      const text = match[0].replace(/^#+\s+/, "").trim().replace(/\*\*/g, ""); 
       const id = text
         .toLowerCase()
         .replace(/[^\w\s-]/g, "") // Remove special chars
