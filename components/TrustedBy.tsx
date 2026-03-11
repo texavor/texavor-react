@@ -82,22 +82,6 @@ const BRANDS = [
 export function TrustedBy() {
   return (
     <div className="w-full py-10 border-y border-border/50 bg-background/50 backdrop-blur-sm overflow-hidden group">
-      <style jsx>{`
-        @keyframes marquee {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        .animate-marquee {
-          animation: marquee 30s linear infinite;
-        }
-        .animate-marquee:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
 
       <div className="tx-container px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">

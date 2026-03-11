@@ -50,7 +50,14 @@ const getServerAxiosInstance = () => {
 };
 
 const markdownParser = new Marked();
+const inlineParser = new Marked(); // Secondary parser for nested inline content to avoid recursion
+
 markdownParser.setOptions({
+  gfm: true,
+  breaks: true,
+});
+
+inlineParser.setOptions({
   gfm: true,
   breaks: true,
 });
@@ -58,44 +65,71 @@ markdownParser.setOptions({
 const renderer = {
   link(token: { href: string; title?: string | null; text: string }) {
     const { href, title, text } = token;
-    // Use the initialized markdownParser instance to parse nested inline content
-    const parsedText = markdownParser.parseInline(text) as string;
+    // Use inlineParser for nested content to avoid recursion back into this link renderer
+    const parsedText = inlineParser.parseInline(text) as string;
     const isInternal = href.startsWith("/") || href.startsWith("#");
-    const targetAttr = isInternal ? "" : 'target="_blank" rel="noopener noreferrer"';
     const titleAttr = title ? `title="${title}"` : "";
 
-    return `<a href="${href}" ${titleAttr} ${targetAttr} class="text-primary hover:underline font-medium transition-colors duration-200">${parsedText}</a>`;
+    return `<a href="${href}" ${titleAttr} ${
+      isInternal ? "" : 'target="_blank" rel="noopener noreferrer"'
+    } class="text-primary hover:underline font-medium transition-colors duration-200">${parsedText}</a>`;
   },
   heading(token: { text: string; depth: number }) {
     const { text, depth } = token;
-    const cleanText = text.replace(/\*\*/g, ""); // Remove bold markers for ID generation
-    const id = cleanText
+    // Parse inline markdown inside heading text (enables links/bold inside headings)
+    const parsedContent = inlineParser.parseInline(text) as string;
+
+    const id = text
       .toLowerCase()
       .replace(/[^\w\s-]/g, "")
       .replace(/\s+/g, "-");
 
-    return `<h${depth} id="${id}">${text}</h${depth}>`;
+    return `<h${depth} id="${id}">${parsedContent}</h${depth}>`;
   },
   code(token: { text: string; lang?: string }) {
     const { text, lang } = token;
     let highlighted;
     let language;
 
-    if (lang && hljs.getLanguage(lang)) {
-      language = lang;
-      highlighted = hljs.highlight(text, { language }).value;
-    } else {
-      const result = hljs.highlightAuto(text);
-      language = result.language || "plaintext";
-      highlighted = result.value;
+    // Direct highlighting to avoid double-escaping from markedHighlight plugin
+    try {
+      if (lang && hljs.getLanguage(lang)) {
+        language = lang;
+        highlighted = hljs.highlight(text, { language }).value;
+      } else {
+        const result = hljs.highlightAuto(text);
+        language = result.language || "plaintext";
+        highlighted = result.value;
+      }
+    } catch (e) {
+      highlighted = text;
+      language = "plaintext";
     }
 
+    const id = `code-${Math.random().toString(36).substring(2, 9)}`;
     return `
-      <div class="code-block-container" style="position: relative; margin-top: 1.5rem; margin-bottom: 1.5rem;">
-        <button class="copy-button absolute top-3 right-3 px-3 py-1 text-[11px] font-bold uppercase tracking-wider rounded bg-slate-200 text-slate-900 hover:bg-slate-300 transition-all duration-200">
-          COPY
-        </button>
-        <pre><code class="hljs language-${language}">${highlighted}</code></pre>
+      <div class="code-block-wrapper group relative my-6 overflow-hidden rounded-xl border border-white/10 bg-[#0d1117] shadow-2xl">
+        <div class="flex items-center justify-between border-b border-white/5 bg-white/5 px-4 py-2">
+          <div class="flex items-center gap-2">
+            <div class="flex gap-1.5">
+              <div class="h-2.5 w-2.5 rounded-full bg-[#ff5f56]"></div>
+              <div class="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]"></div>
+              <div class="h-2.5 w-2.5 rounded-full bg-[#27c93f]"></div>
+            </div>
+            <span class="ml-2 text-[10px] font-medium uppercase tracking-widest text-white/40">
+              ${language.toUpperCase()}
+            </span>
+          </div>
+          <button
+            onclick="navigator.clipboard.writeText(document.getElementById('${id}').innerText); this.textContent='COPIED!'; setTimeout(() => this.textContent='COPY', 2000)"
+            class="rounded-md bg-white/5 px-2 py-1 text-[10px] font-bold text-white/50 transition-all hover:bg-white/10 hover:text-white"
+          >
+            COPY
+          </button>
+        </div>
+        <div class="relative overflow-x-auto p-4 custom-scrollbar">
+          <pre><code id="${id}" class="hljs language-${language} !bg-transparent !p-0 font-mono text-sm leading-relaxed text-[#e6edf3]">${highlighted}</code></pre>
+        </div>
       </div>
     `;
   },
