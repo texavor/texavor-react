@@ -1,6 +1,6 @@
 // app/articles/[slug]/page.tsx
 
-import React, { cache } from "react";
+import { cache } from "react";
 import { Marked } from "marked";
 import { markedHighlight } from "marked-highlight";
 import hljs from "highlight.js";
@@ -11,6 +11,14 @@ import { ArticleView } from "./ArticleView";
 import Schema from "@/components/Schema";
 
 import "../../dracula.css";
+import "./blog.css";
+
+interface Heading {
+  id: string;
+  level: number;
+  text: string;
+  children?: Heading[];
+}
 
 interface ArticleData {
   image: string;
@@ -41,25 +49,94 @@ const getServerAxiosInstance = () => {
   });
 };
 
-function extractDomain(url: string) {
-  try {
-    const u = new URL(url);
-    return u.hostname.replace(/^www\./, "");
-  } catch (e) {
-    // invalid URL
-    return null;
-  }
-}
+const markdownParser = new Marked();
+const inlineParser = new Marked(); // Secondary parser for nested inline content to avoid recursion
 
-const marked = new Marked(
-  markedHighlight({
-    langPrefix: "```",
-    highlight(code, lang) {
-      const language = hljs.getLanguage(lang) ? lang : "plaintext";
-      return hljs.highlight(code, { language }).value;
-    },
-  }),
-);
+markdownParser.setOptions({
+  gfm: true,
+  breaks: true,
+});
+
+inlineParser.setOptions({
+  gfm: true,
+  breaks: true,
+});
+
+const renderer = {
+  link(token: { href: string; title?: string | null; text: string }) {
+    const { href, title, text } = token;
+    // Use inlineParser for nested content to avoid recursion back into this link renderer
+    const parsedText = inlineParser.parseInline(text) as string;
+    const isInternal = href.startsWith("/") || href.startsWith("#");
+    const titleAttr = title ? `title="${title}"` : "";
+
+    return `<a href="${href}" ${titleAttr} ${
+      isInternal ? "" : 'target="_blank" rel="noopener noreferrer"'
+    } class="text-primary hover:underline font-medium transition-colors duration-200">${parsedText}</a>`;
+  },
+  heading(token: { text: string; depth: number }) {
+    const { text, depth } = token;
+    // Parse inline markdown inside heading text (enables links/bold inside headings)
+    const parsedContent = inlineParser.parseInline(text) as string;
+
+    const id = text
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-");
+
+    return `<h${depth} id="${id}">${parsedContent}</h${depth}>`;
+  },
+  code(token: { text: string; lang?: string }) {
+    const { text, lang } = token;
+    let highlighted;
+    let language;
+
+    // Direct highlighting to avoid double-escaping from markedHighlight plugin
+    try {
+      if (lang && hljs.getLanguage(lang)) {
+        language = lang;
+        highlighted = hljs.highlight(text, { language }).value;
+      } else {
+        // Restrict auto-detection to common web languages to avoid obscure guesses like Smalltalk
+        const result = hljs.highlightAuto(text, ["html", "javascript", "json", "css", "typescript", "bash", "python", "yaml", "xml", "markdown"]);
+        language = result.language || "plaintext";
+        highlighted = result.value;
+      }
+    } catch (e) {
+      highlighted = text;
+      language = "plaintext";
+    }
+
+    const id = `code-${Math.random().toString(36).substring(2, 9)}`;
+    return `
+      <div class="code-block-wrapper group relative my-6 overflow-hidden rounded-xl border border-white/10 bg-[#0d1117] shadow-2xl">
+        <div class="flex items-center justify-between border-b border-white/5 bg-white/5 px-4 py-2">
+          <div class="flex items-center gap-2">
+            <div class="flex gap-1.5">
+              <div class="h-2.5 w-2.5 rounded-full bg-[#ff5f56]"></div>
+              <div class="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]"></div>
+              <div class="h-2.5 w-2.5 rounded-full bg-[#27c93f]"></div>
+            </div>
+            <span class="ml-2 text-[10px] font-bold uppercase tracking-widest text-slate-300">
+              ${language.toUpperCase()}
+            </span>
+          </div>
+          <button
+            onclick="navigator.clipboard.writeText(document.getElementById('${id}').innerText); this.textContent='COPIED!'; setTimeout(() => this.textContent='COPY', 2000)"
+            class="rounded-md bg-white/10 px-2 py-1 text-[10px] font-bold text-slate-300 transition-all hover:bg-white/20 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/50"
+          >
+            COPY
+          </button>
+        </div>
+        <div class="relative overflow-x-auto p-4 custom-scrollbar">
+          <pre class="!bg-transparent !m-0 !p-0 border-0"><code id="${id}" class="hljs language-${language} !bg-transparent !p-0 font-mono text-sm leading-relaxed text-[#e6edf3]">${highlighted}</code></pre>
+        </div>
+      </div>
+    `;
+  },
+};
+
+markdownParser.use({ renderer });
 
 // This function now runs at BUILD TIME for each slug and is memoized per request
 const getArticleData = cache(
@@ -110,28 +187,46 @@ export async function generateMetadata(props: {
 }) {
   const params = await props.params;
   const articleData = await getArticleData(params.slug);
+
+  const title = articleData?.title || "Article Not Found";
+  const description =
+    articleData?.description ||
+    "Read this comprehensive article on Generative Engine Optimization and AI strategy. Learn how to optimize your content for the new era of AI search engines.";
+  const image = articleData?.image || "https://www.texavor.com/texavor.png";
+  const url = `https://www.texavor.com/blog/${params.slug}`;
+
   return {
-    title: articleData?.title || "Article Not Found",
-    description:
-      articleData?.description ||
-      "Read this comprehensive article on Generative Engine Optimization and AI strategy. Learn how to optimize your content for the new era of AI search engines.",
+    title,
+    description,
     openGraph: {
-      title: articleData?.title || "Article Not Found",
-      description:
-        articleData?.description ||
-        "Read this comprehensive article on Generative Engine Optimization and AI strategy. Learn how to optimize your content for the new era of AI search engines.",
-      images: articleData?.image ? [{ url: articleData.image }] : [],
+      title,
+      description,
+      url,
+      siteName: "Texavor",
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+      locale: "en_US",
+      type: "article",
+      publishedTime: articleData?.created_at,
+      modifiedTime: articleData?.updated_at,
+      authors: [articleData?.easywrite_author?.name || "Suraj Vishwakarma"],
     },
     twitter: {
       card: "summary_large_image",
-      title: articleData?.title || "Article Not Found",
-      description:
-        articleData?.description ||
-        "Read this comprehensive article on Generative Engine Optimization and AI strategy. Learn how to optimize your content for the new era of AI search engines.",
-      images: articleData?.image ? [articleData.image] : [],
+      title,
+      description,
+      images: [image],
+      creator: "@texavor",
+      site: "@texavor",
     },
     alternates: {
-      canonical: articleData?.canonical_url || `/blog/${params.slug}`,
+      canonical: articleData?.canonical_url || url,
     },
   };
 }
@@ -163,7 +258,7 @@ export default async function ArticlePage(props: {
     );
   }
 
-  const parsedHtml = marked.parse(articleData?.content || "") as string;
+  const parsedHtml = markdownParser.parse(articleData?.content || "") as string;
 
   // Extract FAQs from content (looking for Q&A patterns)
   // Extract FAQs from content (looking for Q&A patterns)
@@ -249,7 +344,54 @@ export default async function ArticlePage(props: {
     return faqs;
   };
 
+  const extractHeadings = (markdown: string): Heading[] => {
+    const headings: Heading[] = [];
+    const stack: Heading[] = [];
+
+    // Strip code blocks to avoid extracting "headings" from code comments/separators
+    const strippedMarkdown = markdown.replace(/```[\s\S]*?```/g, "");
+
+    // Match #, ##, ### (h1, h2, h3) - Ensure at least one alphanumeric character
+    const headingRegex = /^(#{1,3})\s+(.+)$/gm;
+    let match;
+
+    while ((match = headingRegex.exec(strippedMarkdown)) !== null) {
+      const level = match[1].length;
+      const rawText = match[2].trim();
+
+      const cleanText = rawText
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1") // Strip links
+        .replace(/\*\*([^*]+)\*\*/g, "$1") // Strip bold
+        .replace(/__([^_]+)__/g, "$1") // Strip alternate bold
+        .trim();
+
+      const id = rawText
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, "") // Remove special chars
+        .replace(/\s+/g, "-"); // Replace spaces with hyphens
+
+      const newHeading: Heading = { id, level, text: cleanText };
+
+      while (stack.length > 0 && stack[stack.length - 1].level >= level) {
+        stack.pop();
+      }
+
+      if (stack.length > 0) {
+        const parent = stack[stack.length - 1];
+        if (!parent.children) parent.children = [];
+        parent.children.push(newHeading);
+      } else {
+        headings.push(newHeading);
+      }
+
+      stack.push(newHeading);
+    }
+
+    return headings;
+  };
+
   const faqs = extractFAQs(articleData?.content || "");
+  const headings = extractHeadings(articleData?.content || "");
 
   // BlogPosting schema
   const blogSchema = {
@@ -305,11 +447,25 @@ export default async function ArticlePage(props: {
         }
       : null;
 
+  // Split HTML into sections by <h2> tags to allow interleaved components without createRoot
+  const splitHtmlByH2 = (html: string) => {
+    // Regex matches <h2> tags and keeps them as part of the split result
+    // We use a positive lookahead to split *before* each <h2>
+    const sections = html.split(/(?=<h2)/i);
+    return sections;
+  };
+
+  const htmlSections = splitHtmlByH2(parsedHtml);
+
   return (
     <>
       <Schema script={blogSchema} />
       {faqSchema && <Schema script={faqSchema} />}
-      <ArticleView articleData={articleData} html={parsedHtml} />
+      <ArticleView
+        articleData={articleData}
+        htmlSections={htmlSections}
+        headings={headings}
+      />
     </>
   );
 }

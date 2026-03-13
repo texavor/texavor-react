@@ -10,25 +10,29 @@ import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
 import "../../dracula.css";
 
 // Interfaces
-interface Heading {
+export interface Heading {
   id: string;
   level: number;
   text: string;
   children?: Heading[];
 }
 
-interface DocsViewProps {
+export interface DocsViewProps {
   docData: DocData;
-  html: string;
+  htmlSections: string[];
+  headings: Heading[];
   allDocs: DocCategory[];
 }
 
 const EMPTY_ARTICLES: any[] = [];
 
-export function DocsView({ docData, html, allDocs }: DocsViewProps) {
+export function DocsView({
+  docData,
+  htmlSections,
+  headings,
+  allDocs,
+}: DocsViewProps) {
   const [scrollPercentage, setScrollPercentage] = useState(0);
-  const [headings, setHeadings] = useState<Heading[]>([]);
-  const [isTocLoaded, setIsTocLoaded] = useState(false);
   const articleContentRef = useRef<HTMLDivElement>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -82,8 +86,6 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
     const sidebar = sidebarRef.current;
 
     if (activeItem && sidebar) {
-      // Use block: 'center' to ensure the active item is positioned prominently
-      // behavior: 'smooth' for professional, non-jarring transitions
       activeItem.scrollIntoView({
         block: "center",
         behavior: "smooth",
@@ -191,17 +193,12 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
                     </div>
                   </div>
                 ))}
-                {filteredDocs.length === 0 && (
-                  <div className="py-8 text-center text-muted-foreground text-sm font-inter">
-                    No documentation found matching "{searchTerm}"
-                  </div>
-                )}
               </div>
             </div>
           )}
         </div>
 
-        {/* Left Sidebar - Desktop (Pinned to extreme left, under header) */}
+        {/* Left Sidebar - Desktop */}
         <aside className="hidden lg:block w-72 flex-shrink-0 border-r border-border/50 bg-background/50 backdrop-blur-md">
           <div className="sticky top-16 h-[calc(100vh-64px)] overflow-y-auto no-scrollbar z-30 p-6 py-10">
             <div ref={sidebarRef}>
@@ -237,9 +234,6 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
                 {filteredDocs.map((category) => {
                   const isCollapsed =
                     collapsedCategories.has(category.slug) && !searchTerm;
-                  const hasActiveDoc = category.items.some(
-                    (doc) => doc.slug === docData.slug,
-                  );
 
                   return (
                     <div key={category.slug} className="mb-2">
@@ -279,24 +273,15 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
                     </div>
                   );
                 })}
-
-                {filteredDocs.length === 0 && (
-                  <div className="py-10 text-center px-4">
-                    <p className="text-xs text-muted-foreground font-inter">
-                      No results for "{searchTerm}"
-                    </p>
-                  </div>
-                )}
               </nav>
             </div>
           </div>
         </aside>
 
-        {/* Main Content (Centered column) */}
+        {/* Main Content */}
         <main className="flex-1 min-w-0 bg-background flex flex-col">
           <div className="flex-1 max-w-3xl mx-auto px-8 md:px-16 py-16 w-full">
             <article>
-              {/* Hero Section Integrated into Column */}
               <div className="mb-12 animate-fade-slide-up">
                 <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground/80 font-inter mb-6">
                   <Link
@@ -334,18 +319,15 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
               </div>
 
               <div ref={articleContentRef} className="min-h-[400px]">
-                {/* @ts-ignore */}
                 <ArticleContent
-                  html={html}
+                  htmlSections={htmlSections}
                   relatedArticles={EMPTY_ARTICLES}
-                  setHeadings={setHeadings}
-                  setIsTocLoaded={setIsTocLoaded}
                 />
               </div>
             </article>
           </div>
 
-          {/* Next / Previous Navigation - Full Width Area to merge with sidebars */}
+          {/* Next / Previous Navigation */}
           <div className="mt-auto border-t border-border/30 w-full bg-background/50 backdrop-blur-sm">
             <div className="max-w-4xl mx-auto px-8 md:px-16 py-12">
               <div className="flex flex-col sm:flex-row gap-6 justify-between">
@@ -402,7 +384,7 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
           </div>
         </main>
 
-        {/* Right Sidebar - Desktop (Pinned to extreme right, under header) */}
+        {/* Right Sidebar - Desktop */}
         <aside className="hidden xl:block w-72 flex-shrink-0 border-l border-border/50 bg-background/50 backdrop-blur-md">
           <div className="sticky top-16 h-[calc(100vh-64px)] overflow-y-auto no-scrollbar z-30 p-6 py-10">
             {headings.length > 0 && (
@@ -449,27 +431,6 @@ export function DocsView({ docData, html, allDocs }: DocsViewProps) {
         .no-scrollbar {
           -ms-overflow-style: none;
           scrollbar-width: none;
-        }
-
-        /* Table Responsiveness */
-        article table {
-          display: block;
-          width: 100%;
-          overflow-x: auto;
-          -webkit-overflow-scrolling: touch;
-          border-collapse: collapse;
-          margin-bottom: 2rem;
-        }
-
-        article table::-webkit-scrollbar {
-          height: 6px;
-        }
-        article table::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        article table::-webkit-scrollbar-thumb {
-          background: rgba(var(--primary-rgb, 37, 166, 106), 0.2);
-          border-radius: 3px;
         }
       `}</style>
     </>

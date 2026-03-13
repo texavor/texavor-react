@@ -1,15 +1,12 @@
-"use client";
-
-import React, { useState, useEffect, useRef, useCallback } from "react";
 import { format } from "date-fns";
 import { ArticleContent } from "./ArticleContent";
 import Link from "next/link";
 import Image from "next/image";
-import { ShareButtons } from "./ShareButtons";
 import { TableOfContents } from "./TableOfContents";
 import { SidebarVisual } from "@/components/SidebarVisual";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BrainCircuit } from "lucide-react";
+import { ScrollProgress } from "./ScrollProgress";
 
 // Interfaces
 interface Heading {
@@ -38,16 +35,15 @@ interface ArticleData {
 
 interface ArticleViewProps {
   articleData: ArticleData;
-  html: string;
+  htmlSections: string[];
+  headings: Heading[];
 }
 
-export function ArticleView({ articleData, html }: ArticleViewProps) {
-  const [scrollPercentage, setScrollPercentage] = useState(0);
-  const [showFloatingShare, setShowFloatingShare] = useState(false);
-  const [headings, setHeadings] = useState<Heading[]>([]);
-  const [isTocLoaded, setIsTocLoaded] = useState(false);
-  const articleContentRef = useRef<HTMLDivElement>(null);
-
+export function ArticleView({
+  articleData,
+  htmlSections,
+  headings,
+}: ArticleViewProps) {
   function extractDomain(url: string) {
     try {
       const u = new URL(url);
@@ -57,49 +53,10 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
     }
   }
 
-  const handleScroll = useCallback(() => {
-    const scrollTop = window.scrollY;
-    const docHeight =
-      document.documentElement.scrollHeight -
-      document.documentElement.clientHeight;
-
-    if (docHeight > 0) {
-      const scrolled = (scrollTop / docHeight) * 100;
-      setScrollPercentage(scrolled);
-    } else {
-      setScrollPercentage(0);
-    }
-
-    if (articleContentRef.current && isTocLoaded) {
-      const { top, bottom } = articleContentRef.current.getBoundingClientRect();
-      if (top < window.innerHeight && bottom > 800) {
-        setShowFloatingShare(true);
-      } else {
-        setShowFloatingShare(false);
-      }
-    }
-  }, [isTocLoaded]);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleScroll);
-    handleScroll();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
-  }, [handleScroll]);
-
   return (
     <>
       {/* Scroll progress bar — matched with Docs behavior */}
-      <div className="fixed top-0 left-0 w-full h-1 z-[200] bg-muted/30">
-        <div
-          className="h-full bg-primary origin-left transition-transform duration-150 ease-out"
-          style={{ transform: `scaleX(${scrollPercentage / 100})` }}
-        />
-      </div>
+      <ScrollProgress />
 
       <div className="container mx-auto lg:w-[1200px] md:w-8/12 w-11/12 mt-32">
         <div className="flex flex-col lg:flex-row lg:gap-12">
@@ -118,6 +75,7 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                   fill
                   className="object-cover z-10"
                   priority
+                  quality={50}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 900px"
                 />
               )}
@@ -133,7 +91,7 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
               {articleData?.tags?.map((item, index) => (
                 <span
                   key={index}
-                  className="bg-accent/15 text-accent text-[11px] font-medium px-2.5 py-0.5 rounded-sm font-mono border border-accent/30 uppercase tracking-wide"
+                  className="bg-white text-primary text-[11px] font-medium px-2.5 py-0.5 rounded-sm font-mono border border-primary/30 uppercase tracking-wide"
                 >
                   {item as string}
                 </span>
@@ -148,6 +106,10 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                 width={40}
                 height={40}
                 className="rounded-full object-cover"
+                priority
+                quality={50}
+                placeholder="blur"
+                blurDataURL={articleData?.easywrite_author?.profile_pic}
               />
               <div>
                 <p className="font-inter text-sm font-medium text-foreground">
@@ -175,7 +137,7 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
 
             <hr className="border-border mt-6 mb-8" />
 
-            {headings.length > 0 && <TableOfContents headings={headings} />}
+            <TableOfContents headings={headings} />
 
             {articleData?.canonical_url &&
               extractDomain(articleData?.canonical_url) !== "texavor.com" && (
@@ -191,12 +153,10 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                 </p>
               )}
 
-            <div ref={articleContentRef} className="pb-6">
+            <div className="pb-6">
               <ArticleContent
-                html={html}
+                htmlSections={htmlSections}
                 relatedArticles={articleData.relatedArticles}
-                setHeadings={setHeadings}
-                setIsTocLoaded={setIsTocLoaded}
               />
             </div>
 
@@ -224,7 +184,7 @@ export function ArticleView({ articleData, html }: ArticleViewProps) {
                   href="/"
                   className="inline-flex items-center gap-1 text-sm font-medium text-primary font-inter hover:gap-2 transition-all duration-200"
                 >
-                  Learn more <ArrowRight className="w-3.5 h-3.5" />
+                  Build Authority <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
             </div>

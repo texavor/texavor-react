@@ -8,8 +8,34 @@ export const metadata: Metadata = {
   title: "Texavor Blog | Insights on GEO & AI Content Strategy",
   description:
     "Explore expert insights and guides on AI content creation, Generative Engine Optimization (GEO), and advanced SEO strategies tailored for the new AI search era.",
+  openGraph: {
+    title: "Texavor Blog | Insights on GEO & AI Content Strategy",
+    description:
+      "Explore expert insights and guides on AI content creation, Generative Engine Optimization (GEO), and advanced SEO strategies tailored for the new AI search era.",
+    url: "https://www.texavor.com/blog",
+    siteName: "Texavor",
+    images: [
+      {
+        url: "https://www.texavor.com/texavor.png",
+        width: 1200,
+        height: 630,
+        alt: "Texavor Blog",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Texavor Blog | Insights on GEO & AI Content Strategy",
+    description:
+      "Explore expert insights and guides on AI content creation, Generative Engine Optimization (GEO), and advanced SEO strategies tailored for the new AI search era.",
+    images: ["https://www.texavor.com/texavor.png"],
+    creator: "@texavor",
+    site: "@texavor",
+  },
   alternates: {
-    canonical: "/blog",
+    canonical: "https://www.texavor.com/blog",
   },
 };
 
